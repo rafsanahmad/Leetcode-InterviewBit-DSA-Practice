@@ -26,7 +26,8 @@ The answer is “wke”. Its length is 3.
 /*In this example, I am going to explain how to find the length of longest non-repeating substring using sliding window approach.
 
 
-The idea here is to maintain a window of unique character. Each window has start and end index, based on that we know the window size.To check unique character in a window, i am using set data structure. Set does not allow duplicate values and also the lookup time is O(1).
+The idea here is to maintain a window of unique character. Each window has start and end index, based on that we know the window size.
+To check unique character in a window, i am using set data structure. Set does not allow duplicate values and also the lookup time is O(1).
 
 Here are the following steps to solve this problem –
 

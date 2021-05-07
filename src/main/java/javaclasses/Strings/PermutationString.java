@@ -41,7 +41,7 @@ public class PermutationString {
             //remove character at ith index and include
             //character at i+sLen index
             s2Arr[s2.charAt(i) - 'a']--;
-            s2Arr[s2.charAt(i + s2Len) - 'a']++;
+            s2Arr[s2.charAt(i + s1Len) - 'a']++;
         }
 
         if (isPermutation(s1Arr, s2Arr))
@@ -59,6 +59,8 @@ public class PermutationString {
     }
 
     public static void main(String[] args) {
-
+        PermutationString ps = new PermutationString();
+        boolean check = ps.checkInClusion("abc", "eidbaoooc");
+        System.out.println(check);
     }
 }
