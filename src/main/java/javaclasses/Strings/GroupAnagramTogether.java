@@ -7,7 +7,8 @@ Two strings are said to be anagrams of each other if it contains the same charac
 
 Check whether two strings are anagrams of each other or not
 
-For example, Word “car” and “rac” are anagrams of each other. As both, the strings contain the same number of characters only the order of character is different in both the strings.
+For example, Word “car” and “rac” are anagrams of each other. As both, the strings contain the same number of characters
+only the order of character is different in both the strings.
 
 Now, let’s understand this problem statement with example.
 

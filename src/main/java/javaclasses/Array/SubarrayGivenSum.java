@@ -32,9 +32,11 @@ Example 3 :
 
 
  
-The idea here is to declare two variables start and end. Initially, Both pointers point at 0th index. Keep start pointer as it is and start moving end pointer until the value of sum is less than k. If sum is equal to k then return the indexes.
+The idea here is to declare two variables start and end.
+Initially, Both pointers point at 0th index. Keep start pointer as it is and start moving end pointer until the value of sum is less than k. If sum is equal to k then return the indexes.
 
-If the value of sum is greater than k then move start pointer and also subtract the value present at start index from the sum variable. Keep repeating this process until the value of sum is greater than k.
+If the value of sum is greater than k then move start pointer and also subtract the value present at start index from the sum variable.
+Keep repeating this process until the value of sum is greater than k.
 
 The time complexity of this approach is O(n).*/
 

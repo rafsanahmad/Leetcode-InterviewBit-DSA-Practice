@@ -11,7 +11,9 @@ Output – b (b is the first non-repeating character in a string)
 
 */
 
-/*In this solution, we are going to use LinkedHashMap to store character and their count. Java LinkedHashMap maintains the insertion order. So, once we traversed the string and created the map of a character and it’s count, we just need to iterate through LinkedHashMap and choose the first entry with a value 1.
+/*In this solution, we are going to use LinkedHashMap to store character and their count.
+Java LinkedHashMap maintains the insertion order. So, once we traversed the string and created the map of a character and it’s count,
+we just need to iterate through LinkedHashMap and choose the first entry with a value 1.
 
 Java LinkedHashMap to find the first non-repeating character in a String.
 

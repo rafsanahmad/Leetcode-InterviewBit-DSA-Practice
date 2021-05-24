@@ -164,7 +164,24 @@ class Zoo(val animals: List<Animal>) {
     }
 }
 
+class Greeter(val name: String) {
+    fun greet() {
+        println("Hello, $name")
+    }
+}
+
+class Person {
+    lateinit var name: String
+    fun initializeName() {
+        println(this::name.isInitialized)
+        name = "MindOrks" // initializing name
+        println(this::name.isInitialized)
+    }
+}
+
 fun main(args: Array<String>) {
+    //Greeter(args[0]).greet()
+    Person().initializeName()
     val kt = KotlinPractice()
     val n = kt.square(7)
     println(n)

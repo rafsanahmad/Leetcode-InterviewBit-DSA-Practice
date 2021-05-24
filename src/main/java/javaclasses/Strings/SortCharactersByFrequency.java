@@ -24,7 +24,8 @@ Output: “ttEe” or “tteE”  (Both e and E are two different characters so 
 
 */
 
-/*In this problem, We have to return a string which is sorted by frequency of characters. To sort them by count of characters first we have to know each character and it’s count.
+/*In this problem, We have to return a string which is sorted by frequency of characters.
+To sort them by count of characters first we have to know each character and it’s count.
 
 
  

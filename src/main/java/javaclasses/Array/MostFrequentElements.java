@@ -40,7 +40,8 @@ Sorting algorithms and their time complexities
 
 ii) Then in next step, create a list. At each index we can store multiple elements. It’s size would be maximum frequency + 1.
 
-iii) Based on the frequency of a number, put the number in the appropriate bucket. There might be more than one numbers with the same frequency, so we have to put them in a same bucket.
+iii) Based on the frequency of a number, put the number in the appropriate bucket.
+There might be more than one numbers with the same frequency, so we have to put them in a same bucket.
 
 iv) Now, iterate over the bucket elements and print the k most frequent elements.
 

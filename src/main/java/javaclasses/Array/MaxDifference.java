@@ -1,6 +1,7 @@
 package javaclasses.Array;
 
-/*Given an array of integers, find Maximum difference between two elements such that larger number appears after the smaller number. In this tutorial, I am going to discuss multiple approaches and their java code to find maximum difference between two elements.
+/*Given an array of integers, find Maximum difference between two elements such that larger number appears after the smaller number.
+In this tutorial, I am going to discuss multiple approaches and their java code to find maximum difference between two elements.
 
 For example :
 
@@ -18,7 +19,8 @@ Output : 8
 
 The difference between 13 and 5 is 8 (13-5).*/
 
-/*In this approach, instead of taking difference of the picked element with every other element, we can take the difference with the minimum element found so far. So we need to keep track of two things:
+/*In this approach, instead of taking difference of the picked element with every other element, we can take the difference with the minimum element found so far.
+So we need to keep track of two things:
 
 1) Maximum difference found so far.
 2) Minimum number visited so far.*/
