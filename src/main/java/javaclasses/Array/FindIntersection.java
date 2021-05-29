@@ -8,7 +8,8 @@ arr2[] = {4, 6, 8, 9, 12}
 
 Then your program should print intersection as {6, 9}. Before writing actual code, let’s first discuss different approaches to solve this problem.*/
 
-/*In this approach, we first initialize an empty set.Then, we traverse the first array and put each element of the first array in a set. Now, For every element x of the second array, we search x in the set. If x is present, then print it. The time complexity of this approach is O(m+n).*/
+/*In this approach, we first initialize an empty set.Then, we traverse the first array and put each element of the first array in a set. Now, For every element x of the second array, we search x in the set.
+If x is present, then print it. The time complexity of this approach is O(m+n).*/
 
 import java.util.HashSet;
 

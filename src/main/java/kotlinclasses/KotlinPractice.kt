@@ -179,6 +179,53 @@ class Person {
     }
 }
 
+sealed class MySealedClass {
+    class OP1 : MySealedClass() // MyExmaple class can be of two types only
+    class OP2 : MySealedClass()
+}
+
+fun printMessage(message: String): Unit {
+    println(message)
+}
+
+fun printMessageWithPrefix(message: String, prefix: String = "Info") {
+    println("[$prefix] $message")
+}
+
+fun sum(x: Int, y: Int): Int {
+    return x + y
+}
+
+fun multiply(x: Int, y: Int) = x * y
+
+//Infix functions
+class LikablePerson(val name: String) {
+    private val likedPeople = mutableListOf<LikablePerson>()
+    infix fun likes(other: LikablePerson) {
+        likedPeople.add(other)
+        for (item in 0..likedPeople.size - 1) {
+            print(likedPeople.get(item).name + " ")
+        }
+        println()
+    }
+}
+
+//operator functions
+//The operator symbol for times() is * so that you can call the function using 2 * "Bye".
+operator fun Int.times(str: String) = str.repeat(this)
+operator fun String.get(range: IntRange) = substring(range)
+
+//Functions with vararg Parameters
+fun printAll(vararg messages: String) {
+    for (m in messages) print("$m ")
+    println()
+}
+
+fun printAllWithPrefix(vararg messages: String, prefix: String) {
+    for (m in messages) print("$prefix$m ")
+    println()
+}
+
 fun main(args: Array<String>) {
     //Greeter(args[0]).greet()
     Person().initializeName()
@@ -221,4 +268,38 @@ fun main(args: Array<String>) {
 
     var r = kt.getCount(99)
     var s = 10
+
+    val obj: MySealedClass = MySealedClass.OP2()
+
+    val output = when (obj) { // defining the object of the class depending on the inuputs
+        is MySealedClass.OP1 -> "Option One has been chosen"
+        is MySealedClass.OP2 -> "option Two has been chosen"
+    }
+    println(output)
+
+    printMessage("Hello")
+    printMessageWithPrefix("Hello", "Log")
+    printMessageWithPrefix("Hello")
+    printMessageWithPrefix(prefix = "Log", message = "Hello")
+    println(sum(1, 2))
+    println(multiply(2, 4))
+
+    infix fun Int.times(str: String) = str.repeat(this)
+    println(2 times "Bye")
+    val pair = "Ferrari" to "Katrina"
+    println(pair)
+
+    val sophia = LikablePerson("Sophia")
+    val claudia = LikablePerson("Claudia")
+    sophia likes claudia
+
+    println(2 * "Bye ")
+    val str = "Always forgive your enemies; nothing annoys them so much."
+    println(str[0..14])
+
+    printAll("Hello", "Hallo", "Salut", "Hola", "你好")
+    printAllWithPrefix(
+        "Hello", "Hallo", "Salut", "Hola", "你好",
+        prefix = "Greeting: "
+    )
 }
