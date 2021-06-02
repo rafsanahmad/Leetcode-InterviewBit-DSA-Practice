@@ -1,4 +1,4 @@
-package javaclasses;
+package javaclasses.NumberTheory;
 
 import java.util.*;
 /*Given a number N, task is to Check whether it is a permutable prime number or not.

@@ -1,4 +1,4 @@
-package javaclasses;
+package javaclasses.NumberTheory;
 
 /**
  * Created by adamhurwitz on 2/27/16.

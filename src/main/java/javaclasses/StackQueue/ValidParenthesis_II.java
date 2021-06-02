@@ -1,4 +1,4 @@
-package javaclasses.Strings;
+package javaclasses.StackQueue;
 
 /*Given a string containing only three types of characters: '(', ')' and '*',
 write a function to check whether this string is valid. We define the validity of a string by these rules:
@@ -24,7 +24,7 @@ The string size will be in the range [1, 100].*/
 
 import java.util.Stack;
 
-public class ValidParenthesis {
+public class ValidParenthesis_II {
     public static boolean checkValidString(String s) {
         Stack<Integer> pair = new Stack<>();
         Stack<Integer> star = new Stack<>();

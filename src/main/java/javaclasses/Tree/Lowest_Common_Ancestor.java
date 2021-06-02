@@ -1,4 +1,4 @@
-package javaclasses;
+package javaclasses.Tree;
 
 import java.util.*;
 

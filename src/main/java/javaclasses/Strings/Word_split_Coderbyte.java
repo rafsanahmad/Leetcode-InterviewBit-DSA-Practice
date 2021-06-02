@@ -1,4 +1,4 @@
-package javaclasses;
+package javaclasses.Strings;
 
 import java.util.*;
 /*Problem: Have the function WordSplit(strArr) read the array off strings stored in strArr,

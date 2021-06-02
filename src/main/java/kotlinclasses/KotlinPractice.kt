@@ -226,6 +226,29 @@ fun printAllWithPrefix(vararg messages: String, prefix: String) {
     println()
 }
 
+class BigBen {                                  //1
+    companion object Bonger {                   //2
+        fun getBongs(nTimes: Int) {             //3
+            for (i in 1 .. nTimes) {
+                print("BONG ")
+            }
+            println()
+        }
+    }
+}
+
+//Kotlin Primary Constructor, Init, Secondary Constructor
+class Student (var name: String) {
+    var id = -1
+    init {
+        println("Student has got a name as $name")
+    }
+    constructor(secname: String, id: Int) : this(secname) {
+        this.id = id
+        println("Student has got a name as $name & Student id $id")
+    }
+}
+
 fun main(args: Array<String>) {
     //Greeter(args[0]).greet()
     Person().initializeName()
@@ -302,4 +325,8 @@ fun main(args: Array<String>) {
         "Hello", "Hallo", "Salut", "Hola", "你好",
         prefix = "Greeting: "
     )
+    BigBen.getBongs(12)
+
+    var student1 = Student("Rafsan")
+    var student2 = Student("Rafsan", 5)
 }
