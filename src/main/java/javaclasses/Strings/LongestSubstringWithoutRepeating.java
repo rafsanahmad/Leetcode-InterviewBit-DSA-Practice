@@ -47,7 +47,7 @@ without repeating characters.
 import java.util.HashSet;
 import java.util.Set;
 
-public class LongestSubstring {
+public class LongestSubstringWithoutRepeating {
 
     public static int lengthOfLongestSubstring(String s) {
 
