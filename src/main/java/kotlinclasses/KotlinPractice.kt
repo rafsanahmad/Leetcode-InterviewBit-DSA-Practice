@@ -229,7 +229,7 @@ fun printAllWithPrefix(vararg messages: String, prefix: String) {
 class BigBen {                                  //1
     companion object Bonger {                   //2
         fun getBongs(nTimes: Int) {             //3
-            for (i in 1 .. nTimes) {
+            for (i in 1..nTimes) {
                 print("BONG ")
             }
             println()
@@ -238,16 +238,27 @@ class BigBen {                                  //1
 }
 
 //Kotlin Primary Constructor, Init, Secondary Constructor
-class Student (var name: String) {
+class Student(var name: String) {
     var id = -1
+
     init {
         println("Student has got a name as $name")
     }
+
     constructor(secname: String, id: Int) : this(secname) {
         this.id = id
         println("Student has got a name as $name & Student id $id")
     }
 }
+
+//Higher-Order Functions
+/*A higher-order function is a function that takes another
+function as parameter and/or returns a function.*/
+fun calculate(x: Int, y: Int, operation: (Int, Int) -> Int): Int {
+    return operation(x, y)
+}
+
+fun sumNumber(x: Int, y: Int) = x + y
 
 fun main(args: Array<String>) {
     //Greeter(args[0]).greet()
@@ -329,4 +340,8 @@ fun main(args: Array<String>) {
 
     var student1 = Student("Rafsan")
     var student2 = Student("Rafsan", 5)
+
+    val sumResult = calculate(4, 5, ::sumNumber)
+    val mulResult = calculate(4, 5) { a, b -> a * b }
+    println("sumResult $sumResult, mulResult $mulResult")
 }

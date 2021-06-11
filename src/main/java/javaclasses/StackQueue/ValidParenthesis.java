@@ -54,5 +54,8 @@ public class ValidParenthesis {
     public static void main(String[] args) {
         ValidParenthesis vp = new ValidParenthesis();
         System.out.println(vp.isValid("()[]{}"));
+
+        int res = 10&7;
+        int d  =10;
     }
 }

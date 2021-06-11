@@ -23,6 +23,7 @@ In this tutorial, I am going to discuss the algorithm and their java implementat
 /*
 Find the longest common prefix java code
 */
+//Leetcode 14
 public class LongestCommonPrefix {
 
     public static String findLongestPrefix(String[] strs) {
@@ -34,6 +35,10 @@ public class LongestCommonPrefix {
 
         //Assign first word of an array string
         String lcp = strs[0];
+
+        if (strs.length == 1) {
+            return lcp;
+        }
 
         //Traverse an array from 1 to n-1
         for (int i = 1; i < strs.length; i++) {
