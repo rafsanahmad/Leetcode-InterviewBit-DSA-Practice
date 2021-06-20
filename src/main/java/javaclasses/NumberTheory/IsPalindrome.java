@@ -18,7 +18,7 @@ public class IsPalindrome {
         int start = 0;
         int end = str.length() - 1;
 
-        while (start != end && start < end && end > start) {
+        while (start < end) {
             if (str.charAt(start) != str.charAt(end)) {
                 return false;
             }
@@ -34,6 +34,6 @@ public class IsPalindrome {
 
     public static void main(String[] args) {
         IsPalindrome palindrome = new IsPalindrome();
-        System.out.println(palindrome.isPalindromeNumber(121));
+        System.out.println(palindrome.isPalindromeNumber(12132));
     }
 }

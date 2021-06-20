@@ -34,8 +34,8 @@ public class KclosestPoints {
         for (int i = 0; i < points.length; i++) {
             int x1 = points[i][0];
             int y1 = points[i][1];
-            double diff1 = Math.pow((x1 - 0), 2);
-            double diff2 = Math.pow((y1 - 0), 2);
+            double diff1 = Math.pow((x1), 2);
+            double diff2 = Math.pow((y1), 2);
             double sqrt = Math.sqrt(diff1 + diff2);
             map.put(i, sqrt);
         }

@@ -30,11 +30,11 @@ public class Permutation_Prime {
 
         for (int i = 0; i < permString.size(); i++) {
             int value = Integer.parseInt(permString.get(i));
-            if (isPrime(value)) {
-                return 1;
+            if (!isPrime(value)) {
+                return 0;
             }
         }
-        return 0;
+        return 1;
     }
 
     //find permutation using recursive approach
@@ -66,7 +66,7 @@ public class Permutation_Prime {
         // keep this function call here
         //Scanner s = new Scanner(System.in);
         //System.out.print(PrimeChecker(s.nextLine()));
-        int result = PrimeChecker(20);
+        int result = PrimeChecker(13);
         System.out.print("Found Prime: " + result);
     }
 }
