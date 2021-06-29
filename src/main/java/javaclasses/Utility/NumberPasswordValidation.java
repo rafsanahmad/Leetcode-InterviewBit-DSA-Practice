@@ -81,5 +81,9 @@ public class NumberPasswordValidation {
         //System.out.println(Math.round(361 / 60));
         System.out.println(numberPasswordValidation.solution("000 34 32232"));
         System.out.println(numberPasswordValidation.passwordCheck("FooBar123!"));
+
+        char ch = (char) ('a' + 4);
+        System.out.println(ch);
+        int d = 10;
     }
 }
