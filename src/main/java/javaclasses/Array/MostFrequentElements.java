@@ -30,7 +30,8 @@ NOTE:
 
 Here are the following steps to solve this problem.
 
-i) To find the most frequent elements, First we need to know the number and it’s count. For this we can use HashMap to store the number and it’s count.
+i) To find the most frequent elements, First we need to know the number and it’s count.
+For this we can use HashMap to store the number and it’s count.
 
 So, if the input array is {1, 1, 1, 2, 2, 3, 3, 3} then at the end of this operation map would look like this: 1 -> 3, 2 -> 2, 3 -> 3.
 

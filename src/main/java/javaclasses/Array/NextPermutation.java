@@ -114,7 +114,7 @@ public class NextPermutation {
 
         NextPermutation perm = new NextPermutation();
         int[] arr = {1, 1, 5, 2};
-        perm.nextPermutation2(arr);
+        perm.nextPermutation(arr);
         for (int i = 0; i < arr.length; i++) {
             System.out.print(arr[i] + " ");
         }

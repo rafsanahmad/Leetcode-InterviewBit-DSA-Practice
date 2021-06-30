@@ -344,4 +344,8 @@ fun main(args: Array<String>) {
     val sumResult = calculate(4, 5, ::sumNumber)
     val mulResult = calculate(4, 5) { a, b -> a * b }
     println("sumResult $sumResult, mulResult $mulResult")
+
+    val strr = "exit"
+    val splited = strr.split(" ")[0]
+    println(splited.toString())
 }

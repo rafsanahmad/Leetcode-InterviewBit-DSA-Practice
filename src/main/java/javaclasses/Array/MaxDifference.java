@@ -51,7 +51,7 @@ public class MaxDifference {
 
     public static void main(String[] args) {
 
-        int arr[] = {2, 5, 15, 6, 4, 8, 9};
+        int arr[] = {7, 9, 5, 6, 13, 2, 15};
         int result = findMaxDiff(arr);
 
         System.out.println(result);
