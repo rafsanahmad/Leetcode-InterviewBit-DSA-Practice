@@ -43,8 +43,8 @@ public class ThreeSumClosest {
     }
 
     public static void main(String[] args) {
-        int[] arr = {1, 1, 1, 0};
+        int[] arr = {-1, 2, 1, -4};
         ThreeSumClosest closest = new ThreeSumClosest();
-        System.out.println(closest.threeSumClosest(arr, -100));
+        System.out.println(closest.threeSumClosest(arr, 1));
     }
 }

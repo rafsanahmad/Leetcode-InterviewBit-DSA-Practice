@@ -1,4 +1,5 @@
 package javaclasses.Strings;
+
 /*Given two strings str1 and str2, check if str1 is a subsequence of str2. Both strings consists only of lowercase characters.
 
 Example 1:
@@ -22,9 +23,11 @@ For example : abd is a subsequence of abcde.
 
 /*In this example, we are going to solve this problem using two pointers.
 
-Take two pointers sIndex and tIndex. The pointer sIndex points to String str1 and pointer tIndex points to string str2. The initial value is zero for both the pointers.
+Take two pointers sIndex and tIndex. The pointer sIndex points to String str1 and pointer tIndex points to string str2.
+The initial value is zero for both the pointers.
 
-Then compare the character present at both the indexes. If it is equal then increment the value of both the pointers. Else increment the value of pointer which points to String str2.
+Then compare the character present at both the indexes. If it is equal then increment the value of both the pointers.
+Else increment the value of pointer which points to String str2.
 
 If all the characters of string str1 is present in string str2 it means the value of sIndex is equal to s.length.
 

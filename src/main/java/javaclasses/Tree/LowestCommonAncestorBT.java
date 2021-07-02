@@ -2,7 +2,7 @@ package javaclasses.Tree;
 
 public class LowestCommonAncestorBT {
 
-    //Lowest Common Ancestor
+    //Lowest Common Ancestor using post order traversal
     //Leetcode 236
     public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
         if (root == null || root == p || root == q) {
@@ -12,10 +12,10 @@ public class LowestCommonAncestorBT {
         TreeNode leftNode = lowestCommonAncestor(root.left, p, q);
         TreeNode rightNode = lowestCommonAncestor(root.right, p, q);
 
-        if(leftNode != null && rightNode != null) {
+        if (leftNode != null && rightNode != null) {
             return root;
         }
-        if(leftNode == null) {
+        if (leftNode == null) {
             return rightNode;
         } else {
             return leftNode;

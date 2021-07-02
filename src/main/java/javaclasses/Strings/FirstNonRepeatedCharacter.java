@@ -26,63 +26,81 @@ We are traversing the string again from first to the last character as HashMap d
 /*
 Find first non-repeating character in a string using hashmap
 */
+
 import java.util.*;
- 
+
 public class FirstNonRepeatedCharacter {
- 
+
+
+    public void findFirstCharacter(String str) {
+        // Assign length of a string
+        int len = str.length();
+
+        // HashMap implementation for key and value pair
+        HashMap<Character, Integer> charcount = new HashMap<Character, Integer>();
+
+        Character ch;
+
+        /*Create a key and value pair for character and it's count.
+          If there  is no value stored for a character then set it to 1.
+          Else we increment the character value by 1 */
+
+        for (int i = 0; i < len; i++) {
+
+            ch = str.charAt(i);
+
+            /* If character is already exists
+               then increment it's count by 1 */
+            charcount.put(ch, charcount.getOrDefault(ch, 0) + 1);
+        }
+
+        for (int j = 0; j < len; j++) {
+
+            ch = str.charAt(j);
+            // Check character with value 1 (First non-repeated character)
+            if (charcount.get(ch) == 1) {
+
+                System.out.println("First non-repeated character is " + ch);
+                break;
+
+            }
+        }
+    }
+
+    //LinkedHashMap maintains order of insertion
+    public void findFirstUsingLinkedHashMap(String str) {
+        Map<Character, Integer> charCount = new LinkedHashMap<>();
+        Character ch;
+
+        for (int i = 0; i < str.length(); i++) {
+            ch = str.charAt(i);
+            /* If key exist then increment it's value
+              otherwise set it's value to 1 */
+            charCount.put(ch, charCount.getOrDefault(ch, 0) + 1);
+        }
+
+        //Traverse LinkedHashMap
+        for (Map.Entry<Character, Integer> entry : charCount.entrySet()) {
+
+            if (entry.getValue() == 1) {
+
+                System.out.println("First non-repeated character is " + entry.getKey());
+                break;
+
+            }
+        }
+    }
+
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        
+
         System.out.println("Enter an input string ");
-        
         // Take an input
- 
         Scanner in = new Scanner(System.in);
         String str = in.nextLine();
-        
-        // Assign length of a string
-        int len = str.length();
-        
-        // HashMap implementation for key and value pair
-        HashMap<Character, Integer> charcount = new HashMap<Character, Integer>();
-        
-        Character ch;
-        
-        /*Create a key and value pair for character and it's count. 
-          If there  is no value stored for a character then set it to 1. 
-          Else we increment the character value by 1 */
- 
-        for(int i = 0; i < len; i++) {
-            
-            ch = str.charAt(i);
-            
-            /* If character is already exists 
-               then increment it's count by 1 */
- 
-            if(charcount.containsKey(ch)) {
-                
-                charcount.put(ch, charcount.get(ch)+1);
-                
-            } else {
-                
-                // If character does not not exist
-                charcount.put(ch, 1);
-            }
-        }
-        
-        for (int j = 0; j < len; j++) {
-            
-            ch = str.charAt(j);
-            // Check character with value 1 (First non-repeated character)   
-            if(charcount.get(ch) == 1){
-                
-                System.out.println("First non-repeated character is " + ch);
-                break;
-                
-            }
-        }
+        FirstNonRepeatedCharacter f = new FirstNonRepeatedCharacter();
+        f.findFirstUsingLinkedHashMap(str);
     }
-    
 }

@@ -1,17 +1,17 @@
 package javaclasses.Strings;
-/*Given an array of strings, write a method to find the longest common prefix string. If no common prefix is found, return an empty string ” “.
+
+/*Given an array of strings, write a method to find the longest common prefix string.
+If no common prefix is found, return an empty string ” “.
 
 For example:
 
 Example 1:
-
 Input: [“cat”,”cable”,”camera”]
 Output: “ca”
 
 The common prefix is ca.
 
 Example 2:
-
 Input: [“rat”,”dog”,”elephant”]
 Output: “”
 

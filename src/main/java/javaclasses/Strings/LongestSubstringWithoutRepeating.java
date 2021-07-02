@@ -33,7 +33,8 @@ Here are the following steps to solve this problem –
 
 Declare two indexes i and j and initialize with zero. Variable i indicate index of the start window and j indicate end index.
 Traverse a string and pick one character at a time.
-First check, if a character exists in a set. If it doesn’t exist in a set then add them in a set and increment the count of j and the index of i remain as it is. Also, keep track of the length of a window.
+First check, if a character exists in a set. If it doesn’t exist in a set then add them in a set and increment the count of j and the index of i remain as it is.
+Also, keep track of the length of a window.
 If character exists in a set then remove the character from a set and increment the count of i until all the characters in a window is unique again.
 Repeat this step until the string is traversed completely.
 The time complexity of this approach is O(n) and it’s space complexity is also O(n).*/

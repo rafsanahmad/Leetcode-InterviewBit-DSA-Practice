@@ -11,7 +11,8 @@ import java.util.*;
         In this example, the firs element can be split into two words: hello and cat because both of those words are in the dictionary.
         Your program should return the two words that exist in the dictionary seperated by a comma.
         So for the example above, your program should return hello,cat. There will only be one correcy way to split the first element of characters into two words.
-        I f there is no way to split string into two words that exist in the dictionary, return the string not possible. The first element itself will never exist in the dictionary as a real word.
+        I f there is no way to split string into two words that exist in the dictionary, return the string not possible.
+        The first element itself will never exist in the dictionary as a real word.
         Answer Output:
         base, ball*/
 
@@ -54,6 +55,10 @@ public class Word_split_Coderbyte {
         String[] array = new String[]{"hellocat", "apple, bat,cat,goodbye,hello,yellow,why"};
         String result = WordSplit(array);
         System.out.print(result);
+
+        System.out.println();
+        String str = "hellocat";
+        System.out.println(Arrays.toString(str.split("hello")));
     }
 }
 

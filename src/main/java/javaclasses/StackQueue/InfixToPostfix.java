@@ -57,8 +57,8 @@ public class InfixToPostfix {
                     result += stack.pop();
 
                 stack.pop();
-            } else // an operator is encountered
-            {
+            } else {
+                // an operator is encountered
                 while (!stack.isEmpty() && Prec(c)
                         <= Prec(stack.peek())) {
 

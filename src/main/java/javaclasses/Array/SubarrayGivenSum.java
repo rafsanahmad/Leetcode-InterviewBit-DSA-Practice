@@ -28,12 +28,12 @@ Example 3 :
 
 */
 
-/*In this example, I am explaining two pointer approach to solve this problem in a  single traversal. Two pointer approach is also known as sliding window.
-
-
+/*In this example, I am explaining two pointer approach to solve this problem in a  single traversal.
+ Two pointer approach is also known as sliding window.
  
 The idea here is to declare two variables start and end.
-Initially, Both pointers point at 0th index. Keep start pointer as it is and start moving end pointer until the value of sum is less than k. If sum is equal to k then return the indexes.
+Initially, Both pointers point at 0th index. Keep start pointer as it is and start moving end pointer
+until the value of sum is less than k. If sum is equal to k then return the indexes.
 
 If the value of sum is greater than k then move start pointer and also subtract the value present at start index from the sum variable.
 Keep repeating this process until the value of sum is greater than k.

@@ -1,7 +1,8 @@
 package javaclasses.Strings;
 /*Write a java code to check balanced parentheses in an expression using stack.
 
-Given an expression containing characters ‘{‘,’}’,'(‘,’)’,'[‘,’]’. We have to write a code to check whether an input string has valid parentheses.
+Given an expression containing characters ‘{‘,’}’,'(‘,’)’,'[‘,’]’.
+We have to write a code to check whether an input string has valid parentheses.
 
 An input string is valid if:
 
@@ -15,8 +16,6 @@ i) {[]}) – Invalid
 ii) {()}[] – Valid*/
 
 /*We can use stack data structure to solve this problem efficiently. Here are the following steps.
-
-
  
 i) First, we need to traverse an input string and pick each character at a time.
 

@@ -11,14 +11,11 @@ import java.util.List;
 
 Notice that the solution set must not contain duplicate triplets.
 
-
-
 Example 1:
-
 Input: nums = [-1,0,1,2,-1,-4]
 Output: [[-1,-1,2],[-1,0,1]]
-Example 2:
 
+Example 2:
 Input: nums = []
 Output: []
 */
@@ -27,6 +24,7 @@ public class ThreeSum {
     public List<List<Integer>> threeSum(int[] nums) {
         List<List<Integer>> result = new ArrayList<>();
         Arrays.sort(nums);
+
         for (int i = 0; i < nums.length; i++) {
             int start = i + 1;
             int end = nums.length - 1;

@@ -27,9 +27,8 @@ Output: “ttEe” or “tteE”  (Both e and E are two different characters so 
 /*In this problem, We have to return a string which is sorted by frequency of characters.
 To sort them by count of characters first we have to know each character and it’s count.
 
-
- 
-It means we have to first traverse a string and put each character and it’s count in a Map. Here i am using HashMap to store character and it’s count.
+It means we have to first traverse a string and put each character and it’s count in a Map.
+Here i am using HashMap to store character and it’s count.
 
 So, Once we know each character and it’s count. Simply sort the HashMap by values.
 

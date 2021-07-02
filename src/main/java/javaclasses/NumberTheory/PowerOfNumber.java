@@ -1,15 +1,12 @@
 package javaclasses.NumberTheory;
 
-/**
- * Created by adamhurwitz on 2/27/16.
- */
+
 public class PowerOfNumber {
     static private final String LOG_TAG = PowerOfNumber.class.getSimpleName();
     static double x = 3;
     static double n = -1;
 
     public static void main(String arg[]) {
-
         System.out.println("power equals " + pow(x, n));
     }
 

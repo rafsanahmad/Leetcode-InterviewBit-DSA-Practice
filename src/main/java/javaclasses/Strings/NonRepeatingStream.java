@@ -1,4 +1,5 @@
 package javaclasses.Strings;
+
 /*Given a string A denoting a stream of lowercase alphabets. We have to write a code to make a new string B.
 
 Here is the rule to form string B.

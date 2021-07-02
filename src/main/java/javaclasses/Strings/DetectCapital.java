@@ -9,13 +9,10 @@ Only the first letter in this word is capital, like "Google".
 Otherwise, we define that this word doesnt use capitals in a right way 
 
 Example 1:
-
 Input: "USA"
 Output: True
- 
 
 Example 2:
-
 Input: "FlaG"
 Output: False
  
@@ -31,7 +28,7 @@ public class DetectCapital {
 
         for (int i = 0; i < word.length(); i++) {
             char ch = word.charAt(i);
-            if (ch >= 65 && ch <= 90) {
+            if (ch >= 'A' && ch <= 'Z') {
                 //Ascii A-Z
                 capital++;
             } else {
@@ -39,11 +36,11 @@ public class DetectCapital {
             }
         }
         return capital == word.length() || small == word.length()
-                || (capital == 1 && word.charAt(0) >= 65 && word.charAt(0) <= 90);
+                || (capital == 1 && word.charAt(0) >= 'A' && word.charAt(0) <= 'Z');
     }
 
     public static void main(String[] args) {
-
+        DetectCapital dc = new DetectCapital();
+        System.out.println(dc.detectCapitalUse("FLAG"));
     }
 }
-

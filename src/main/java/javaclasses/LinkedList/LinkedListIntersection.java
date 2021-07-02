@@ -42,8 +42,8 @@ Then we can traverse both the lists in parallel till we come across a common nod
     }
 
     /* function to get the intersection point of two linked
-     lists head1 and head2 where head1 has d more nodes than
-     head2 */
+     lists node1 and node2 where node1 has d more nodes than
+     node2 */
     int _getIntesectionNode(int d, Node node1, Node node2) {
         int i;
         Node current1 = node1;

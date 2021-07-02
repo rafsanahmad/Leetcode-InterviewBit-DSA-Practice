@@ -3,7 +3,8 @@ package javaclasses.Strings;
 
 what are Anagrams?
 
-Two strings are said to be anagrams of each other if it contains the same characters, only the order of character in both the strings is different.
+Two strings are said to be anagrams of each other if it contains the same characters,
+only the order of character in both the strings is different.
 
 Check whether two strings are anagrams of each other or not
 

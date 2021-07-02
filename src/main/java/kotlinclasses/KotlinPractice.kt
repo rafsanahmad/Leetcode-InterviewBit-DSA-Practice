@@ -260,6 +260,23 @@ fun calculate(x: Int, y: Int, operation: (Int, Int) -> Int): Int {
 
 fun sumNumber(x: Int, y: Int) = x + y
 
+fun secondSmallest(nums: Array<Int>): Int {
+    var smallest = Integer.MAX_VALUE
+    var secondSmallest = Integer.MAX_VALUE
+
+    for (i in 0..nums.size - 1) {
+        if (nums[i] < smallest) {
+            secondSmallest = smallest
+            smallest = nums[i]
+        }
+        if (nums[i] < secondSmallest && nums[i] > smallest) {
+            secondSmallest = nums[i]
+        }
+    }
+
+    return secondSmallest
+}
+
 fun main(args: Array<String>) {
     //Greeter(args[0]).greet()
     Person().initializeName()
@@ -348,4 +365,7 @@ fun main(args: Array<String>) {
     val strr = "exit"
     val splited = strr.split(" ")[0]
     println(splited.toString())
+
+    var array = arrayOf(-3, 7, 1, 34, -1, 18, 0, -6, 8, 99)
+    println(secondSmallest(array))
 }

@@ -25,6 +25,7 @@ The string size will be in the range [1, 100].*/
 import java.util.Stack;
 
 public class ValidParenthesis_II {
+
     public static boolean checkValidString(String s) {
         Stack<Integer> pair = new Stack<>();
         Stack<Integer> star = new Stack<>();
@@ -32,7 +33,7 @@ public class ValidParenthesis_II {
         for (int i = 0; i < s.length(); i++) {
             char ch = s.charAt(i);
             if (ch == '(') {
-                pair.push(i); //push intex
+                pair.push(i); //push index
             } else if (ch == '*') {
                 star.push(i);
             } else {
