@@ -13,7 +13,6 @@ which means you could search circularly to find its next greater number. If it d
 
 
 Example 1:
-
 Input: nums = [1,2,1]
 Output: [2,-1,2]
 Explanation: The first 1's next greater number is 2;
