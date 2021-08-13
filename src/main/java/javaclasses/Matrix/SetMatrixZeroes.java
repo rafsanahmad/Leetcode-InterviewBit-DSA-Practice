@@ -12,6 +12,12 @@ You must do it in place.
 Example 1:
 Input: matrix = [[1,1,1],[1,0,1],[1,1,1]]
 Output: [[1,0,1],[0,0,0],[1,0,1]]*/
+
+    /*  1 1 1           1 0 1
+        1 0 1  ----->   0 0 0
+        1 1 1           1 0 1
+    * */
+
     public void setZeroes(int[][] matrix) {
         HashSet<Integer> rows = new HashSet<>();
         HashSet<Integer> columns = new HashSet<>();

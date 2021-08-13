@@ -31,7 +31,7 @@ So we need to keep track of two things:
 */
 public class MaxDifference {
 
-    public static int findMaxDiff(int arr[]) {
+    public static int findMaxDiff(int[] arr) {
 
         int maxDiff = arr[1] - arr[0];
         int minEle = arr[0];

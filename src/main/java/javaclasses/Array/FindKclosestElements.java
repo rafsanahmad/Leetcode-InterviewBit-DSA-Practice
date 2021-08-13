@@ -48,7 +48,7 @@ Output: [1,2,3,4]
         }
 
         Collections.sort(elements,
-                (o1, o2) -> o1.compareTo(o2));
+                Elements::compareTo);
         for (int i = 0; i < k; i++) {
             result.add(elements.get(i).value);
         }

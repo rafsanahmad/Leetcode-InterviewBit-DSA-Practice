@@ -6,28 +6,26 @@ Given a list of non-negative integers nums, arrange them such that they form the
 
 Note: The result may be very large, so you need to return a string instead of an integer.
 
-
 Example 1:
-
 Input: nums = [10,2]
 Output: "210"
-Example 2:
 
+Example 2:
 Input: nums = [3,30,34,5,9]
 Output: "9534330"
-Example 3:
 
+Example 3:
 Input: nums = [1]
 Output: "1"
-Example 4:
 
+Example 4:
 Input: nums = [10]
 Output: "10"
 * */
 public class LargestNumber {
 
     public String largestNumber(int[] nums) {
-        String result = "";
+        StringBuilder result = new StringBuilder();
 
         for (int i = 0; i < nums.length; i++) {
             for (int j = i + 1; j < nums.length; j++) {
@@ -43,17 +41,17 @@ public class LargestNumber {
         }
 
         for (int i = 0; i < nums.length; i++) {
-            result = result + nums[i];
+            result.append(nums[i]);
         }
-        String replaceZero = result.replaceAll("0", "");
+        String replaceZero = result.toString().replaceAll("0", "");
         if (replaceZero.length() == 0) {
             return "0";
         }
-        return result;
+        return result.toString();
     }
 
     public static void main(String[] args) {
-        int arr[] = {3, 30, 34, 5, 9};
+        int[] arr = {3, 30, 34, 5, 9};
         LargestNumber ln = new LargestNumber();
         String res = ln.largestNumber(arr);
         System.out.println(res);

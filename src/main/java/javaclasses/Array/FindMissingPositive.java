@@ -23,18 +23,20 @@ Output: 1*/
     public int firstMissingPositive(int[] nums) {
         int len = nums.length;
         for (int i = 0; i < len; i++) {
-            int currentPos = nums[i] - 1;
-            while (nums[i] >= 1 && nums[i] <= len && nums[i] != nums[currentPos]) {
-                //Swap numbers if in range & not match with current position
-                //Invalidate
+            while (nums[i] != i + 1) {
+                //Nums don't match position
+                if (nums[i] <= 0 || nums[i] >= len)
+                    break;
+                if (nums[i] == nums[nums[i] - 1])
+                    break;
+                //Swap
                 int temp = nums[i];
-                nums[i] = nums[currentPos];
-                nums[currentPos] = temp;
-                currentPos = nums[i] - 1;
+                nums[i] = nums[temp - 1];
+                nums[temp - 1] = temp;
             }
         }
         for (int i = 0; i < len; i++) {
-            if (i + 1 != nums[i]) {
+            if (nums[i] != i + 1) {
                 return i + 1;
             }
         }
@@ -43,7 +45,7 @@ Output: 1*/
 
     public static void main(String[] args) {
         FindMissingPositive findMissingPositive = new FindMissingPositive();
-        int[] arr = {3, 4, -1, 1};
+        int[] arr = {3, 4, -1, 1, 2, 8, 0};
         System.out.println(findMissingPositive.firstMissingPositive(arr));
     }
 }

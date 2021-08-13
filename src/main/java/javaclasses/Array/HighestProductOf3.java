@@ -10,7 +10,7 @@ Does your method work with negative numbers? If arrayOfInts is
 [-10, -10, 1, 3, 2]
 we should return 300. (which we get by taking -10 * -10 * 3).
 
-We can do this in O(n)O time and O(1) space.*/
+We can do this in O(n) time and O(1) space.*/
 
     /*Solution
 We use a greedy ↴ approach to solve the problem in one pass. At each iteration we keep track of:

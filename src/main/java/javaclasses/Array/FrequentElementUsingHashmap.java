@@ -26,7 +26,8 @@ NOTE:
 
 * It’s guaranteed that the answer is unique, in other words the set of the top k frequent elements is unique.*/
 
-/*The idea here is to first create a map of array element and it’s count. Now, we know each array element and it’s count. Next step is to sort the HashMap by it’s value and pick only k elements.*/
+/*The idea here is to first create a map of array element and it’s count. Now, we know each array element and it’s count.
+Next step is to sort the HashMap by it’s value and pick only k elements.*/
 
 
 //K Most Frequent Elements by sorting HashMap
