@@ -4,8 +4,6 @@ import java.util.Stack;
 import java.util.regex.Pattern;
 
 public class StackOperation {
-    /*A word machine that performs a sequence of simple operation on a stack of integers
-     */
 
     public static final int MAX = 1048575;
     public static final int MIN = 0;

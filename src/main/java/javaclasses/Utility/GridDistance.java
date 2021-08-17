@@ -3,7 +3,6 @@ package javaclasses.Utility;
 import java.util.ArrayList;
 
 public class GridDistance {
-    /*A retail store chain wants to expand into a new neighbourhood.*/
 
     public int solution(int K, int[][] A) {
         int result = 0;
