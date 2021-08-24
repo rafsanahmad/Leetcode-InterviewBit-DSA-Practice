@@ -7,6 +7,9 @@ import java.util.Stack;
 public class DfsGraph_AdjacencyList {
 
     /*res/dfs.png*/
+    /*Time complexity =  O(V) + O(E) = O(V + E)
+    * V is the number of nodes
+    * E is the number of edges*/
     static class Node {
         int data;
         boolean visited;

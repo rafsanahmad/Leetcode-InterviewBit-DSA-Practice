@@ -1,4 +1,4 @@
-package javaclasses.Strings;
+package javaclasses.DynamicProgramming;
 
 /*
 * Given a string s, return the longest palindromic substring in s.
