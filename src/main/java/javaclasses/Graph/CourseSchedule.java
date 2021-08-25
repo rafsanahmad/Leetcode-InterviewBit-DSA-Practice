@@ -78,8 +78,8 @@ So it is impossible.*/
     }
 
     public static void main(String[] args) {
-        int[][] array = {{1, 0}, {0, 1}};
+        int[][] array = {{0, 1}, {1, 2}, {3, 2}, {4, 3}, {2, 4}};
         CourseSchedule schedule = new CourseSchedule();
-        System.out.println(schedule.canFinish(2, array));
+        System.out.println(schedule.canFinish(5, array));
     }
 }
