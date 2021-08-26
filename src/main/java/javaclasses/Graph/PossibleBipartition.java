@@ -27,6 +27,7 @@ Input: n = 5, dislikes = [[1,2],[2,3],[3,4],[4,5],[1,5]]
 Output: false
  */
 
+    //Graph coloring problem
     public boolean possibleBipartition(int n, int[][] dislikes) {
         HashMap<Integer, List<Integer>> adj = new HashMap<>();
         for (int i = 0; i < n; i++) {
