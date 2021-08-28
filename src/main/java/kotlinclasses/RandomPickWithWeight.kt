@@ -1,6 +1,6 @@
 package kotlinclasses
 
-import java.util.Arrays
+import java.util.*
 
 class RandomPickWithWeight {
 

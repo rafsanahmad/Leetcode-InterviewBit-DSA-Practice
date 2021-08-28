@@ -1,7 +1,5 @@
 package kotlinclasses
 
-import java.lang.StringBuilder
-
 class BinaryAddition {
 
     fun addBinaryString(s1: String, s2: String): String {
