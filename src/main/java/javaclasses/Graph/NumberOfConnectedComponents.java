@@ -1,7 +1,7 @@
 package javaclasses.Graph;
 
+import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.LinkedList;
 import java.util.List;
 
 public class NumberOfConnectedComponents {
@@ -13,13 +13,15 @@ public class NumberOfConnectedComponents {
         //Setup the adjacency list
         HashMap<Integer, List<Integer>> adj = new HashMap<>();
         for (int i = 0; i < n; i++) {
-            adj.put(i, new LinkedList<Integer>());
+            adj.put(i, new ArrayList<>());
         }
         //Populate the adjacency list with all nodes neighbors
         //Graph is undirected - so add both edges
         for (int i = 0; i < edges.length; i++) {
-            adj.get(edges[i][0]).add(edges[i][1]);
-            adj.get(edges[i][1]).add(edges[i][0]);
+            if (edges[i].length == 2) {
+                adj.get(edges[i][0]).add(edges[i][1]);
+                adj.get(edges[i][1]).add(edges[i][0]);
+            }
         }
 
         //created a visited array where false = unvisited and true = visited
@@ -54,7 +56,7 @@ public class NumberOfConnectedComponents {
 
     public static void main(String[] args) {
         NumberOfConnectedComponents components = new NumberOfConnectedComponents();
-        int[][] array = {{0, 1}, {1, 2}, {3, 4}};
-        System.out.println(components.countComponents(5, array));
+        int[][] array = {{0, 1}, {1, 2}, {3, 4}, {5}};
+        System.out.println(components.countComponents(6, array));
     }
 }
