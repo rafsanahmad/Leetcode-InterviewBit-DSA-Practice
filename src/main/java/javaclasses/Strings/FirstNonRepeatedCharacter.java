@@ -27,7 +27,10 @@ We are traversing the string again from first to the last character as HashMap d
 Find first non-repeating character in a string using hashmap
 */
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.Map;
+import java.util.Scanner;
 
 public class FirstNonRepeatedCharacter {
 

@@ -1,7 +1,7 @@
 package javaclasses.ArrayList;
 
-import java.util.List;
 import java.util.ArrayList;
+import java.util.List;
 
 public class PascalTriangle {
     //Leetcode 118

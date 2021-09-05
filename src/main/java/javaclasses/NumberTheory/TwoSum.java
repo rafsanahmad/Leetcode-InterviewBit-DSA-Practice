@@ -1,7 +1,7 @@
 package javaclasses.NumberTheory;
 
-import java.util.Map;
 import java.util.HashMap;
+import java.util.Map;
 
 public class TwoSum {
     //Leetcode 1

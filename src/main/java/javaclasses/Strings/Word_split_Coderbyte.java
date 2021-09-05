@@ -1,6 +1,6 @@
 package javaclasses.Strings;
 
-import java.util.*;
+import java.util.Arrays;
 /*Problem: Have the function WordSplit(strArr) read the array off strings stored in strArr,
         which will contain 2 elements: the first element will be a sequence of characters,
         and the second element will be a long string of comma-seperated words, in alphabetical order,

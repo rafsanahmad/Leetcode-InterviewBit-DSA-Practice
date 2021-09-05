@@ -1,16 +1,5 @@
 package javaclasses.Utility;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.time.YearMonth;
-import java.time.temporal.ChronoUnit;
-import java.time.temporal.WeekFields;
-import java.util.Comparator;
-import java.util.Date;
-import java.util.LinkedHashMap;
-import java.util.Map;
-import java.util.TimeZone;
 import java.util.regex.Pattern;
 
 public class NumberPasswordValidation {

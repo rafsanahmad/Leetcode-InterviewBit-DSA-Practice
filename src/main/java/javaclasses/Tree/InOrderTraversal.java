@@ -1,6 +1,7 @@
 package javaclasses.Tree;
-import java.util.List;
+
 import java.util.ArrayList;
+import java.util.List;
 
 public class InOrderTraversal {
     //Leetcode 93

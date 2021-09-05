@@ -1,7 +1,5 @@
 package javaclasses.LinkedList;
 
-import java.util.HashSet;
-
 public class RemoveDuplicates_II {
     //Leetcode 82
     /*Given the head of a sorted linked list, delete all nodes that have duplicate numbers,

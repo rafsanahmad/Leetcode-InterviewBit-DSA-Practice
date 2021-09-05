@@ -1,6 +1,7 @@
 package javaclasses.NumberTheory;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 /*Given a number N, task is to Check whether it is a permutable prime number or not.
 
 A Permutable prime number is that number which after switching the position of digits through any permutation is also prime.

@@ -30,7 +30,7 @@ count of the second string. Finally, we check if the character count is zero. If
 The time complexity of this approach is O(n).*/
 
 
-import java.util.*;
+import java.util.Scanner;
 
 class ValidAnagram {
 
