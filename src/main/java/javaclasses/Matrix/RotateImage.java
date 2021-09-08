@@ -1,4 +1,4 @@
-package javaclasses.Array;
+package javaclasses.Matrix;
 
 public class RotateImage {
     //Leetcode 48

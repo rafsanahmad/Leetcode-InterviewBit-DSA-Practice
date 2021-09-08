@@ -84,9 +84,9 @@ Then we can traverse both the lists in parallel till we come across a common nod
 
         // creating first linked list
         list.head1 = new Node(3);
-        list.head1.next = new Node(6);
+        list.head1.next = new Node(15);
         list.head1.next.next = new Node(9);
-        list.head1.next.next.next = new Node(15);
+        list.head1.next.next.next = new Node(12);
         list.head1.next.next.next.next = new Node(30);
 
         // creating second linked list

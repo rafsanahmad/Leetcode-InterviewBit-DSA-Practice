@@ -6,7 +6,8 @@ import java.util.PriorityQueue;
 public class MergeKSortedArray {
     //Same as Leetcode 23
     //This problem can be solved by using a Heap
-    //Time complexity 0(nlog(k))
+    //Time complexity 0(nklog(k))
+    //k=Number of arrays
 
     static class ArrayContainer implements Comparable<ArrayContainer> {
 
