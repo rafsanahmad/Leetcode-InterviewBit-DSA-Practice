@@ -6,8 +6,6 @@ import java.util.Map;
 /**
  * An Adapter over Map to create Inventory to hold cash and
  * Items inside Vending Machine
- *
- * @author Javin Paul
  */
 public class Inventory<T> {
     private Map<T, Integer> inventory = new HashMap<T, Integer>();

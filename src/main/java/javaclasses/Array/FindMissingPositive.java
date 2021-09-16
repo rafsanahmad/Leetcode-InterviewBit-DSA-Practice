@@ -45,7 +45,7 @@ Output: 1*/
 
     public static void main(String[] args) {
         FindMissingPositive findMissingPositive = new FindMissingPositive();
-        int[] arr = {3, 4, -1, 1, 2, 8, 0};
+        int[] arr = {3, 4, -1, 1};
         System.out.println(findMissingPositive.firstMissingPositive(arr));
     }
 }
