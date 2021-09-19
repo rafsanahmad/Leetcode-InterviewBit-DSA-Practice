@@ -1,5 +1,8 @@
 package kotlinclasses
 
+import java.util.*
+import kotlin.collections.HashMap
+
 
 class KotlinPractice {
     val square = { number: Int -> number * number }
@@ -275,6 +278,20 @@ fun secondSmallest(nums: Array<Int>): Int {
     return secondSmallest
 }
 
+class InitOrderDemo(name: String) {
+    val firstProperty = "First property: $name".also(::println)
+
+    init {
+        println("First initializer block that prints ${name}")
+    }
+
+    val secondProperty = "Second property: ${name.length}".also(::println)
+
+    init {
+        println("Second initializer block that prints ${name.length}")
+    }
+}
+
 fun main(args: Array<String>) {
     //Greeter(args[0]).greet()
     Person().initializeName()
@@ -366,4 +383,17 @@ fun main(args: Array<String>) {
 
     var array = arrayOf(-3, 7, 1, 34, -1, 18, 0, -6, 8, 99)
     println(secondSmallest(array))
+
+    val y = arrayOf(10, 20, 30, 40)
+    val z = listOf(10, 20, 30, 40)
+    y[0] = 11
+    println(y.contentToString())
+    println(z)
+
+    val a = arrayOf(1, 2, 3)
+    val b = arrayOf(100, 200, 300)
+    val c = listOf(*a, *b)
+    println(c)
+
+    InitOrderDemo("Rafsan")
 }

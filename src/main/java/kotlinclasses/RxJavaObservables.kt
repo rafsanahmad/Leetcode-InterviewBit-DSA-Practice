@@ -66,9 +66,15 @@ class RxJavaObservables {
         return Observable.just("1", "2", "3", "4", "5")
     }
 }
+class Cat (name: String) {
+    var name = name;
+    fun greet() { println("Hello ${name}") }
+}
 
 fun main(args: Array<String>) {
     val rxJavaObservables = RxJavaObservables()
     //rxJavaObservables.threadNames()
     rxJavaObservables.startRStream()
+    val thunderCat = Cat("ThunderCat")
+    thunderCat.greet()
 }
