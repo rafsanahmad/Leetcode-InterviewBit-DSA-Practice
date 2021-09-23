@@ -99,7 +99,7 @@ Explanation 2:
     public static void main(String[] args) {
         PerfectPeakArray array = new PerfectPeakArray();
         int[] ar3 = {5, 1, 4, 3, 6, 8, 10, 7, 9};
-        System.out.println(array.perfectPeakUsingTwoPointer(ar3));
+        System.out.println(array.perfectPeak(ar3));
     }
 
 }

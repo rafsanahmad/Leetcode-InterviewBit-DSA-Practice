@@ -1,8 +1,6 @@
 package kotlinclasses
 
 import kotlin.system.measureTimeMillis
-import kotlinx.coroutines.*
-import kotlinx.coroutines.android.*
 
 class CoroutineExample {
     fun meaninglessCounter(): Int {

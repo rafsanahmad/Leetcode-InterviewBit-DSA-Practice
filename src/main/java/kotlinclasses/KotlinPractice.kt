@@ -1,8 +1,5 @@
 package kotlinclasses
 
-import java.util.*
-import kotlin.collections.HashMap
-
 
 class KotlinPractice {
     val square = { number: Int -> number * number }
