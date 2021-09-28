@@ -1,4 +1,4 @@
-package javaclasses.SlidingWindow;
+package javaclasses.TwoPointer;
 /*Given a string, find the length of the longest substring without repeating characters.
 
 For example –

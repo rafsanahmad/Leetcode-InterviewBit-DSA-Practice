@@ -1,4 +1,4 @@
-package javaclasses.SlidingWindow;
+package javaclasses.TwoPointer;
 
 public class SortColors {
     //Leetcode 75

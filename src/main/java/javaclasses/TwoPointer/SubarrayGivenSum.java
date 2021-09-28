@@ -1,4 +1,4 @@
-package javaclasses.SlidingWindow;
+package javaclasses.TwoPointer;
 
 /*Given an array of unsorted integers (Positive integers), We have to write a code to find a subarray whose sum is equal to a given sum.
 

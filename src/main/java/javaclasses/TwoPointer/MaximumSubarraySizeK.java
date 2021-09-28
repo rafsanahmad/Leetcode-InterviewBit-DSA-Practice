@@ -1,4 +1,4 @@
-package javaclasses.SlidingWindow;
+package javaclasses.TwoPointer;
 
 /*Given an array of positive integers and a positive number K. Write a code to find the maximum sum of a subarray of size k.
 
