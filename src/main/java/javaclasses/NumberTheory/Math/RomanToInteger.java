@@ -1,4 +1,4 @@
-package javaclasses.NumberTheory;
+package javaclasses.NumberTheory.Math;
 
 /*Given a Roman numeral, Write a code to convert roman to integer value.
 

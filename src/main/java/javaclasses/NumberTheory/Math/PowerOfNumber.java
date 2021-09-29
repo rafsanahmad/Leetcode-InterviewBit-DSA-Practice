@@ -1,4 +1,4 @@
-package javaclasses.NumberTheory;
+package javaclasses.NumberTheory.Math;
 
 
 public class PowerOfNumber {
