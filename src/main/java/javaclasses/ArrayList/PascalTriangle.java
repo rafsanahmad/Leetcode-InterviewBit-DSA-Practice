@@ -1,6 +1,7 @@
 package javaclasses.ArrayList;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class PascalTriangle {
@@ -41,7 +42,40 @@ Output: [[1]]*/
         return result;
     }
 
+    //https://www.interviewbit.com/problems/kth-row-of-pascals-triangle/
+    /*Given an index k, return the kth row of the Pascal's triangle.
+Pascal's triangle: To generate A[C] in row R, sum up A'[C] and A'[C-1] from previous row R - 1.
+
+Example:
+Input : k = 3
+
+Return : [1,3,3,1]
+
+Note: k is 0 based. k = 0, corresponds to the row [1].
+*/
+    public int[] getRow(int A) {
+        int[][] result = new int[A + 1][];
+
+        for (int i = 0; i < A + 1; i++) {
+            int[] array = new int[i + 1];
+            for (int j = 0; j < i + 1; j++) {
+                if (j == 0) array[j] = 1;
+                else if (j < i) {
+                    int val = result[i - 1][j - 1] + result[i - 1][j];
+                    array[j] = val;
+                } else if (j == i) {
+                    array[j] = 1;
+                }
+            }
+            result[i] = array;
+        }
+
+        return result[A];
+    }
+
     public static void main(String[] args) {
-        System.out.println(new PascalTriangle().generate(5));
+        PascalTriangle pascalTriangle = new PascalTriangle();
+        System.out.println(pascalTriangle.generate(5));
+        System.out.println(Arrays.toString(pascalTriangle.getRow(5)));
     }
 }
