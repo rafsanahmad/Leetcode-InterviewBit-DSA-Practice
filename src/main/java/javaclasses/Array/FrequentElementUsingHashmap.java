@@ -1,6 +1,7 @@
 package javaclasses.Array;
 
-/*Find top k frequent elements in an array of integers. Let’s first understand the problem statement and the we will solve this problem using multiple approaches.
+/*Find top k frequent elements in an array of integers. Let’s first understand the problem statement and
+the we will solve this problem using multiple approaches.
 
 Given a non-empty array of integers, return the k most frequent elements.
 
