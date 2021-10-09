@@ -3,7 +3,7 @@ package javaclasses.DynamicProgramming;
 public class UniquePaths {
     //Leetcode 62
     /*A robot is located at the top-left corner of a m x n grid (marked 'Start' in the diagram below).
-
+    //src/unique_paths.png
 The robot can only move either down or right at any point in time. The robot is trying to reach the bottom-right corner
 of the grid (marked 'Finish' in the diagram below).
 
@@ -47,7 +47,7 @@ Space complexity = O(mn)
             count[i][0] = 1;
 
         // Count of paths to reach any cell in
-        // first column is 1
+        // first row is 1
         for (int j = 0; j < n; j++)
             count[0][j] = 1;
 
