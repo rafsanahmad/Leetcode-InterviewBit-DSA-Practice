@@ -1,10 +1,10 @@
-package javaclasses.Array;
+package javaclasses.ArrayList;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-public class RearrangeArray {
+public class RearrangeList {
     //https://www.interviewbit.com/problems/rearrange-array/
     /*Rearrange a given array so that Arr[i] becomes Arr[Arr[i]] with O(1) extra space.
 
@@ -69,7 +69,7 @@ N * N does not overflow for a signed integer*/
     }
 
     public static void main(String[] args) {
-        RearrangeArray array = new RearrangeArray();
+        RearrangeList array = new RearrangeList();
         ArrayList<Integer> list = new ArrayList<>();
         list.add(1);
         list.add(0);
