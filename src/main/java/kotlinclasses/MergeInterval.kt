@@ -16,9 +16,7 @@ class MergeInterval {
 
     //Merge Overlapping inerval - (LeetCode - 56)
     fun merge(intervals: Array<IntArray>): Array<IntArray>? {
-        Collections.sort(
-            Arrays.asList(*intervals)
-        ) { a, b -> Integer.compare(a[0], b[0]) }
+        Arrays.asList(*intervals).sortWith(Comparator { a, b -> Integer.compare(a[0], b[0]) })
         val merged = ArrayList<IntArray>()
         var count = 0
         for (interval in intervals) {
