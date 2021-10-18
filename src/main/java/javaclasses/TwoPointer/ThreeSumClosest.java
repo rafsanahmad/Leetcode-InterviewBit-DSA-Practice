@@ -1,4 +1,4 @@
-package javaclasses.NumberTheory.Math;
+package javaclasses.TwoPointer;
 
 import java.util.Arrays;
 
@@ -25,12 +25,12 @@ public class ThreeSumClosest {
             int end = nums.length - 1;
 
             while (start < end && end > 0) {
-                int sum = nums[i] + nums[start] + nums[end];
+                long sum = nums[i] + nums[start] + nums[end];
 
-                int d = Math.abs(target - sum);
+                long d = Math.abs(target - sum);
                 if (d < diff) {
-                    diff = d;
-                    result = sum;
+                    diff = (int) d;
+                    result = (int) sum;
                 }
                 if (nums[i] + nums[start] + nums[end] < target) {
                     start++;
@@ -43,8 +43,8 @@ public class ThreeSumClosest {
     }
 
     public static void main(String[] args) {
-        int[] arr = {-1, 2, 1, -4};
+        int[] arr = {2147483647, -2147483648, -2147483648, 0, 1};
         ThreeSumClosest closest = new ThreeSumClosest();
-        System.out.println(closest.threeSumClosest(arr, 1));
+        System.out.println(closest.threeSumClosest(arr, 0));
     }
 }

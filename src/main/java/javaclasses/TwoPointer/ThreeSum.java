@@ -1,4 +1,4 @@
-package javaclasses.NumberTheory.Math;
+package javaclasses.TwoPointer;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -53,5 +53,11 @@ public class ThreeSum {
             }
         }
         return result;
+    }
+
+    public static void main(String[] args) {
+        ThreeSum sum = new ThreeSum();
+        int[] nums = {-1, 0, 1, 2, -1, -4};
+        System.out.println(sum.threeSum(nums));
     }
 }

@@ -70,11 +70,35 @@ public class LongestCommonPrefix {
         return lcp;
     }
 
+    //Approach -2
+    public static String longestCommonPrefix(String[] A) {
+        String res = "";
+        int len = A.length;
+        if (len == 0) return "";
+        String first = A[0];
+        for (int i = 0; i < first.length(); i++) {
+            char ch = first.charAt(i);
+            int c = 0;
+            for (int j = 1; j < len; j++) {
+                String str = A[j];
+                if ((i >= str.length()) || (str.charAt(i) != ch)) {
+                    break;
+                } else {
+                    ++c;
+                }
+            }
+            if (c == len - 1) res += ch;
+            else break;
+        }
+        return res;
+    }
+
     public static void main(String[] args) {
 
         String[] strgs = {"cat", "cable", "camera"};
         String result = findLongestPrefix(strgs);
-
+        String result2 = longestCommonPrefix(strgs);
         System.out.println(result);
+        System.out.println(result2);
     }
 }
