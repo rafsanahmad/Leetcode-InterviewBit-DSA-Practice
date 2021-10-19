@@ -1,4 +1,4 @@
-package javaclasses.Utility;
+package javaclasses.TwoPointer;
 
 public class TrappingRainWater {
     //Leetcode 42
@@ -48,5 +48,11 @@ public class TrappingRainWater {
         }
 
         return result;
+    }
+
+    public static void main(String[] args) {
+        TrappingRainWater water = new TrappingRainWater();
+        int[] height = {4, 2, 0, 3, 2, 5};
+        System.out.println(water.trap(height));
     }
 }
