@@ -1,3 +1,10 @@
+/*
+ * *
+ *  * Created by Rafsan Ahmad on 10/25/21, 9:50 PM
+ *  * Copyright (c) 2021 . All rights reserved.
+ *
+ */
+
 package javaclasses.TwoPointer;
 
 /*Given an array of unsorted integers (Positive integers), We have to write a code to find a subarray whose sum is equal to a given sum.

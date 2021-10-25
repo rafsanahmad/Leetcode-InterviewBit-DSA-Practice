@@ -1,3 +1,10 @@
+/*
+ * *
+ *  * Created by Rafsan Ahmad on 10/25/21, 9:49 PM
+ *  * Copyright (c) 2021 . All rights reserved.
+ *
+ */
+
 package javaclasses.Strings;
 /*Write a java program to find first non-repeating character in a string. Given an input string, Write a java code to find first non-repeating character in a string.
 

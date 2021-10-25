@@ -1,3 +1,10 @@
+/*
+ * *
+ *  * Created by Rafsan Ahmad on 10/25/21, 9:49 PM
+ *  * Copyright (c) 2021 . All rights reserved.
+ *
+ */
+
 package javaclasses.Strings;
 /*Given a word, you need to judge whether the usage of capitals in it is right or not.
 

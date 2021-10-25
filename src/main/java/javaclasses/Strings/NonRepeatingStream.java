@@ -1,3 +1,10 @@
+/*
+ * *
+ *  * Created by Rafsan Ahmad on 10/25/21, 9:49 PM
+ *  * Copyright (c) 2021 . All rights reserved.
+ *
+ */
+
 package javaclasses.Strings;
 
 /*Given a string A denoting a stream of lowercase alphabets. We have to write a code to make a new string B.

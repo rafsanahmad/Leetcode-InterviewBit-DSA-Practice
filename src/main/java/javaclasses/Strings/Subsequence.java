@@ -1,3 +1,10 @@
+/*
+ * *
+ *  * Created by Rafsan Ahmad on 10/25/21, 9:49 PM
+ *  * Copyright (c) 2021 . All rights reserved.
+ *
+ */
+
 package javaclasses.Strings;
 
 /*Given two strings str1 and str2, check if str1 is a subsequence of str2. Both strings consists only of lowercase characters.
