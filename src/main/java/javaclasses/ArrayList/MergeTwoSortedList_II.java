@@ -28,6 +28,7 @@ Input :
 
 Modified A : [1 5 6 8 9]*/
 
+    //Approach - Using Two Pointer
     //Time complexity = O(m+n)
     //Space complexity = O(1)
     public void merge(ArrayList<Integer> A, ArrayList<Integer> B) {
