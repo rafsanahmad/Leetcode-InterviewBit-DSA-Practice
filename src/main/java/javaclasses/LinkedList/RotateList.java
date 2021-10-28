@@ -44,7 +44,7 @@ public class RotateList {
         node.next.next.next = new ListNode(4);
         node.next.next.next.next = new ListNode(5);
         RotateList rt = new RotateList();
-        ListNode resut = rt.rotateRight(node, 2);
-        rt.printList(resut);
+        ListNode result = rt.rotateRight(node, 2);
+        rt.printList(result);
     }
 }
