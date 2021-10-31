@@ -2,13 +2,16 @@
  * *
  *  * Created by Rafsan Ahmad on 10/25/21, 9:50 PM
  *  * Copyright (c) 2021 . All rights reserved.
- *  
+ *
  */
 
 package javaclasses.TwoPointer;
 
+import java.util.Arrays;
+
 public class SortColors {
     //Leetcode 75
+    //https://www.interviewbit.com/problems/sort-by-color
     /*Given an array nums with n objects colored red, white, or blue,
     sort them in-place so that objects of the same color are adjacent, with the colors in the order red, white, and blue.
 
@@ -56,4 +59,35 @@ Output: [0]*/
         }
     }
 
+    //Approach two - Count array
+    public void sortColors2(int[] nums) {
+        int[] arr = new int[3];
+
+        for (int num : nums) {
+            arr[num]++;
+        }
+        for (int i = 0; i < nums.length; i++) {
+            if (arr[0] != 0) {
+                nums[i] = 0;
+                arr[0]--;
+            } else if (arr[1] != 0) {
+                nums[i] = 1;
+                arr[1]--;
+            } else {
+                nums[i] = 2;
+                arr[2]--;
+            }
+        }
+    }
+
+    public static void main(String[] args) {
+        SortColors colors = new SortColors();
+        int[] arr = {2, 0, 2, 1, 1, 0};
+        colors.sortColors(arr);
+        System.out.println(Arrays.toString(arr));
+
+        int[] arr2 = {2, 0, 2, 1, 1, 0};
+        colors.sortColors2(arr2);
+        System.out.println(Arrays.toString(arr2));
+    }
 }
