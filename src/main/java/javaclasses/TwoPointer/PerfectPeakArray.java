@@ -1,11 +1,11 @@
 /*
  * *
- *  * Created by Rafsan Ahmad on 10/25/21, 9:49 PM
+ *  * Created by Rafsan Ahmad on 10/31/21, 2:05 AM
  *  * Copyright (c) 2021 . All rights reserved.
  *
  */
 
-package javaclasses.Array;
+package javaclasses.TwoPointer;
 
 public class PerfectPeakArray {
     //https://www.interviewbit.com/problems/perfect-peak-of-array/
@@ -20,15 +20,15 @@ NOTE:
 Do not consider the corner elements i.e A[0] and A[N-1] as the answer.
 
 Problem Constraints
-3 <= N <= 105
-1 <= A[i] <= 109
+3 <= N <= 10^5
+1 <= A[i] <= 10^9
 
 Input Format
 First and only argument is an integer array A containing N integers.
 
 Output Format
-Return 1 if there exist a element that is strictly greater than all the elements on left of it and strictly
-smaller than all the elements on right of it else return 0.
+Return 1 if there exist a element that is strictly greater than all the elements on left of it and
+strictly smaller than all the elements on right of it else return 0.
 
 Example Input
 Input 1:
@@ -107,6 +107,7 @@ Explanation 2:
         PerfectPeakArray array = new PerfectPeakArray();
         int[] ar3 = {5, 1, 4, 3, 6, 8, 10, 7, 9};
         System.out.println(array.perfectPeak(ar3));
+        System.out.println(array.perfectPeakUsingTwoPointer(ar3));
     }
 
 }
