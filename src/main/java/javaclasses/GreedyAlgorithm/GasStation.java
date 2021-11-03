@@ -71,6 +71,7 @@ Output 1:
         return -1;
     }
 
+    //using two pointer
     public int canCompleteCircuitSimple(final int[] gas, final int[] dist) {
         // TODO: check A==null || B==null || A.size()!=B.size()
         int n = gas.length;
