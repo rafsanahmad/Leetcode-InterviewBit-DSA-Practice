@@ -56,4 +56,10 @@ Output: 1*/
         }
         return result;
     }
+
+    public static void main(String[] args) {
+        ArrayNesting nesting = new ArrayNesting();
+        int[] nums = {5, 4, 0, 3, 1, 6, 2};
+        System.out.println(nesting.arrayNesting(nums));
+    }
 }
