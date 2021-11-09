@@ -1,2 +1,2 @@
-# Java-Kotlin-Run
-A project for running single java, kotlin class from Android Studio
+# Leetcode-InterviewBit-Practice-Problems
+A project containing my solution for Leetcode, InterviewBit problems along with DSA Practice classes.
