@@ -12,6 +12,7 @@ import java.util.Map;
 import java.util.TreeMap;
 
 public class VerticalSumBinaryTree {
+    //https://www.interviewbit.com/problems/vertical-sum-of-a-binary-tree/
     /*Problem Description
 
 You are given the root of a binary tree A.
@@ -81,6 +82,7 @@ Hence, the resultant array is [3, 2, 1].
     Following is Java implementation for the same. HashMap is used to store the vertical sums for different
     horizontal distances. */
 
+    /*Time Complexity: O(nlogn)*/
     public int[] verticalSum(TreeNode root) {
         // base case
         if (root == null) {
