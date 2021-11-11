@@ -40,6 +40,7 @@ Next step is to sort the HashMap by it’s value and pick only k elements.*/
 
 //K Most Frequent Elements by sorting HashMap
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -69,6 +70,11 @@ public class FrequentElementUsingHashmap {
         }
 
         return resultArr;
+    }
+
+    public static void main(String[] args) {
+        int[] arr = {3, 4, 4, 4, 7, 7};
+        System.out.println(Arrays.toString(topKFrequent(arr, 2)));
     }
 }
 
