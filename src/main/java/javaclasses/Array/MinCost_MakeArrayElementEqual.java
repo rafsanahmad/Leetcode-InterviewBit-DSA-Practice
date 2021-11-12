@@ -7,17 +7,7 @@
 
 package javaclasses.Array;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.net.URLConnection;
 import java.util.Arrays;
-
-import jdk.nashorn.internal.parser.JSONParser;
-import netscape.javascript.JSObject;
 
 public class MinCost_MakeArrayElementEqual {
 

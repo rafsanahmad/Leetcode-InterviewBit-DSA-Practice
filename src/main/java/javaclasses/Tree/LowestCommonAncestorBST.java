@@ -7,9 +7,9 @@
 
 package javaclasses.Tree;
 
-//Lowest Common Ancestor
-//Leetcode 235
 public class LowestCommonAncestorBST {
+    //Lowest Common Ancestor
+    //Leetcode 235
     /*
 Given a binary search tree (BST), find the lowest common ancestor (LCA) of two given nodes in the BST.
 

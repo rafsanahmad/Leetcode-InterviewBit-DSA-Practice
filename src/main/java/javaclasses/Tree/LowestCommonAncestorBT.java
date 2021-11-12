@@ -8,9 +8,8 @@
 package javaclasses.Tree;
 
 public class LowestCommonAncestorBT {
-
-    //Lowest Common Ancestor using post order traversal
     //Leetcode 236
+    //Lowest Common Ancestor using post order traversal
     public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
         if (root == null || root == p || root == q) {
             return root;
