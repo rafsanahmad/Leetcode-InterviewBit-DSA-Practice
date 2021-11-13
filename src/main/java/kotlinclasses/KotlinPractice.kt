@@ -296,6 +296,13 @@ class InitOrderDemo(name: String) {
     }
 }
 
+fun getBio(): Map<String, String> {
+    val bio = mutableMapOf<String, String>();
+    bio["name"] = "Rafsan"
+    bio["age"] = "23"
+    return bio;
+}
+
 fun main(args: Array<String>) {
     //Greeter(args[0]).greet()
     Person().initializeName()
@@ -400,4 +407,9 @@ fun main(args: Array<String>) {
     println(c)
 
     InitOrderDemo("Rafsan")
+
+    val map = getBio()
+    for ((key, value) in map) {
+        println("$key = $value")
+    }
 }
