@@ -31,21 +31,13 @@ Output: 2
 
 */
 
-/*Here are the following steps –
-
-i) First we have to create a map of number and it’s count using HashMap.
-
-ii) Then, we can traverse the map and check the element which has count greater than n/2.
- 
-The time complexity of this approach is O(n) and it’s space complexity is O(n).*/
-
-//Majority Element using HashMap
-
 import java.util.HashMap;
 import java.util.Map;
 
 public class MajorityElement {
 
+    //Approach 1: Majority Element using HashMap
+    //The time complexity of this approach is O(n) and it’s space complexity is O(n).
     public Integer majorityElementUsingMap(int[] nums) {
 
         int majorityCount = nums.length / 2;
@@ -60,10 +52,6 @@ public class MajorityElement {
             elemCountMap.put(nums[i], elemCountMap.getOrDefault(nums[i], 0) + 1);
         }
 
-    /*
-     Traverse a map and check the element which has count greater than n/2.
-    */
-
         for (Map.Entry<Integer, Integer> record : elemCountMap.entrySet()) {
 
             if (record.getValue() > majorityCount) {
@@ -74,7 +62,44 @@ public class MajorityElement {
         return -1;
     }
 
-    public static void main(String[] args) {
 
+/* Approach 2: Boyer-Moore majority voting algorithm
+Using Boyer-Moore majority vote algorithm we can find the majority element without using any extra space.
+
+The first step is to find the candidate for majority element.
+Then next step is to verify whether this candidate element is the majority element or not.
+
+In this problem, It is already given that majority element always exist in the input array.
+So we don’t need to verify them. To start with this algorithm we need two variables one for count and other
+for candidate. When count is zero the current element is the candidate element.
+
+Initially, the value of count is zero and candidate is null.
+When we start traversing an array the first element is the candidate element.
+Now, we have to compare candidate element with element present at current index.
+If it is same then we have to increment the count else we have to decrement it.
+When the value of count is zero, consider the current element as the candidate element.
+After complete traversal of an array we get the majority element.
+*/
+
+    //The time complexity of this approach is O(n) and it’s space complexity is O(1).
+    public Integer majorityElementUsingVotingAlgorithm(int[] nums) {
+
+        int count = 0;
+        Integer candidate = null;
+        for (int i = 0; i < nums.length; i++) {
+
+            if (count == 0) {
+                candidate = nums[i];
+            }
+            count += (candidate == nums[i]) ? 1 : -1;
+        }
+        return candidate;
+    }
+
+    public static void main(String[] args) {
+        MajorityElement element = new MajorityElement();
+        int[] nums = {2, 2, 1, 1, 1, 2, 2};
+        System.out.println(element.majorityElementUsingMap(nums));
+        System.out.println(element.majorityElementUsingVotingAlgorithm(nums));
     }
 }
