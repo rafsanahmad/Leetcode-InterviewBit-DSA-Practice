@@ -42,8 +42,7 @@ public class URLConnectionReadData {
             System.out.println(malEx);
             result = "{\"data\":\"key=IAfpK, age=58, key=WNVdi, age=64, key=jp9zt, age=47\"}";
         }
-        result = result.replace("{", "");
-        result = result.replace("}", "");
+        result = result.replace("{", "").replace("}", "");
         String[] str = result.split(":");
         String[] ages = str[1].split(",");
         int count = 0;
@@ -52,6 +51,7 @@ public class URLConnectionReadData {
                 String[] split = ages[i].split("=");
                 if (split.length == 2) {
                     String strNum = split[1].trim();
+                    //replace double quotes
                     strNum = strNum.replace("\"", "");
                     int num = Integer.parseInt(strNum);
                     if (num >= 50) {

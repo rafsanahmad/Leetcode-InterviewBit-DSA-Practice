@@ -7,7 +7,10 @@
 
 package javaclasses.Tree;
 
-public class CheckIfMinHeap {
+import java.util.ArrayList;
+import java.util.List;
+
+public class CheckIfMaxMinHeap {
     /*Given an integer array, check if it represents min-heap or not.
 
 For example, the first array represents a min-heap, but the second array isn’t as it violate the heap property.
@@ -59,6 +62,30 @@ and the total number of nodes, let’s return to the given problem.
         return true;
     }
 
+    // max-heap or not
+    //Return "max" if max-heap else return comma separated ints which does not satisfy the condition
+    public static String checkMaxHeap(int[] A) {
+        boolean checkMax = true;
+        List<Integer> list = new ArrayList<>();
+        for (int i = 0; i <= (A.length - 2) / 2; i++) {
+            if (A[i] < A[2 * i + 1] || (2 * i + 2 != A.length && A[i] < A[2 * i + 2])) {
+                checkMax = false;
+                list.add(A[i]);
+            }
+        }
+        if (checkMax) return "max";
+        else {
+            StringBuilder res = new StringBuilder();
+            for (int i = 0; i < list.size(); i++) {
+                res.append(list.get(i));
+                if (i != list.size() - 1) {
+                    res.append(",");
+                }
+            }
+            return res.toString();
+        }
+    }
+
     public static void main(String[] args) {
         int[] A = {1, 2, 3, 4, 5, 6};
 
@@ -67,5 +94,8 @@ and the total number of nodes, let’s return to the given problem.
         } else {
             System.out.println("The given array is not a min-heap");
         }
+
+        int[] B = {10, 8, 6, 7, 5, 3, 12};
+        System.out.println(checkMaxHeap(B));
     }
 }

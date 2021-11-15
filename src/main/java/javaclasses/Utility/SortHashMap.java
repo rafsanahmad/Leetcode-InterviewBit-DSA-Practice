@@ -14,6 +14,7 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.TreeMap;
 
 public class SortHashMap {
     public static void main(String[] args) throws Exception {
@@ -35,7 +36,7 @@ public class SortHashMap {
         }
 
         System.out.println();
-        System.out.println("map before sorting: " + budget);
+        System.out.println("Map before sorting: " + budget);
 
         // let's sort this map by values first
         Map<String, Integer> sorted = budget
@@ -46,7 +47,7 @@ public class SortHashMap {
                         toMap(e -> e.getKey(), e -> e.getValue(), (e1, e2) -> e2,
                                 LinkedHashMap::new));
 
-        System.out.println("map after sorting by values: " + sorted);
+        System.out.println("Map after sorting by values: " + sorted);
 
         // above code can be cleaned a bit by using method reference
         sorted = budget
@@ -66,7 +67,22 @@ public class SortHashMap {
                         toMap(Map.Entry::getKey, Map.Entry::getValue, (e1, e2) -> e2,
                                 LinkedHashMap::new));
 
-        System.out.println("map after sorting by values in descending order: "
+        System.out.println("Map after sorting by values in descending order: "
                 + sorted);
+
+        //Sort map by Key ascending
+        TreeMap<String, Integer> treeMap = new TreeMap<String, Integer>();
+        treeMap.putAll(budget);
+
+        System.out.println("Map after sorting by keys in ascending order: "
+                + treeMap);
+
+        //Sort map by Key descending
+        TreeMap<String, Integer> treeMap2 = new TreeMap<String, Integer>(Collections.reverseOrder());
+        treeMap2.putAll(budget);
+
+        System.out.println("Map after sorting by keys in descending order: "
+                + treeMap2);
+
     }
 }
