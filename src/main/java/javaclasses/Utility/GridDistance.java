@@ -11,6 +11,8 @@ import java.util.ArrayList;
 
 public class GridDistance {
 
+    //Find retail location with distance less than K
+    // 0 -> Empty location, 1 -> Already filled
     public int solution(int K, int[][] A) {
         int result = 0;
         //Store house location

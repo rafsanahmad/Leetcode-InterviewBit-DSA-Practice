@@ -13,7 +13,7 @@ import java.time.temporal.ChronoUnit;
 
 public class CalculateVacationWeeks {
 
-    //System.out.println(numberPasswordValidation.calculateVacation(2014, "April", "May", "Wednesday"));
+    //System.out.println(CalculateVacationWeeks.calculateVacation(2014, "April", "May", "Wednesday"));
     public int calculateVacation(int Y, String A, String B, String W) {
         // write your code in Java SE 8
         int result = 0;
