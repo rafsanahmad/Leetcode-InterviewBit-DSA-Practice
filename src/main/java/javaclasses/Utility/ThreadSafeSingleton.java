@@ -10,7 +10,7 @@ package javaclasses.Utility;
 public final class ThreadSafeSingleton {
     private static volatile ThreadSafeSingleton INSTANCE = null;
 
-    private long licenseNumber;
+    private final long licenseNumber;
 
     public long getLicenseNumber() {
         return licenseNumber;

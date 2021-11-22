@@ -80,6 +80,5 @@ public class NumberPasswordValidation {
 
         char ch = (char) ('a' + 4);
         System.out.println(ch);
-        int d = 10;
     }
 }

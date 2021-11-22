@@ -9,6 +9,9 @@ package javaclasses.Utility;
 
 public class MobileKeyboard {
 
+    /* C -> Caps Lock toggle
+       B -> Delete last Character
+    */
     //System.out.println(MobileKeyboard.mobileKeyboard("CrCellBax")) - Prints "Relax"
     public String mobileKeyboard(String S) {
         StringBuilder stringBuilder = new StringBuilder("");
@@ -37,4 +40,11 @@ public class MobileKeyboard {
         }
         return stringBuilder.toString();
     }
+
+    public static void main(String[] args) {
+        MobileKeyboard keyboard = new MobileKeyboard();
+        System.out.println(keyboard.mobileKeyboard("CrCellBax"));
+    }
+
+
 }

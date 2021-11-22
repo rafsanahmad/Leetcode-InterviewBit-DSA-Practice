@@ -17,9 +17,9 @@ import java.util.TimeZone;
 
 public class MobileBill {
 
+    //Prints Total bill
     //System.out.println(MobileBill.mobileBill("00:01:07,400-234-090\n00:05:01,701-080-080\n00:05:00,400-234-090"));
     public int mobileBill(String S) {
-        // write your code in Java SE 8
         long bill = 0;
         Integer freeNumber = Integer.MAX_VALUE;
         int billLessthan5Min = 3;
@@ -77,7 +77,7 @@ public class MobileBill {
                     if (!check) {
                         min = min + 1;
                     }
-                    bill = bill + (min * billmoreThan5Min);  //150 cent
+                    bill = bill + ((long) min * billmoreThan5Min);  //150 cent
                 }
             }
         }
@@ -96,5 +96,13 @@ public class MobileBill {
                 .sorted(Map.Entry.comparingByValue(Comparator.reverseOrder()))
                 .forEachOrdered(x -> sortedMap.put(x.getKey(), x.getValue()));
         return sortedMap;
+    }
+
+    public static void main(String[] args) {
+        MobileBill bill = new MobileBill();
+        String phoneNumbers = "00:01:07,400-234-090\n" +
+                "00:05:01,701-080-080\n" +
+                "00:05:00,400-234-090";
+        System.out.println(bill.mobileBill(phoneNumbers));
     }
 }
