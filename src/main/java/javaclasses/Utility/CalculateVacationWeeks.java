@@ -13,9 +13,9 @@ import java.time.temporal.ChronoUnit;
 
 public class CalculateVacationWeeks {
 
+    //Calculate vacation week between two months in a year
     //System.out.println(CalculateVacationWeeks.calculateVacation(2014, "April", "May", "Wednesday"));
     public int calculateVacation(int Y, String A, String B, String W) {
-        // write your code in Java SE 8
         int result = 0;
         int beginMonth = -1;
         int endMonth = -1;
@@ -135,5 +135,10 @@ public class CalculateVacationWeeks {
         }
         //System.out.println(firstDay_end + " " + lastDay_end + " " + daysInEndMonth + " ");
         return result;
+    }
+
+    public static void main(String[] args) {
+        CalculateVacationWeeks weeks = new CalculateVacationWeeks();
+        System.out.println(weeks.calculateVacation(2014, "April", "May", "Wednesday"));
     }
 }
