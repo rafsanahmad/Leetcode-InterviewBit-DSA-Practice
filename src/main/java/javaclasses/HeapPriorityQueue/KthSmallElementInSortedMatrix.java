@@ -1,11 +1,12 @@
 /*
  * *
- *  * Created by Rafsan Ahmad on 10/25/21, 9:49 PM
+ *  * Created by Rafsan Ahmad on 11/24/21, 4:41 PM
  *  * Copyright (c) 2021 . All rights reserved.
  *
  */
 
-package javaclasses.Matrix;
+package javaclasses.HeapPriorityQueue;
+
 
 import java.util.PriorityQueue;
 
@@ -24,7 +25,7 @@ Explanation: The elements in the matrix are [1,5,9,10,11,12,13,13,15], and the 8
 Example 2:
 Input: matrix = [[-5]], k = 1
 Output: -5*/
-    static class ArrayComparator implements Comparable<ArrayComparator> {
+    public class ArrayComparator implements Comparable<ArrayComparator> {
 
         int[] arr;
         int index;
@@ -61,5 +62,13 @@ Output: -5*/
             return result[k - 1];
         }
         return -1;
+    }
+
+    public static void main(String[] args) {
+        KthSmallElementInSortedMatrix matrix = new KthSmallElementInSortedMatrix();
+        int[][] arr = {{1, 5, 9},
+                {10, 11, 13},
+                {12, 13, 15}};
+        System.out.println(matrix.kthSmallest(arr, 8));
     }
 }

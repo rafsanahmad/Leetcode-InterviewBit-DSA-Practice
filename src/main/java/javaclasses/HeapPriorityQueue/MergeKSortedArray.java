@@ -1,11 +1,11 @@
 /*
  * *
- *  * Created by Rafsan Ahmad on 10/25/21, 9:49 PM
+ *  * Created by Rafsan Ahmad on 11/24/21, 4:41 PM
  *  * Copyright (c) 2021 . All rights reserved.
  *
  */
 
-package javaclasses.Matrix;
+package javaclasses.HeapPriorityQueue;
 
 import java.util.Arrays;
 import java.util.PriorityQueue;
@@ -15,7 +15,7 @@ public class MergeKSortedArray {
     //This problem can be solved by using a Heap
     //Time complexity 0(nlog(k))
 
-    static class ArrayContainer implements Comparable<ArrayContainer> {
+    public static class ArrayContainer implements Comparable<ArrayContainer> {
 
         int[] arr;
         int index;
