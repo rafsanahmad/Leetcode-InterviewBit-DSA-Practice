@@ -66,9 +66,9 @@ Output: -5*/
 
     public static void main(String[] args) {
         KthSmallElementInSortedMatrix matrix = new KthSmallElementInSortedMatrix();
-        int[][] arr = {{1, 5, 9},
+        int[][] arr = {{4, 5, 19},
                 {10, 11, 13},
-                {12, 13, 15}};
+                {1, 16, 15}};
         System.out.println(matrix.kthSmallest(arr, 8));
     }
 }
