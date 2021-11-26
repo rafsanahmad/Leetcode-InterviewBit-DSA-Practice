@@ -84,7 +84,7 @@ Return distance when destination is met, else return -1 (no path exists in betwe
                 = new boolean[grid.length][grid[0].length];
         visited[source.row][source.col] = true;
 
-        while (queue.isEmpty() == false) {
+        while (!queue.isEmpty()) {
             QItem p = queue.remove();
 
             // Destination found;
@@ -129,13 +129,13 @@ Return distance when destination is met, else return -1 (no path exists in betwe
                                    boolean[][] visited) {
         if (x >= 0 && y >= 0 && x < grid.length
                 && y < grid[0].length && grid[x][y] != '0'
-                && visited[x][y] == false) {
+                && !visited[x][y]) {
             return true;
         }
         return false;
     }
 
-    // Driver code
+
     public static void main(String[] args) {
         ShortestDistanceMatrix distanceMatrix = new ShortestDistanceMatrix();
         char[][] grid = {{'0', '*', '0', 's'},
