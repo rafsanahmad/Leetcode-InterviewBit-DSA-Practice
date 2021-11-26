@@ -71,4 +71,13 @@ Output: 3
         dfs(array, i, j - 1);
     }
 
+    public static void main(String[] args) {
+        NumberOfIslands islands = new NumberOfIslands();
+        char[][] array = {{'1', '1', '0', '0', '0'},
+                {'1', '1', '0', '0', '0'},
+                {'0', '0', '1', '0', '0'},
+                {'0', '0', '0', '1', '1'}};
+        System.out.println(islands.numIslands(array));
+    }
+
 }
