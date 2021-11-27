@@ -76,5 +76,19 @@ public class OutputQuiz {
         fact that in Java, only the floating-point numbers that are powers of 2 are represented accurately by
         the binary representation.*/
         System.out.println(0.1 * 2 == 0.2); //true
+
+        //Quiz5
+        someMethod(null);
+    }
+
+    public static void someMethod(Object o) {
+        System.out.println("Object method Invoked");
+    }
+
+    public static void someMethod(String s) {
+        /*null is not an object in Java.The Java compiler chooses the method with the most specific parameters
+        in method overloading. this means that since the String class is more specific, the method with String
+        input parameter is called.*/
+        System.out.println("String method Invoked");
     }
 }
