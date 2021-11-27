@@ -8,7 +8,8 @@
 package javaclasses.Strings;
 
 /*In this tutorial, I have explained a java program to count number of words in a string.
-Given an input string, write a code to count number of words in a string. The words in a string are separated by space(‘ ‘).
+Given an input string, write a code to count number of words in a string.
+The words in a string are separated by space(‘ ‘).
 
 For example –
 

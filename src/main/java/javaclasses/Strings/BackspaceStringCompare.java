@@ -42,7 +42,8 @@ i) Declare two stacks.
 
 ii) Perform following operations for both the strings.
 
-a) Traverse a string and pick one character at a time. If the character is not a backspace character (#) then push them into a stack.
+a) Traverse a string and pick one character at a time. If the character is not a backspace character (#)
+then push them into a stack.
 
 b) If it’s a backspace character then pop out the last pushed character from a stack.
 
