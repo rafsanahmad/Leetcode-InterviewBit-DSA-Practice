@@ -5,7 +5,7 @@
  *
  */
 
-package javaclasses.OutputTest;
+package javaclasses.OutputQuiz;
 
 class X {
     static int i = 1111;
@@ -49,13 +49,14 @@ i = ++i + i++;
 i = 3 + 3 = 6 = y.i
 */
 
-public class OutputTest {
+public class OutputQuiz {
+
     public static void main(String[] args) {
-        //Test1
+        //Quiz1
         Y y = new Y();
         System.out.println(y.i);    //L5
 
-        //Test2
+        //Quiz2
         Integer num1 = 1000, num2 = 1000;
         //False
         System.out.println(num1 == num2);//1
@@ -64,5 +65,16 @@ public class OutputTest {
         // the cache, else it creates a new instance. This means that the num3 and num4 point to the same object
         // in the IntegerCache and thereby the comparison results in true.
         System.out.println(num3 == num4);//2
+
+        //Quiz3
+        System.out.println(Math.min(Double.MIN_VALUE, 0.0d));
+        System.out.println(Double.MIN_VALUE);
+
+        //Quiz4
+        System.out.println(0.1 * 3 == 0.3); //false
+        /*This expectation mismatch is due to the error that occurs while rounding float-point numbers and the
+        fact that in Java, only the floating-point numbers that are powers of 2 are represented accurately by
+        the binary representation.*/
+        System.out.println(0.1 * 2 == 0.2); //true
     }
 }
