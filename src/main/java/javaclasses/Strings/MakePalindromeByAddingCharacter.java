@@ -73,30 +73,27 @@ There are no ways to make this string a palindrome.*/
     public String checkPalindrome(String val) {
         int left = 0;
         int right = val.length() - 1;
-        boolean conversion = true;
         while (left <= right) {
             if (val.charAt(left) != val.charAt(right)) {
                 String s1 = val + val.charAt(left);
                 String s2 = val.charAt(right) + val;
-                String s3 = val.charAt(left) + val;
-                String s4 = val + val.charAt(right);
-                if (isPalindrome(s1, 0, s1.length() - 1) || isPalindrome(s2, 0, s2.length() - 1) ||
-                        isPalindrome(s3, 0, s3.length() - 1) || isPalindrome(s4, 0, s4.length() - 1)) {
+                if (isPalindrome(s1, 0, s1.length() - 1) || isPalindrome(s2, 0, s2.length() - 1)) {
                     return "Yes";
                 } else {
                     return "No";
                 }
-            } else {
-                //No insertion
-                conversion = false;
             }
             left++;
             right--;
         }
 
-        //Already palindrome & length is odd (Ex: Madam)
-        if (!conversion && val.length() % 2 != 0) {
-            return "No";
+        //Already palindrome check for duplicate character
+        int len = val.length();
+        if (len % 2 != 0) {
+            int index = len / 2;
+            if ((val.charAt(index) != val.charAt(index - 1)) || (val.charAt(index) != val.charAt(index + 1))) {
+                return "No";
+            }
         }
         return "Yes";
     }
@@ -115,5 +112,10 @@ There are no ways to make this string a palindrome.*/
     public static void main(String[] args) {
         MakePalindromeByAddingCharacter palindrome = new MakePalindromeByAddingCharacter();
         System.out.println(palindrome.checkPalindrome("abcb"));
+        System.out.println(palindrome.checkPalindrome("acca"));
+        System.out.println(palindrome.checkPalindrome("madam"));
+        System.out.println(palindrome.checkPalindrome("xz"));
+        System.out.println(palindrome.checkPalindrome("xyz"));
+        System.out.println(palindrome.checkPalindrome("accca"));
     }
 }
