@@ -7,25 +7,21 @@
 
 package javaclasses.Strings;
 
-/*Write a java program to reverse a string using recursion. In this tutorial, I am going to explain how to
-write a java code which reverse an input string using recursion.
-I have also added the video at the end of this tutorial.
+/*Write a java program to reverse a string. In this tutorial, I am going to explain how to
+write a java code which reverse an input string using recursion & stack.
 
 For example :
 
 Input String: Object
 Output String: tcejbO*/
 
-/*In this code example, we write a function reverse which takes a string as an argument and reverses it
-recursively. The time complexity of this approach is O(n).*/
 
-/**
- * Reverse a String using Recursion
- */
+import java.util.Stack;
+
 public class ReverseString {
 
-    //Method which reverse a string
-    private static String reverse(String str) {
+    //Reverse a String using Recursion
+    private static String reverseUsingRecursion(String str) {
 
         //Terminating condition
         if (str == null || str.length() <= 1) {
@@ -34,15 +30,35 @@ public class ReverseString {
 
         //Recursive function call
         String res = str.substring(1);
-        return reverse(res) + str.charAt(0);
+        return reverseUsingRecursion(res) + str.charAt(0);
+    }
+
+    //Reverse a String using Stack
+    private static String reverseUsingStack(String str) {
+        //Declare a stack
+        Stack<Character> stack = new Stack<>();
+
+        /**
+         * Traverse a string and push each character
+         * of a string in a stack.
+         */
+        for (int i = 0; i < str.length(); i++) {
+            stack.push(str.charAt(i));
+        }
+
+        StringBuilder result = new StringBuilder();
+        //When stack is not empty, pop each character
+        while (!stack.empty()) {
+            result.append(stack.pop());
+        }
+        return result.toString();
     }
 
     public static void main(String[] args) {
 
         String str = "Object";
-        String revStr = reverse(str);
-
-        System.out.println(revStr);
+        System.out.println(reverseUsingRecursion(str));
+        System.out.println(reverseUsingStack(str));
 
     }
 }

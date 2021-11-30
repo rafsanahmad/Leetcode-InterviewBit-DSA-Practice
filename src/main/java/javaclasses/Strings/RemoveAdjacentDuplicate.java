@@ -7,7 +7,11 @@
 
 package javaclasses.Strings;
 
-/*Given a string S of lowercase letters, a duplicate removal consists of choosing two adjacent and equal letters, and removing them.
+import java.util.Stack;
+
+/*LeetCode - 1047*/
+/*Given a string S of lowercase letters, a duplicate removal consists of choosing two adjacent and equal letters,
+and removing them.
 
 We repeatedly make duplicate removals on S until we no longer can.
 
@@ -18,15 +22,12 @@ Example 1:
 Input: "abbaca"
 Output: "ca"
 Explanation: 
-For example, in "abbaca" we could remove "bb" since the letters are adjacent and equal, and this is the only possible move.
+For example, in "abbaca" we could remove "bb" since the letters are adjacent and equal, and this is the only
+possible move.
 The result of this move is that the string is "aaca", of which only "aa" is possible, so the final string is "ca".*/
 
-
-import java.util.Stack;
-
-/*LeetCode - 1047*/
 public class RemoveAdjacentDuplicate {
-    public static String remvoeAdjacentDuplicate(String str) {
+    public static String removeAdjacentDuplicate(String str) {
         Stack<Character> st = new Stack<>();
         StringBuilder sb = new StringBuilder();
 
@@ -47,11 +48,8 @@ public class RemoveAdjacentDuplicate {
 
     public static void main(String[] args) {
         String str = "caaabbc";
-        String result = remvoeAdjacentDuplicate(str);
+        String result = removeAdjacentDuplicate(str);
         System.out.println(result);
-
-        String s = "HelloCat";
-        System.out.println(s.substring(5));
     }
 }
 

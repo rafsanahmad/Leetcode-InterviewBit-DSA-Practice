@@ -7,7 +7,8 @@
 
 package javaclasses.Strings;
 
-/*Write a java program to reverse each words of a string.  Suppose, If an input string is Java Programming then the output string should be avaJ gnimmargorP.*/
+/*Write a java program to reverse each words of a string.
+Suppose, If an input string is Java Programming then the output string should be avaJ gnimmargorP.*/
 
 /*We split the input string into words using split() method. 
 Then we reverse each individual word and append to a final string. Finally, we print the output.
@@ -23,17 +24,17 @@ public class ReverseEachWords {
         //Create an array of words
         //[Java,Programming]
         String[] words = str.split(" ");
-        String revString = "";
+        StringBuilder revString = new StringBuilder();
 
         for (int i = 0; i < words.length; i++) {
             String word = words[i];
-            String revWord = "";
+            StringBuilder revWord = new StringBuilder();
 
             for (int j = word.length() - 1; j >= 0; j--) {
-                revWord = revWord + word.charAt(j);
+                revWord.append(word.charAt(j));
             }
 
-            revString = revString + revWord + " ";
+            revString.append(revWord).append(" ");
         }
 
         System.out.println(revString);
