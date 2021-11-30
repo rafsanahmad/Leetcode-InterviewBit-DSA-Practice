@@ -7,7 +7,8 @@
 
 package javaclasses.Strings;
 
-/*Given two strings str1 and str2, check if str1 is a subsequence of str2. Both strings consists only of lowercase characters.
+/*Given two strings str1 and str2, check if str1 is a subsequence of str2. Both strings consists only of
+lowercase characters.
 
 Example 1:
 
@@ -22,11 +23,10 @@ Input: s = “axc”, t = “ahbgdc”
 Output: false
 
 What is Subsequence?
-A subsequence is a sequence that can be derived from another sequence by deleting some or no elements without changing the order of the remaining elements.
+A subsequence is a sequence that can be derived from another sequence by deleting some or no elements without
+changing the order of the remaining elements.
 
 For example : abd is a subsequence of abcde.
-
-*/
 
 /*In this example, we are going to solve this problem using two pointers.
 
@@ -40,11 +40,10 @@ If all the characters of string str1 is present in string str2 it means the valu
 
 The time complexity of this approach is O(n), where n is the length of string s. It’s space complexity is O(1).*/
 
-//Check If a String is Subsequence of Another String - Java Code
-//S = subsequence string, t = main string
-
 public class Subsequence {
 
+    //Check If a String is Subsequence of Another String - Java Code
+    //S = subsequence string, t = main string
     public boolean isSubsequence(String s, String t) {
 
         int sLen = s.length();
@@ -68,7 +67,8 @@ public class Subsequence {
     }
 
     public static void main(String[] args) {
-
+        Subsequence subsequence = new Subsequence();
+        System.out.println(subsequence.isSubsequence("abd", "abcde"));
     }
 }
 

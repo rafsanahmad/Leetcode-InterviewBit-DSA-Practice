@@ -17,9 +17,18 @@ public class JavaStdInOut {
         String myString = scanner.next();
         System.out.println("Enter your age:");
         int myInt = scanner.nextInt();
-        scanner.close();
 
         System.out.println("String is: " + myString);
         System.out.println("Int is: " + myInt);
+
+        //Test Case
+        System.out.println("Enter test case:");
+        int t = scanner.nextInt();
+        System.out.println("Enter numbers");
+        for (int i = 0; i < t; i++) {
+            int num = scanner.nextInt();
+            System.out.println(num);
+        }
+        scanner.close();
     }
 }

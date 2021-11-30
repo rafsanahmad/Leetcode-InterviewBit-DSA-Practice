@@ -9,7 +9,8 @@ package javaclasses.Strings;
 
 /*Given a Roman numeral, Write a code to convert roman to integer value.
 
-Roman numerals are represented by seven different letters (I, V, X, L, C, D, M). These seven letters are used to make thousand of numbers.
+Roman numerals are represented by seven different letters (I, V, X, L, C, D, M).
+These seven letters are used to make thousand of numbers.
 
 For example –
 
@@ -31,15 +32,15 @@ Input : LVII , Output: 57
 
 NOTE : The given input is guaranteed to be within the range from 1 to 3999.
 
-*/
+Before solving this problem, Let’s understand few important points about Roman Numerals.
 
-/*Before solving this problem, Let’s understand few important points about Roman Numerals.
-
-Roman numerals are usually written largest to smallest from left to right. For example – XII (12), VII (7), LVII (57) etc.
+Roman numerals are usually written largest to smallest from left to right.
+For example – XII (12), VII (7), LVII (57) etc.
 
 However, the numeral for four is not IIII. Instead, the number four is written as IV.
 Because the one is before the five we subtract it making four.
-The same principle applies to the number nine, which is written as IX. There are six instances where we need to do subtraction.
+The same principle applies to the number nine, which is written as IX.
+There are six instances where we need to do subtraction.
 
 I can be placed before V (5) and X (10) to make 4 and 9. 
 X can be placed before L (50) and C (100) to make 40 and 90. 

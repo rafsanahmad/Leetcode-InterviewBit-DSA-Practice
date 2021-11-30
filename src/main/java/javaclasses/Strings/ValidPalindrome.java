@@ -48,7 +48,8 @@ public class ValidPalindrome {
     }
 
     public static void main(String[] args) {
-
+        ValidPalindrome palindrome = new ValidPalindrome();
+        System.out.println(palindrome.validPalindrome("abca"));
     }
 }
 

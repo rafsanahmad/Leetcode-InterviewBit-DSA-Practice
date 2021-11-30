@@ -41,19 +41,17 @@ public class Word_split_Coderbyte {
         String[] dictArray = strDictionary.split(",");
 
         for (int i = 0; i < dictArray.length; i++) {
-            String[] sentanceArray = sentence.split(dictArray[i]);
-            if (sentanceArray.length > 0) {
-                for (int j = 0; j < sentanceArray.length; j++) {
-                    String addedWord = dictArray[i] + sentanceArray[j];
+            String[] sentenceArray = sentence.split(dictArray[i]);
+            for (int j = 0; j < sentenceArray.length; j++) {
+                String addedWord = dictArray[i] + sentenceArray[j];
 
-                    //check other way around
-                    StringBuilder builder = new StringBuilder(addedWord);
-                    builder = builder.reverse();
-                    String reverseWord = builder.toString();
-                    if (addedWord.equals(sentence) || reverseWord.equals(sentence)) {
-                        result = dictArray[i] + "," + sentanceArray[j];
-                        found = true;
-                    }
+                //check other way around
+                StringBuilder builder = new StringBuilder(addedWord);
+                builder = builder.reverse();
+                String reverseWord = builder.toString();
+                if (addedWord.equals(sentence) || reverseWord.equals(sentence)) {
+                    result = dictArray[i] + "," + sentenceArray[j];
+                    found = true;
                 }
             }
         }

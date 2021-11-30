@@ -48,6 +48,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class SortCharactersByFrequency {
+
     public String frequencySort(String s) {
 
         StringBuilder sb = new StringBuilder();
@@ -83,7 +84,8 @@ public class SortCharactersByFrequency {
     }
 
     public static void main(String[] args) {
-
+        SortCharactersByFrequency characters = new SortCharactersByFrequency();
+        System.out.println(characters.frequencySort("hello world"));
     }
 }
 

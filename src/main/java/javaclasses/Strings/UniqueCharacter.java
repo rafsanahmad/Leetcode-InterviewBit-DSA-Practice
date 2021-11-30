@@ -14,10 +14,11 @@ Examples:
 
 s = "leetcode"
 return 0.
+Explanation: First Non repeating character is l
 
 s = "loveleetcode"
 return 2.
- 
+Explanation: First Non repeating character is v
 
 Note: You may assume the string contains only lowercase English letters.*/
 
@@ -49,9 +50,8 @@ public class UniqueCharacter {
     }
 
     public static void main(String[] args) {
-        String str = "character";
-        int index = findUniqueCharacter(str);
-        System.out.println(index);
+        System.out.println(findUniqueCharacter("character"));
+        System.out.println(findUniqueCharacter("loveleetcode"));
     }
 
 }
