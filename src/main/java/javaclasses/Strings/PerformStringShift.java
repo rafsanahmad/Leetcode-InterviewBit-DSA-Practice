@@ -6,6 +6,7 @@
  */
 
 package javaclasses.Strings;
+/*LeetCode 1427*/
 
 /*Given a string s containing lowercase English letters, and a matrix shift,
 where shift[i] = [direction, amount]:
@@ -44,8 +45,6 @@ where shift[i] = [direction, amount]:
    [1,3] means shift to right by 3. "abcdefg" == "efgabcd"
  
 This problem is the day 14 challenge of LeetCode 30 day challenge.*/
-
-/*LeetCode 1427*/
 
 /*Important point -
 Equal number of left shift cancels equal number right shift operations

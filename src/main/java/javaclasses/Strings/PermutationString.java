@@ -25,6 +25,7 @@ The input strings only contain lower case letters.
 The length of both given strings is in range [1, 10,000].*/
 
 public class PermutationString {
+    //S1 = Permutation String, S2 = Main String
     public boolean checkInClusion(String s1, String s2) {
         int s1Len = s1.length();
         int s2Len = s2.length();

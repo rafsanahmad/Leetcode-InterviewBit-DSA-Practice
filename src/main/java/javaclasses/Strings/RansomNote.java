@@ -8,7 +8,8 @@
 package javaclasses.Strings;
 
 /*Given an arbitrary ransom note string and another string containing letters from all the magazines,
-write a function that will return true if the ransom note can be constructed from the magazines ; otherwise, it will return false.
+write a function that will return true if the ransom note can be constructed from the magazines ;
+otherwise, it will return false.
 
 Each letter in the magazine string can only be used once in your ransom note.
 
@@ -39,7 +40,7 @@ public class RansomNote {
         int ranLen = ransomNote.length();
 
         for (int i = 0; i < mgLne; i++) {
-            arr[magazine.charAt(i) - 97]++;
+            arr[magazine.charAt(i) - 97]++; //a ascii code is 97
         }
 
         //if value is less than zero, it means
@@ -52,6 +53,9 @@ public class RansomNote {
     }
 
     public static void main(String[] args) {
-
+        System.out.println(canConstruct("aa", "aab"));
+        System.out.println(canConstruct("aa", "ab"));
+        System.out.println(canConstruct("rafsan", "ahmadrafsen"));
+        System.out.println(canConstruct("bbcd", "aabbbbc"));
     }
 }
