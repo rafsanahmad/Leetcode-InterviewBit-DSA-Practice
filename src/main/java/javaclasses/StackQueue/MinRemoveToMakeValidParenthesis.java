@@ -70,4 +70,8 @@ Output: "a(b(c)d)"*/
         return resultString;
     }
 
+    public static void main(String[] args) {
+        MinRemoveToMakeValidParenthesis parenthesis = new MinRemoveToMakeValidParenthesis();
+        System.out.println(parenthesis.minRemoveToMakeValid("lee(t(c)o)de)"));
+    }
 }
