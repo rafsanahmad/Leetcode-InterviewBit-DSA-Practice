@@ -11,10 +11,12 @@ import static java.util.Map.Entry.comparingByValue;
 import static java.util.stream.Collectors.toMap;
 
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.TreeMap;
+import java.util.stream.Collectors;
 
 public class SortHashMap {
     public static void main(String[] args) throws Exception {
@@ -83,6 +85,30 @@ public class SortHashMap {
 
         System.out.println("Map after sorting by keys in descending order: "
                 + treeMap2);
+
+
+        //Custom comparator
+        //Value Descending, Key Ascending (if value is same after sorting)
+        Map<String, Integer> customMap = new HashMap<>();
+        customMap.put("A", 25);
+        customMap.put("D", 10);
+        customMap.put("B", 15);
+        customMap.put("E", 15);
+        customMap.put("C", 17);
+        Comparator<Map.Entry<String, Integer>> byValueDesc =
+                Map.Entry.comparingByValue(Comparator.reverseOrder());
+        Comparator<Map.Entry<String, Integer>> byKeyAsc = Map.Entry.comparingByKey();
+        Comparator<Map.Entry<String, Integer>> byKeyDesc =
+                Map.Entry.comparingByKey(Comparator.reverseOrder());
+
+        Map<String, Integer> result =
+                customMap.entrySet()
+                        .stream()
+                        .sorted(byValueDesc.thenComparing(byKeyDesc))
+                        .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (e1, e2) ->
+                                e1, LinkedHashMap::new));
+
+        System.out.println(result);
 
     }
 }
