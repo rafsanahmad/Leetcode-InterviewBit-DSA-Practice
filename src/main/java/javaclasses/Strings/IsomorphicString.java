@@ -52,4 +52,9 @@ Output: true
         }
         return false;
     }
+
+    public static void main(String[] args) {
+        IsomorphicString string = new IsomorphicString();
+        System.out.println(string.isIsomorphic("paper", "title"));
+    }
 }

@@ -24,7 +24,8 @@ Output: “”
 
 No common prefix is found.
 
-In this tutorial, I am going to discuss the algorithm and their java implementation to find the longest common prefix amongst an array of strings.*/
+In this tutorial, I am going to discuss the algorithm and their java implementation to find the longest
+common prefix amongst an array of strings.*/
 
 
 /*
