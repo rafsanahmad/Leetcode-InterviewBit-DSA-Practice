@@ -9,6 +9,7 @@ package javaclasses.NumberTheory.Math;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.LinkedList;
@@ -66,8 +67,7 @@ public class KclosestPoints {
         // Sort the list using lambda expression
         Collections.sort(
                 list,
-                (i1,
-                 i2) -> i1.getValue().compareTo(i2.getValue()));
+                Comparator.comparing(Map.Entry::getValue));
 
         // put data from sorted list to hashmap
         HashMap<Integer, Double> temp
@@ -76,5 +76,18 @@ public class KclosestPoints {
             temp.put(aa.getKey(), aa.getValue());
         }
         return temp;
+    }
+
+    public static void main(String[] args) {
+        KclosestPoints points = new KclosestPoints();
+        int[][] arr = {{1, 3}, {-2, 2}};
+        int[][] result = points.kClosest(arr, 1);
+        for (int i = 0; i < result.length; i++) {
+            System.out.print("[");
+            for (int j = 0; j < result[0].length; j++) {
+                System.out.print(result[i][j] + " ");
+            }
+            System.out.print("]");
+        }
     }
 }

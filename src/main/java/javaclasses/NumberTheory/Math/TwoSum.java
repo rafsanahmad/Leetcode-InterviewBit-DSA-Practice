@@ -7,12 +7,14 @@
 
 package javaclasses.NumberTheory.Math;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
 public class TwoSum {
     //Leetcode 1
-    /*Given an array of integers nums and an integer target, return indices of the two numbers such that they add up to target.
+    /*Given an array of integers nums and an integer target, return indices of the two numbers such that
+    they add up to target.
 
 You may assume that each input would have exactly one solution, and you may not use the same element twice.
 
@@ -41,5 +43,11 @@ Output: [0,1]
             }
         }
         return new int[]{-1, -1};
+    }
+
+    public static void main(String[] args) {
+        int[] arr = {2, 7, 11, 15};
+        TwoSum sum = new TwoSum();
+        System.out.println(Arrays.toString(sum.twoSum(arr, 9)));
     }
 }
