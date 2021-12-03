@@ -9,6 +9,17 @@ package javaclasses.Recursion
 
 class GenerateParenthesis {
     //Leetcode 22
+    /*Given n pairs of parentheses, write a function to generate all combinations of well-formed parentheses.
+
+Example 1:
+
+Input: n = 3
+Output: ["((()))","(()())","(())()","()(())","()()()"]
+Example 2:
+
+Input: n = 1
+Output: ["()"]
+*/
     fun generateParenthesis(n: Int): Array<String> {
         val result = ArrayList<String>()
         dfs(result, "", n, n)
@@ -28,4 +39,9 @@ class GenerateParenthesis {
             dfs(result, "$str)", left, right - 1)
         }
     }
+}
+
+fun main(args: Array<String>) {
+    val parenthesis = GenerateParenthesis()
+    println(parenthesis.generateParenthesis(3).contentToString());
 }

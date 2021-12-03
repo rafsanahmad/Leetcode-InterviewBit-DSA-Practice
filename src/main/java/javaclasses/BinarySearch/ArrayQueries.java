@@ -1,11 +1,11 @@
 /*
  * *
- *  * Created by Rafsan Ahmad on 12/3/21, 8:05 PM
+ *  * Created by Rafsan Ahmad on 12/3/21, 10:02 PM
  *  * Copyright (c) 2021 . All rights reserved.
  *
  */
 
-package javaclasses.Array;
+package javaclasses.BinarySearch;
 
 import java.util.ArrayList;
 import java.util.Arrays;
