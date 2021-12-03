@@ -29,6 +29,33 @@ public class JavaStdInOut {
             int num = scanner.nextInt();
             System.out.println(num);
         }
+
+
+        //STD IN - Test case with Queries
+        /*Scanner scanner = new Scanner(System.in);
+        int total = scanner.nextInt();
+        int index = 0;
+        int[] arr = new int[total];
+
+        for (int i = 0; i < total; i++) {
+            int num = scanner.nextInt();
+            arr[index++] = num;
+        }
+
+        int query = scanner.nextInt();
+
+        List<int[]> queries = new ArrayList<>();
+        for (int i = 0; i < query; i++) {
+            int start = scanner.nextInt();
+            int end = scanner.nextInt();
+            int[] ar = {start, end};
+            queries.add(ar);
+        }
+
+        int[] result = yourFunction(arr, queries);
+        for (int i = 0; i < result.length; i++) {
+            System.out.println(result[i]);
+        }*/
         scanner.close();
     }
 }

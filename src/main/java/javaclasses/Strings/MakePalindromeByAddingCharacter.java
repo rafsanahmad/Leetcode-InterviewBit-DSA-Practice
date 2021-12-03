@@ -75,26 +75,31 @@ There are no ways to make this string a palindrome.*/
         int right = val.length() - 1;
         while (left <= right) {
             if (val.charAt(left) != val.charAt(right)) {
-                String s1 = val + val.charAt(left);
-                String s2 = val.charAt(right) + val;
-                if (isPalindrome(s1, 0, s1.length() - 1) || isPalindrome(s2, 0, s2.length() - 1)) {
+                String s1 = new StringBuilder(val).insert(right + 1, val.charAt(left)).toString();
+                if (isPalindrome(s1, 0, s1.length() - 1)) {
                     return "Yes";
-                } else {
-                    return "No";
                 }
+                if (left > 0) {
+                    String s2 = new StringBuilder(val).insert(left - 1, val.charAt(right)).toString();
+                    if (isPalindrome(s2, 0, s2.length() - 1)) {
+                        return "Yes";
+                    }
+                }
+                String s3 = new StringBuilder(val).insert(left, val.charAt(right)).toString();
+                if (isPalindrome(s3, 0, s3.length() - 1)) {
+                    return "Yes";
+                }
+                String s4 = new StringBuilder(val).insert(right, val.charAt(left)).toString();
+                if (isPalindrome(s4, 0, s4.length() - 1)) {
+                    return "Yes";
+                }
+                return "No";
             }
-            left++;
-            right--;
+            ++left;
+            --right;
         }
 
         //Already palindrome check for duplicate character
-        int len = val.length();
-        if (len % 2 != 0) {
-            int index = len / 2;
-            if ((val.charAt(index) != val.charAt(index - 1)) || (val.charAt(index) != val.charAt(index + 1))) {
-                return "No";
-            }
-        }
         return "Yes";
     }
 
@@ -117,5 +122,11 @@ There are no ways to make this string a palindrome.*/
         System.out.println(palindrome.checkPalindrome("xz"));
         System.out.println(palindrome.checkPalindrome("xyz"));
         System.out.println(palindrome.checkPalindrome("accca"));
+        System.out.println(palindrome.checkPalindrome("abcdxcba"));
+        //System.out.println(palindrome.checkPalindrome("mnbvcxzlkjhgfdspoiuytrewqqwertyuiopasdfghjklzxcvbnm"));
+        System.out.println(palindrome.checkPalindrome("z"));
+        //System.out.println(palindrome.checkPalindrome("zlkjhgfdapoiuytrewertyuiopadfghjklz"));
+        //System.out.println(palindrome.checkPalindrome("zlkjhfdapoiuytrewertyuiopadfghjklz"));
+        //System.out.println(palindrome.checkPalindrome("aaaaaaaaaaaaabbbbbbbbbbbbbccccccccccdxccccccccccbbbbbbbbbbbbbaaaaaaaaaaaaa"));
     }
 }
