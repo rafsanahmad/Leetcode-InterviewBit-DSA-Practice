@@ -49,6 +49,42 @@ i = ++i + i++;
 i = 3 + 3 = 6 = y.i
 */
 
+//Inheritence Quiz
+interface BaseClass1 {
+    default void BaseClass1() {
+        System.out.println("BaseClass1 constructor called");
+    }
+};
+
+interface BaseClass2 {
+    default void BaseClass2() {
+        System.out.println("BaseClass2 constructor called");
+    }
+};
+
+class DerivedClass implements BaseClass1, BaseClass2 {
+    DerivedClass() {
+        BaseClass1.super.BaseClass1();
+        BaseClass2.super.BaseClass2();
+        System.out.println("DerivedClass constructor called");
+    }
+};
+
+class A {
+    void print() {
+        System.out.println("Inside A::");
+    }
+};
+
+class B extends A {
+    void print() {
+        System.out.println("Inside B");
+    }
+};
+
+class C extends B {
+};
+
 public class OutputQuiz {
 
     public static void main(String[] args) {
@@ -79,6 +115,13 @@ public class OutputQuiz {
 
         //Quiz5
         someMethod(null);
+
+        //Quiz6
+        DerivedClass derived_class = new DerivedClass();
+
+        //Quiz7
+        C c = new C();
+        c.print();
     }
 
     public static void someMethod(Object o) {
