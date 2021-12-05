@@ -1,5 +1,5 @@
 /*
- * *
+ * * Merge Intervals.java
  *  * Created by Rafsan Ahmad on 10/25/21, 9:49 PM
  *  * Copyright (c) 2021 . All rights reserved.
  *
@@ -52,5 +52,23 @@ Explanation: Intervals [1,4] and [4,5] are considered overlapping.*/
         }
         int[][] resultArray = merged.toArray(new int[merged.size()][]);
         return resultArray;
+    }
+
+    public static void main(String[] args) {
+        MergeIntervals intervals = new MergeIntervals();
+        int[][] arr = {
+                {1, 3},
+                {2, 6},
+                {8, 10},
+                {15, 18}
+        };
+        int[][] result = intervals.merge(arr);
+        for (int i = 0; i < result.length; i++) {
+            System.out.print("[");
+            for (int j = 0; j < result[i].length; j++) {
+                System.out.print(result[i][j] + " ");
+            }
+            System.out.print("]");
+        }
     }
 }
