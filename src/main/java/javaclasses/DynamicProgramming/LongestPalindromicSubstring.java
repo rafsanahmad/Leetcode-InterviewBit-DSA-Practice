@@ -1,5 +1,5 @@
 /*
- * *
+ * * Longest Palindromic Substring.java
  *  * Created by Rafsan Ahmad on 10/25/21, 9:50 PM
  *  * Copyright (c) 2021 . All rights reserved.
  *
@@ -71,5 +71,10 @@ public class LongestPalindromicSubstring {
         int end = start + maxLength - 1;
         result = s.substring(start, end + 1);
         return result;
+    }
+
+    public static void main(String[] args) {
+        LongestPalindromicSubstring substring = new LongestPalindromicSubstring();
+        System.out.println(substring.longestPalindrome("babad"));
     }
 }

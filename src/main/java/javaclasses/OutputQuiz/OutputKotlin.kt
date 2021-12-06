@@ -30,4 +30,8 @@ fun main(args: Array<String>) {
     println("SomeClass initialised")
     someClass.accessObject() //Prints same object
     someClass.accessObject()  //Prints same object
+
+    val numbers = mutableListOf("One", "Two", "Three", "Four", "Five")
+    val resultsList = numbers.map { it.length }.filter { it > 3 }
+    print(resultsList)
 }
