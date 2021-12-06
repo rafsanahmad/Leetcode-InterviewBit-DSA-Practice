@@ -1,5 +1,5 @@
 /*
- * *
+ * * Search Range.java
  *  * Created by Rafsan Ahmad on 10/25/21, 9:50 PM
  *  * Copyright (c) 2021 . All rights reserved.
  *
@@ -12,7 +12,8 @@ import java.util.Arrays;
 public class SearchRange {
     //Leetcode 34
     /*
-    Given an array of integers nums sorted in ascending order, find the starting and ending position of a given target value.
+    Given an array of integers nums sorted in ascending order, find the starting and ending position of a
+    given target value.
 
     If target is not found in the array, return [-1, -1].
     You must write an algorithm with O(log n) runtime complexity.
