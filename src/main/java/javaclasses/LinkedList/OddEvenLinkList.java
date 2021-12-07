@@ -1,5 +1,5 @@
 /*
- * *
+ * * Odd Even Linked List.java
  *  * Created by Rafsan Ahmad on 10/25/21, 9:49 PM
  *  * Copyright (c) 2021 . All rights reserved.
  *
@@ -19,13 +19,13 @@ public class OddEvenLinkList {
     */
 
     public ListNode oddEvenList(ListNode head) {
-        if(head == null) return null;
+        if (head == null) return null;
 
         ListNode odd = head;
         ListNode even = head.next;
         ListNode evenHead = even;
 
-        while(even !=null && even.next != null) {
+        while (even != null && even.next != null) {
             odd.next = even.next;
             odd = odd.next;
             even.next = odd.next;
@@ -33,5 +33,24 @@ public class OddEvenLinkList {
         }
         odd.next = evenHead;
         return head;
+    }
+
+    public void printList(ListNode node) {
+        while (node != null) {
+            System.out.print(node.val + " ");
+            node = node.next;
+        }
+    }
+
+    public static void main(String[] args) {
+        ListNode root = new ListNode(1);
+        root.next = new ListNode(2);
+        root.next.next = new ListNode(3);
+        root.next.next.next = new ListNode(4);
+        root.next.next.next.next = new ListNode(5);
+
+        OddEvenLinkList list = new OddEvenLinkList();
+        ListNode result = list.oddEvenList(root);
+        list.printList(result);
     }
 }
