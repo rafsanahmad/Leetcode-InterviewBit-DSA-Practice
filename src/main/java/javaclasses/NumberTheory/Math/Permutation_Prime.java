@@ -1,5 +1,5 @@
 /*
- * *
+ * * Permutation Prime.java
  *  * Created by Rafsan Ahmad on 10/25/21, 9:50 PM
  *  * Copyright (c) 2021 . All rights reserved.
  *
@@ -11,7 +11,8 @@ import java.util.ArrayList;
 import java.util.List;
 /*Given a number N, task is to Check whether it is a permutable prime number or not.
 
-A Permutable prime number is that number which after switching the position of digits through any permutation is also prime.
+A Permutable prime number is that number which after switching the position of digits through any permutation
+is also prime.
 Some of the permutable prime numbers are 2, 3, 5, 7, 11, etc.
         Input : 31
         Output : Yes
