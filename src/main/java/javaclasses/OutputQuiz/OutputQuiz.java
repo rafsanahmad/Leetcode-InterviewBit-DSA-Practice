@@ -85,7 +85,43 @@ class B extends A {
 class C extends B {
 };
 
+class PassByTest {
+    int num;
+
+    PassByTest(int x) {
+        num = x;
+    }
+
+    PassByTest() {
+        num = 0;
+    }
+}
+
 public class OutputQuiz {
+
+    public static void updateObject(PassByTest ibObj) {
+        // Point the object to new reference
+        ibObj = new PassByTest();
+        // Update the value
+        ibObj.num = 50;
+    }
+
+    public static void updateObject2(PassByTest ibObj) {
+        // no changes are made to point the ibObj to new location
+        // Update the value of num
+        ibObj.num = 50;
+    }
+
+    public static void someMethod(Object o) {
+        System.out.println("Object method Invoked");
+    }
+
+    public static void someMethod(String s) {
+        /*null is not an object in Java.The Java compiler chooses the method with the most specific parameters
+        in method overloading. this means that since the String class is more specific, the method with String
+        input parameter is called.*/
+        System.out.println("String method Invoked");
+    }
 
     public static void main(String[] args) {
         //Quiz1
@@ -122,16 +158,16 @@ public class OutputQuiz {
         //Quiz7
         C c = new C();
         c.print();
-    }
 
-    public static void someMethod(Object o) {
-        System.out.println("Object method Invoked");
-    }
+        //Quiz8
+        PassByTest ibTestObj = new PassByTest(20);
+        //Pass the reference to updateObject Method
+        updateObject(ibTestObj);
+        //After the updateObject is executed, check for the value of num in the object.
+        System.out.println(ibTestObj.num);
 
-    public static void someMethod(String s) {
-        /*null is not an object in Java.The Java compiler chooses the method with the most specific parameters
-        in method overloading. this means that since the String class is more specific, the method with String
-        input parameter is called.*/
-        System.out.println("String method Invoked");
+        //Quiz9
+        updateObject2(ibTestObj);
+        System.out.println(ibTestObj.num);
     }
 }
