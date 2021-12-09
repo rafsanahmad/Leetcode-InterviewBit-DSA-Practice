@@ -1,5 +1,5 @@
 /*
- * *
+ * * Subarray with Given Sum.java
  *  * Created by Rafsan Ahmad on 10/25/21, 9:50 PM
  *  * Copyright (c) 2021 . All rights reserved.
  *
@@ -7,7 +7,8 @@
 
 package javaclasses.TwoPointer;
 
-/*Given an array of unsorted integers (Positive integers), We have to write a code to find a subarray whose sum is equal to a given sum.
+/*Given an array of unsorted integers (Positive integers), We have to write a code to find a subarray whose sum is
+equal to a given sum.
 
 We have to return subarray indexes (start and end index).
 
@@ -42,7 +43,8 @@ The idea here is to declare two variables start and end.
 Initially, Both pointers point at 0th index. Keep start pointer as it is and start moving end pointer
 until the value of sum is less than k. If sum is equal to k then return the indexes.
 
-If the value of sum is greater than k then move start pointer and also subtract the value present at start index from the sum variable.
+If the value of sum is greater than k then move start pointer and also subtract the value present at start index
+from the sum variable.
 Keep repeating this process until the value of sum is greater than k.
 
 The time complexity of this approach is O(n).*/

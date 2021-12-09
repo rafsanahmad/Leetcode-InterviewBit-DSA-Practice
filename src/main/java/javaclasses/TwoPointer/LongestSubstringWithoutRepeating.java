@@ -1,8 +1,8 @@
 /*
- * *
+ * * Longest Substring Without Repeating Characters.java
  *  * Created by Rafsan Ahmad on 10/25/21, 9:50 PM
  *  * Copyright (c) 2021 . All rights reserved.
- *  
+ *
  */
 
 package javaclasses.TwoPointer;
@@ -30,19 +30,25 @@ The answer is “wke”. Its length is 3.
 
 */
 
-/*In this example, I am going to explain how to find the length of longest non-repeating substring using sliding window approach.
+/*In this example, I am going to explain how to find the length of longest non-repeating substring using
+sliding window approach.
 
 
-The idea here is to maintain a window of unique character. Each window has start and end index, based on that we know the window size.
-To check unique character in a window, i am using set data structure. Set does not allow duplicate values and also the lookup time is O(1).
+The idea here is to maintain a window of unique character. Each window has start and end index, based on that we know
+the window size.
+To check unique character in a window, i am using set data structure. Set does not allow duplicate values and also
+the lookup time is O(1).
 
 Here are the following steps to solve this problem –
 
-Declare two indexes i and j and initialize with zero. Variable i indicate index of the start window and j indicate end index.
+Declare two indexes i and j and initialize with zero. Variable i indicate index of the start window and j indicate
+end index.
 Traverse a string and pick one character at a time.
-First check, if a character exists in a set. If it doesn’t exist in a set then add them in a set and increment the count of j and the index of i remain as it is.
+First check, if a character exists in a set. If it doesn’t exist in a set then add them in a set and increment
+the count of j and the index of i remain as it is.
 Also, keep track of the length of a window.
-If character exists in a set then remove the character from a set and increment the count of i until all the characters in a window is unique again.
+If character exists in a set then remove the character from a set and increment the count of i until all the characters
+ in a window is unique again.
 Repeat this step until the string is traversed completely.
 The time complexity of this approach is O(n) and it’s space complexity is also O(n).*/
 

@@ -1,5 +1,5 @@
 /*
- * *
+ * * Remove Element From Array.java
  *  * Created by Rafsan Ahmad on 11/9/21, 2:32 PM
  *  * Copyright (c) 2021 . All rights reserved.
  *
