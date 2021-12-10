@@ -1,5 +1,5 @@
 /*
- * *
+ * * Plus One.java
  *  * Created by Rafsan Ahmad on 10/25/21, 9:49 PM
  *  * Copyright (c) 2021 . All rights reserved.
  *
@@ -7,6 +7,7 @@
 
 package javaclasses.Array;
 
+import java.util.Arrays;
 import java.util.Stack;
 
 public class PlusOne {
@@ -63,5 +64,11 @@ You may assume the integer does not contain any leading zero, except the number 
             index++;
         }
         return resultArr;
+    }
+
+    public static void main(String[] args) {
+        PlusOne one = new PlusOne();
+        int[] arr = {1, 2, 9};
+        System.out.println(Arrays.toString(one.plusOne(arr)));
     }
 }
