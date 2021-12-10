@@ -1,5 +1,5 @@
 /*
- * *
+ * * Make Equal Element Array.java
  *  * Created by Rafsan Ahmad on 11/12/21, 5:30 PM
  *  * Copyright (c) 2021 . All rights reserved.
  *
