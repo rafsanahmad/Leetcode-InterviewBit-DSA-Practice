@@ -1,5 +1,5 @@
 /*
- * *
+ * * Next Permutation.java
  *  * Created by Rafsan Ahmad on 10/25/21, 9:49 PM
  *  * Copyright (c) 2021 . All rights reserved.
  *
@@ -12,7 +12,8 @@ import java.util.Arrays;
 /*
 Implement next permutation, which rearranges numbers into the lexicographically next greater permutation of numbers.
 
-If such an arrangement is not possible, it must rearrange it as the lowest possible order (i.e., sorted in ascending order).
+If such an arrangement is not possible, it must rearrange it as the lowest possible order
+(i.e., sorted in ascending order).
 
 The replacement must be in place and use only constant extra memory.
 

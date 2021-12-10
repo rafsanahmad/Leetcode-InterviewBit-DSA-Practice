@@ -1,5 +1,5 @@
 /*
- * *
+ * * Stack Operation.java
  *  * Created by Rafsan Ahmad on 11/22/21, 2:21 PM
  *  * Copyright (c) 2021 . All rights reserved.
  *
@@ -11,6 +11,8 @@ import java.util.Stack;
 import java.util.regex.Pattern;
 
 public class StackOperation {
+
+    /*Implement a stack with POP, DUP, +, - operation*/
 
     public static final int MAX = 1048575;
     public static final int MIN = 0;

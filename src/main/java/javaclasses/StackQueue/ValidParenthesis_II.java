@@ -1,8 +1,8 @@
 /*
- * *
+ * * Valid Parenthesis II.java
  *  * Created by Rafsan Ahmad on 10/25/21, 9:50 PM
  *  * Copyright (c) 2021 . All rights reserved.
- *  
+ *
  */
 
 package javaclasses.StackQueue;
@@ -71,6 +71,6 @@ public class ValidParenthesis_II {
     }
 
     public static void main(String[] args) {
-
+        System.out.println(ValidParenthesis_II.checkValidString("(*))"));
     }
 }
