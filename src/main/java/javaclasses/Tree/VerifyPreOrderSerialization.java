@@ -1,5 +1,5 @@
 /*
- * *
+ * * Verify Pre Order Serialization.java
  *  * Created by Rafsan Ahmad on 10/25/21, 9:49 PM
  *  * Copyright (c) 2021 . All rights reserved.
  *
@@ -52,5 +52,10 @@ Output: false*/
             }
         }
         return nodeCount == 0;
+    }
+
+    public static void main(String[] args) {
+        VerifyPreOrderSerialization verify = new VerifyPreOrderSerialization();
+        System.out.println(verify.isValidSerialization("9,3,4,#,#,1,#,#,2,#,6,#,#"));
     }
 }

@@ -1,5 +1,5 @@
 /*
- * *
+ * * Binary tree Path Sum.java
  *  * Created by Rafsan Ahmad on 10/25/21, 9:49 PM
  *  * Copyright (c) 2021 . All rights reserved.
  *
@@ -33,7 +33,17 @@ Output: false
         if (root.left == null && root.right == null && targetSum - root.val == 0) {
             return true;
         } else {
-            return hasPathSum(root.left, targetSum - root.val) || hasPathSum(root.right, targetSum - root.val);
+            return hasPathSum(root.left, targetSum - root.val) ||
+                    hasPathSum(root.right, targetSum - root.val);
         }
+    }
+
+    public static void main(String[] args) {
+        PathSum sum = new PathSum();
+        TreeNode root = new TreeNode(1);
+        root.left = new TreeNode(2);
+        root.right = new TreeNode(3);
+        System.out.println(sum.hasPathSum(root, 5));
+        System.out.println(sum.hasPathSum(root, 4));
     }
 }
