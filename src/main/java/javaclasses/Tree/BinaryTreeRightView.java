@@ -1,5 +1,5 @@
 /*
- * *
+ * * Binary Tree Right View
  *  * Created by Rafsan Ahmad on 10/25/21, 9:49 PM
  *  * Copyright (c) 2021 . All rights reserved.
  *
@@ -8,7 +8,8 @@
 package javaclasses.Tree;
 
 public class BinaryTreeRightView {
-    /*Given a Binary Tree, print Right view of it. Right view of a Binary Tree is set of nodes visible when tree is visited from Right side.
+    /*Given a Binary Tree, print Right view of it. Right view of a Binary Tree is set of nodes visible when tree is
+    visited from Right side.
 
 Right view of following tree is 1 3 7 8
 
