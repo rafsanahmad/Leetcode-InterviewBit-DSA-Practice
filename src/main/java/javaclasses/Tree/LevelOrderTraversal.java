@@ -1,5 +1,5 @@
 /*
- * *
+ * * Level Order Traversal.java
  *  * Created by Rafsan Ahmad on 10/25/21, 9:49 PM
  *  * Copyright (c) 2021 . All rights reserved.
  *
@@ -13,7 +13,6 @@ import java.util.List;
 import java.util.Queue;
 
 public class LevelOrderTraversal {
-
     //Leetcode 102
     /*Given the root of a binary tree, return the level order traversal of its nodes' values.
     (i.e., from left to right, level by level).
