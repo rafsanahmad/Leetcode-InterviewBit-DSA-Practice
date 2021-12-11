@@ -1,5 +1,5 @@
 /*
- * *
+ * * Is Bst Identical.java
  *  * Created by Rafsan Ahmad on 10/25/21, 9:49 PM
  *  * Copyright (c) 2021 . All rights reserved.
  *
@@ -9,6 +9,9 @@ package javaclasses.Tree;
 
 public class BstIdentical {
 
+    /*Given the root nodes of the two binary search trees. The task is to print 1 if the two Binary Search Trees are
+    identical else print 0. Two trees are identical if they are identical structurally and nodes have the
+    same values.*/
     static class Node {
         int data;
         Node left;
