@@ -1,5 +1,5 @@
 /*
- * *
+ * * Partition Labels.java
  *  * Created by Rafsan Ahmad on 10/25/21, 9:49 PM
  *  * Copyright (c) 2021 . All rights reserved.
  *
@@ -28,6 +28,7 @@ A partition like "ababcbacadefegde", "hijhklij" is incorrect, because it splits 
 Example 2:
 Input: s = "eccbbbbdec"
 Output: [10]*/
+
     public List<Integer> partitionLabels(String s) {
         List<Integer> result = new ArrayList<>();
         int[] last = new int[26];

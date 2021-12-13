@@ -1,5 +1,5 @@
 /*
- * *
+ * * Non Repeating Stream.java
  *  * Created by Rafsan Ahmad on 10/25/21, 9:49 PM
  *  * Copyright (c) 2021 . All rights reserved.
  *
@@ -11,7 +11,8 @@ package javaclasses.Strings;
 
 Here is the rule to form string B.
 
-i) We have to find first non-repeating character each time a character is inserted to the stream and append it at the end to B.
+i) We have to find first non-repeating character each time a character is inserted to the stream and append
+it at the end to B.
 
 ii) If no non-repeating character is found then append ‘#’ at the end of B.
 
@@ -49,9 +50,11 @@ Output = “aaabd#”
 
 Here are the following steps –
 
-i) When a character comes from the stream, we put the character and it’s count in a HashMap. Also, we enqueue that character in a queue.
+i) When a character comes from the stream, we put the character and it’s count in a HashMap. Also,
+we enqueue that character in a queue.
 
-ii) If it’s count is 1, then we append that character in a new string. Else we poll the queue until we found the character whose count is 1. If queue is empty then we append #.
+ii) If it’s count is 1, then we append that character in a new string. Else we poll the queue until
+we found the character whose count is 1. If queue is empty then we append #.
 
 */
 
