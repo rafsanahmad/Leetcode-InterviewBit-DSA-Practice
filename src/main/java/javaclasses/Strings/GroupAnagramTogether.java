@@ -1,5 +1,5 @@
 /*
- * *
+ * * Group Anagram Together.java
  *  * Created by Rafsan Ahmad on 10/25/21, 9:49 PM
  *  * Copyright (c) 2021 . All rights reserved.
  *
@@ -33,18 +33,21 @@ Output:
 ]
 */
 
-/*If two strings are anagrams of each other, then their sorted sequence is the same. By keeping this point in mind we can solve this problem.
+/*If two strings are anagrams of each other, then their sorted sequence is the same. By keeping this point in
+mind we can solve this problem.
 
 Here are the following steps to group anagrams.
 
 i) Traverse a list of string.
 
-ii) Pick each string and sort it. For sorting, first, convert a string into a character array and then sort this array.
+ii) Pick each string and sort it. For sorting, first, convert a string into a character array and then
+sort this array.
 
 iii) Create a map and put sorted string as a key to this map to group all the anagrams together.
 
 
-The time complexity of this approach is O(NMlogM), where N is the length of the array and M is the longest word in an array.*/
+The time complexity of this approach is O(NMlogM), where N is the length of the array and M is the longest
+word in an array.*/
 
 //Print all anagrams together
 
