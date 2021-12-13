@@ -49,11 +49,11 @@ Output: [[1,2,3],[4,5,6],[7,8,9]]*/
         for (int i = 0; i < m; i++) {
             for (int j = 0; j < n; j++) {
                 int p = j + k; // defines which col
-                int r = p / (n); // defines which row
+                int r = p / n; // defines which row
                 if (p < n) {
                     temp[i][p] = grid[i][j];
                 } else {
-                    temp[(i + r) % n][p % n] = grid[i][j];
+                    temp[(i + r) % m][p % n] = grid[i][j];
                 }
             }
         }
