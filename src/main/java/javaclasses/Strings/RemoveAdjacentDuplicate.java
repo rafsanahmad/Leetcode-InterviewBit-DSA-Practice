@@ -1,5 +1,5 @@
 /*
- * *
+ * * Remove Adjacent Duplicate.java
  *  * Created by Rafsan Ahmad on 10/25/21, 9:49 PM
  *  * Copyright (c) 2021 . All rights reserved.
  *
@@ -27,6 +27,7 @@ possible move.
 The result of this move is that the string is "aaca", of which only "aa" is possible, so the final string is "ca".*/
 
 public class RemoveAdjacentDuplicate {
+
     public static String removeAdjacentDuplicate(String str) {
         Stack<Character> st = new Stack<>();
         StringBuilder sb = new StringBuilder();

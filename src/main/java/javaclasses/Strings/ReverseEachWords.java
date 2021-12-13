@@ -1,5 +1,5 @@
 /*
- * *
+ * * Reverse Each Words.java
  *  * Created by Rafsan Ahmad on 10/25/21, 9:49 PM
  *  * Copyright (c) 2021 . All rights reserved.
  *
@@ -19,11 +19,11 @@ public class ReverseEachWords {
 
     public static void main(String[] args) {
 
-        String str = "Java Programming";
+        String str = "Java    Programming";
 
         //Create an array of words
         //[Java,Programming]
-        String[] words = str.split(" ");
+        String[] words = str.split("\\s+");
         StringBuilder revString = new StringBuilder();
 
         for (int i = 0; i < words.length; i++) {
