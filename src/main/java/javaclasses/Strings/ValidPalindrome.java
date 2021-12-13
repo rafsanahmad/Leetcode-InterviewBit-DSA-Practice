@@ -1,5 +1,5 @@
 /*
- * *
+ * * Valid Palindrome.java
  *  * Created by Rafsan Ahmad on 10/25/21, 9:49 PM
  *  * Copyright (c) 2021 . All rights reserved.
  *
@@ -22,6 +22,7 @@ The string will only contain lowercase characters a-z. The maximum length of the
 /*LeetCode - 680*/
 
 public class ValidPalindrome {
+
     public boolean validPalindrome(String s) {
         int left = 0;
         int right = s.length() - 1;

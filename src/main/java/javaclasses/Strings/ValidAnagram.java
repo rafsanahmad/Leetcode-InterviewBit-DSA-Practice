@@ -1,5 +1,5 @@
 /*
- * *
+ * * Valid Anagram.java
  *  * Created by Rafsan Ahmad on 10/25/21, 9:49 PM
  *  * Copyright (c) 2021 . All rights reserved.
  *
@@ -34,9 +34,6 @@ two string is not an anagram.
 
 The time complexity of this approach is O(n).*/
 
-
-import java.util.Scanner;
-
 class ValidAnagram {
 
     public static boolean isAnagram(String str1, String str2) {
@@ -68,14 +65,8 @@ class ValidAnagram {
     }
 
     public static void main(String[] args) {
-        Scanner in = new Scanner(System.in);
-
-        //String input
-        System.out.println("Enter first string:");
-        String str1 = in.nextLine();
-        System.out.println("Enter second string:");
-        String str2 = in.nextLine();
-
+        String str1 = "car";
+        String str2 = "rac";
         if (isAnagram(str1, str2)) {
             System.out.println("Anagram");
         } else {
