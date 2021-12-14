@@ -13,7 +13,7 @@ import java.util.HashMap;
 
 public class FlatToHierarchicalTree<T> {
 
-    private T head;
+    private final T head;
 
     private ArrayList<FlatToHierarchicalTree<T>> leafs = new ArrayList<>();
 
@@ -116,6 +116,7 @@ public class FlatToHierarchicalTree<T> {
         tree.addLeaf(3, 4);
         tree.addLeaf(3, 5);
         tree.addLeaf(2, 6);
+        tree.addLeaf(6, 2);
         System.out.println(tree.printTree(2));
     }
 }
