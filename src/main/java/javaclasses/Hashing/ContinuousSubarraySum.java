@@ -33,8 +33,33 @@ Example 3:
 Input: nums = [23,2,6,4,7], k = 13
 Output: false*/
 
-    //Using reminder theory
+    //Time limit exceeded
     public boolean checkSubarraySum(int[] nums, int k) {
+        int sum = 0;
+        int len = nums.length;
+        for (int i = 0; i < len; i++) {
+            sum = nums[i];
+            for (int j = i + 1; j < len; j++) {
+                sum = sum + nums[j];
+                if (sum % k == 0) {
+                    return true;
+                }
+            }
+        }
+        for (int i = len - 1; i > 0; i--) {
+            sum = nums[i];
+            for (int j = i - 1; j > 0; j--) {
+                sum = sum + nums[j];
+                if (sum % k == 0) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    //Using reminder theory
+    public boolean checkSubarraySumOptimized(int[] nums, int k) {
         Map<Integer, Integer> remainderMap = new HashMap<>();
 
         remainderMap.put(0, -1);
@@ -59,6 +84,7 @@ Output: false*/
     public static void main(String[] args) {
         ContinuousSubarraySum sum = new ContinuousSubarraySum();
         int[] arr = {23, 2, 6, 4, 7};
+        System.out.println(sum.checkSubarraySumOptimized(arr, 13));
         System.out.println(sum.checkSubarraySum(arr, 13));
     }
 }
