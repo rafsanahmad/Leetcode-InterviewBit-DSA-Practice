@@ -1,5 +1,5 @@
 /*
- * * Kth Smallest Element In Bst.java
+ * * Kth Smallest Element In Binary Search Tree.java
  *  * Created by Rafsan Ahmad on 10/25/21, 9:49 PM
  *  * Copyright (c) 2021 . All rights reserved.
  *
@@ -16,7 +16,13 @@ public class KthSmallestElementInBst {
     /*Given the root of a binary search tree, and an integer k, return the kth (1-indexed) smallest
     element in the tree.
 
+
 Example 1:
+          3
+       /     \
+     1        4
+      \
+       2
 Input: root = [3,1,4,null,2], k = 1
 Output: 1
 
@@ -41,5 +47,16 @@ Output: 3*/
         InOrderTraversal(node.left, list);
         list.add(node.val);
         InOrderTraversal(node.right, list);
+    }
+
+    public static void main(String[] args) {
+        KthSmallestElementInBst bst = new KthSmallestElementInBst();
+        TreeNode root = new TreeNode(3);
+        root.left = new TreeNode(1);
+        root.right = new TreeNode(4);
+        root.left.right = new TreeNode(2);
+
+        System.out.println(bst.kthSmallest(root, 1));
+
     }
 }
