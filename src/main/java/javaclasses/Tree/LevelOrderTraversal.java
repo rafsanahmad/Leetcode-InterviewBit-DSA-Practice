@@ -31,7 +31,7 @@ Output: []*/
     /* Given a binary tree. Print
      its nodes in level order
      using array for implementing queue  */
-    void printLevelOrder(TreeNode root) {
+    public void printLevelOrder(TreeNode root) {
         Queue<TreeNode> queue = new LinkedList<TreeNode>();
         queue.add(root);
         while (!queue.isEmpty()) {

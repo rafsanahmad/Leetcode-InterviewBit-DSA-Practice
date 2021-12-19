@@ -162,6 +162,6 @@ the memory at once?*/
         int[] arr4 = {9, 4, 9, 8, 4};
         System.out.println(Arrays.toString(arrays.intersect(arr3, arr4)));
         System.out.println(Arrays.toString(arrays.intersectOptimized(arr3, arr4)));
-        System.out.println(Arrays.toString(arrays.intersectSorted(arr1, arr2)));
+        System.out.println(Arrays.toString(arrays.intersectSorted(arr3, arr4)));
     }
 }
