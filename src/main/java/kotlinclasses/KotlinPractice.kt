@@ -412,4 +412,15 @@ fun main(args: Array<String>) {
     for ((key, value) in map) {
         println("$key = $value")
     }
+
+    //if let check
+    val value = null
+    val testValue = value?.let {
+        // If value is not null.
+        "value is not null"
+    } ?: run {
+        // If value is null.
+        "value is null"
+    }
+    println(testValue)
 }
