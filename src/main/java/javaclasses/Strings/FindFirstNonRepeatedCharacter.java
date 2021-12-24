@@ -33,7 +33,7 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 public class FindFirstNonRepeatedCharacter {
-
+    //Leetcode 387
     //Using Hashmap
     public void findFirstCharacterUsingHashmap(String str) {
         // Assign length of a string

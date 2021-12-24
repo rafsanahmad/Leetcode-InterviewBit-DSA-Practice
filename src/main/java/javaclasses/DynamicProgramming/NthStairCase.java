@@ -8,6 +8,7 @@
 package javaclasses.DynamicProgramming;
 
 public class NthStairCase {
+    //Leetcode 70
     /*A child is running up a staircase with n steps and can hop either 1 step, 2 steps, or 3 steps at a time.
      Implement a method to count how many possible ways the child can run up the stairs.
 
@@ -53,7 +54,8 @@ Dynamic Programming
 
     /*Dynamic Programming.
 The idea is similar, but it can be observed that there are n states but the recursive function is called 3 ^ n times.
-That means that some states are called repeatedly. So the idea is to store the value of states. This can be done in two ways.
+That means that some states are called repeatedly. So the idea is to store the value of states.
+This can be done in two ways.
 
 Top-Down Approach: The first way is to keep the recursive structure intact and just store the value in a HashMap
 and whenever the function is called again return the value store without computing ().
@@ -66,7 +68,6 @@ from 1, 2 .. to n, i.e. compute values of i, i+1, i+2 and then use them to calcu
         int[] res = new int[n + 1];
         res[0] = 1;
         res[1] = 1;
-        res[2] = 2;
 
         for (int i = 3; i <= n; i++)
             res[i] = res[i - 1] + res[i - 2] + res[i - 3];
@@ -74,7 +75,7 @@ from 1, 2 .. to n, i.e. compute values of i, i+1, i+2 and then use them to calcu
         return res[n];
     }
 
-    public static void main(String argc[]) {
+    public static void main(String[] args) {
         int n = 4;
         System.out.println(countWays(n));
     }
