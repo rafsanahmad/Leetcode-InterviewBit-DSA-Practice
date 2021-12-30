@@ -119,8 +119,7 @@ public class LinkedListInsertDeleteSearch {
         }
 
         // Find previous node of the node to be deleted
-        for (int i = 0; temp != null && i < position - 1;
-             i++)
+        for (int i = 0; temp != null && i < position - 1; i++)
             temp = temp.next;
 
         // If position is more than number of nodes
@@ -132,6 +131,13 @@ public class LinkedListInsertDeleteSearch {
         ListNode next = temp.next.next;
 
         temp.next = next; // Unlink the deleted node from list
+    }
+
+    //Given a Node, Delete the node from the list
+    //Leetcode 237
+    public void deleteNode(ListNode node) {
+        node.val = node.next.val;
+        node.next = node.next.next;
     }
 
     /* This function prints contents of linked list starting from
@@ -178,14 +184,20 @@ public class LinkedListInsertDeleteSearch {
         System.out.println("Insert 8 after 7");
         llist.printList();
 
-        //Delete node
-        // 1->8->6->4->NUll
+        // Insert 5, after 1. So linked list becomes
+        // 1->5->7->8->6->4->NUll
+        llist.insertAfter(llist.head, 5);
+        System.out.println("Insert 5 after 1");
+        llist.printList();
+
+        //Delete node 7
+        // 1->5->8->6->4->NUll
         llist.deleteNode(7);
         System.out.println("Delete node 7");
         llist.printList();
 
         //Delete node at position 2
-        // 1->8->4->NUll
+        // 1->5->8->4->NUll
         llist.deleteNodeAtPosition(2);
         System.out.println("Delete node at position 2");
         llist.printList();
