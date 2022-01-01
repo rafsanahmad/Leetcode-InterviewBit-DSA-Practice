@@ -7,6 +7,10 @@
 
 package kotlinclasses
 
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
 import kotlin.system.measureTimeMillis
 
 class CoroutineExample {
@@ -16,6 +20,29 @@ class CoroutineExample {
             counter += 1
         }
         return counter
+    }
+
+    fun coroutineTest() {
+        println("0")
+        runBlocking {
+            val job = GlobalScope.launch {
+                // launch new coroutine and keep a reference to its Job
+                delay(1200L)
+                println("1")
+            }
+            val job2 = GlobalScope.launch {
+                // launch new coroutine and keep a reference to its Job
+                delay(1000L)
+                println("2")
+            }
+
+            println("3")
+            job.join() // wait until child coroutine completes
+            println("4")
+            job2.join() // wait until child coroutine
+            println("5")
+        }
+        println("6")
     }
 }
 
@@ -28,6 +55,8 @@ fun main(args: Array<String>) {
     }
     println("Sequential completed in $time ms")
 
+    val example = CoroutineExample()
+    example.coroutineTest()
     // Concurrent execution.
     /*var time2 = measureTimeMillis {
         val one = async { CoroutineExample().meaninglessCounter() }
