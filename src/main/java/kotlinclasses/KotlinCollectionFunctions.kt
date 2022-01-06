@@ -1,6 +1,6 @@
 /*
  * *
- *  * KotlinCollectionFunctions.kt
+ *  * Kotlin Collection Functions.kt
  *  * Created by Rafsan Ahmad on 12/14/21, 2:09 AM
  *  * Copyright (c) 2021 . All rights reserved.
  *
@@ -36,6 +36,10 @@ class Items(val items: List<String>)
 data class Contact(val name: String, val phoneNumber: String)
 
 class KotlinCollectionFunctions {
+
+    inline fun <T1 : Any, T2 : Any, R : Any> safeLet(p1: T1?, p2: T2?, block: (T1, T2) -> R?): R? {
+        return if (p1 != null && p2 != null) block(p1, p2) else null
+    }
 
     //Distinct(), toSet()
     fun removeDuplicate() {
@@ -400,9 +404,54 @@ class KotlinCollectionFunctions {
         val totalQuantity2: Int = productsMap.map { it.value }.sumBy { it.quantity }
         println(totalQuantity2) // 60
     }
+
+    fun max_min_Example() {
+        val simpleList = listOf(1.99, 55.4, 20.0, 99.99, 23.0, 34.2, 88.0, 72.1, 61.2, 43.9)
+        val largestElement = simpleList.maxOrNull()
+        println(largestElement) //99.99
+        val smallestElement = simpleList.minOrNull()
+        println(smallestElement) //1.99
+    }
+
+    fun max_min_ByExample() {
+        val products = listOf(
+            Product("A", 10, 6.90),
+            Product("B", 20, 3.45),
+            Product("C", 30, 1.05)
+        )
+        val productWithHighestPrice = products.maxByOrNull { it -> it.price }
+        println(productWithHighestPrice)
+
+        val productWithLowestPrice = products.minByOrNull { it -> it.price }
+        println(productWithLowestPrice)
+    }
+
+    fun maxWithExample() {
+        //maxWith() returns the first element having the largest value according to the provided [comparator]
+        val productList = listOf(
+            Product("A", 10, 6.90),
+            Product("B", 20, 3.45),
+            Product("C", 30, 1.05),
+            Product("D", 20, 9.05)
+        )
+        val productWithHighestPrice = productList.maxWithOrNull(object : Comparator<Any> {
+            override fun compare(o1: Any?, o2: Any?): Int {
+                val obj1: Product? = o1 as? Product
+                val obj2: Product? = o2 as? Product
+                safeLet(obj1, obj2) { p1, p2 ->
+                    if (p1.price > p2.price) return 1
+                    if (p1.price == p2.price) return 0
+                    else return -1
+                }
+                return -1
+            }
+        })
+
+        println(productWithHighestPrice)
+    }
 }
 
-//Total 23 examples
+//Total 26 examples
 fun main(args: Array<String>) {
     val obj = KotlinCollectionFunctions()
     obj.removeDuplicate()
@@ -428,4 +477,7 @@ fun main(args: Array<String>) {
     obj.mapFlatMapExample()
     obj.sumExample()
     obj.sumByExample()
+    obj.max_min_Example()
+    obj.max_min_ByExample()
+    obj.maxWithExample()
 }
