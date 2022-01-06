@@ -8,6 +8,8 @@
 
 package kotlinclasses
 
+import kotlin.math.roundToInt
+
 data class User(
     val id: Int,
     val name: String,
@@ -25,6 +27,9 @@ data class User3(
     val name: String,
     val isFootballLover: Boolean
 )
+
+data class Product(val name: String, val quantity: Int, val price: Double) {
+}
 
 class Items(val items: List<String>)
 
@@ -341,9 +346,63 @@ class KotlinCollectionFunctions {
             .flatten() //[a, b, c, 1, 2, 3]
         println(nestedCollections)
     }
+
+    fun sumExample() {
+        val nums = listOf(10, 20, 30)
+        println(nums.sum()) // 60
+
+        val doubles = listOf(1.05, 2.05, 3.65)
+        println(doubles.sum()) // 6.75
+
+        val products = listOf(
+            Product("A", 10, 6.90),
+            Product("B", 20, 3.45),
+            Product("C", 30, 1.05)
+        )
+
+        val totalQuantity: Int = products.map { it.quantity }.sum()
+        println(totalQuantity) //60
+    }
+
+    fun sumByExample() {
+        /*Kotlin sumBy()
+        sum (and change value to Int) of all items in the normal List
+        sum of specific Int field in List of Objects (no need map())
+        sum of specific Int field of all values in Map of Objects (no need map())
+        Why we don’t need map()?
+        Look at protoype of sumBy() function:
+
+        inline fun sumBy(selector: (T) -> Int): Int
+        You can see that sumBy() receives a selector which indicates the field to be processed.*/
+
+        val nums = listOf(10, 20, 30)
+        println(nums.sumBy { it }) // 60
+        println(nums.sumBy { it * 2 }) // 120
+
+        val doubles = listOf(1.05, 2.05, 3.65)
+        println(doubles.sumBy { it.roundToInt() }) // 7
+
+        val products = listOf(
+            Product("A", 10, 6.90),
+            Product("B", 20, 3.45),
+            Product("C", 30, 1.05)
+        )
+
+        val totalQuantity: Int = products.sumBy { it.quantity }
+        println(totalQuantity) // 60
+
+        val productsMap = mapOf(
+            "a" to Product("A", 10, 6.90),
+            "b" to Product("B", 20, 3.45),
+            "c" to Product("C", 30, 1.05)
+        )
+
+        val totalQuantity2: Int = productsMap.map { it.value }.sumBy { it.quantity }
+        println(totalQuantity2) // 60
+    }
 }
 
-//Total 21 examples
+//Total 23 examples
 fun main(args: Array<String>) {
     val obj = KotlinCollectionFunctions()
     obj.removeDuplicate()
@@ -367,4 +426,6 @@ fun main(args: Array<String>) {
     obj.retain_removeExample()
     obj.partitionExample()
     obj.mapFlatMapExample()
+    obj.sumExample()
+    obj.sumByExample()
 }
