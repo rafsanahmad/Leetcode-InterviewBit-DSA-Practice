@@ -123,6 +123,19 @@ public class OutputQuiz {
         System.out.println("String method Invoked");
     }
 
+    public static void stringEquality() {
+        String s1 = "Hello";
+        String s2 = "Hello";
+        String s3 = new String(s1);
+        String s4 = new String("Hello");
+        System.out.println(s1 == s2);       // true
+        System.out.println(s1.equals(s2));  // true
+        System.out.println(s1 == s3);       // false
+        System.out.println(s1.equals(s3));  // true
+        System.out.println(s2 == s4);       // false
+        System.out.println(s2.equals(s4));  // true
+    }
+
     public static void main(String[] args) {
         //Quiz1
         Y y = new Y();
@@ -169,5 +182,7 @@ public class OutputQuiz {
         //Quiz9
         updateObject2(ibTestObj);
         System.out.println(ibTestObj.num);
+
+        stringEquality();
     }
 }
