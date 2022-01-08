@@ -29,13 +29,14 @@ Explanation:
 rotate 1 steps to the right: [99,-1,-100,3]
 rotate 2 steps to the right: [3,99,-1,-100]*/
 
-    //Using 0(1) - Time limit exceeded
+    //Using 0(n*k) - Time limit exceeded
     public void rotate(int[] nums, int k) {
         int len = nums.length;
         int temp = 0;
         if (len == 0) {
             return;
         }
+        k = k % len;
         while (k > 0) {
             int last = nums[len - 1];
             for (int i = 0; i < len; i++) {
@@ -92,9 +93,13 @@ is needed.If the gcd is 2, there are 2 circles, so 2 iterations are needed.*/
     }
 
     public static void main(String[] args) {
+        RotateArray rotateArray = new RotateArray();
         int[] ar = {-1, -100, 3, 99};
-        new RotateArray().rotateOptimized(ar, 2);
+        int[] ar2 = {-1, -100, 3, 99};
+        rotateArray.rotate(ar2, 2);
+        rotateArray.rotateOptimized(ar, 2);
         System.out.println(Arrays.toString(ar));
+        System.out.println(Arrays.toString(ar2));
     }
 
 }
