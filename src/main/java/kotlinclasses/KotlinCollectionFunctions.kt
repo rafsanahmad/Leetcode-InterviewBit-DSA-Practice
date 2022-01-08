@@ -42,7 +42,7 @@ class KotlinCollectionFunctions {
     }
 
     //Distinct(), toSet()
-    fun removeDuplicate() {
+    fun distinctExample() {
         // Maintain the original order of items
         val devs = arrayOf("Amit", "Ali", "Amit", "Sumit", "Sumit", "Himanshu")
         println(devs.distinct()) // [Amit, Ali, Sumit, Himanshu]
@@ -58,7 +58,7 @@ class KotlinCollectionFunctions {
     }
 
     //Convert an array or list to a string
-    fun joinToString() {
+    fun joinToStringExample() {
         val someKotlinCollectionFunctions = listOf(
             "distinct", "map",
             "isEmpty", "contains",
@@ -454,8 +454,8 @@ class KotlinCollectionFunctions {
 //Total 26 examples
 fun main(args: Array<String>) {
     val obj = KotlinCollectionFunctions()
-    obj.removeDuplicate()
-    obj.joinToString()
+    obj.distinctExample()
+    obj.joinToStringExample()
     obj.reduceExample()
     obj.allExample()
     obj.singleExample()
