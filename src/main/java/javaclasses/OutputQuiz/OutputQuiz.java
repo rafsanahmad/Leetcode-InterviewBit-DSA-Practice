@@ -85,6 +85,18 @@ class B extends A {
 class C extends B {
 };
 
+class Parent {
+    void foo() {
+        System.out.println("Foo() inside Parent");
+    }
+}
+
+class Child extends Parent {
+    void foo() {
+        System.out.println("Foo() inside Child");
+    }
+}
+
 class PassByTest {
     int num;
 
@@ -136,6 +148,14 @@ public class OutputQuiz {
         System.out.println(s2.equals(s4));  // true
     }
 
+    public static void tryCatchFinally(int a, int b) {
+        try {
+            int z = a / b;
+        } finally {
+            System.out.println("Finally!");
+        }
+    }
+
     public static void main(String[] args) {
         //Quiz1
         Y y = new Y();
@@ -183,6 +203,20 @@ public class OutputQuiz {
         updateObject2(ibTestObj);
         System.out.println(ibTestObj.num);
 
+        //Quiz 10
         stringEquality();
+
+        //Quiz 11
+        try {
+            tryCatchFinally(10, 0);
+        } catch (Exception e) {
+            System.out.println("Exception occurred");
+        }
+
+        //Quiz 12
+        Child ch = new Child();
+        ch.foo();
+        Parent parent = new Child();
+        parent.foo();
     }
 }
