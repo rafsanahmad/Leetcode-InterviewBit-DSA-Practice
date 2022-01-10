@@ -7,131 +7,105 @@
 
 package javaclasses.StackQueue;
 
-import java.util.Stack;
-
 public class MinStack {
-    /*Design a Data Structure SpecialStack that supports all the stack operations like
-    push(), pop(), isEmpty(), isFull() and an additional operation getMin() which should return
-    minimum element from the SpecialStack.
-    All these operations of SpecialStack must be O(1).
-    Example:
 
-Consider the following SpecialStack
-16  --> TOP
-15
-29
-19
-18
+    //https://leetcode.com/problems/min-stack/
+    /*
+Design a stack that supports push, pop, top, and retrieving the minimum element in constant time.
 
-When getMin() is called it should
-return 15, which is the minimum
-element in the current stack.
+Implement the MinStack class:
 
-If we do pop two times on stack,
-the stack becomes
-29  --> TOP
-19
-18
-
-When getMin() is called, it should
-return 18 which is the minimum in
-the current stack.
-
-optimized O(1) time complexity and O(1) space complexity solution :
-The idea is to store min element found till current insertion) along with all the elements as a reminder of a
-DUMMY_VALUE, and the actual element as a multiple of the DUMMY_VALUE.
-For example, while pushing an element ‘e’ into the stack, store it as (e * DUMMY_VALUE + minFoundSoFar),
-this way we know what was the minimum value present in the stack at the time ‘e’ was being inserted.
-
-To pop the actual value just return e/DUMMY_VALUE and set the new minimum as (minFoundSoFar % DUMMY_VALUE).
-
-Note: Following method will fail if we try to insert DUMMY_VALUE in the stack, so we have to make our selection
-of DUMMY_VALUE carefully.
-Let’s say the following elements are being inserted in the stack – 3 2 6 1 8 5
+MinStack() initializes the stack object.
+void push(int val) pushes the element val onto the stack.
+void pop() removes the element on the top of the stack.
+int top() gets the top element of the stack.
+int getMin() retrieves the minimum element in the stack.
 
 
-d is dummy value.
+Example 1:
 
-s is wrapper stack
+Input
+["MinStack","push","push","push","getMin","pop","top","getMin"]
+[[],[-2],[0],[-3],[],[],[],[]]
 
-top is top element of the stack
+Output
+[null,null,null,null,-3,null,0,-2]
 
-min is the minimum value at that instant when the elements were inserted/removed
+Explanation
+MinStack minStack = new MinStack();
+minStack.push(-2);
+minStack.push(0);
+minStack.push(-3);
+minStack.getMin(); // return -3
+minStack.pop();
+minStack.top();    // return 0
+minStack.getMin(); // return -2
 
-The following steps shows the current state of the above variables at any instant –
-
-s.push(3);
-min=3 //updated min as stack here is empty
-s = {3*d + 3}
-top = (3*d + 3)/d = 3
-
-s.push(2);
-min = 2 //updated min as min > current element
-s = {3*d + 3-> 2*d + 2}
-top = (2*d + 2)/d = 2
+To make constant time of getMin(), we need to keep track of the minimum element for each element in the stack.
+Define an element class that holds element value, min value, and pointer to elements below it.
     */
 
-    int min = -1; // sentinel value for min
-    static int demoVal = 9999; // DEMO_VALUE
-    Stack<Integer> st = new Stack<Integer>();
+    class Elem {
+        public int value;
+        public int min;
+        public Elem next;
 
-    void getMin() {
-        System.out.println("min is: " + min);
+        public Elem(int value, int min) {
+            this.value = value;
+            this.min = min;
+        }
     }
 
-    void push(int val) {
-        // if stack is empty OR current element is less than
-        // min, update min..
-        if (st.isEmpty() || val < min) {
-            min = val;
+    public Elem top;
+
+    /**
+     * initialize your data structure here.
+     */
+    public MinStack() {
+
+    }
+
+    public void push(int x) {
+        if (top == null) {
+            top = new Elem(x, x);
+        } else {
+            Elem e = new Elem(x, Math.min(x, top.min));
+            e.next = top;
+            top = e;
         }
 
-        st.push(val * demoVal
-                + min); // encode the current value with
-        // demoVal, combine with min and
-        // insert into stack
-        System.out.println("pushed: " + val);
     }
 
-    int pop() {
-        // if stack is empty return -1;
-        if (st.isEmpty()) {
-            System.out.println("stack underflow");
+    public void pop() {
+        if (top == null)
+            return;
+        Elem temp = top.next;
+        top.next = null;
+        top = temp;
+
+    }
+
+    public int top() {
+        if (top == null)
             return -1;
-        }
-
-        int val = st.pop();
-
-        if (!st.isEmpty()) // if stack is empty, there would
-            // be no min value present, so
-            // make min as -1
-            min = st.peek() % demoVal;
-        else
-            min = -1;
-        System.out.println("popped: " + val / demoVal);
-        return val / demoVal; // decode actual value from
-        // encoded value
+        return top.value;
     }
 
-    int peek() {
-        return st.peek() / demoVal; // decode actual value
-        // from encoded value
+    public int getMin() {
+        if (top == null)
+            return -1;
+        return top.min;
     }
 
-    // Driver Code
+
     public static void main(String[] args) {
-        MinStack s = new MinStack();
-
-        int[] arr = {3, 2, 6, 1, 8, 5, 5, 5, 5};
-
-        for (int i = 0; i < arr.length; i++) {
-            s.push(arr[i]);
-            s.getMin();
-        }
-        System.out.println();
-        for (int i = 0; i < arr.length; i++) {
-            s.pop();
-            s.getMin();
-        }
+        MinStack minStack = new MinStack();
+        minStack.push(-2);
+        minStack.push(0);
+        minStack.push(-3);
+        System.out.println(minStack.getMin()); // return -3
+        minStack.pop();
+        System.out.println(minStack.top());    // return 0
+        System.out.println(minStack.getMin()); // return -2
     }
 }
