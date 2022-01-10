@@ -7,6 +7,8 @@
 
 package javaclasses.StackQueue;
 
+import java.util.Stack;
+
 public class MinStack {
 
     //https://leetcode.com/problems/min-stack/
@@ -98,6 +100,54 @@ Define an element class that holds element value, min value, and pointer to elem
     }
 
 
+    //Using 2 Stack
+    /*using two stacks, push value as usually, but at mean time, push the top of another stack, minStack,
+    or the current value onto minStack, whichever is smaller.*/
+    private Stack<Integer> stack = new Stack<>();
+    private Stack<Integer> minStack = new Stack<>();
+
+    public void push2(int x) {
+        if (stack.empty()) {
+            stack.push(x);
+            minStack.push(x);
+        } else {
+            stack.push(x);
+            if (minStack.peek() > x) {
+                minStack.push(x);
+            } else {
+                minStack.push(minStack.peek());
+            }
+        }
+    }
+
+    public void pop2() {
+        if (stack.empty()) {
+            //throw exception
+        } else {
+            stack.pop();
+            minStack.pop();
+        }
+    }
+
+    public int top2() {
+        if (stack.empty()) {
+            //throw Exception();
+            return -1;
+        } else {
+            return stack.peek();
+        }
+    }
+
+    public int getMin2() {
+        if (minStack.empty()) {
+            //throw Exception
+            return -1;
+        } else {
+            return minStack.peek();
+        }
+    }
+
+
     public static void main(String[] args) {
         MinStack minStack = new MinStack();
         minStack.push(-2);
@@ -107,5 +157,14 @@ Define an element class that holds element value, min value, and pointer to elem
         minStack.pop();
         System.out.println(minStack.top());    // return 0
         System.out.println(minStack.getMin()); // return -2
+
+        //Using approach 2
+        minStack.push2(-2);
+        minStack.push2(0);
+        minStack.push2(-3);
+        System.out.println(minStack.getMin2()); // return -3
+        minStack.pop2();
+        System.out.println(minStack.top2());    // return 0
+        System.out.println(minStack.getMin2()); // return -2
     }
 }
