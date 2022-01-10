@@ -28,8 +28,7 @@ data class User3(
     val isFootballLover: Boolean
 )
 
-data class Product(val name: String, val quantity: Int, val price: Double) {
-}
+data class Product(val name: String, val quantity: Int, val price: Double)
 
 class Items(val items: List<String>)
 
@@ -104,7 +103,7 @@ class KotlinCollectionFunctions {
         println(allLoveFootball) // false
     }
 
-    //Find a particular element based on a certain condition
+    //Find a single element based on a certain condition
     fun singleExample() {
         val users = arrayOf(
             User2(1, "Amit"),
@@ -115,7 +114,16 @@ class KotlinCollectionFunctions {
 
         val userWithId3 = users.single { it.id == 3 }
         println(userWithId3) // User(id=3, name=Sumit)
+    }
 
+    //Find a particular element based on a certain condition
+    fun findExample() {
+        val users = arrayOf(
+            User2(1, "Amit"),
+            User2(2, "Ali"),
+            User2(3, "Sumit"),
+            User2(4, "Himanshu")
+        )
         val userWithId1 = users.find { it.id == 1 }
         println(userWithId1) // User(id=1, name=Amit)
     }
@@ -145,7 +153,7 @@ class KotlinCollectionFunctions {
     //Changing type of collection to other
     fun changeTypeExample() {
         var uIntArray = UIntArray(5) { 1U }
-        var intArray = uIntArray.toIntArray()
+        val intArray = uIntArray.toIntArray()
         intArray[0] = 0
         println(uIntArray.toList()) // [1, 1, 1, 1, 1]
         println(intArray.toList()) // [0, 1, 1, 1, 1]
@@ -196,7 +204,7 @@ class KotlinCollectionFunctions {
     }
 
     //Keep the specified elements only
-    fun retain_removeExample() {
+    fun retainRemoveExample() {
         val listOne = mutableListOf(1, 2, 3, 3, 4, 5, 6)
         val listTwo = listOf(1, 2, 3, 3, 4, 5, 6)
         val listThree = listOf(1, 2, 3, 3, 4, 5, 7)
@@ -292,6 +300,22 @@ class KotlinCollectionFunctions {
         /*Similarly, there are other functions that can be used to sort the collection based on certain conditions.
          Some of these functions are sortedArray, sortedArrayWith, sortedBy, sortedByDescending,
          sortedArraydescending, sortedWith, etc.*/
+    }
+
+    //Sort Collection by custom property
+    fun sortedByExample() {
+        val products = listOf(
+            Product("A1", 10, 6.90),
+            Product("B1", 20, 3.45),
+            Product("C1", 30, 1.05),
+            Product("D1", 50, 5.05)
+        )
+        val sorted = products.sortedBy { it.price }
+        println(sorted)
+        /*[Product(name=C1, quantity=30, price=1.05),
+        Product(name=B1, quantity=20, price=3.45),
+        Product(name=D1, quantity=50, price=5.05),
+        Product(name=A1, quantity=10, price=6.9)]*/
     }
 
     //Binary search
@@ -405,7 +429,7 @@ class KotlinCollectionFunctions {
         println(totalQuantity2) // 60
     }
 
-    fun max_min_Example() {
+    fun maxMinExample() {
         val simpleList = listOf(1.99, 55.4, 20.0, 99.99, 23.0, 34.2, 88.0, 72.1, 61.2, 43.9)
         val largestElement = simpleList.maxOrNull()
         println(largestElement) //99.99
@@ -413,7 +437,7 @@ class KotlinCollectionFunctions {
         println(smallestElement) //1.99
     }
 
-    fun max_min_ByExample() {
+    fun maxMinByExample() {
         val products = listOf(
             Product("A", 10, 6.90),
             Product("B", 20, 3.45),
@@ -451,7 +475,7 @@ class KotlinCollectionFunctions {
     }
 }
 
-//Total 26 examples
+//Total 28 examples
 fun main(args: Array<String>) {
     val obj = KotlinCollectionFunctions()
     obj.distinctExample()
@@ -459,6 +483,7 @@ fun main(args: Array<String>) {
     obj.reduceExample()
     obj.allExample()
     obj.singleExample()
+    obj.findExample()
     obj.chunkedExample()
     obj.copyArray()
     obj.changeTypeExample()
@@ -471,13 +496,14 @@ fun main(args: Array<String>) {
     obj.binarySearchExample()
     obj.groupByExample()
     obj.sortExample()
+    obj.sortedByExample()
     obj.reverseExample()
-    obj.retain_removeExample()
+    obj.retainRemoveExample()
     obj.partitionExample()
     obj.mapFlatMapExample()
     obj.sumExample()
     obj.sumByExample()
-    obj.max_min_Example()
-    obj.max_min_ByExample()
+    obj.maxMinExample()
+    obj.maxMinByExample()
     obj.maxWithExample()
 }
