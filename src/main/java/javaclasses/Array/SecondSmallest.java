@@ -15,7 +15,8 @@ arr = {-1, 7, 1, 34, 18}
 
 The second smallest number in this array is 1.*/
 
-/*Let’s discuss how we can solve this problem in a single traversal using two variables (smallest and secondSmallest).
+/*Let’s discuss how we can solve this problem in a single traversal using two variables
+(smallest and secondSmallest).
 
 Here are the following steps –
 
@@ -58,7 +59,7 @@ public class SecondSmallest {
 
     public static void main(String[] args) {
 
-        int arr[] = {-1, 70, 10, 34, 18, 78};
+        int[] arr = {-1, 70, 10, 34, 18, 78};
 
         //Method Call
         int result = getSecondSmallest(arr);
