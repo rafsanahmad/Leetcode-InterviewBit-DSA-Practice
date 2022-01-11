@@ -118,6 +118,7 @@ class KotlinCollectionFunctions {
 
     //Find a particular element based on a certain condition
     fun findExample() {
+        println("Inside find")
         val users = arrayOf(
             User2(1, "Amit"),
             User2(2, "Ali"),
@@ -294,6 +295,7 @@ class KotlinCollectionFunctions {
 
     //Group elements of a collection based on some condition
     fun groupByExample() {
+        println("Inside GroupBy")
         val list = listOf(1, 2, 3, 4, 5, 6, 7, 8, 9, 10)
         println(list.groupBy { it % 4 })
         // {
@@ -393,6 +395,7 @@ class KotlinCollectionFunctions {
     }
 
     fun sumExample() {
+        println("Inside Sum")
         val nums = listOf(10, 20, 30)
         println(nums.sum()) // 60
 
@@ -419,7 +422,7 @@ class KotlinCollectionFunctions {
 
         inline fun sumBy(selector: (T) -> Int): Int
         You can see that sumBy() receives a selector which indicates the field to be processed.*/
-
+        println("Inside SumBy")
         val nums = listOf(10, 20, 30)
         println(nums.sumBy { it }) // 60
         println(nums.sumBy { it * 2 }) // 120
@@ -447,6 +450,7 @@ class KotlinCollectionFunctions {
     }
 
     fun maxMinExample() {
+        println("Inside Max min")
         val simpleList = listOf(1.99, 55.4, 20.0, 99.99, 23.0, 34.2, 88.0, 72.1, 61.2, 43.9)
         val largestElement = simpleList.maxOrNull()
         println(largestElement) //99.99
@@ -455,6 +459,7 @@ class KotlinCollectionFunctions {
     }
 
     fun maxMinByExample() {
+        println("Inside Max min by")
         val products = listOf(
             Product("A", 10, 6.90),
             Product("B", 20, 3.45),
@@ -468,6 +473,7 @@ class KotlinCollectionFunctions {
     }
 
     fun maxWithExample() {
+        println("Inside Max with")
         //maxWith() returns the first element having the largest value according to the provided [comparator]
         val productList = listOf(
             Product("A", 10, 6.90),
