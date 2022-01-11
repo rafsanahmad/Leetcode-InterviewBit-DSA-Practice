@@ -204,18 +204,35 @@ class KotlinCollectionFunctions {
     }
 
     //Keep the specified elements only
-    fun retainRemoveExample() {
+    fun retainExample() {
         val listOne = mutableListOf(1, 2, 3, 3, 4, 5, 6)
         val listTwo = listOf(1, 2, 3, 3, 4, 5, 6)
         val listThree = listOf(1, 2, 3, 3, 4, 5, 7)
         println(listOne.retainAll(listTwo)) // false
         println(listOne.retainAll(listThree)) // true
         println(listOne) // [1, 2, 3, 3, 4, 5]
-        //you can use removeAll to remove all the elements of one collection that are present in another collection.
+        //you can use removeAll to remove all the elements of one collection that are present in another
+        // collection.
+    }
+
+    //Remove element in collection
+    fun removeExample() {
+        println("Inside Remove")
+        val listOne = mutableListOf(1, 2, 3, 3, 4, 5, 6)
+        val listTwo = listOf(1, 2, 3)
+        val listThree = listOf(6, 7)
+        println(listOne.removeFirst())  //Prints 1
+        println(listOne.removeLast())   //Prints 6
+        println(listOne) // Prints [2,3,3,4,5]
+        println(listOne.removeAll(listTwo)) //Prints True
+        println(listOne) // Prints [4,5]
+        println(listOne.removeAll(listThree)) //Prints False
+        println(listOne) // Prints [4,5]
     }
 
     //Filter a collection based on some condition
     fun filterExample() {
+        println("Inside Filter")
         val list = listOf(1, 2, 3, 4, 5, 6, 7, 8)
         val filteredList = list.filter { it % 2 == 0 }
         println(filteredList) // [2, 4, 6, 8]
@@ -475,7 +492,7 @@ class KotlinCollectionFunctions {
     }
 }
 
-//Total 28 examples
+//Total 29 examples
 fun main(args: Array<String>) {
     val obj = KotlinCollectionFunctions()
     obj.distinctExample()
@@ -498,7 +515,8 @@ fun main(args: Array<String>) {
     obj.sortExample()
     obj.sortedByExample()
     obj.reverseExample()
-    obj.retainRemoveExample()
+    obj.retainExample()
+    obj.removeExample()
     obj.partitionExample()
     obj.mapFlatMapExample()
     obj.sumExample()
