@@ -7,6 +7,10 @@
 
 package javaclasses.OutputQuiz;
 
+import java.util.Arrays;
+import java.util.Comparator;
+import java.util.List;
+
 class X {
     static int i = 1111;
 
@@ -148,6 +152,22 @@ public class OutputQuiz {
         System.out.println(s2.equals(s4));  // true
     }
 
+    public static void sortComparator() {
+        Integer myArray[] = {2, 3, 1};
+        List<Integer> list = Arrays.asList(2, 3, 1);
+        list.sort(new Sorting());
+        System.out.println(list);
+    }
+
+    static class Sorting implements Comparator<Integer> {
+
+        @Override
+        public int compare(Integer o1, Integer o2) {
+            //For Ascending o1.compareTo(o2)
+            return o2.compareTo(o1); //Descending
+        }
+    }
+
     public static void tryCatchFinally(int a, int b) {
         try {
             int z = a / b;
@@ -218,5 +238,8 @@ public class OutputQuiz {
         ch.foo();
         Parent parent = new Child();
         parent.foo();
+
+        //Quiz 13
+        sortComparator();
     }
 }
