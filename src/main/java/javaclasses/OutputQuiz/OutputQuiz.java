@@ -10,6 +10,8 @@ package javaclasses.OutputQuiz;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Set;
+import java.util.TreeSet;
 
 class X {
     static int i = 1111;
@@ -176,6 +178,17 @@ public class OutputQuiz {
         }
     }
 
+    public static void treeSetOutput() {
+        Set<Integer> set = new TreeSet<Integer>();
+        set.add(3);
+        set.add((int) 3.0);
+        set.add(2);
+        set.add(2);
+        set.add(new Integer(2));
+        set.add(Integer.parseInt("2"));
+        System.out.println(set);  // Prints: [2,3]
+    }
+
     public static void main(String[] args) {
         //Quiz1
         Y y = new Y();
@@ -241,5 +254,8 @@ public class OutputQuiz {
 
         //Quiz 13
         sortComparator();
+
+        //Quiz 14
+        treeSetOutput();
     }
 }
