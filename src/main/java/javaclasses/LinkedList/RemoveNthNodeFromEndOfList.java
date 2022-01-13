@@ -1,6 +1,6 @@
 /*
  * *
- *  * Remove Nth Node Fro mEnd Of List.java
+ *  * Remove Nth Node From End Of List.java
  *  * Created by Rafsan Ahmad on 1/13/22, 12:32 AM
  *  * Copyright (c) 2022 . All rights reserved.
  *
