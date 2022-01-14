@@ -7,6 +7,7 @@
 
 package javaclasses.OutputQuiz;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
@@ -189,6 +190,23 @@ public class OutputQuiz {
         System.out.println(set);  // Prints: [2,3]
     }
 
+    public static void listOutputTest() {
+        List<String> list1 = new ArrayList<>();
+        list1.add("foo");
+
+        List<String> list2 = list1;
+        List<String> list3 = new ArrayList<>(list2);
+
+        list1.clear();
+        list2.add("bar");
+        list3.add("baz");
+
+        System.out.print(list1); // [bar]
+        System.out.print(list2); // [bar]
+        System.out.print(list3); // [foo, baz]
+        System.out.println();
+    }
+
     public static void main(String[] args) {
         //Quiz1
         Y y = new Y();
@@ -257,5 +275,8 @@ public class OutputQuiz {
 
         //Quiz 14
         treeSetOutput();
+
+        //Quiz 15
+        listOutputTest();
     }
 }

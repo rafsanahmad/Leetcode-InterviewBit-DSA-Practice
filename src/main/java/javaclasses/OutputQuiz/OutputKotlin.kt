@@ -23,15 +23,31 @@ class OutputKotlin {
             println(heavyObject)
         }
     }
+
+    //Invoke example
+    class Config {
+        var count = 0;
+        operator fun invoke(): Config {
+            count++
+            return this
+        }
+    }
 }
 
 fun main(args: Array<String>) {
+    //Quiz 1
     val someClass = OutputKotlin.SomeClass()
     println("SomeClass initialised")
     someClass.accessObject() //Prints same object
     someClass.accessObject()  //Prints same object
 
+    //Quiz 2
     val numbers = mutableListOf("One", "Two", "Three", "Four", "Five")
     val resultsList = numbers.map { it.length }.filter { it > 3 }
-    print(resultsList)
+    println(resultsList)
+
+    //Quiz 3
+    val config = OutputKotlin.Config()
+    config()()()()()()()()()()
+    println("config was called ${config.count} times")
 }
