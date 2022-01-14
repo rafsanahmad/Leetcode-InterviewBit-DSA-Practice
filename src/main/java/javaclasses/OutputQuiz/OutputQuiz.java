@@ -116,6 +116,12 @@ class PassByTest {
     }
 }
 
+class box {
+    int width;
+    int height;
+    int length;
+}
+
 public class OutputQuiz {
 
     public static void updateObject(PassByTest ibObj) {
@@ -207,6 +213,23 @@ public class OutputQuiz {
         System.out.println();
     }
 
+    public static void mathCeilRound() {
+        double x1 = 22.9;
+        System.out.println(Math.ceil(x1));
+        System.out.println(Math.round(x1));
+        System.out.println(Math.rint(x1));
+    }
+
+    public static void objectOutputTest() {
+        box obj1 = new box();
+        box obj2 = new box();
+        obj1.height = 1;
+        obj1.length = 1;
+        obj1.width = 1;
+        obj2 = obj1;
+        System.out.println(obj2.height);
+    }
+
     public static void main(String[] args) {
         //Quiz1
         Y y = new Y();
@@ -278,5 +301,11 @@ public class OutputQuiz {
 
         //Quiz 15
         listOutputTest();
+
+        //Quiz 16
+        objectOutputTest();
+
+        //Quiz 17
+        mathCeilRound();
     }
 }
