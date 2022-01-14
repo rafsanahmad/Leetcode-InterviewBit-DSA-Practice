@@ -10,6 +10,7 @@ package javaclasses.OutputQuiz;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 import java.util.TreeSet;
@@ -55,54 +56,6 @@ L4 ->
 i = ++i + i++;
 i = 3 + 3 = 6 = y.i
 */
-
-//Inheritence Quiz
-interface BaseClass1 {
-    default void BaseClass1() {
-        System.out.println("BaseClass1 constructor called");
-    }
-};
-
-interface BaseClass2 {
-    default void BaseClass2() {
-        System.out.println("BaseClass2 constructor called");
-    }
-};
-
-class DerivedClass implements BaseClass1, BaseClass2 {
-    DerivedClass() {
-        BaseClass1.super.BaseClass1();
-        BaseClass2.super.BaseClass2();
-        System.out.println("DerivedClass constructor called");
-    }
-};
-
-class A {
-    void print() {
-        System.out.println("Inside A::");
-    }
-};
-
-class B extends A {
-    void print() {
-        System.out.println("Inside B");
-    }
-};
-
-class C extends B {
-};
-
-class Parent {
-    void foo() {
-        System.out.println("Foo() inside Parent");
-    }
-}
-
-class Child extends Parent {
-    void foo() {
-        System.out.println("Foo() inside Child");
-    }
-}
 
 class PassByTest {
     int num;
@@ -211,6 +164,11 @@ public class OutputQuiz {
         System.out.print(list2); // [bar]
         System.out.print(list3); // [foo, baz]
         System.out.println();
+
+        list2.replaceAll(String::toUpperCase);
+        list3.replaceAll(String::toUpperCase);
+        System.out.println(list2);
+        System.out.println(list3);
     }
 
     public static void mathCeilRound() {
@@ -230,12 +188,34 @@ public class OutputQuiz {
         System.out.println(obj2.height);
     }
 
+    public static void removeEvenIntegers() {
+        List<Integer> list = new ArrayList<>(Arrays.asList(2, 3, 4, 5, 6, 8, 9));
+        Iterator<Integer> iterator = list.iterator();
+        while (iterator.hasNext()) {
+            Integer element = iterator.next();
+            if (element % 2 == 0) {
+                iterator.remove();
+            }
+        }
+        System.out.println(list);
+
+        List<Integer> list2 = new ArrayList<>(Arrays.asList(2, 3, 4, 5, 6, 8, 9));
+        List<Integer> tempList = new ArrayList<>();
+        for (Integer element : list2) {
+            if (element % 2 == 0) {
+                tempList.add(element);
+            }
+        }
+        list2.removeAll(tempList);
+        System.out.println(list2);
+    }
+
     public static void main(String[] args) {
-        //Quiz1
+        //Quiz 1
         Y y = new Y();
         System.out.println(y.i);    //L5
 
-        //Quiz2
+        //Quiz 2
         Integer num1 = 1000, num2 = 1000;
         //False
         System.out.println(num1 == num2);//1
@@ -245,67 +225,57 @@ public class OutputQuiz {
         // in the IntegerCache and thereby the comparison results in true.
         System.out.println(num3 == num4);//2
 
-        //Quiz3
+        //Quiz 3
         System.out.println(Math.min(Double.MIN_VALUE, 0.0d));
         System.out.println(Double.MIN_VALUE);
 
-        //Quiz4
+        //Quiz 4
         System.out.println(0.1 * 3 == 0.3); //false
         /*This expectation mismatch is due to the error that occurs while rounding float-point numbers and the
         fact that in Java, only the floating-point numbers that are powers of 2 are represented accurately by
         the binary representation.*/
         System.out.println(0.1 * 2 == 0.2); //true
 
-        //Quiz5
+        //Quiz 5
         someMethod(null);
 
-        //Quiz6
-        DerivedClass derived_class = new DerivedClass();
-
-        //Quiz7
-        C c = new C();
-        c.print();
-
-        //Quiz8
+        //Quiz 6
         PassByTest ibTestObj = new PassByTest(20);
         //Pass the reference to updateObject Method
         updateObject(ibTestObj);
         //After the updateObject is executed, check for the value of num in the object.
         System.out.println(ibTestObj.num);
 
-        //Quiz9
+        //Quiz 7
         updateObject2(ibTestObj);
         System.out.println(ibTestObj.num);
 
-        //Quiz 10
+        //Quiz 8
         stringEquality();
 
-        //Quiz 11
+        //Quiz 9
         try {
             tryCatchFinally(10, 0);
         } catch (Exception e) {
             System.out.println("Exception occurred");
         }
 
-        //Quiz 12
-        Child ch = new Child();
-        ch.foo();
-        Parent parent = new Child();
-        parent.foo();
-
-        //Quiz 13
+        //Quiz 10
         sortComparator();
 
-        //Quiz 14
+        //Quiz 11
         treeSetOutput();
 
-        //Quiz 15
+        //Quiz 12
         listOutputTest();
 
-        //Quiz 16
+        //Quiz 13
         objectOutputTest();
 
-        //Quiz 17
+        //Quiz 14
         mathCeilRound();
+
+        //Quiz 15
+        removeEvenIntegers();
     }
 }
