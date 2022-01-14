@@ -23,9 +23,22 @@ class newThread extends Thread {
     }
 }
 
+class Test implements Runnable {
+
+    @Override
+    public void run() {
+        System.out.println("TURING");
+    }
+}
+
 public class ThreadOutput {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
         new newThread();
+
+        Thread thread1 = new Thread(new Test());
+        thread1.start();
+        thread1.start();  // Throws illegal thread state exception
+        System.out.println(thread1.getState());
     }
 }
