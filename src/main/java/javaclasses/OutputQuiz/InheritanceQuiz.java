@@ -57,23 +57,24 @@ class Child extends Parent {
     }
 }
 
+//Static block Test
 class Super {
-    static {
-        System.out.println("Super");
+    {
+        System.out.print("A ");
     }
 
-    void foo() {
-        System.out.println("Super");
+    static {
+        System.out.print("B ");
     }
 }
 
 class Subclass extends Super {
-    static {
-        System.out.println("Subclass");
+    {
+        System.out.print("C ");
     }
 
-    void foo() {
-        System.out.println("Subclass");
+    static {
+        System.out.print("D ");
     }
 }
 
@@ -95,7 +96,7 @@ public class InheritanceQuiz {
 
         //Quiz 4
         //static block
-        Super s = new Subclass();
-        s.foo();
+        Subclass s = new Subclass(); //B D A C
+        System.out.println();
     }
 }

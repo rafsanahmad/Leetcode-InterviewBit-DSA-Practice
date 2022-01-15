@@ -14,6 +14,16 @@ abstract class Animal {
     public abstract void move();
 }
 
+abstract class Demo {
+    public int a;
+
+    void demo() {
+        a = 10;
+    }
+
+    abstract public void get();
+}
+
 abstract class Canine extends Animal {
     public void wagTail() {
         System.out.println("Wagging");
@@ -37,8 +47,15 @@ class Dog extends Canine {
     }
 }
 
+class DemoTest extends Demo {
+    public void get() {
+        System.out.println("a = " + a);
+    }
+}
+
 public class AbstractClassQuiz {
     public static void main(String[] args) {
+        //Quiz 1
         Dog d = new Dog();
         d.makeNoise();
         d.move();
@@ -56,5 +73,9 @@ public class AbstractClassQuiz {
         a.move();
         //a.wagTail();
         //a.fetch();
+
+        //Quiz 2
+        DemoTest obj = new DemoTest();
+        obj.get();  // a = 0
     }
 }
