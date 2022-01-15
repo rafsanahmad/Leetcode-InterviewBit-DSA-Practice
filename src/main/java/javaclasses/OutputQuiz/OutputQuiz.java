@@ -210,6 +210,23 @@ public class OutputQuiz {
         System.out.println(list2);
     }
 
+    public static void stringConcat() {
+        String x = "abc";
+        String y = "abc";
+        x.concat(y);
+        System.out.println(x);  //abc
+    }
+
+    public static void incrementOperator() {
+        int x, y, z;
+        x = 9;
+        y = 10;
+        z = ++x + y++;
+        System.out.println(x); // 10
+        System.out.println(y); // 11
+        System.out.println(z); // 20
+    }
+
     public static void main(String[] args) {
         //Quiz 1
         Y y = new Y();
@@ -277,5 +294,11 @@ public class OutputQuiz {
 
         //Quiz 15
         removeEvenIntegers();
+
+        //Quiz 16
+        stringConcat();
+
+        //Quiz 17
+        incrementOperator();
     }
 }
