@@ -37,7 +37,7 @@ Explanation: The longest substring is "ababb", as 'a' is repeated 2 times and 'b
             Arrays.fill(countMap, 0);
             for (int end = start; end < len; end++) {
                 countMap[s.charAt(end) - 'a']++;
-                if (checkValue(s, start, end, k, countMap)) {
+                if (checkValue(k, countMap)) {
                     maxLength = Math.max(maxLength, end - start + 1);
                 }
             }
@@ -45,7 +45,7 @@ Explanation: The longest substring is "ababb", as 'a' is repeated 2 times and 'b
         return maxLength;
     }
 
-    private boolean checkValue(String s, int start, int end, int k, int[] countMap) {
+    private boolean checkValue(int k, int[] countMap) {
         int countLetters = 0, countAtLeastK = 0;
         for (int freq : countMap) {
             if (freq > 0) countLetters++;
