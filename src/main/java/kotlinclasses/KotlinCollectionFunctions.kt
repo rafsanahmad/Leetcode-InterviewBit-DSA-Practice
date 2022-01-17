@@ -13,19 +13,8 @@ import kotlin.math.roundToInt
 data class User(
     val id: Int,
     val name: String,
-    val isCricketLover: Boolean,
-    val isFootballLover: Boolean
-)
-
-data class User2(
-    val id: Int,
-    val name: String
-)
-
-data class User3(
-    val id: Int,
-    val name: String,
-    val isFootballLover: Boolean
+    val webDev: Boolean = false,
+    val mobileDev: Boolean = false
 )
 
 data class Product(val name: String, val quantity: Int, val price: Double)
@@ -43,17 +32,17 @@ class KotlinCollectionFunctions {
     //Distinct(), toSet()
     fun distinctExample() {
         // Maintain the original order of items
-        val devs = arrayOf("Amit", "Ali", "Amit", "Sumit", "Sumit", "Himanshu")
-        println(devs.distinct()) // [Amit, Ali, Sumit, Himanshu]
+        val devs = arrayOf("Alan", "Jones", "Bob", "Joe", "David", "Joe")
+        println(devs.distinct()) // [Alan, Jones, Bob, David]
 
         // Maintain the original order of items
-        println(devs.toSet()) // [Amit, Ali, Sumit, Himanshu]
+        println(devs.toSet()) // [Alan, Jones, Bob, David]
 
         // Maintain the original order of items
-        println(devs.toMutableSet()) // [Amit, Ali, Sumit, Himanshu]
+        println(devs.toMutableSet()) // [Alan, Jones, Bob, David]
 
         // DO NOT Maintain the original order of items
-        println(devs.toHashSet()) // [Amit, Ali, Sumit, Himanshu]
+        println(devs.toHashSet()) // [Alan, Jones, Bob, David]
     }
 
     //Convert an array or list to a string
@@ -89,44 +78,45 @@ class KotlinCollectionFunctions {
 
     //Find if all elements are satisfying a particular condition
     fun allExample() {
-        val user1 = User(id = 1, name = "Amit", isCricketLover = true, isFootballLover = true)
-        val user2 = User(id = 2, name = "Ali", isCricketLover = true, isFootballLover = true)
-        val user3 = User(id = 3, name = "Sumit", isCricketLover = true, isFootballLover = false)
-        val user4 = User(id = 4, name = "Himanshu", isCricketLover = true, isFootballLover = false)
+        println("Inside All")
+        val user1 = User(id = 1, name = "Alan", webDev = true, mobileDev = false)
+        val user2 = User(id = 2, name = "Joe", webDev = true, mobileDev = false)
+        val user3 = User(id = 3, name = "Bob", webDev = true, mobileDev = false)
+        val user4 = User(id = 4, name = "Jenny", webDev = true, mobileDev = false)
 
         val users = arrayOf(user1, user2, user3, user4)
 
-        val allLoveCricket = users.all { it.isCricketLover }
-        println(allLoveCricket) // true
+        val allWebDevs = users.all { it.webDev }
+        println(allWebDevs) // true
 
-        val allLoveFootball = users.all { it.isFootballLover }
-        println(allLoveFootball) // false
+        val allMobileDevs = users.all { it.mobileDev }
+        println(allMobileDevs) // false
     }
 
     //Find a single element based on a certain condition
     fun singleExample() {
         val users = arrayOf(
-            User2(1, "Amit"),
-            User2(2, "Ali"),
-            User2(3, "Sumit"),
-            User2(4, "Himanshu")
+            User(1, "Alan"),
+            User(2, "Bob"),
+            User(3, "Joe"),
+            User(4, "Jenny")
         )
 
         val userWithId3 = users.single { it.id == 3 }
-        println(userWithId3) // User(id=3, name=Sumit)
+        println(userWithId3) // User(id=3, name=Joe)
     }
 
     //Find a particular element based on a certain condition
     fun findExample() {
         println("Inside find")
         val users = arrayOf(
-            User2(1, "Amit"),
-            User2(2, "Ali"),
-            User2(3, "Sumit"),
-            User2(4, "Himanshu")
+            User(1, "Alan"),
+            User(2, "Bob"),
+            User(3, "Joe"),
+            User(4, "Jenny")
         )
         val userWithId1 = users.find { it.id == 1 }
-        println(userWithId1) // User(id=1, name=Amit)
+        println(userWithId1) // User(id=1, name=Alan)
     }
 
     //Break your list into multiple sublists of smaller size
@@ -163,30 +153,30 @@ class KotlinCollectionFunctions {
     //Associating the data using some key
     fun associateByExample() {
         val contactList = listOf(
-            Contact("Amit", "+9199XXXX1111"),
-            Contact("Ali", "+9199XXXX2222"),
-            Contact("Himanshu", "+9199XXXX3333"),
-            Contact("Sumit", "+9199XXXX4444")
+            Contact("Alan", "+9199XXXX1111"),
+            Contact("Bob", "+9199XXXX2222"),
+            Contact("Joe", "+9199XXXX3333"),
+            Contact("Jenny", "+9199XXXX4444")
         )
 
         val phoneNumberToContactMap = contactList.associateBy { it.phoneNumber }
         println(phoneNumberToContactMap)
         // Map with key: phoneNumber and value: Contact
         // {
-        //     +9199XXXX1111=Contact(name=Amit, phoneNumber=+9199XXXX1111),
-        //     +9199XXXX2222=Contact(name=Ali, phoneNumber=+9199XXXX2222),
-        //     +9199XXXX3333=Contact(name=Himanshu, phoneNumber=+9199XXXX3333),
-        //     +9199XXXX4444=Contact(name=Sumit, phoneNumber=+9199XXXX4444)
+        //     +9199XXXX1111=Contact(name=Alan, phoneNumber=+9199XXXX1111),
+        //     +9199XXXX2222=Contact(name=Bob, phoneNumber=+9199XXXX2222),
+        //     +9199XXXX3333=Contact(name=Joe, phoneNumber=+9199XXXX3333),
+        //     +9199XXXX4444=Contact(name=Jenny, phoneNumber=+9199XXXX4444)
         // }
 
         val phoneNumberToContactMap2 = contactList.associateBy({ it.phoneNumber }, { it.name })
         println(phoneNumberToContactMap2)
         // Map with key: phoneNumber and value: name
         // {
-        //     +9199XXXX1111=Amit,
-        //     +9199XXXX2222=Ali,
-        //     +9199XXXX3333=Himanshu,
-        //     +9199XXXX4444=Sumit}
+        //     +9199XXXX1111=Alan,
+        //     +9199XXXX2222=Bob,
+        //     +9199XXXX3333=Joe,
+        //     +9199XXXX4444=Jenny}
         // }
     }
 
@@ -257,6 +247,7 @@ class KotlinCollectionFunctions {
 
     //Zip collections
     fun zipExample() {
+        println("Inside Zip")
         val listOne = listOf(1, 2, 3, 4, 5)
         val listTwo = listOf("a", "b", "c", "d", "e", "f")
         println(listOne zip listTwo) // [(1, a), (2, b), (3, c), (4, d), (5, e)]
@@ -266,24 +257,24 @@ class KotlinCollectionFunctions {
         println(list.zipWithNext()) // [(1, 2), (2, 3), (3, 4), (4, 5)]
 
         //Unzip
-        val list2 = listOf("Amit" to 8, "Ali" to 10, "Sumit" to 4, "Himanshu" to 2)
-        val (players, footballSkills) = list2.unzip()
-        println(players) // [Amit, Ali, Sumit, Himanshu]
-        println(footballSkills) // [8, 10, 4, 2]
+        val list2 = listOf("Alan" to 8, "Bob" to 10, "Joe" to 4, "Jenny" to 2)
+        val (players, devSkills) = list2.unzip()
+        println(players) // [Alan, Bob, Joe, Jenny]
+        println(devSkills) // [8, 10, 4, 2]
     }
 
     //Split array into two parts based on some condition
     fun partitionExample() {
         val users = listOf(
-            User3(1, "Amit", true),
-            User3(2, "Ali", true),
-            User3(3, "Sumit", false),
-            User3(4, "Himanshu", false)
+            User(1, "Alan", true),
+            User(2, "Bob", true),
+            User(3, "Joe", false),
+            User(4, "Jenny", false)
         )
 
-        val (footballLovers, nonFootballLovers) = users.partition { it.isFootballLover }
-        println(footballLovers) // [User(id=1, name=Amit, isFootballLover=true), User(id=2, name=Ali, isFootballLover=true)]
-        println(nonFootballLovers) // [User(id=3, name=Sumit, isFootballLover=false), User(id=4, name=Himanshu, isFootballLover=false)]
+        val (webDevs, nonWebDevs) = users.partition { it.webDev }
+        println(webDevs) // [User(id=1, name=Alan, webDev=true), User(id=2, name=Bob, webDev=true)]
+        println(nonWebDevs) // [User(id=3, name=Joe, webDev=false), User(id=4, name=Jenny, webDev=false)]
     }
 
     //Reverse a list
