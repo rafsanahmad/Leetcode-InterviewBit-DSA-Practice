@@ -42,7 +42,7 @@ class KotlinCollectionFunctions {
         println(devs.toMutableSet()) // [Alan, Jones, Bob, David]
 
         // DO NOT Maintain the original order of items
-        println(devs.toHashSet()) // [Alan, Jones, Bob, David]
+        println(devs.toHashSet()) // [Jones, Joe, Bob, Alan, David]
     }
 
     //Convert an array or list to a string
@@ -73,6 +73,19 @@ class KotlinCollectionFunctions {
         val result = numList.reduce { result, item ->
             result + item
         }
+        println(result) // 15
+    }
+
+    //Transform a collection into a single result
+    fun foldExample() {
+        /*The difference between fold() & reduce() is that fold() takes an initial value and uses it as the
+        accumulated value on the first step, whereas the first step of reduce() uses the first and the second
+        elements as operation arguments on the first step.*/
+        println("Inside Fold")
+        val numList = listOf(1, 2, 3, 4, 5)
+        val result = numList.fold(0, { result, item ->
+            result + item
+        })
         println(result) // 15
     }
 
@@ -225,8 +238,12 @@ class KotlinCollectionFunctions {
     fun filterExample() {
         println("Inside Filter")
         val list = listOf(1, 2, 3, 4, 5, 6, 7, 8)
-        val filteredList = list.filter { it % 2 == 0 }
-        println(filteredList) // [2, 4, 6, 8]
+        val evenList = list.filter { it % 2 == 0 }
+        println(evenList) // [2, 4, 6, 8]
+
+        //Filter Not
+        val oddList = list.filterNot { it % 2 == 0 }
+        println(oddList) // [1, 3, 5, 7]
 
         //Similarly, you can filter the collection based on the index of elements by using filterIndexed.
 
@@ -245,7 +262,7 @@ class KotlinCollectionFunctions {
         println(strList) // [one, two, three, four, five]
     }
 
-    //Zip collections
+    //Zip, Unzip collections
     fun zipExample() {
         println("Inside Zip")
         val listOne = listOf(1, 2, 3, 4, 5)
@@ -385,6 +402,7 @@ class KotlinCollectionFunctions {
         println(nestedCollections)
     }
 
+    //Calculate sum of element in collection
     fun sumExample() {
         println("Inside Sum")
         val nums = listOf(10, 20, 30)
@@ -403,6 +421,7 @@ class KotlinCollectionFunctions {
         println(totalQuantity) //60
     }
 
+    //sum of specific field in List of Objects
     fun sumByExample() {
         /*Kotlin sumBy()
         sum (and change value to Int) of all items in the normal List
@@ -440,6 +459,7 @@ class KotlinCollectionFunctions {
         println(totalQuantity2) // 60
     }
 
+    //Find max or min element in Collection
     fun maxMinExample() {
         println("Inside Max min")
         val simpleList = listOf(1.99, 55.4, 20.0, 99.99, 23.0, 34.2, 88.0, 72.1, 61.2, 43.9)
@@ -449,6 +469,7 @@ class KotlinCollectionFunctions {
         println(smallestElement) //1.99
     }
 
+    //Find max or min element based on custom property
     fun maxMinByExample() {
         println("Inside Max min by")
         val products = listOf(
@@ -463,6 +484,7 @@ class KotlinCollectionFunctions {
         println(productWithLowestPrice)
     }
 
+    //Find first element having the largest value according to the provided comparator
     fun maxWithExample() {
         println("Inside Max with")
         //maxWith() returns the first element having the largest value according to the provided [comparator]
@@ -489,12 +511,13 @@ class KotlinCollectionFunctions {
     }
 }
 
-//Total 29 examples
+//Total 30 examples
 fun main(args: Array<String>) {
     val obj = KotlinCollectionFunctions()
     obj.distinctExample()
     obj.joinToStringExample()
     obj.reduceExample()
+    obj.foldExample()
     obj.allExample()
     obj.singleExample()
     obj.findExample()
@@ -507,6 +530,7 @@ fun main(args: Array<String>) {
     obj.unionExample()
     obj.intersectionExample()
     obj.mapExample()
+    obj.mapFlatMapExample()
     obj.binarySearchExample()
     obj.groupByExample()
     obj.sortExample()
@@ -515,7 +539,6 @@ fun main(args: Array<String>) {
     obj.retainExample()
     obj.removeExample()
     obj.partitionExample()
-    obj.mapFlatMapExample()
     obj.sumExample()
     obj.sumByExample()
     obj.maxMinExample()
