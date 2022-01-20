@@ -129,7 +129,7 @@ Output: [[2,2,2,2]]
             System.out.print("]");
         }
         System.out.println();
-        
+
         List<List<Integer>> result2 = sum.fourSumGeneralized(ar, 0);
         for (int i = 0; i < result2.size(); i++) {
             System.out.print("[");
