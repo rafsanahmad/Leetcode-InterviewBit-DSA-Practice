@@ -7,10 +7,6 @@
 
 package javaclasses.Array;
 
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
-
 public class FindMissingPositive {
     //Leetcode 41
     /*Given an unsorted integer array nums, return the smallest missing positive integer.
@@ -54,50 +50,9 @@ Output: 1*/
         return len + 1;
     }
 
-    public int[] repeatedNumber(final int[] A) {
-        int dup = 0;
-        int missing = 0;
-        int[] nums = new int[10];
-        Arrays.fill(nums, 0);
-
-        for (int i = 0; i < A.length; i++) {
-            nums[A[i]] = nums[A[i]] + 1;
-        }
-        for (int i = 0; i < nums.length; i++) {
-            if (nums[i] > 1) {
-                dup = i;
-            }
-        }
-        missing = firstMissingPositive(A);
-
-        return new int[]{dup, missing};
-    }
-
-    public int[] repeatedNumberUsingMap(final int[] A) {
-        int dup = 0;
-        int missing = 0;
-        HashMap<Integer, Integer> map = new HashMap<>();
-
-        for (int i = 0; i < A.length; i++) {
-            map.put(A[i], map.getOrDefault(A[i], 0) + 1);
-        }
-        for (Map.Entry<Integer, Integer> entry : map.entrySet()) {
-            if (entry.getValue() > 1) {
-                dup = entry.getKey();
-                break;
-            }
-        }
-        missing = firstMissingPositive(A);
-
-        return new int[]{dup, missing};
-    }
-
     public static void main(String[] args) {
         FindMissingPositive findMissingPositive = new FindMissingPositive();
         int[] arr = {3, 4, -1, 1};
         System.out.println(findMissingPositive.firstMissingPositive(arr));
-
-        int[] arr2 = {3, 1, 2, 5, 3};
-        System.out.println(Arrays.toString(findMissingPositive.repeatedNumber(arr2)));
     }
 }
