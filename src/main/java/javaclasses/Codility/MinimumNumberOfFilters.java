@@ -1,6 +1,6 @@
 /*
  * *
- *  * MinimumNumberOfFilters.java
+ *  * Minimum Number Of Filters.java
  *  * Created by Rafsan Ahmad on 1/24/22, 1:53 AM
  *  * Copyright (c) 2022 . All rights reserved.
  *
@@ -53,6 +53,10 @@ public class MinimumNumberOfFilters {
     public static void main(String[] args) {
         MinimumNumberOfFilters filters = new MinimumNumberOfFilters();
         int[] nums = {5, 19, 8, 1};
+        int[] nums2 = {1, 0, 2};
+        int[] nums3 = {1, 1};
         System.out.println(filters.minimumNumberOfFilters(nums));
+        System.out.println(filters.minimumNumberOfFilters(nums2));
+        System.out.println(filters.minimumNumberOfFilters(nums3));
     }
 }
