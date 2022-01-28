@@ -1,11 +1,12 @@
 /*
- * * Container With Most Water.java
- *  * Created by Rafsan Ahmad on 10/25/21, 9:49 PM
- *  * Copyright (c) 2021 . All rights reserved.
+ * *
+ *  * Container With Most Water.java
+ *  * Created by Rafsan Ahmad on 12/10/21, 3:47 PM
+ *  * Copyright (c) 2022 . All rights reserved.
  *
  */
 
-package javaclasses.Utility;
+package javaclasses.GreedyAlgorithm;
 
 public class ContainerWithMostWater {
     //Leetcode 11
