@@ -23,8 +23,6 @@ Each element of nums is in exactly one pair, and
 The maximum pair sum is minimized.
 Return the minimized maximum pair sum after optimally pairing up the elements.
 
-
-
 Example 1:
 Input: nums = [3,5,2,3]
 Output: 7
