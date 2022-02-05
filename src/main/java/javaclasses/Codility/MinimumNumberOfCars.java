@@ -12,7 +12,6 @@ import java.util.Arrays;
 
 public class MinimumNumberOfCars {
 
-    //This is Not Correct YET
     /*A group of friends is going on holiday together. They come to a meeting point(the start of the journey)
     using N cars. There are P[K] people and S[K] seats in the K-th car for K in range [0..N-1]. Some of the seats
     in the cars may be free, so it is possible for some of the friends to change the car they are in. the friends
@@ -47,35 +46,28 @@ each element of arrays P, S is an integer within the range [1..9];
 every friend had a seat in the care they came in; that is, P[K] <= S[K] for each K within the range [0..N-1].*/
 
     //Minimum number of cars required to sit every person
+
     public int minNumberOfCars(int[] P, int[] S) {
-        int totalSeats = 0;
-        int totalPeople = 0;
         int minNumberOfCars = 0;
-        for (int i = 0; i < P.length; i++) {
-            totalPeople += P[i];
-        }
-        for (int i = 0; i < S.length; i++) {
-            totalSeats += S[i];
-        }
-
-        if (totalPeople == totalSeats) {
-            return S.length;
-        }
-
-        int diff = totalSeats - totalPeople;
+        Arrays.sort(S);
         Arrays.sort(P);
-
-        int i = 0;
-        minNumberOfCars = S.length;
-        while (diff > 0) {
-            //FIX LOGIC HERE
-            if (P[i] <= diff) {
-                diff = diff - P[i];
-                minNumberOfCars--;
-                i++;
-            } else {
-                break;
+        boolean fillSeat = true;
+        int pj = P.length - 1;
+        for (int i = S.length - 1; i >= 0; i--) {
+            int seatCount = S[i];
+            while (seatCount >= 0 && fillSeat && pj >= 0) {
+                int person = P[pj];
+                if (seatCount >= person) {
+                    seatCount = seatCount - person;
+                    pj--;
+                } else {
+                    //Can not be filled
+                    fillSeat = false;
+                }
             }
+            minNumberOfCars++;
+            if (pj == 0) return minNumberOfCars + 1;
+            else if (pj < 0) return minNumberOfCars;
         }
 
         return minNumberOfCars;
@@ -99,5 +91,16 @@ every friend had a seat in the care they came in; that is, P[K] <= S[K] for each
         int[] S3 = {2, 40, 4, 3};
         System.out.println(cars.minNumberOfCars(P3, S3));
 
+        int[] P4 = {1, 4, 1};
+        int[] S4 = {1, 5, 1};
+        System.out.println(cars.minNumberOfCars(P4, S4));
+
+        int[] P5 = {4, 4, 2, 4};
+        int[] S5 = {5, 5, 2, 5};
+        System.out.println(cars.minNumberOfCars(P5, S5)); //Wrong ans
+
+        int[] P6 = {2, 3, 4, 2};
+        int[] S6 = {2, 5, 7, 2};
+        System.out.println(cars.minNumberOfCars(P6, S6)); //Wrong ans
     }
 }
