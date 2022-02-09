@@ -87,9 +87,9 @@ return the size of the pq as the result*/
     public static void main(String[] args) {
         MeetingRoomsII roomsII = new MeetingRoomsII();
         Interval[] intervals = new Interval[3];
-        intervals[0] = new Interval(0, 30);
-        intervals[1] = new Interval(5, 10);
-        intervals[2] = new Interval(15, 20);
+        intervals[0] = new Interval(15, 20);
+        intervals[1] = new Interval(0, 30);
+        intervals[2] = new Interval(5, 10);
         System.out.println(roomsII.minMeetingRooms(intervals));
     }
 }
