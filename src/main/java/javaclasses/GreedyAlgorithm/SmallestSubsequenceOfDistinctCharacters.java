@@ -9,7 +9,7 @@
 package javaclasses.GreedyAlgorithm;
 
 public class SmallestSubsequenceOfDistinctCharacters {
-    //Leetcode 1081
+    //Leetcode 1081 same as Leetcode 306
     /*Given a string s, return the lexicographically smallest subsequence of s that contains all the distinct characters
     of s exactly once.
 
@@ -45,7 +45,8 @@ s consists of lowercase English letters.*/
             // if the current character is smaller than the last character in StringBuilder (mark it as c)
             // and the last index of c is larger than i, it means we can use it later,
             // so we delete it(c) and mark used as false
-            while (ans.length() > 0 && ans.charAt(ans.length() - 1) > chars[i] && lastIndex[ans.charAt(ans.length() - 1) - 'a'] > i) {
+            while (ans.length() > 0 && ans.charAt(ans.length() - 1) > chars[i] &&
+                    lastIndex[ans.charAt(ans.length() - 1) - 'a'] > i) {
                 used[ans.charAt(ans.length() - 1) - 'a'] = false;
                 ans.deleteCharAt(ans.length() - 1);
             }
