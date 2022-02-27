@@ -1,6 +1,6 @@
 /*
  * *
- *  * MinimumNumberOfRefuelingStops.java
+ *  * Minimum Number Of Refueling Stops.java
  *  * Created by Rafsan Ahmad on 2/27/22, 12:58 PM
  *  * Copyright (c) 2022 . All rights reserved.
  *
@@ -49,27 +49,34 @@ and refuel from 10 liters to 50 liters of gas.  We then drive to and reach the t
 We made 2 refueling stops along the way, so we return 2.*/
 
     public int minRefuelStops(int target, int startFuel, int[][] stations) {
-        int curFarthest = startFuel, refuel = 0;
         PriorityQueue<Integer> pq = new PriorityQueue<>((a, b) -> b - a);
+        int ans = 0, prev = 0;
+        int tank = startFuel;
         for (int[] station : stations) {
-            // check if we can reach this station
-            // if we cannot reach this station, refuel the gas from the previous station with most gas
-            // redo the operation until we get enough gas to reach this station
-            while (curFarthest < station[0]) {
-                if (pq.isEmpty())
-                    return -1; // if we reful in each station but still cannot reach this station, return -1
-                curFarthest += pq.poll();
-                refuel++;
+            int location = station[0];
+            int capacity = station[1];
+            tank -= location - prev;
+            while (!pq.isEmpty() && tank < 0) {  // must refuel in past
+                tank += pq.poll();
+                ans++;
             }
-            pq.offer(station[1]);
+
+            if (tank < 0) return -1;
+            pq.offer(capacity);
+            prev = location;
         }
-        // now we have reached the last station, check if we can reach the target
-        while (curFarthest < target) {
-            if (pq.isEmpty()) return -1;
-            curFarthest += pq.poll();
-            refuel++;
+
+        // Repeat body for station = (target, inf)
+        {
+            tank -= target - prev;
+            while (!pq.isEmpty() && tank < 0) {
+                tank += pq.poll();
+                ans++;
+            }
+            if (tank < 0) return -1;
         }
-        return refuel;
+
+        return ans;
     }
 
     public static void main(String[] args) {
