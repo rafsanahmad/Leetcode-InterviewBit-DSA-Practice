@@ -8,6 +8,7 @@
 
 package javaclasses.HeapPriorityQueue;
 
+import java.util.Arrays;
 import java.util.PriorityQueue;
 
 public class MinimumNumberOfRefuelingStops {
@@ -48,6 +49,8 @@ Then, we drive from position 10 to position 60 (expending 50 liters of fuel),
 and refuel from 10 liters to 50 liters of gas.  We then drive to and reach the target.
 We made 2 refueling stops along the way, so we return 2.*/
 
+    // Data: {10, 60}, {20, 30}, {30, 30}, {60, 40}
+    // Priority Queue -> Step by Step -> [60] -> [30] -> [30,30] -> [40,30,30]
     public int minRefuelStops(int target, int startFuel, int[][] stations) {
         PriorityQueue<Integer> pq = new PriorityQueue<>((a, b) -> b - a);
         int ans = 0, prev = 0;
@@ -64,6 +67,7 @@ We made 2 refueling stops along the way, so we return 2.*/
             if (tank < 0) return -1;
             pq.offer(capacity);
             prev = location;
+            //printQueue(pq);
         }
 
         // Repeat body for station = (target, inf)
@@ -77,6 +81,10 @@ We made 2 refueling stops along the way, so we return 2.*/
         }
 
         return ans;
+    }
+
+    public void printQueue(PriorityQueue priorityQueue) {
+        System.out.println(Arrays.toString(priorityQueue.toArray()));
     }
 
     public static void main(String[] args) {
