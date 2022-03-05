@@ -23,8 +23,9 @@ After Importing the project to Android Studio:
 
 ![](step_3.png)
 
-Now you can go to `src\main\javaclasses` or `src\main\kotlinclasses` folder and run single Java/Kotlin class from Android studio.
+4. Now you can go to `src\main\javaclasses` or `src\main\kotlinclasses` folder and run/debug single Java/Kotlin class from Android studio.
 
+![](step_4.png)
 
 ## Add Custom Library
 
