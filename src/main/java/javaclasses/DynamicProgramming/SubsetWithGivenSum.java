@@ -70,7 +70,7 @@ Output : 4 3 2 1
     }
 
     // Prints all subsets of arr[0..n-1] with given sum.
-    static void printAllSubsets(int arr[], int n, int sum) {
+    static void printAllSubsets(int[] arr, int n, int sum) {
         if (n == 0 || sum < 0)
             return;
 
@@ -91,8 +91,7 @@ Output : 4 3 2 1
                         dp[i - 1][j - arr[i]])
                         : dp[i - 1][j];
         if (!dp[n - 1][sum]) {
-            System.out.println("There are no subsets with" +
-                    " sum " + sum);
+            System.out.println("There are no subsets with sum " + sum);
             return;
         }
 
