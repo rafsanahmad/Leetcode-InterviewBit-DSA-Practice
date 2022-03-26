@@ -1,12 +1,12 @@
 /*
  * *
- *  * Count Smaller Number After Self.java
- *  * Created by Rafsan Ahmad on 3/26/22, 9:25 PM
+ *  * CountSmallerNumberAfterSelf.java
+ *  * Created by Rafsan Ahmad on 3/26/22, 11:01 PM
  *  * Copyright (c) 2022 . All rights reserved.
  *
  */
 
-package javaclasses.BinarySearch;
+package javaclasses.Tree;
 
 import java.util.ArrayList;
 import java.util.Arrays;
