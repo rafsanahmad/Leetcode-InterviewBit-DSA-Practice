@@ -7,6 +7,9 @@
 
 package javaclasses.Array;
 
+import java.util.Arrays;
+import java.util.Stack;
+
 public class FindMissingPositive {
     //Leetcode 41
     /*Given an unsorted integer array nums, return the smallest missing positive integer.
@@ -50,9 +53,51 @@ Output: 1*/
         return len + 1;
     }
 
+    //Approach 2
+    //Using sort & stack
+    //Time complexity : O(nlogn)
+    public int firstMissing(int[] arr) {
+        Arrays.sort(arr);
+        Stack<Integer> stack = new Stack<>();
+        int i = 0;
+        int n = arr.length;
+        boolean negativeProcessed = false;
+        while (i < n) {
+            if (arr[i] <= 0) {
+                i++;
+                negativeProcessed = true;
+                continue;
+            }
+            if (negativeProcessed || i == 0) {
+                if (arr[i] > 1) return 1;
+                negativeProcessed = false;
+            }
+            stack.push(arr[i]);
+            if (!stack.isEmpty() && i < n - 1 && (arr[i + 1] - stack.peek()) > 1) {
+                return arr[i + 1] - 1;
+            }
+            i++;
+        }
+        if (arr[n - 1] <= 0) return 1;
+        return arr[n - 1] + 1;
+    }
+
     public static void main(String[] args) {
         FindMissingPositive findMissingPositive = new FindMissingPositive();
         int[] arr = {3, 4, -1, 1};
+        int[] arr2 = {-40, -39, -46, -38, -13, -30, -26, -28, -37, -36};
+        int[] arr3 = {3, 4, -6, 1, 0};
+        int[] arr4 = {2};
+        //Approach 1
         System.out.println(findMissingPositive.firstMissingPositive(arr));
+        System.out.println(findMissingPositive.firstMissingPositive(arr2));
+        System.out.println(findMissingPositive.firstMissingPositive(arr3));
+        System.out.println(findMissingPositive.firstMissingPositive(arr4));
+
+        //Approach 2
+        System.out.println(findMissingPositive.firstMissing(arr));
+        System.out.println(findMissingPositive.firstMissing(arr2));
+        System.out.println(findMissingPositive.firstMissing(arr3));
+        System.out.println(findMissingPositive.firstMissing(arr4));
     }
 }
