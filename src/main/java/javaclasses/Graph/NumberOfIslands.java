@@ -73,7 +73,8 @@ Output: 3
 
     public static void main(String[] args) {
         NumberOfIslands islands = new NumberOfIslands();
-        char[][] array = {{'1', '1', '0', '0', '0'},
+        char[][] array =
+                {{'1', '1', '0', '0', '0'},
                 {'1', '1', '0', '0', '0'},
                 {'0', '0', '1', '0', '0'},
                 {'0', '0', '0', '1', '1'}};
