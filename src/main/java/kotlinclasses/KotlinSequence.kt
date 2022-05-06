@@ -8,29 +8,65 @@
 package kotlinclasses
 
 class KotlinSequence {
+    /* Sequences are very similar to lists. The difference between a list and sequence is that the sequences are
+    lazily evaluated.*/
 
-}
+    //Create Sequence
+    fun createSequence() {
+        //1 — From elements — By calling sequenceOf()
+        val numbersSequence = sequenceOf("four", "three", "two", "one")
 
-class Lambda : () -> Unit {
-    override fun invoke() {
-        println("Invoked from an instance")
+        //2- From iterable objects — By calling asSequence() function of an iterable object such as a List or Set.
+        val numbers = listOf("one", "two", "three", "four")
+        val numbersSequence2 = numbers.asSequence()
+
+        //We can create a sequence by calling asSequence() function of an iterable object such as a List or Set.
+        //3-From Chunks — sequence {}, yield, yieldAll()
+        val seqFromChunks = sequence {
+            yield(1)
+            yieldAll((2..5).toList())
+            yield(6)
+        }
     }
 
+    fun withoutSequence() {
+        val result = listOf("a", "b", "ac", "d", "e", "f", "g", "h", "i", "j", "ak")
+            .filter {
+                println("filter: $it")
+                it.startsWith("a", ignoreCase = true)
+            }
+            .map {
+                println("map: $it")
+                it.toUpperCase()
+
+            }
+            .take(2)
+            .toList()
+        println("Size: ${result.size}")
+    }
+
+    fun withSequence() {
+        val result = listOf("a", "b", "ac", "d", "e", "f", "g", "h", "i", "j", "ak")
+            .asSequence()
+            .filter {
+                println("filter: $it")
+                it.startsWith("a", ignoreCase = true)
+            }
+            .map {
+                println("map: $it")
+                it.toUpperCase()
+
+            }
+            .take(2)
+            .toList()
+        println("Size: ${result.size}")
+    }
 }
 
 fun main(args: Array<String>) {
-    val chars = ('a'..'z').toList()
-    println(chars.drop(23)) // [x, y, z]
-    println(chars.dropLast(23)) // [a, b, c]
-    println(chars.dropWhile { it < 'x' }) // [x, y, z]
-    println(chars.dropLastWhile { it > 'c' }) // [a, b, c]
-
-    val numbers = (1..50).toList()
-    println(numbers.drop(5).take(10).sortedDescending().toList())
-
-    try {
-        Lambda()()
-    } catch (ex: Exception) {
-        println("An error occurred")
-    }
+    val obj = KotlinSequence()
+    println("Without Sequence:")
+    obj.withoutSequence()
+    println("With Sequence:")
+    obj.withSequence()
 }
