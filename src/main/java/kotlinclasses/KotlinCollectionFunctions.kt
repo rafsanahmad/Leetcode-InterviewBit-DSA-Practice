@@ -509,9 +509,20 @@ class KotlinCollectionFunctions {
 
         println(productWithHighestPrice)
     }
+
+    fun dropExample() {
+        val chars = ('a'..'z').toList()
+        println(chars.drop(23)) // [x, y, z]
+        println(chars.dropLast(23)) // [a, b, c]
+        println(chars.dropWhile { it < 'x' }) // [x, y, z]
+        println(chars.dropLastWhile { it > 'c' }) // [a, b, c]
+
+        val numbers = (1..50).toList()
+        println(numbers.drop(5).take(10).sortedDescending().toList()) //[15, 14, 13, 12, 11, 10, 9, 8, 7, 6]
+    }
 }
 
-//Total 30 examples
+//Total 31 examples
 fun main(args: Array<String>) {
     val obj = KotlinCollectionFunctions()
     obj.distinctExample()
@@ -544,4 +555,5 @@ fun main(args: Array<String>) {
     obj.maxMinExample()
     obj.maxMinByExample()
     obj.maxWithExample()
+    obj.dropExample()
 }
