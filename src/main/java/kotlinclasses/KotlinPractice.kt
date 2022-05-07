@@ -303,6 +303,12 @@ fun getBio(): Map<String, String> {
     return bio;
 }
 
+class Lambda : () -> Unit {
+    override fun invoke() {
+        println("Invoked from an instance")
+    }
+}
+
 fun main(args: Array<String>) {
     //Greeter(args[0]).greet()
     Person().initializeName()
@@ -423,4 +429,10 @@ fun main(args: Array<String>) {
         "value is null"
     }
     println(testValue)
+
+    try {
+        Lambda()()
+    } catch (ex: Exception) {
+        println("An error occurred")
+    }
 }
