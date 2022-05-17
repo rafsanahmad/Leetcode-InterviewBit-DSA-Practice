@@ -68,7 +68,7 @@ find_word_location(grid2, word2)-> [ (3, 2), (3, 3), (3, 4), (3, 5), (4, 5), (5,
 
     private void dfs(char[][] grid1, int i, int j, ArrayList<String> indexTracker, String word, int wordIndex, boolean[][] visited) {
 
-        if (i < 0 || i >= grid1.length || j < 0 || j >= grid1[i].length || grid1[i][j] != word.charAt(wordIndex) || visited[i][j] == true) {
+        if (i < 0 || i >= grid1.length || j < 0 || j >= grid1[i].length || grid1[i][j] != word.charAt(wordIndex) || visited[i][j]) {
             return;
         }
 
