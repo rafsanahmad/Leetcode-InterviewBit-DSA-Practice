@@ -1,11 +1,12 @@
 /*
- * * Merge Intervals.java
- *  * Created by Rafsan Ahmad on 10/25/21, 9:49 PM
- *  * Copyright (c) 2021 . All rights reserved.
+ * *
+ *  * Merge Intervals.java
+ *  * Created by Rafsan Ahmad on 12/5/21, 8:44 PM
+ *  * Copyright (c) 2022 . All rights reserved.
  *
  */
 
-package javaclasses.ArrayList;
+package javaclasses.GreedyAlgorithm;
 
 import java.util.ArrayList;
 import java.util.Arrays;
