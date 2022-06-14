@@ -8,6 +8,10 @@
 
 package javaclasses.GreedyAlgorithm;
 
+import java.util.LinkedList;
+import java.util.Queue;
+import java.util.Stack;
+
 public class NumberOfCustomer_iceCream {
     /*Given two flavors of ice-cream chocolate and vanilla denoted by 0 and 1 respectively. People are standing in queue to
     get their desired flavor of ice cream from the stack of ice cream.
@@ -39,7 +43,55 @@ Therefore, all four customer able to get desired icecream pack.
 Input: customer = {1, 1, 1, 0, 0, 1}, icecream = {1, 0, 0, 0, 1, 1}
 Output: 3
 
-Approach:
+
+Approach 1: This problem can be solved by using Stack and Queue. Follow the steps below to solve the given problem.
+
+Create a stack and push icecream[] array in the stack.
+Create  a queue and push customer[] array in queue
+Initialize a variable say, topRejected=0 to keep track of rejected element.
+If the front of the queue is equal to the stack top pop elements from the stack and remove the element from the queue and
+update topRejected=0.
+Else increment the count of topRejected and remove the element from the front of queue and add in last.
+If the queue size is equal to topRejected then break loop.
+Print icecream.length–queue.size as the required answer(because the remaining element in the queue will not be able to get
+desired ice cream pack).
+
+*/
+
+    public static void NumberOfCustomer(int[] customer, int[] icecream) {
+        Stack<Integer> stack = new Stack<>();
+        Queue<Integer> queue = new LinkedList<>();
+
+        for (int i = icecream.length - 1; i >= 0; i--) {
+            stack.push(icecream[i]);
+        }
+
+        for (int i = 0; i < customer.length; i++) {
+            queue.add(customer[i]);
+        }
+
+        int topRejected = 0;
+
+        while (true) {
+            if (topRejected == queue.size())
+                break;
+
+            if (queue.peek() == stack.peek()) {
+                queue.remove();
+                stack.pop();
+                topRejected = 0;
+            } else {
+                topRejected++;
+                queue.add(queue.remove());
+            }
+        }
+
+        System.out.println(icecream.length - queue.size());
+    }
+
+/*
+Approach 2:
+Above approach can be further optimized and extra O(N) space can be avoided.
 Follow the steps below to solve the given problem.
 
 Storing the order of the queue is of no use.
@@ -48,12 +100,10 @@ Increment count[0] if customer[i] is 0, else increment count[1].
 Now, Initialize k which will store the number of customers who will get desired ice cream pack.
 Iterate through icecream array and check if anyone in left customer will take food.
 At last print k as the final answer.
+
 */
 
-    // Function to find the number of customers who will get their desired flavor of ice cream
-    public static int NumberOfCustomer(
-            int[] customer, int[] icecream) {
-
+    public static int NumberOfCustomerOptimized(int[] customer, int[] icecream) {
         // Count array stores the count of preference of the customer
         int[] count = {0, 0};
         int n = customer.length;
@@ -74,8 +124,9 @@ At last print k as the final answer.
         int[] customer = {1, 1, 0, 0};
         int[] icecream = {0, 1, 0, 1};
 
-        int ans = NumberOfCustomer(customer, icecream);
+        NumberOfCustomer(customer, icecream);
 
+        int ans = NumberOfCustomerOptimized(customer, icecream);
         // Print the final answer
         System.out.print(ans);
     }
