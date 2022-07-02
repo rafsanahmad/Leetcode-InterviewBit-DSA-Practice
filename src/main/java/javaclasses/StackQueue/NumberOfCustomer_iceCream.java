@@ -1,12 +1,12 @@
 /*
  * *
- *  * Number of customers able to get desired flavor of ice cream.java
- *  * Created by Rafsan Ahmad on 6/14/22, 1:56 AM
+ *  * Number Of Customers to get desired iceCream.java
+ *  * Created by Rafsan Ahmad on 6/14/22, 11:27 PM
  *  * Copyright (c) 2022 . All rights reserved.
  *
  */
 
-package javaclasses.GreedyAlgorithm;
+package javaclasses.StackQueue;
 
 import java.util.LinkedList;
 import java.util.Queue;
