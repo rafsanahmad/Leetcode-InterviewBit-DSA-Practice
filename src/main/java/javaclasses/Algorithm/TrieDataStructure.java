@@ -27,10 +27,11 @@ When we traverse down from the root node to the leaf node, we can build the key 
 Let's build a trie by inserting some words in it. Below is a pictorial representation of the same, we have 5 words,
 and then we are inserting these words one by one in our trie.
 
-As it can be seen in the image above, the key(words) can be formed as we traverse down from the root node to the leaf nodes.
-It can be noted that the green highlighted nodes, represents the endOfWord boolean value of a word which in turn means that
- this particular word is completed at this node. Also, the root node of a trie is empty so that it can refer to all the
- members of the alphabet the trie is using to store, and the children nodes of any node of a trie can have at most
+As it can be seen in the image above, the key(words) can be formed as we traverse down from the root node to the
+leaf nodes.
+It can be noted that the green highlighted nodes, represents the endOfWord boolean value of a word which in turn means
+that this particular word is completed at this node. Also, the root node of a trie is empty so that it can refer to all
+the members of the alphabet the trie is using to store, and the children nodes of any node of a trie can have at most
  26 references. Tries are not balanced in nature, unlike AVL trees.
 
 Why use Trie Data Structure?
@@ -38,8 +39,8 @@ When we talk about the fastest ways to retrieve values from a data structure, ha
 Though very efficient in nature but still very less talked about as when compared to hash tables, trie's are much more
 efficient than hash tables and also they possess several advantages over the same.
 
-Mainly: There won't be any collisions hence making the worst performance better than a hash table that is not implemented
-properly.
+Mainly: There won't be any collisions hence making the worst performance better than a hash table that is not
+implemented properly.
 
 No need for hash functions.
 
@@ -61,7 +62,8 @@ Two scenarios are possible:
 
 A reference exists, if, so then we traverse down the tree following the reference to the next children level.
 
-A reference does not exist, then we create a new node and refer it with parents reference matching the current key character.
+A reference does not exist, then we create a new node and refer it with parents reference matching the current key
+character.
 We repeat this step until we get to the last character of the key, then we mark the current node as an end node and the
 algorithm finishes.
 
@@ -71,20 +73,22 @@ A key in a trie is stored as a path that starts from the root node and it might 
 intermediate node. If we want to search a key in a trie, we start with the root node and then traverses downwards if we
 get a reference match for the next character of the key we are searching, then there are two cases:
 
-A reference of the next character exists, hence we move downwards following this link, and proceed to search for the next
-key character.
+A reference of the next character exists, hence we move downwards following this link, and proceed to search for the
+next key character.
 
 A reference does not exist for the next character. If there are no more characters of the key present and this character
 is marked as isEndOfWord = true, then we return true, implying that we have found the key. Otherwise, two more cases are
 possible, and in each of them we return false. These are:
 
-There are key characters left in the key, but we cannot traverse down as the path is terminated, hence the key doesn't exist.
+There are key characters left in the key, but we cannot traverse down as the path is terminated, hence the key
+doesn't exist.
 
-No characters in the key are left, but the last character is not marked as isEndOfWord = false. Therefore, the search key is
-just the prefix of the key we are trying to search in the trie.
+No characters in the key are left, but the last character is not marked as isEndOfWord = false. Therefore, the search
+key is just the prefix of the key we are trying to search in the trie.
 
 Trie Applications
-The most common use of tries in real world is the autocomplete feature that we get on a search engine(now everywhere else too).
+The most common use of tries in real world is the autocomplete feature that we get on a search engine(now everywhere
+else too).
 After we type something in the search bar, the tree of the potential words that we might enter is greatly reduced, which
 in turn allows the program to enumerate what kinds of strings are possible for the words we have typed in.
 
