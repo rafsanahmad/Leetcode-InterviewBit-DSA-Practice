@@ -10,6 +10,7 @@ package javaclasses.Algorithm;
 
 public class TrieDataStructure {
     //res/trie_pic.png
+    //Leetcode 208
     /*A Trie is an advanced data structure that is sometimes also known as prefix tree or digital tree.
     It is a tree that stores the data in an ordered and efficient way. We generally use trie's to store strings.
     Each node of a trie can have as many as 26 references (pointers).
@@ -170,14 +171,9 @@ Searching for a prefix of a key(word) also has a time complexity of O(n) and spa
         trie.insert("dog");
         trie.insert("pick");
         trie.insert("pickle");
-        boolean isPresent = trie.search("cat");
-        System.out.println(isPresent);
-        isPresent = trie.search("picky");
-        System.out.println(isPresent);
-        isPresent = trie.startsWith("ca");
-        System.out.println(isPresent);
-        isPresent = trie.startsWith("pen");
-        System.out.println(isPresent);
-
+        System.out.println(trie.search("cat"));         //true
+        System.out.println(trie.search("picky"));       //false
+        System.out.println(trie.startsWith("ca"));           //true
+        System.out.println(trie.startsWith("pen"));          //false
     }
 }
