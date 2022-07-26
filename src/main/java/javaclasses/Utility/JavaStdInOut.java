@@ -7,9 +7,19 @@
 
 package javaclasses.Utility;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.Scanner;
+import java.util.StringTokenizer;
 
 public class JavaStdInOut {
+    /*1. Scanner Class (easy, less typing, but not recommended very slow
+    * 2.BufferedReader (fast, but not recommended as it requires a lot of typing):
+The Java.io.BufferedReader class reads text from a character-input stream, buffering characters to provide for the
+efficient reading of characters, arrays, and lines. With this method, we will have to parse the value every time
+for the desired type. Reading multiple words from a single line adds to its complexity because of the use of
+Stringtokenizer and hence this is not recommended.*/
 
     public static void main(String[] args) {
         System.out.println("Enter your name:");
@@ -56,6 +66,44 @@ public class JavaStdInOut {
         for (int i = 0; i < result.length; i++) {
             System.out.println(result[i]);
         }*/
-        scanner.close();
+
+        //scanner.close();
+
+        //Using BufferedReader and StringTokenizer
+        BufferedReader br = new BufferedReader(
+                new InputStreamReader(System.in));
+
+        StringTokenizer st = null;
+        try {
+            st = new StringTokenizer(br.readLine());
+
+            int n = Integer.parseInt(st.nextToken());
+            int k = Integer.parseInt(st.nextToken());
+            int count = 0;
+            while (n-- > 0) {
+                int x = Integer.parseInt(br.readLine());
+                if (x % k == 0)
+                    count++;
+            }
+            System.out.println(count);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        //Using Only BufferedReader
+        try {
+            //BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
+            System.out.println("Enter line by space:");
+            String line = br.readLine(); // line is: hello 1 3.0
+            String[] data = line.split(" ");
+            String word = data[0];
+            int number = Integer.parseInt(data[1]);
+            double dValue = Double.parseDouble(data[2]);
+            System.out.println(number);
+            System.out.println(dValue);
+            br.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
