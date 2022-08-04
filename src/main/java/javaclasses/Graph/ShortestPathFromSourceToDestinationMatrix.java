@@ -208,6 +208,13 @@ So, from position (x, y), we can move to:
     public static void main(String[] args) {
         int[][] matrix =
                 {
+                        {1, 2, 3},
+                        {1, 5, 6},
+                        {2, 8, 9}
+                };
+
+        int[][] matrix2 =
+                {
                         {4, 4, 6, 5, 5, 1, 1, 1, 7, 4},
                         {3, 6, 2, 4, 6, 5, 7, 2, 6, 6},
                         {1, 3, 6, 1, 1, 1, 7, 1, 4, 5},
@@ -220,7 +227,7 @@ So, from position (x, y), we can move to:
                         {1, 4, 1, 7, 5, 3, 6, 5, 3, 4}
                 };
 
-        int[][] matrix2 =
+        int[][] matrix3 =
                 {
                         {7, 7, 7, 7, 7, 7, 7, 7, 7, 7},
                         {7, 1, 1, 1, 1, 1, 1, 1, 1, 7},
@@ -244,7 +251,8 @@ So, from position (x, y), we can move to:
         }
 
         System.out.println();
-        List<String> path2 = findPath(matrix2, 0, 0);
+
+        List<String> path2 = findPath(matrix, 0, 0);
 
         if (path2 != null && path2.size() > 0) {
             System.out.print("The shortest path is " + path2);
