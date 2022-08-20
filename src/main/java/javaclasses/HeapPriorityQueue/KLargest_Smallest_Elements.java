@@ -135,7 +135,7 @@ Explanation 2:
 
     public static void main(String[] args) {
         KLargest_Smallest_Elements elements = new KLargest_Smallest_Elements();
-        int[] arr = {11, 3, 4, 6, 1, 16};
+        int[] arr = {3, 11, 4, 6, 1, 16};
         System.out.println(Arrays.toString(elements.K_Largest(arr, 3)));
         System.out.println(Arrays.toString(elements.K_Smallest(arr, 3)));
     }

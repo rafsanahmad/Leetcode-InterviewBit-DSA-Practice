@@ -97,7 +97,7 @@ same number of occurrences of x and y.
         int[] countX = new int[n];
         int[] countY = new int[n];
 
-        Map<Integer, Integer> m = new HashMap<>();
+        Map<Integer, Integer> map = new HashMap<>();
 
         // To store counts of same diff Count occurrences of x and y
         for (int i = 0; i < n; i++) {
@@ -125,16 +125,16 @@ same number of occurrences of x and y.
             }
 
             // Increment count of current
-            if (m.containsKey(countX[i] - countY[i])) {
-                m.put(countX[i] - countY[i], m.get(countX[i] - countY[i]) + 1);
+            if (map.containsKey(countX[i] - countY[i])) {
+                map.put(countX[i] - countY[i], map.get(countX[i] - countY[i]) + 1);
             } else {
-                m.put(countX[i] - countY[i], 1);
+                map.put(countX[i] - countY[i], 1);
             }
         }
 
-        // Traverse map and commute result.
-        int result = m.get(0);
-        for (Map.Entry<Integer, Integer> it : m.entrySet())
+        // Traverse map and compute result.
+        int result = map.get(0);
+        for (Map.Entry<Integer, Integer> it : map.entrySet())
             result = result + ((it.getValue()) * ((it.getValue()) - 1)) / 2;
 
         return result;
