@@ -90,6 +90,29 @@ same number of occurrences of x and y.
  */
 
     /*
+    Time Complexity – O(N^2)
+    Auxiliary Space – O(N)
+    */
+    static int equalOccurrenceBruteForce(int[] arr, int n, int x, int y) {
+        int result = 0;
+
+        // Check for each subarray for the required condition
+        for (int i = 0; i <= n - 1; i++) {
+            int ctX = 0, ctY = 0;
+            for (int j = i; j <= n - 1; j++) {
+                if (arr[j] == x)
+                    ctX += 1;
+                else if (arr[j] == y)
+                    ctY += 1;
+                if (ctX == ctY)
+                    result += 1;
+            }
+        }
+
+        return result;
+    }
+
+    /*
     Time Complexity – O(N)
     Auxiliary Space – O(N)
     */
@@ -148,5 +171,6 @@ same number of occurrences of x and y.
 
         int[] arr2 = {1, 2, 1};
         System.out.println(equalOccurrence(arr2, 3, 4, 6));
+        System.out.println(equalOccurrenceBruteForce(arr2, 3, 4, 6));
     }
 }
