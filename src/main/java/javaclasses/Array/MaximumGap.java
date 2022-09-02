@@ -101,7 +101,7 @@ For radix sort, there is minor modifications, details see the code below.
         }
     }
 
-    int maximumGap(int[] nums) {
+    int maximumGapUsingRadixSort(int[] nums) {
         if (nums.length < 2) {
             return 0;
         }
@@ -178,7 +178,6 @@ interval = num.length / (max - min)
             }
 
         }
-
         return result;
     }
 
@@ -186,5 +185,6 @@ interval = num.length / (max - min)
     public static void main(String[] args) {
         int[] ar = {3, 6, 9, 1};
         System.out.println(new MaximumGap().maximumGapUsingBucket(ar));
+        System.out.println(new MaximumGap().maximumGapUsingRadixSort(ar));
     }
 }
