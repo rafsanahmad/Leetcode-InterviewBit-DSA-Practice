@@ -1,12 +1,12 @@
 /*
  * *
  *  * Longest Substring With K Repeated Characters.java
- *  * Created by Rafsan Ahmad on 1/17/22, 2:25 PM
+ *  * Created by Rafsan Ahmad on 1/17/22, 1:32 PM
  *  * Copyright (c) 2022 . All rights reserved.
  *
  */
 
-package javaclasses.Strings;
+package javaclasses.Divide_and_Conquer;
 
 import java.util.Arrays;
 
