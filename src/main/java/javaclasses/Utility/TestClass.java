@@ -9,7 +9,6 @@
 package javaclasses.Utility;
 
 public class TestClass {
-
     public static void testFunc(int[] arr) {
 
     }

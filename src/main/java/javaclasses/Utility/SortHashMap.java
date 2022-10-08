@@ -14,11 +14,23 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 import java.util.stream.Collectors;
 
 public class SortHashMap {
+    public static class Server {
+        int endTime;
+        int reqCount = 0;
+
+        Server(int endTime, int reqCount) {
+            this.endTime = endTime;
+            this.reqCount = reqCount;
+        }
+    }
+
     public static void main(String[] args) throws Exception {
 
         // a Map with string keys and integer values
@@ -110,5 +122,22 @@ public class SortHashMap {
 
         System.out.println(result);
 
+        //Sort Hashmap With Custom Objects
+        HashMap<Integer, Server> servers = new HashMap<>();
+        //Create server
+        for (int i = 0; i < 5; i++) {
+            Server server = new Server(0, i++);
+            servers.put(i, server);
+        }
+        List<Map.Entry<Integer, Server>> list = new LinkedList<>(servers.entrySet());
+
+        // Sorting the list based on values
+        Collections.sort(list, new Comparator<Map.Entry<Integer, Server>>() {
+            @Override
+            public int compare(Map.Entry<Integer, Server> o1, Map.Entry<Integer, Server> o2) {
+                return o2.getValue().reqCount - o1.getValue().reqCount;
+            }
+        });
+        System.out.println(list);
     }
 }
