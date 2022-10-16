@@ -57,11 +57,10 @@ Output 1:
 Output 2:
 
       1
-     /
-    2
-   /
-  3
-
+       \
+        2
+         \
+          3
 
 **Example Explanation**
 Explanation 1:
@@ -157,5 +156,8 @@ We can see that is the tree created by the given pre order traversal.*/
         int[] arr = {2, 1, 4, 3, 5};
         TreeNode root = order.bstFromPreorderOptimized(arr);
         System.out.println(order.printTree(root));
+
+        TreeNode root2 = order.bstFromPreorder(arr);
+        System.out.println(order.printTree(root2));
     }
 }

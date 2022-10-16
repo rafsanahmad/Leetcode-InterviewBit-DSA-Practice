@@ -30,9 +30,9 @@ class TopURLAccessed {
             }
         }
         // Create a list from elements of HashMap
-        val list: List<Map.Entry<String, Int>> = LinkedList(countMap.entries)
+        var list: List<Map.Entry<String, Int>> = LinkedList(countMap.entries)
         // Sort the list
-        list
+        list = list
             .sortedWith<Map.Entry<String, Int>>(object : Comparator<Map.Entry<String, Int>> {
                 override fun compare(p0: Map.Entry<String, Int>, p1: Map.Entry<String, Int>): Int {
                     if (p0.value == p1.value) {
