@@ -72,9 +72,46 @@ Output: 9
         return longestStreak;
     }
 
+    //Using DFS
+    static HashSet<Integer> set;
+    static int count = 0;
+
+    public int longestConsecutiveUsingDFS(final int[] A) {
+        int result = 0;
+        HashSet<Integer> visited = new HashSet<>();
+        set = new HashSet<>();
+
+        for (int i = 0; i < A.length; i++) {
+            set.add(A[i]);
+        }
+
+        for (int i = 0; i < A.length; i++) {
+            count = 0;
+            dfs(A[i], visited);
+            result = Math.max(result, count);
+        }
+
+        return result;
+    }
+
+    public void dfs(int value, HashSet<Integer> visited) {
+        if (visited.contains(value)) return;
+
+        visited.add(value);
+        count++;
+
+        if (set.contains(value + 1)) {
+            dfs(value + 1, visited);
+        }
+        if (set.contains(value - 1)) {
+            dfs(value - 1, visited);
+        }
+    }
+
     public static void main(String[] args) {
         LongestConsecutiveSequence sequence = new LongestConsecutiveSequence();
         int[] ar = {0, 3, 7, 2, 5, 8, 4, 6, 0, 1};
         System.out.println(sequence.longestConsecutive(ar));
+        System.out.println(sequence.longestConsecutiveUsingDFS(ar));
     }
 }
