@@ -8,6 +8,7 @@
 package javaclasses.Recursion;
 
 public class AllStringPermutation {
+    //res/permutation_recursion.gif
     /*Below are the permutations of string ABC.
       ABC ACB BAC BCA CBA CAB*/
 
@@ -16,17 +17,20 @@ public class AllStringPermutation {
      * permutation function
      *
      * @param str string to calculate permutation for
-     * @param l   starting index
-     * @param r   end index
+     * @param start   starting index
+     * @param end   end index
      */
-    private void permute(String str, int l, int r) {
-        if (l == r)
+    /*Time Complexity: O(n*n!) Note that there are n! permutations and it requires O(n) time to print a permutation.
+    Auxiliary Space: O(r – l)
+    */
+    private void permute(String str, int start, int end) {
+        if (start == end)
             System.out.print(str + " ");
         else {
-            for (int i = l; i <= r; i++) {
-                str = swap(str, l, i);
-                permute(str, l + 1, r);
-                str = swap(str, l, i);
+            for (int i = start; i <= end; i++) {
+                str = swap(str, start, i);
+                permute(str, start + 1, end);
+                str = swap(str, start, i);
             }
         }
     }
