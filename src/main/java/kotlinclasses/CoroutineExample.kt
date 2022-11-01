@@ -7,10 +7,7 @@
 
 package kotlinclasses
 
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.*
 import kotlin.system.measureTimeMillis
 
 class CoroutineExample {
@@ -24,6 +21,7 @@ class CoroutineExample {
 
     fun coroutineTest() {
         println("0")
+
         runBlocking {
             val job = GlobalScope.launch {
                 // launch new coroutine and keep a reference to its Job
@@ -44,6 +42,55 @@ class CoroutineExample {
         }
         println("6")
     }
+
+    fun coroutineLaunch() {
+        var resultOne = "Android"
+        var resultTwo = "Kotlin"
+        println("Launch Before")
+        GlobalScope.launch(Dispatchers.IO) { resultOne = function1() }
+        GlobalScope.launch(Dispatchers.IO) { resultTwo = function2() }
+        println("Launch After")
+        val resultText = resultOne + resultTwo
+        println("Launch {$resultText}")
+    }
+
+    suspend fun function1(): String {
+        delay(1000L)
+        val message = "function1"
+        println("Launch {$message}")
+        return message
+    }
+
+    suspend fun function2(): String {
+        delay(100L)
+        val message = "function2"
+        println("Launch {$message}")
+        return message
+    }
+
+    suspend fun coroutineAsync() {
+        println("Async Before")
+        val resultOne = GlobalScope.async(Dispatchers.IO) { function3() }
+        val resultTwo = GlobalScope.async(Dispatchers.IO) { function4() }
+        println("Async After")
+        val resultText = resultOne.await() + resultTwo.await()
+        println("Async {$resultText}")
+    }
+
+    suspend fun function3(): String {
+        delay(1000L)
+        val message = "function3"
+        println("Async {$message}")
+        return message
+    }
+
+    suspend fun function4(): String {
+        delay(100L)
+        val message = "function4"
+        println("Async {$message}")
+        return message
+    }
+
 }
 
 fun main(args: Array<String>) {
@@ -57,6 +104,10 @@ fun main(args: Array<String>) {
 
     val example = CoroutineExample()
     example.coroutineTest()
+    //Launch
+    example.coroutineLaunch()
+    //Async
+    GlobalScope.launch { example.coroutineAsync() }
     // Concurrent execution.
     /*var time2 = measureTimeMillis {
         val one = async { CoroutineExample().meaninglessCounter() }
