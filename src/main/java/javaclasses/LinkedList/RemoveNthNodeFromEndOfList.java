@@ -35,7 +35,7 @@ Try doing it using constant additional space.
             node = node.next;
         }
 
-        if (B > len) {
+        if (B >= len) {
             //Remove first node
             return A.next;
         }
@@ -50,6 +50,51 @@ Try doing it using constant additional space.
         if (node.next != null)
             node.next = node.next.next;
         return A;
+    }
+
+
+    ListNode result = null;
+    // Optimized memory approach
+    public ListNode removeNthFromEndEfficientMemory(ListNode head, int n) {
+        int len = 0;
+        if (head == null) return head;
+        ListNode temp = head;
+        while (temp != null) {
+            len++;
+            temp = temp.next;
+        }
+        if (n > len) return head;
+        temp = head;
+        int index = len - n;
+        int i = 0;
+        while (i < index) {
+            insertNode(temp.val);
+            temp = temp.next;
+            i++;
+        }
+        //Go to end
+        ListNode first = result;
+        if (first != null) {
+            while (first.next != null) {
+                first = first.next;
+            }
+            first.next = temp.next;
+        } else {
+            result = temp.next;
+        }
+        return result;
+    }
+
+    public void insertNode(int data) {
+        ListNode tempNode = new ListNode(data);
+        ListNode last = result;
+        if (result == null) {
+            result = tempNode;
+            return;
+        }
+        while (last.next != null)
+            last = last.next;
+        last.next = tempNode;
     }
 
     public void printList(ListNode node) {
