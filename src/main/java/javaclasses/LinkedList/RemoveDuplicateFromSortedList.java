@@ -22,69 +22,38 @@ Before we delete a node, we need to store the next pointer of the node
 
 Time Complexity: O(n) where n is the number of nodes in the given linked list.
 */
-    ListNode head;
-
-    void removeDuplicates() {
-        /*Another reference to head*/
-        ListNode curr = head;
-
-        /* Traverse list till the last node */
-        while (curr != null) {
-            ListNode temp = curr;
-            /*Compare current node with the next node and
-            keep on deleting them until it matches the current
-            node data */
-            while (temp != null && temp.val == curr.val) {
-                temp = temp.next;
+    public ListNode deleteDuplicates(ListNode A) {
+        ListNode head = A;
+        ListNode result = new ListNode(-1);
+        ListNode temp = result;
+        while (head != null) {
+            while (head.next != null && head.val == head.next.val) {
+                head = head.next;
             }
-            /*Set current node next to the next different
-            element denoted by temp*/
-            curr.next = temp;
-            curr = curr.next;
+            result.next = new ListNode(head.val);
+            head = head.next;
+            result = result.next;
         }
-    }
-
-    /* Utility functions */
-
-    /* Inserts a new Node at front of the list. */
-    public void push(int new_data) {
-        /* 1 & 2: Allocate the Node &
-                  Put in the data*/
-        ListNode new_node = new ListNode(new_data);
-
-        /* 3. Make next of new Node as head */
-        new_node.next = head;
-
-        /* 4. Move the head to point to new Node */
-        head = new_node;
+        return temp.next;
     }
 
     /* Function to print linked list */
-    void printList() {
-        ListNode temp = head;
-        while (temp != null) {
-            System.out.print(temp.val + " ");
-            temp = temp.next;
+    void printList(ListNode node) {
+        while (node != null) {
+            System.out.print(node.val + " ");
+            node = node.next;
         }
         System.out.println();
     }
 
-    /* Driver program to test above functions */
-    public static void main(String args[]) {
-        RemoveDuplicateFromSortedList llist = new RemoveDuplicateFromSortedList();
-        llist.push(20);
-        llist.push(13);
-        llist.push(13);
-        llist.push(11);
-        llist.push(11);
-        llist.push(11);
+    public static void main(String[] args) {
+        RemoveDuplicateFromSortedList list = new RemoveDuplicateFromSortedList();
+        ListNode head = new ListNode(1);
+        head.next = new ListNode(1);
+        head.next.next = new ListNode(1);
+        head.next.next.next = new ListNode(4);
 
-        System.out.println("List before removal of duplicates");
-        llist.printList();
-
-        llist.removeDuplicates();
-
-        System.out.println("List after removal of elements");
-        llist.printList();
+        ListNode result = list.deleteDuplicates(head);
+        list.printList(result);
     }
 }
