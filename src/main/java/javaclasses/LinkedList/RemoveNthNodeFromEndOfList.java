@@ -10,64 +10,46 @@ package javaclasses.LinkedList;
 
 public class RemoveNthNodeFromEndOfList {
     //Leetcode 19
+    //https://www.interviewbit.com/problems/remove-nth-node-from-list-end/
     //res/remove_node.jpeg
-    /*Given the head of a linked list, remove the nth node from the end of the list and return its head.
+    /*Given a linked list, remove the nth node from the end of list and return its head.
 
-Example 1:
-Input: head = [1,2,3,4,5], n = 2
-Output: [1,2,3,5]
+For example,
 
+   Given linked list: 1->2->3->4->5, and n = 2.
 
-Example 2:
-Input: head = [1], n = 1
-Output: []
+   After removing the second node from the end, the linked list becomes 1->2->3->5.
 
-Example 3:
-Input: head = [1,2], n = 1
-Output: [1]
+Note:
+
+If n is greater than the size of the list, remove the first node of the list.
+Try doing it using constant additional space.
 */
-    ListNode result = null;
-
-    public ListNode removeNthFromEnd(ListNode head, int n) {
+    public ListNode removeNthFromEnd(ListNode A, int B) {
+        if (A == null) return null;
+        ListNode node = A;
         int len = 0;
-        if (head == null) return head;
-        ListNode temp = head;
-        while (temp != null) {
-            len++;
-            temp = temp.next;
-        }
-        if (n > len) return head;
-        temp = head;
-        int index = len - n;
-        int i = 0;
-        while (i < index) {
-            insertNode(temp.val);
-            temp = temp.next;
-            i++;
-        }
-        //Go to end
-        ListNode first = result;
-        if (first != null) {
-            while (first.next != null) {
-                first = first.next;
-            }
-            first.next = temp.next;
-        } else {
-            result = temp.next;
-        }
-        return result;
-    }
 
-    public void insertNode(int data) {
-        ListNode tempNode = new ListNode(data);
-        ListNode last = result;
-        if (result == null) {
-            result = tempNode;
-            return;
+        while (node != null) {
+            len++;
+            node = node.next;
         }
-        while (last.next != null)
-            last = last.next;
-        last.next = tempNode;
+
+        if (B > len) {
+            //Remove first node
+            return A.next;
+        }
+
+        node = A;
+        int curr = 1;
+        while (curr < len - B) {
+            node = node.next;
+            curr++;
+        }
+
+        if (node.next != null)
+            node.next = node.next.next;
+        return A;
     }
 
     public void printList(ListNode node) {
