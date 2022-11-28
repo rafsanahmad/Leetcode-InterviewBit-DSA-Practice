@@ -16,6 +16,7 @@ public class GraphColoring {
 
 Sudoku: This game is a variation of Graph coloring problem where every cell denotes a node (or vertex) and there exists an
 edge between two nodes if the nodes are in same row or same column or same block.
+
 Geographical maps: There can be cases when no two adjacent cities/states can be assigned same color in the maps of
 countries or states. In this case, only four colors would be sufficient to color any map.
 Vertex coloring is the most commonly encountered graph coloring problem. The problem states that given m colors,
@@ -50,7 +51,7 @@ Naive Approach:
 The brute force approach would be to generate all possible combinations (or configurations) of colors.
 After generating a configuration, check if the adjacent vertices have the same colour or not. If the conditions are met,
 add the combination to the result and break the loop.
-Since each node can be colored by using any of the m colors, the total number of possible color configurations are mV.
+Since each node can be colored by using any of the m colors, the total number of possible color configurations are m^V.
 The complexity is exponential which is very huge.
 Pseudo Code:
 */
@@ -68,7 +69,7 @@ Pseudo Code:
     private void printColorArray(int[] color) {
         System.out.println("Solution colors are: ");
         for (int i = 0; i < color.length; i++) {
-            System.out.println(color[i]);
+            System.out.print(color[i] + " ");
         }
     }
 
@@ -140,7 +141,7 @@ If color assignment is not possible then backtrack and return false.
                 // recursion for checking other vertices
                 if (graphColorUtil(graphMatrix, m, color, v + 1))
                     return true;
-                // if color doesnt lead to solution
+                // if color doesn't lead to solution
                 color[v] = 0;
             }
         }
@@ -181,8 +182,6 @@ If color assignment is not possible then backtrack and return false.
         return true;
     }
 
-
-    // Main driver program
     public static void main(String[] args) {
         GraphColoring coloring = new GraphColoring();
 
