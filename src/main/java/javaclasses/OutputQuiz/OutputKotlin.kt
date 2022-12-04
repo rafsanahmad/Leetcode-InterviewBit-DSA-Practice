@@ -34,6 +34,18 @@ class OutputKotlin {
     }
 }
 
+object Android {
+    val version: String = "Jelly Bean"
+
+    val email = provideEmail()
+
+    fun provideEmail(): String {
+        val email = "test@gmail.com"
+        println(email)
+        return email
+    }
+}
+
 fun main(args: Array<String>) {
     //Quiz 1
     val someClass = OutputKotlin.SomeClass()
@@ -50,4 +62,10 @@ fun main(args: Array<String>) {
     val config = OutputKotlin.Config()
     config()()()()()()()()()()
     println("config was called ${config.count} times")
+
+    //Quiz 4
+    //prints:
+    //test@gmail.com
+    //Jelly Bean
+    println(Android.version)
 }
