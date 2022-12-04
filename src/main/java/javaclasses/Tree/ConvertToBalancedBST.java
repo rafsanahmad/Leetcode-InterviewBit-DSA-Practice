@@ -8,9 +8,10 @@
 
 package javaclasses.Tree;
 
-import java.util.Vector;
+import java.util.ArrayList;
+import java.util.List;
 
-public class ConvertToBalancedTree {
+public class ConvertToBalancedBST {
     /*Given a BST (Binary Search Tree) that may be unbalanced, convert it into a balanced BST that has minimum possible
     height.
 
@@ -72,9 +73,9 @@ This step also takes O(n) time as we traverse every element exactly once and pro
     Node root;
 
     /* This function traverse the skewed binary tree and
-       stores its nodes pointers in vector nodes[] */
+       stores its nodes pointers in List nodes[] */
     //Time Complexity: O(n)
-    void storeBSTNodes(Node root, Vector<Node> nodes) {
+    void storeBSTNodes(Node root, List<Node> nodes) {
         // Base case
         if (root == null) return;
 
@@ -85,7 +86,7 @@ This step also takes O(n) time as we traverse every element exactly once and pro
     }
 
     /* Recursive function to construct binary tree */
-    Node buildTreeUtil(Vector<Node> nodes, int start, int end) {
+    Node buildTreeUtil(List<Node> nodes, int start, int end) {
         // base case
         if (start > end) return null;
 
@@ -103,7 +104,7 @@ This step also takes O(n) time as we traverse every element exactly once and pro
     // This functions converts an unbalanced BST to a balanced BST
     Node buildTree(Node root) {
         // Store nodes of given BST in sorted order
-        Vector<Node> nodes = new Vector<Node>();
+        List<Node> nodes = new ArrayList<>();
         storeBSTNodes(root, nodes);
 
         // Constructs BST from nodes[]
@@ -130,7 +131,7 @@ This step also takes O(n) time as we traverse every element exactly once and pro
           6
          /
         5   */
-        ConvertToBalancedTree tree = new ConvertToBalancedTree();
+        ConvertToBalancedBST tree = new ConvertToBalancedBST();
         tree.root = new Node(10);
         tree.root.left = new Node(8);
         tree.root.left.left = new Node(7);
