@@ -1,11 +1,12 @@
 /*
- * * Check If Max Min Heap.java
- *  * Created by Rafsan Ahmad on 11/14/21, 12:19 AM
- *  * Copyright (c) 2021 . All rights reserved.
+ * *
+ *  * Check If Max Min Heap.java
+ *  * Created by Rafsan Ahmad on 12/12/21, 4:25 AM
+ *  * Copyright (c) 2022 . All rights reserved.
  *
  */
 
-package javaclasses.Tree;
+package javaclasses.HeapPriorityQueue;
 
 import java.util.ArrayList;
 import java.util.List;
