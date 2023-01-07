@@ -9,6 +9,7 @@
 package javaclasses.GreedyAlgorithm;
 
 import java.util.Arrays;
+import java.util.Comparator;
 
 public class MinimumNumberOfArrows {
     //Leetcode 452
@@ -41,6 +42,7 @@ Explanation: The balloons can be burst by 2 arrows:
 - Shoot an arrow at x = 2, bursting the balloons [1,2] and [2,3].
 - Shoot an arrow at x = 4, bursting the balloons [3,4] and [4,5].*/
 
+    //Sort based on End postion in Ascending order
     public int findMinArrowShots(int[][] points) {
         Arrays.sort(points, (a, b) -> Integer.compare(a[1], b[1]));
         int ans = 0, arrow = 0;
@@ -53,11 +55,42 @@ Explanation: The balloons can be burst by 2 arrows:
         return ans;
     }
 
+    //Sort based on Start postion in decreasing order
+    public int findMinArrowShots2(int[][] points) {
+        //Sort based on Start postion in decreasing order
+        int result = 1;
+        int len = points.length;
+        Arrays.sort(points, new Comparator<int[]>() {
+            @Override
+            public int compare(int[] o1, int[] o2) {
+                return Integer.compare(o2[0], o1[0]);
+            }
+        });
+
+        int currPos = points[0][0];
+
+        for (int i = 1; i < len; i++) {
+            if (points[i][1] >= currPos) {
+                //Points intersect
+                continue;
+            } else {
+                //Does not intersect
+                result++;
+                currPos = points[i][0];
+            }
+        }
+
+        return result;
+    }
+
     public static void main(String[] args) {
         MinimumNumberOfArrows arrows = new MinimumNumberOfArrows();
         int[][] points = {{1, 2}, {2, 3}, {3, 4}, {4, 5}};
         int[][] points2 = {{1, 2}, {3, 4}, {5, 6}, {7, 8}};
         System.out.println(arrows.findMinArrowShots(points));
         System.out.println(arrows.findMinArrowShots(points2));
+
+        System.out.println(arrows.findMinArrowShots2(points));
+        System.out.println(arrows.findMinArrowShots2(points2));
     }
 }
