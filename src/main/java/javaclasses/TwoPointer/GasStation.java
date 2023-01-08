@@ -1,11 +1,12 @@
 /*
- * * Gas Station.java
- *  * Created by Rafsan Ahmad on 10/25/21, 9:50 PM
- *  * Copyright (c) 2021 . All rights reserved.
+ * *
+ *  * Gas Station.java
+ *  * Created by Rafsan Ahmad on 1/29/22, 9:39 PM
+ *  * Copyright (c) 2023 . All rights reserved.
  *
  */
 
-package javaclasses.GreedyAlgorithm;
+package javaclasses.TwoPointer;
 
 public class GasStation {
     //Leetcode 134
