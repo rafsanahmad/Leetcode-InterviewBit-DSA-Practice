@@ -7,9 +7,20 @@
 
 package javaclasses.Tree;
 
+import java.util.ArrayDeque;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Queue;
+
 public class BinaryTreeRightView {
+    //https://leetcode.com/problems/binary-tree-right-side-view/description/
     /*Given a Binary Tree, print Right view of it. Right view of a Binary Tree is set of nodes visible when tree is
     visited from Right side.
+
+
+    Iterative Implementation
+In the iterative version, perform a level order traversal on the tree. We can modify level order traversal to maintain
+nodes at the current level. Then if the current node is the first node of the current level, print it.
 
 Right view of following tree is 1 3 7 8
 
@@ -22,55 +33,85 @@ Right view of following tree is 1 3 7 8
                    8
    */
 
-    // class to access maximum level by reference
-    class Max_level {
-        int max_level;
-    }
+    public List<Integer> rightSideView(TreeNode root) {
+        List<Integer> list = new ArrayList<>();
 
-    Node root;
-    Max_level max = new Max_level();
+        if (root == null) return list;
 
-    // Recursive function to print right view of a binary tree.
-    void rightViewUtil(Node node, int level, Max_level max_level) {
+        Queue<TreeNode> queue = new ArrayDeque<>();
+        queue.add(root);
 
-        // Base Case
-        if (node == null)
-            return;
+        while (!queue.isEmpty()) {
+            int size = queue.size();
+            int i = 0;
 
-        // If this is the last Node of its level
-        if (max_level.max_level < level) {
-            System.out.print(node.data + " ");
-            max_level.max_level = level;
+            while (i < size) {
+                TreeNode curr = queue.poll();
+                if (i == size - 1) list.add(curr.val);
+
+                if (curr.left != null) queue.add(curr.left);
+                if (curr.right != null) queue.add(curr.right);
+
+                i++;
+            }
         }
 
-        // Recur for right subtree first, then left subtree
-        rightViewUtil(node.right, level + 1, max_level);
-        rightViewUtil(node.left, level + 1, max_level);
+        return list;
     }
 
-    void rightView() {
-        rightView(root);
+    // Iterative function to print the left view of a given binary tree
+    public void leftView(TreeNode root) {
+        // return if the tree is empty
+        if (root == null) {
+            return;
+        }
+
+        // create an empty queue and enqueue the root node
+        Queue<TreeNode> queue = new ArrayDeque<>();
+        queue.add(root);
+
+        // to store the current node
+        TreeNode curr;
+
+        // loop till queue is empty
+        while (!queue.isEmpty()) {
+            // calculate the total number of nodes at the current level
+            int size = queue.size();
+            int i = 0;
+
+            // process every node of the current level and enqueue their
+            // non-empty left and right child
+            while (i++ < size) {
+                curr = queue.poll();
+
+                // if this is the first node of the current level, print it
+                if (i == 1) {
+                    System.out.print(curr.val + " ");
+                }
+
+                if (curr.left != null) {
+                    queue.add(curr.left);
+                }
+
+                if (curr.right != null) {
+                    queue.add(curr.right);
+                }
+            }
+        }
     }
 
-    // A wrapper over rightViewUtil()
-    void rightView(Node node) {
-
-        rightViewUtil(node, 1, max);
-    }
-
-    // Driver program to test the above functions
-    public static void main(String args[]) {
+    public static void main(String[] args) {
         BinaryTreeRightView tree = new BinaryTreeRightView();
-        tree.root = new Node(1);
-        tree.root.left = new Node(2);
-        tree.root.right = new Node(3);
-        tree.root.left.left = new Node(4);
-        tree.root.left.right = new Node(5);
-        tree.root.right.left = new Node(6);
-        tree.root.right.right = new Node(7);
-        tree.root.right.left.right = new Node(8);
+        TreeNode root = new TreeNode(1);
+        root.left = new TreeNode(2);
+        root.right = new TreeNode(3);
+        root.left.left = new TreeNode(4);
+        root.left.right = new TreeNode(5);
+        root.right.left = new TreeNode(6);
+        root.right.right = new TreeNode(7);
+        root.right.left.right = new TreeNode(8);
 
-        tree.rightView();
-
+        System.out.println(tree.rightSideView(root));
+        tree.leftView(root);
     }
 }
