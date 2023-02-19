@@ -100,8 +100,8 @@ Output: [0]*/
 
     public static void main(String[] args) {
         CourseScheduleII scheduleII = new CourseScheduleII();
-        int[][] couese = {{0, 1}};
-        int[] res = scheduleII.findOrder(2, couese);
+        int[][] courses = {{1, 0}, {2, 0}, {3, 1}, {3, 2}};
+        int[] res = scheduleII.findOrder(4, courses);
         System.out.println(Arrays.toString(res));
     }
 }
