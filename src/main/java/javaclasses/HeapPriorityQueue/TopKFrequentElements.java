@@ -8,7 +8,18 @@
 
 package javaclasses.HeapPriorityQueue;
 
-/*Find top k frequent elements in an array of integers.
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.PriorityQueue;
+import java.util.stream.Collectors;
+
+public class TopKFrequentElements {
+    //https://leetcode.com/problems/top-k-frequent-elements/description/
+
+    /*Find top k frequent elements in an array of integers.
 Let’s first understand the problem statement and the we will solve this problem using multiple approaches.
 
 Given a non-empty array of integers, return the k most frequent elements.
@@ -34,16 +45,6 @@ NOTE:
 * The time complexity must be better than O(nlogn), where n is the array’s size.
 
 * It’s guaranteed that the answer is unique, in other words the set of the top k frequent elements is unique.*/
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.PriorityQueue;
-import java.util.stream.Collectors;
-
-public class TopKFrequentElements {
 
     //Using Hashmap
     //Time complexity = O(nlogn)
