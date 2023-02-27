@@ -1,11 +1,12 @@
 /*
- * * Top K Frequent Elements.java
- *  * Created by Rafsan Ahmad on 10/25/21, 9:49 PM
- *  * Copyright (c) 2021 . All rights reserved.
+ * *
+ *  * Top K Frequent Elements.java
+ *  * Created by Rafsan Ahmad on 12/10/21, 9:17 PM
+ *  * Copyright (c) 2023 . All rights reserved.
  *
  */
 
-package javaclasses.Array;
+package javaclasses.HeapPriorityQueue;
 
 /*Find top k frequent elements in an array of integers.
 Let’s first understand the problem statement and the we will solve this problem using multiple approaches.
@@ -77,7 +78,8 @@ public class TopKFrequentElements {
     Then use apriority queue (Min Heap) and we keep it’s size equal to k.
     Take all the keys of a map and put them in a Priority Queue.
     If the size of a priority queue is greater than k, In that case we poll the top element which is the
-    minimum element. Once all the elements of HashMap is put in a Priority queue, we only get the top k elements.*/
+    minimum element. Once all the elements of HashMap is put in a Priority queue, we only get
+    the top k elements.*/
 
     //Time complexity = O(nlogk)
     //Space complexity = O(n).
