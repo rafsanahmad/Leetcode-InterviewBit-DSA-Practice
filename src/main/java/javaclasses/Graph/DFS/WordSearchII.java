@@ -116,17 +116,17 @@ Code Optimization
     }
 
     public List<String> findWordsOptimized(char[][] board, String[] words) {
-        HashSet<String> res = new HashSet<>();
+        List<String> res = new ArrayList<>();
         TrieNode root = buildTrie(words);
         for (int i = 0; i < board.length; i++) {
             for (int j = 0; j < board[0].length; j++) {
                 dfs(board, i, j, root, res);
             }
         }
-        return new ArrayList<>(res);
+        return res;
     }
 
-    public void dfs(char[][] board, int i, int j, TrieNode p, HashSet<String> res) {
+    public void dfs(char[][] board, int i, int j, TrieNode p, List<String> res) {
         if (i < 0 || i >= board.length || j < 0 || j >= board[0].length) return;
 
         char c = board[i][j];
@@ -135,7 +135,7 @@ Code Optimization
         p = p.next[c - 'a'];
         if (p.word != null) {   // found one
             res.add(p.word);
-            //p.word = null;     // de-duplicate
+            p.word = null;     // de-duplicate
         }
 
         board[i][j] = '#';
