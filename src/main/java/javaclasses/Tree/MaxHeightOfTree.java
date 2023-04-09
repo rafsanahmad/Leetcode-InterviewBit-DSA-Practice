@@ -35,10 +35,7 @@ public class MaxHeightOfTree {
             int rDepth = maxDepth(node.right);
 
             /* use the larger one */
-            if (lDepth > rDepth)
-                return (lDepth + 1);
-            else
-                return (rDepth + 1);
+            return Math.max(lDepth, rDepth) + 1;
         }
     }
 

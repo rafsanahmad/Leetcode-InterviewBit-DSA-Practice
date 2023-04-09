@@ -1,6 +1,6 @@
 /*
  * *
- *  * TestClass.java
+ *  * Solution.java
  *  * Created by Rafsan Ahmad on 4/20/22, 7:22 PM
  *  * Copyright (c) 2022 . All rights reserved.
  *
@@ -14,6 +14,6 @@ public class TestClass {
     }
 
     public static void main(String[] args) {
-        TestClass testClass = new TestClass();
+        TestClass solution = new TestClass();
     }
 }
