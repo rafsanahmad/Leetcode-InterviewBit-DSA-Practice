@@ -6,7 +6,7 @@
  *
  */
 
-package javaclasses.DataStructure;
+package javaclasses.DataStructure.Trie;
 
 public class TrieDataStructure {
     //res/trie_pic.png
