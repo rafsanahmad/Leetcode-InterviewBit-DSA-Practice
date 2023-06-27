@@ -8,306 +8,161 @@
 package javaclasses.Algorithm;
 
 public class KMPAlgorithm {
-    /*KMP (Knuth Morris Pratt) Pattern Searching
-The Naive pattern searching algorithm doesn’t work well in cases where we see many matching characters
-followed by a mismatching character. Following are some examples.
+    //http://jakeboxer.com/blog/2009/12/13/the-knuth-morris-pratt-algorithm-in-my-own-words/
+    /*KMP (Knuth Morris Pratt) is a  Pattern Searching algorithm
+    The Partial Match Table
+The key to KMP, of course, is the partial match table. The main obstacle between me and understanding
+ KMP was the fact that I didn’t quite fully grasp what the values in the partial match table really
+ meant. I will now try to explain them in the simplest words possible.
 
-   txt[] = "AAAAAAAAAAAAAAAAAB"
-   pat[] = "AAAAB"
+Here’s the partial match table for the pattern “abababca”:
+char:  | a | b | a | b | a | b | c | a |
+index: | 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 |
+value: | 0 | 0 | 1 | 2 | 3 | 4 | 0 | 1 |
 
-   txt[] = "ABABABCABABABCABABABC"
-   pat[] =  "ABABAC" (not a worst case, but a bad case for Naive)
-The KMP matching algorithm uses degenerating property (pattern having same sub-patterns appearing more
-than once in the pattern) of the pattern and improves the worst case complexity to O(n). The basic idea
-behind KMP’s algorithm is: whenever we detect a mismatch (after some matches), we already know some of
-the characters in the text of the next window. We take advantage of this information to avoid matching
-the characters that we know will anyway match. Let us consider below example to understand this.
+If I have an eight-character pattern (let’s say “abababca” for the duration of this example),
+my partial match table will have eight cells. If I’m looking at the eighth and last cell in the
+table, I’m interested in the entire pattern (“abababca”). If I’m looking at the seventh cell in the
+table, I’m only interested in the first seven characters in the pattern (“abababc”); the eighth
+one (“a”) is irrelevant, and can go fall off a building or something. If I’m looking at the sixth
+cell of the in the table… you get the idea. Notice that I haven’t talked about what each cell means
+ yet, but just what it’s referring to.
 
-Matching Overview
-txt = "AAAAABAAABA"
-pat = "AAAA"
+Now, in order to talk about the meaning, we need to know about proper prefixes and proper suffixes.
 
-We compare first window of txt with pat
-txt = "AAAAABAAABA"
-pat = "AAAA"  [Initial position]
-We find a match. This is same as Naive String Matching.
+Proper prefix: All the characters in a string, with one or more cut off the end. “S”, “Sn”, “Sna”,
+and “Snap” are all the proper prefixes of “Snape”.
 
-In the next step, we compare next window of txt with pat.
-txt = "AAAAABAAABA"
-pat =  "AAAA" [Pattern shifted one position]
-This is where KMP does optimization over Naive. In this
-second window, we only compare fourth A of pattern
-with fourth character of current window of text to decide
-whether current window matches or not. Since we know
-first three characters will anyway match, we skipped
-matching first three characters.
+Proper suffix: All the characters in a string, with one or more cut off the beginning. “agrid”,
+“grid”, “rid”, “id”, and “d” are all proper suffixes of “Hagrid”.
 
-Need of Preprocessing?
-An important question arises from the above explanation,
-how to know how many characters to be skipped. To know this,
-we pre-process pattern and prepare an integer array
-lps[] that tells us the count of characters to be skipped.
-Preprocessing Overview:
+With this in mind, I can now give the one-sentence meaning of the values in the partial match table:
 
-KMP algorithm preprocesses pat[] and constructs an auxiliary lps[] of size m (same as size of pattern)
-which is used to skip characters while matching.
-name lps indicates longest proper prefix which is also suffix.. A proper prefix is prefix with whole
-string not allowed. For example, prefixes of “ABC” are “”, “A”, “AB” and “ABC”. Proper prefixes
-are “”, “A” and “AB”. Suffixes of the string are “”, “C”, “BC” and “ABC”.
-We search for lps in sub-patterns. More clearly we focus on sub-strings of patterns that are either
-prefix and suffix.
-For each sub-pattern pat[0..i] where i = 0 to m-1, lps[i] stores length of the maximum matching proper
-prefix which is also a suffix of the sub-pattern pat[0..i].
-   lps[i] = the longest proper prefix of pat[0..i]
-              which is also a suffix of pat[0..i].
-Note : lps[i] could also be defined as longest prefix which is also proper suffix. We need to use properly
-at one place to make sure that the whole substring is not considered.
+The length of the longest proper prefix in the (sub)pattern that matches a proper suffix in the
+same (sub)pattern.
 
-Examples of lps[] construction:
-For the pattern “AAAA”,
-lps[] is [0, 1, 2, 3]
+Let’s examine what I mean by that. Say we’re looking in the third cell. As you’ll remember from
+above, this means we’re only interested in the first three characters (“aba”). In “aba”, there are
+two proper prefixes (“a” and “ab”) and two proper suffixes (“a” and “ba”). The proper prefix “ab”
+does not match either of the two proper suffixes. However, the proper prefix “a” matches the proper
+ suffix “a”. Thus, the length of the longest proper prefix that matches a proper suffix, in this
+ case, is 1.
 
-For the pattern “ABCDE”,
-lps[] is [0, 0, 0, 0, 0]
+Let’s try it for cell four. Here, we’re interested in the first four characters (“abab”). We have
+ three proper prefixes (“a”, “ab”, and “aba”) and three proper suffixes (“b”, “ab”, and “bab”).
+ This time, “ab” is in both, and is two characters long, so cell four gets value 2.
 
-For the pattern “AABAACAABAA”,
-lps[] is [0, 1, 0, 1, 2, 0, 1, 2, 3, 4, 5]
+Just because it’s an interesting example, let’s also try it for cell five, which concerns “ababa”.
+We have four proper prefixes (“a”, “ab”, “aba”, and “abab”) and four proper suffixes
+(“a”, “ba”, “aba”, and “baba”). Now, we have two matches: “a” and “aba” are both proper prefixes
+and proper suffixes. Since “aba” is longer than “a”, it wins, and cell five gets value 3.
 
-For the pattern “AAACAAAAAC”,
-lps[] is [0, 1, 2, 0, 1, 2, 3, 3, 3, 4]
+Let’s skip ahead to cell seven (the second-to-last cell), which is concerned with the pattern
+ “abababc”. Even without enumerating all the proper prefixes and suffixes, it should be obvious
+ that there aren’t going to be any matches; all the suffixes will end with the letter “c”, and
+ none of the prefixes will. Since there are no matches, cell seven gets 0.
 
-For the pattern “AAABAAA”,
-lps[] is [0, 1, 2, 0, 1, 2, 3]
-Searching Algorithm:
-Unlike Naive algorithm, where we slide the pattern by one and compare all characters at each shift,
-we use a value from lps[] to decide the next characters to be matched. The idea is to not match a
-character that we know will anyway match.
+Finally, let’s look at cell eight, which is concerned with the entire pattern (“abababca”).
+Since they both start and end with “a”, we know the value will be at least 1. However, that’s
+where it ends; at lengths two and up, all the suffixes contain a c, while only the last prefix
+(“abababc”) does. This seven-character prefix does not match the seven-character
+suffix (“bababca”), so cell eight gets 1.
 
-How to use lps[] to decide next positions (or to know a number of characters to be skipped)?
+How to use the Partial Match Table
+We can use the values in the partial match table to skip ahead (rather than redoing unnecessary
+old comparisons) when we find partial matches. The formula works like this:
 
-We start comparison of pat[j] with j = 0 with characters of current window of text.
-We keep matching characters txt[i] and pat[j] and keep incrementing i and j while pat[j] and txt[i] keep
-matching.
-When we see a mismatch
-We know that characters pat[0..j-1] match with txt[i-j…i-1] (Note that j starts with 0 and increment it
-only when there is a match).
-We also know (from above definition) that lps[j-1] is count of characters of pat[0…j-1] that are both
-proper prefix and suffix.
-From above two points, we can conclude that we do not need to match these lps[j-1] characters with
-txt[i-j…i-1] because we know that these characters will anyway match. Let us consider above example to
-understand this.
-txt[] = "AAAAABAAABA"
-pat[] = "AAAA"
-lps[] = {0, 1, 2, 3}
+If a partial match of length partial_match_length is found and table[partial_match_length] > 1,
+ we may skip ahead partial_match_length - table[partial_match_length - 1] characters.
 
-i = 0, j = 0
-txt[] = "AAAAABAAABA"
-pat[] = "AAAA"
-txt[i] and pat[j] match, do i++, j++
+Let’s say we’re matching the pattern “abababca” against the text “bacbababaabcbab”.
+Here’s our partial match table again for easy reference:
+char:  | a | b | a | b | a | b | c | a |
+index: | 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 |
+value: | 0 | 0 | 1 | 2 | 3 | 4 | 0 | 1 |
 
-i = 1, j = 1
-txt[] = "AAAAABAAABA"
-pat[] = "AAAA"
-txt[i] and pat[j] match, do i++, j++
+The first time we get a partial match is here:
+bacbababaabcbab
+ |
+ abababca
 
-i = 2, j = 2
-txt[] = "AAAAABAAABA"
-pat[] = "AAAA"
-pat[i] and pat[j] match, do i++, j++
+ This is a partial_match_length of 1. The value at table[partial_match_length - 1] (or table[0]) is 0,
+ so we don’t get to skip ahead any. The next partial match we get is here:
+ bacbababaabcbab
+    |||||
+    abababca
 
-i = 3, j = 3
-txt[] = "AAAAABAAABA"
-pat[] = "AAAA"
-txt[i] and pat[j] match, do i++, j++
+  This is a partial_match_length of 5. The value at table[partial_match_length - 1]
+  (or table[4]) is 3.
+   That means we get to skip ahead partial_match_length - table[partial_match_length - 1]
+   (or 5 - table[4] or 5 - 3 or 2) characters:
 
-i = 4, j = 4
-Since j == M, print pattern found and reset j,
-j = lps[j-1] = lps[3] = 3
+// x denotes a skip
+bacbababaabcbab
+    xx|||
+      abababca
 
-Here unlike Naive algorithm, we do not match first three
-characters of this window. Value of lps[j-1] (in above
-step) gave us index of next character to match.
-i = 4, j = 3
-txt[] = "AAAAABAAABA"
-pat[] =  "AAAA"
-txt[i] and pat[j] match, do i++, j++
+This is a partial_match_length of 3. The value at table[partial_match_length - 1]
+(or table[2]) is 1.
+That means we get to skip ahead partial_match_length - table[partial_match_length - 1]
+(or 3 - table[2] or 3 - 1 or 2) characters:
+// x denotes a skip
 
-i = 5, j = 4
-Since j == M, print pattern found and reset j,
-j = lps[j-1] = lps[3] = 3
+bacbababaabcbab
+      xx|
+        abababca
 
-Again unlike Naive algorithm, we do not match first three
-characters of this window. Value of lps[j-1] (in above
-step) gave us index of next character to match.
-i = 5, j = 3
-txt[] = "AAAAABAAABA"
-pat[] =   "AAAA"
-txt[i] and pat[j] do NOT match and j > 0, change only j
-j = lps[j-1] = lps[2] = 2
-
-i = 5, j = 2
-txt[] = "AAAAABAAABA"
-pat[] =    "AAAA"
-txt[i] and pat[j] do NOT match and j > 0, change only j
-j = lps[j-1] = lps[1] = 1
-
-i = 5, j = 1
-txt[] = "AAAAABAAABA"
-pat[] =     "AAAA"
-txt[i] and pat[j] do NOT match and j > 0, change only j
-j = lps[j-1] = lps[0] = 0
-
-i = 5, j = 0
-txt[] = "AAAAABAAABA"
-pat[] =      "AAAA"
-txt[i] and pat[j] do NOT match and j is 0, we do i++.
-
-i = 6, j = 0
-txt[] = "AAAAABAAABA"
-pat[] =       "AAAA"
-txt[i] and pat[j] match, do i++ and j++
-
-i = 7, j = 1
-txt[] = "AAAAABAAABA"
-pat[] =       "AAAA"
-txt[i] and pat[j] match, do i++ and j++
+At this point, our pattern is longer than the remaining characters in the text,
+so we know there’s no match.
 */
 
-    /*Preprocessing Algorithm:
-In the preprocessing part, we calculate values in lps[]. To do that, we keep track of the length of the
-longest prefix suffix value (we use len variable for this purpose) for the previous index. We initialize
-lps[0] and len as 0. If pat[len] and pat[i] match, we increment len by 1 and assign the incremented value
-to lps[i]. If pat[i] and pat[len] do not match and len is not 0, we update len to lps[len-1].
-See computeLPSArray () in the below code for details.
 
-Illustration of preprocessing (or construction of lps[])
+    //the overall time complexity of the KMP algorithm is O(m + n).
+    public static void KMP(String text, String pattern) {
+        // base case 1: pattern is null or empty
+        if (pattern == null || pattern.length() == 0) {
+            System.out.println("The pattern occurs with shift 0");
+            return;
+        }
 
-pat[] = "AAACAAAA"
+        // base case 2: text is NULL, or text's length is less than that of pattern's
+        if (text == null || pattern.length() > text.length()) {
+            System.out.println("Pattern not found");
+            return;
+        }
 
-len = 0, i  = 0.
-lps[0] is always 0, we move
-to i = 1
+        char[] chars = pattern.toCharArray();
 
-len = 0, i  = 1.
-Since pat[len] and pat[i] match, do len++,
-store it in lps[i] and do i++.
-len = 1, lps[1] = 1, i = 2
+        // next[i] stores the index of the next best partial match
+        int[] next = new int[pattern.length() + 1];
+        for (int i = 1; i < pattern.length(); i++) {
+            int j = next[i];
 
-len = 1, i  = 2.
-Since pat[len] and pat[i] match, do len++,
-store it in lps[i] and do i++.
-len = 2, lps[2] = 2, i = 3
-
-len = 2, i  = 3.
-Since pat[len] and pat[i] do not match, and len > 0,
-set len = lps[len-1] = lps[1] = 1
-
-len = 1, i  = 3.
-Since pat[len] and pat[i] do not match and len > 0,
-len = lps[len-1] = lps[0] = 0
-
-len = 0, i  = 3.
-Since pat[len] and pat[i] do not match and len = 0,
-Set lps[3] = 0 and i = 4.
-We know that characters pat
-len = 0, i  = 4.
-Since pat[len] and pat[i] match, do len++,
-store it in lps[i] and do i++.
-len = 1, lps[4] = 1, i = 5
-
-len = 1, i  = 5.
-Since pat[len] and pat[i] match, do len++,
-store it in lps[i] and do i++.
-len = 2, lps[5] = 2, i = 6
-
-len = 2, i  = 6.
-Since pat[len] and pat[i] match, do len++,
-store it in lps[i] and do i++.
-len = 3, lps[6] = 3, i = 7
-
-len = 3, i  = 7.
-Since pat[len] and pat[i] do not match and len > 0,
-set len = lps[len-1] = lps[2] = 2
-
-len = 2, i  = 7.
-Since pat[len] and pat[i] match, do len++,
-store it in lps[i] and do i++.
-len = 3, lps[7] = 3, i = 8
-
-We stop here as we have constructed the whole lps[].
-*/
-
-    void KMPSearch(String pat, String txt) {
-        int M = pat.length();
-        int N = txt.length();
-
-        // create lps[] that will hold the longest
-        // prefix suffix values for pattern
-        int lps[] = new int[M];
-        int j = 0; // index for pat[]
-
-        // Preprocess the pattern (calculate lps[]
-        // array)
-        computeLPSArray(pat, M, lps);
-
-        int i = 0; // index for txt[]
-        while (i < N) {
-            if (pat.charAt(j) == txt.charAt(i)) {
-                j++;
-                i++;
-            }
-            if (j == M) {
-                System.out.println("Found pattern "
-                        + "at index " + (i - j));
-                j = lps[j - 1];
+            while (j > 0 && chars[j] != chars[i]) {
+                j = next[j];
             }
 
-            // mismatch after j matches
-            else if (i < N && pat.charAt(j) != txt.charAt(i)) {
-                // Do not match lps[0..lps[j-1]] characters,
-                // they will match anyway
-                if (j != 0)
-                    j = lps[j - 1];
-                else
-                    i = i + 1;
+            if (j > 0 || chars[j] == chars[i]) {
+                next[i + 1] = j + 1;
             }
         }
-    }
 
-    void computeLPSArray(String pat, int M, int lps[]) {
-        // length of the previous longest prefix suffix
-        int len = 0;
-        int i = 1;
-        lps[0] = 0; // lps[0] is always 0
-
-        // the loop calculates lps[i] for i = 1 to M-1
-        while (i < M) {
-            if (pat.charAt(i) == pat.charAt(len)) {
-                len++;
-                lps[i] = len;
-                i++;
-            } else // (pat[i] != pat[len])
-            {
-                // This is tricky. Consider the example.
-                // AAACAAAA and i = 7. The idea is similar
-                // to search step.
-                if (len != 0) {
-                    len = lps[len - 1];
-
-                    // Also, note that we do not increment
-                    // i here
-                } else // if (len == 0)
-                {
-                    lps[i] = len;
-                    i++;
+        for (int i = 0, j = 0; i < text.length(); i++) {
+            if (j < pattern.length() && text.charAt(i) == pattern.charAt(j)) {
+                if (++j == pattern.length()) {
+                    System.out.println("The pattern occurs with shift " + (i - j + 1));
                 }
+            } else if (j > 0) {
+                j = next[j];
+                i--;    // since `i` will be incremented in the next iteration
             }
         }
     }
 
-    public static void main(String args[]) {
-        String txt = "ABABDABACDABABCABAB";
-        String pat = "ABABCABAB";
-        new KMPAlgorithm().KMPSearch(pat, txt);
+    public static void main(String[] args) {
+        String text = "ABCABAABCABAC";
+        String pattern = "CAB";
+
+        KMP(text, pattern);
     }
 }
