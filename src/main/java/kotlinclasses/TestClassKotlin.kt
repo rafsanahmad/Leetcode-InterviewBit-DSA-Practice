@@ -8,8 +8,6 @@
 
 package kotlinclasses
 
-import java.util.*
-
 fun bingo(board: Array<IntArray>, inputs: IntArray): String {
     // write your code in Kotlin
     val result = ""
