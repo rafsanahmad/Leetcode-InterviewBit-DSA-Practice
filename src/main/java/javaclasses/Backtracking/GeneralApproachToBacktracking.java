@@ -152,6 +152,47 @@ Output: [[1,2,3],[1,3,2],[2,1,3],[2,3,1],[3,1,2],[3,2,1]]*/
         }
     }
 
+    //Combinations
+    /*Given two integers n and k, return all possible combinations of k numbers chosen from the
+    range [1, n].
+
+You may return the answer in any order.
+
+Example 1:
+Input: n = 4, k = 2
+Output: [[1,2],[1,3],[1,4],[2,3],[2,4],[3,4]]
+Explanation: There are 4 choose 2 = 6 total combinations.
+Note that combinations are unordered, i.e., [1,2] and [2,1] are considered to be the same
+combination.
+
+Example 2:
+Input: n = 1, k = 1
+Output: [[1]]
+Explanation: There is 1 choose 1 = 1 total combination.*/
+
+    public List<List<Integer>> combine(int n, int k) {
+        List<List<Integer>> result = new ArrayList<>();
+        if (n == 0) return result;
+        combineHelper(result, new ArrayList<>(), 1, k, n);
+        return result;
+    }
+
+    public void combineHelper(List<List<Integer>> result,
+                              List<Integer> tempList, int index, int k, int n) {
+        if (index > n + 1) return;
+
+        if (tempList.size() == k) {
+            result.add(new ArrayList<>(tempList));
+            return;
+        }
+
+        for (int i = index; i <= n; i++) {
+            tempList.add(i);
+            combineHelper(result, tempList, i + 1, k, n);
+            tempList.remove(tempList.size() - 1);
+        }
+    }
+
     public static void main(String[] args) {
         GeneralApproachToBacktracking approach = new GeneralApproachToBacktracking();
         int[] arr = {1, 2, 3};
@@ -164,5 +205,7 @@ Output: [[1,2,3],[1,3,2],[2,1,3],[2,3,1],[3,1,2],[3,2,1]]*/
 
         int[] arr3 = {1, 1, 2};
         System.out.println(approach.permuteUnique(arr3));
+
+        System.out.println(approach.combine(4, 2));
     }
 }
