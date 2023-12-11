@@ -80,7 +80,7 @@ obstacleGrid[i][j] is 0 or 1.*/
         if (rowL <= 0) return 0;
 
         int col = obstacleGrid[0].length;
-        int[][] dp = new int[obstacleGrid.length][col];
+        int[][] dp = new int[rowL][col];
         for (int i = 0; i < dp.length; i++) {
             Arrays.fill(dp[i], -1);
         }
