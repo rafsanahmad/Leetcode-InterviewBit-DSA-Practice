@@ -131,13 +131,14 @@ Space Complexity: O(N), where N is the total number of elements in the given set
         if (i == 0 && sum != 0 && dp[0][sum]) {
             list.add(arr[i]);
             result.add(new ArrayList<>(list));
-            list.remove(Integer.valueOf(arr[i]));
+            list.clear();
             return;
         }
 
         // If sum becomes 0
         if (sum == 0) {
             result.add(new ArrayList<>(list));
+            list.clear();
             return;
         }
 
@@ -145,14 +146,14 @@ Space Complexity: O(N), where N is the total number of elements in the given set
 
         // If given sum can be achieved after ignoring current element.
         if (dp[i - 1][sum]) {
-            printSubsetsRec(arr, i - 1, sum, list, dp, result);
+            ArrayList<Integer> newList = new ArrayList<>(list);
+            printSubsetsRec(arr, i - 1, sum, newList, dp, result);
         }
 
         // If given sum can be achieved after considering current element.
         if (sum >= arr[i] && dp[i - 1][sum - arr[i]]) {
             list.add(arr[i]);
             printSubsetsRec(arr, i - 1, sum - arr[i], list, dp, result);
-            list.remove(Integer.valueOf(arr[i]));
         }
     }
 
