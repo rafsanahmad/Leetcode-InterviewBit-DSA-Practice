@@ -118,51 +118,93 @@ so we know there’s no match.
 
 
     //the overall time complexity of the KMP algorithm is O(m + n).
-    public static void KMP(String text, String pattern) {
-        // base case 1: pattern is null or empty
-        if (pattern == null || pattern.length() == 0) {
-            System.out.println("The pattern occurs with shift 0");
-            return;
-        }
 
-        // base case 2: text is NULL, or text's length is less than that of pattern's
-        if (text == null || pattern.length() > text.length()) {
-            System.out.println("Pattern not found");
-            return;
-        }
-
-        char[] chars = pattern.toCharArray();
-
-        // next[i] stores the index of the next best partial match
-        int[] next = new int[pattern.length() + 1];
-        for (int i = 1; i < pattern.length(); i++) {
-            int j = next[i];
-
-            while (j > 0 && chars[j] != chars[i]) {
-                j = next[j];
-            }
-
-            if (j > 0 || chars[j] == chars[i]) {
-                next[i + 1] = j + 1;
+    /**
+     * Slow method of pattern matching
+     */
+    public boolean hasSubstring(char[] text, char[] pattern) {
+        int i = 0;
+        int j = 0;
+        int k = 0;
+        while (i < text.length && j < pattern.length) {
+            if (text[i] == pattern[j]) {
+                i++;
+                j++;
+            } else {
+                j = 0;
+                k++;
+                i = k;
             }
         }
-
-        for (int i = 0, j = 0; i < text.length(); i++) {
-            if (j < pattern.length() && text.charAt(i) == pattern.charAt(j)) {
-                if (++j == pattern.length()) {
-                    System.out.println("The pattern occurs with shift " + (i - j + 1));
-                }
-            } else if (j > 0) {
-                j = next[j];
-                i--;    // since `i` will be incremented in the next iteration
-            }
+        if (j == pattern.length) {
+            return true;
         }
+        return false;
     }
 
-    public static void main(String[] args) {
+    /**
+     * Compute temporary array to maintain size of suffix which is same as prefix
+     * Time/space complexity is O(size of pattern)
+     */
+    private int[] computeTemporaryArray(char pattern[]) {
+        int[] lps = new int[pattern.length];
+        int index = 0;
+        for (int i = 1; i < pattern.length; ) {
+            if (pattern[i] == pattern[index]) {
+                lps[i] = index + 1;
+                index++;
+                i++;
+            } else {
+                if (index != 0) {
+                    index = lps[index - 1];
+                } else {
+                    lps[i] = 0;
+                    i++;
+                }
+            }
+        }
+        return lps;
+    }
+
+    /**
+     * KMP algorithm of pattern matching.
+     */
+    public boolean KMP(char[] text, char[] pattern) {
+
+        int lps[] = computeTemporaryArray(pattern);
+        int i = 0;
+        int j = 0;
+        while (i < text.length && j < pattern.length) {
+            if (text[i] == pattern[j]) {
+                i++;
+                j++;
+            } else {
+                if (j != 0) {
+                    j = lps[j - 1];
+                } else {
+                    i++;
+                }
+            }
+        }
+        if (j == pattern.length) {
+            System.out.println("Pattern occur at index " + (i - j));
+            return true;
+        }
+        return false;
+    }
+
+    public static void main(String args[]) {
+
+        String str = "abcxabcdabcdabcy";
+        String subString = "abcdabcy";
+
         String text = "ABCABAABCABAC";
         String pattern = "CAB";
+        KMPAlgorithm ss = new KMPAlgorithm();
+        boolean result = ss.KMP(str.toCharArray(), subString.toCharArray());
+        System.out.println(result);
 
-        KMP(text, pattern);
+        boolean result2 = ss.KMP(text.toCharArray(), pattern.toCharArray());
+        System.out.println(result2);
     }
 }
