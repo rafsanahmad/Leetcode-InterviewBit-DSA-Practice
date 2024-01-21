@@ -7,6 +7,9 @@
 
 package javaclasses.Algorithm;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class KMPAlgorithm {
     //http://jakeboxer.com/blog/2009/12/13/the-knuth-morris-pratt-algorithm-in-my-own-words/
     /*KMP (Knuth Morris Pratt) is a  Pattern Searching algorithm
@@ -169,42 +172,43 @@ so we know there’s no match.
     /**
      * KMP algorithm of pattern matching.
      */
-    public boolean KMP(char[] text, char[] pattern) {
-
-        int lps[] = computeTemporaryArray(pattern);
+    public List<Integer> KMP(char[] text, char[] pattern) {
+        List<Integer> index = new ArrayList<>();
+        int[] lps = computeTemporaryArray(pattern);
         int i = 0;
         int j = 0;
-        while (i < text.length && j < pattern.length) {
+        while (i < text.length) {
             if (text[i] == pattern[j]) {
                 i++;
                 j++;
-            } else {
-                if (j != 0) {
-                    j = lps[j - 1];
-                } else {
-                    i++;
+            }
+            if (j == pattern.length) {
+                index.add(i - j);
+                j = lps[j - 1];
+            } else if (i < text.length) {
+                if (text[i] != pattern[j]) {
+                    if (j != 0) {
+                        j = lps[j - 1];
+                    } else {
+                        i++;
+                    }
                 }
             }
         }
-        if (j == pattern.length) {
-            System.out.println("Pattern occur at index " + (i - j));
-            return true;
-        }
-        return false;
+
+        return index;
     }
 
     public static void main(String args[]) {
 
-        String str = "abcxabcdabcdabcy";
-        String subString = "abcdabcy";
+        String str = "heyhihey";
+        String subString = "hey";
 
         String text = "ABCABAABCABAC";
         String pattern = "CAB";
         KMPAlgorithm ss = new KMPAlgorithm();
-        boolean result = ss.KMP(str.toCharArray(), subString.toCharArray());
-        System.out.println(result);
+        System.out.println(ss.KMP(str.toCharArray(), subString.toCharArray()));
 
-        boolean result2 = ss.KMP(text.toCharArray(), pattern.toCharArray());
-        System.out.println(result2);
+        System.out.println(ss.KMP(text.toCharArray(), pattern.toCharArray()));
     }
 }
