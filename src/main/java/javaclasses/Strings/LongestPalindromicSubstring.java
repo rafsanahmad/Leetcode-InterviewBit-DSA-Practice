@@ -29,44 +29,46 @@ Constraints:
 1 <= s.length <= 1000
 s consist of only digits and English letters.*/
 
-    public String expand(int low, int high, String str) {
-        String palindrome = "";
-        int maxLength = Integer.MIN_VALUE;
-        int len = str.length();
-        while (low >= 0 && high < len && str.charAt(low) == str.charAt(high)) {
-            int pLength = (high + 1) - low;
-            if (pLength > maxLength) {
-                maxLength = pLength;
-                palindrome = str.substring(low, high + 1);
-            }
-            low--;
-            high++;
+    class Substring {
+        int start;
+        int length;
+
+        Substring(int s, int l) {
+            this.start = s;
+            this.length = l;
         }
-        return palindrome;
+    }
+
+    public Substring expand(int left, int right, String s, Substring sub) {
+        int len = s.length();
+        while (left >= 0 && right < len && s.charAt(left) == s.charAt(right)) {
+            if (right - left + 1 > sub.length) {
+                sub.start = left;
+                sub.length = right - left + 1;
+            }
+            left--;
+            right++;
+        }
+
+        return sub;
     }
 
     public String longestPalindrome(String s) {
-        if (s.length() == 0) return "";
+        if (s == null || s.length() == 0) return "";
 
-        int maxLength = Integer.MIN_VALUE;
-        String res = "";
+        String result = "";
+
+        Substring sub = new Substring(0, 1);
         for (int i = 0; i < s.length(); i++) {
-            String oddPalindrome = expand(i, i, s);
-
-            if (oddPalindrome.length() > maxLength) {
-                maxLength = oddPalindrome.length();
-                res = oddPalindrome;
-            }
-
-            String evenPalindrome = expand(i, i + 1, s);
-
-            if (evenPalindrome.length() > maxLength) {
-                maxLength = evenPalindrome.length();
-                res = evenPalindrome;
-            }
-
+            // For even length palindrome
+            sub = expand(i, i + 1, s, sub);
+            // For odd length palindrome
+            sub = expand(i - 1, i + 1, s, sub);
         }
-        return res;
+
+        result = s.substring(sub.start, sub.start + sub.length);
+
+        return result;
     }
 
     public static void main(String[] args) {
