@@ -97,16 +97,19 @@ public class FlatToHierarchicalTree<T> {
     private static final int indent = 2;
 
     private String printTree(int increment) {
-        String s = "";
-        String inc = "";
-        for (int i = 0; i < increment; ++i) {
-            inc = inc + " ";
+        StringBuilder builder = new StringBuilder();
+
+        for (int i = 0; i < increment; i++) {
+            builder.append(" ");
         }
-        s = inc + head;
+        builder.append(head);
+
         for (FlatToHierarchicalTree<T> child : leafs) {
-            s += "\n" + child.printTree(increment + indent);
+            builder.append("\n");
+            builder.append(child.printTree(increment + indent));
         }
-        return s;
+
+        return builder.toString();
     }
 
     public static void main(String[] args) {
