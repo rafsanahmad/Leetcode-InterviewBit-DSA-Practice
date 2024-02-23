@@ -9,6 +9,7 @@ package javaclasses.Array;
 
 import java.util.Arrays;
 
+//Leetcode 31
 /*
 Implement next permutation, which rearranges numbers into the lexicographically next greater permutation of numbers.
 
@@ -27,101 +28,82 @@ Output: [1,2,3]
 Example 3:
 Input: nums = [1,1,5]
 Output: [1,5,1]
-* */
+*
 
-//Leetcode 31
+//Algorithm: res/next-permutation-algorithm.svg
+
+1. Initial sequence: 0,1,2,5,3,3,0
+2. FInd longest non-increasing suffix: 0,1,2,[5,3,3,0]
+3. Indentify pivot: 0,1,[2],5,3,3,0
+4. Find rightmost successor to pivot in the suffix: 0,1,[2],5,3,[3],0
+5. Swap the pivot: 0,1,3,[5,3,2,0]
+6. Reverse the suffix: 0,1,3,0,2,3,5
+7. Done
+
+*/
+
 public class NextPermutation {
 
     public void nextPermutation(int[] nums) {
-        int len = nums.length;
-        if (len <= 1) {
-            return;
-        }
-        int i = len - 2;
+        // pivot is the element just before the non-increasing (weakly decreasing) suffix
 
-        //Find the peak of the last ASC order
-        while (i >= 0 && nums[i + 1] <= nums[i]) {
-            i--;
+        int pivot = indexOfLastPeak(nums) - 1;
+        // paritions nums into [prefix pivot suffix]
+        if (pivot != -1) {
+            int nextPrefix = lastIndexOfGreater(nums, nums[pivot]); // in the worst case it's suffix[0]
+            // next prefix must exist because pivot < suffix[0],
+            // otherwise pivot would be part of suffix
+            swap(nums, pivot, nextPrefix); // this minimizes the change in prefix
         }
 
-        if (i >= 0) {
-            int j = nums.length - 1;
-            while (nums[j] <= nums[i]) {
-                j--;
-            }
-            swap(nums, i, j);
-        }
-        reverse(nums, i + 1);
+        reverseSuffix(nums, pivot + 1); // reverses the whole list if there was no pivot
     }
 
-    public void reverse(int[] nums, int start) {
-        int i = start, j = nums.length - 1;
-        while (i < j) {
-            swap(nums, i, j);
-            i++;
-            j--;
+    /**
+     * Find the last element which is a peak.
+     * In case there are multiple equal peaks, return the first of those.
+     *
+     * @return first index of last peak
+     */
+    int indexOfLastPeak(int[] nums) {
+        for (int i = nums.length - 1; i > 0; i--) {
+            if (nums[i] > nums[i - 1]) return i;
+        }
+        return 0;
+    }
+
+    /**
+     * @return last index where the {@code num > threshold} or -1 if not found
+     */
+    int lastIndexOfGreater(int[] nums, int threshold) {
+        for (int i = nums.length - 1; i >= 0; i--) {
+            if (nums[i] > threshold) return i;
+        }
+        return -1;
+    }
+
+    /**
+     * Reverse numbers starting from an index till the end.
+     */
+    void reverseSuffix(int[] nums, int start) {
+        int end = nums.length - 1;
+        while (start < end) {
+            swap(nums, start++, end--);
         }
     }
 
-    public void swap(int[] nums, int i, int j) {
+    void swap(int[] nums, int i, int j) {
         int temp = nums[i];
         nums[i] = nums[j];
         nums[j] = temp;
     }
 
-    //Method 2
-    public void nextPermutation2(int[] nums) {
-        int n = nums.length;
-        if (n == 1)
-            return;
-
-        int i = 1;
-        int lastInc = -1;
-        while (i < n) {    //Find the peak of last ASC order
-            if (nums[i] > nums[i - 1])
-                lastInc = i;
-            i += 1;
-        }
-
-        if (lastInc == -1) {   //Check if array is DSC
-            for (i = 0; i < n / 2; ++i)
-                swap(nums, i, n - i - 1);
-            return;
-        }
-        //Find element in the range (nums[lastInc-1] to nums[lastInc]) to the right
-        int mn = nums[lastInc];
-        int index = lastInc;
-        for (i = lastInc; i < n; ++i) {
-            if (nums[i] > nums[lastInc - 1] && nums[i] < nums[index]) {
-                index = i;
-            }
-        }
-        swap(nums, lastInc - 1, index);
-
-        partSort(nums, lastInc, n - 1);
-    }
-
-    // Function to sort the elements of the array
-    // from index a to index b
-    void partSort(int[] arr, int a, int b) {
-        // Variables to store start and end
-        // of the index range
-        int l = Math.min(a, b);
-        int r = Math.max(a, b);
-
-        // Sort the subarray from arr[l] to
-        // arr[r]
-        Arrays.sort(arr, l, r + 1);
-    }
 
     public static void main(String[] args) {
-
         NextPermutation perm = new NextPermutation();
         int[] arr = {1, 1, 5, 2};
         perm.nextPermutation(arr);
-        for (int i = 0; i < arr.length; i++) {
-            System.out.print(arr[i] + " ");
-        }
+        System.out.println(Arrays.toString(arr));
     }
 
 }
