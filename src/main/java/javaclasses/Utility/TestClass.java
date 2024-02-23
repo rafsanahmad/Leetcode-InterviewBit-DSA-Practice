@@ -12,6 +12,7 @@ public class TestClass {
     public static void testFunc(int[] arr) {
     }
 
+
     public static void main(String[] args) {
         TestClass solution = new TestClass();
     }

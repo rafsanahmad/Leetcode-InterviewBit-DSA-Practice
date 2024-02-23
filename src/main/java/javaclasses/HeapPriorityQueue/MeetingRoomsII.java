@@ -38,11 +38,6 @@ return the size of the pq as the result*/
         int start;
         int end;
 
-        Interval() {
-            start = 0;
-            end = 0;
-        }
-
         Interval(int s, int e) {
             start = s;
             end = e;
@@ -58,6 +53,7 @@ return the size of the pq as the result*/
                 return a.start - b.start;
             }
         });
+
         // sort the heap by end time (scheduled meeting)
         PriorityQueue<Interval> pq = new PriorityQueue<Interval>(intervals.length, new Comparator<Interval>() {
             @Override
