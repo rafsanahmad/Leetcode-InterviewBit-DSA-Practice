@@ -10,6 +10,7 @@ package javaclasses.HeapPriorityQueue;
 
 public class MaxMinHeapImplementation {
     //https://iq.opengenus.org/max-heap-min-heap/
+    //res/pq-with-heap.jpg
     /*Heap is a binary tree with two special properties: it must have all its nodes in specific order and its shape
     must be complete.
 
