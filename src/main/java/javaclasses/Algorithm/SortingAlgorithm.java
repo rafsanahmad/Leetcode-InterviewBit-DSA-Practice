@@ -31,27 +31,27 @@ Algorithmic Paradigm: Divide and Conquer*/
         while (i <= mid && j <= end) {
             if (Arr[i] <= Arr[j]) {
                 temp[k] = Arr[i];
-                k += 1;
-                i += 1;
+                k++;
+                i++;
             } else {
                 temp[k] = Arr[j];
-                k += 1;
-                j += 1;
+                k++;
+                j++;
             }
         }
 
         // add elements left in the first interval
         while (i <= mid) {
             temp[k] = Arr[i];
-            k += 1;
-            i += 1;
+            k++;
+            i++;
         }
 
         // add elements left in the second interval
         while (j <= end) {
             temp[k] = Arr[j];
-            k += 1;
-            j += 1;
+            k++;
+            j++;
         }
 
         // copy temp to original interval

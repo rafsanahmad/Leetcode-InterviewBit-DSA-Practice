@@ -96,7 +96,7 @@ Steps:
         for (int i = 1; i < minHeap.length; i++) {
             System.out.print(" " + minHeap[i]);
         }
-        System.out.println("");
+        System.out.println();
     }
 
     public void insert(int x) {
