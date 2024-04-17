@@ -157,6 +157,8 @@ Define an element class that holds element value, min value, and pointer to elem
         minStack.pop();
         System.out.println(minStack.top());    // return 0
         System.out.println(minStack.getMin()); // return -2
+        minStack.pop();
+        System.out.println(minStack.getMin());
 
         //Using approach 2
         minStack.push2(-2);

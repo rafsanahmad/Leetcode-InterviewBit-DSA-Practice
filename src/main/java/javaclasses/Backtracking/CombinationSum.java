@@ -36,6 +36,11 @@ Example 2:
 Input: candidates = [2,3,5], target = 8
 Output: [[2,2,2,2],[2,3,3],[3,5]]
 */
+
+    /*
+    Time complexity is O(N^target) where N is a length of candidates array.
+    Space complexity is O(target).
+    */
     public List<List<Integer>> combinationSum(int[] nums, int target) {
         List<List<Integer>> list = new ArrayList<>();
         Arrays.sort(nums);

@@ -80,7 +80,7 @@ It is guaranteed that all the employees can be informed.*/
             }
         }
 
-        Queue<int[]> queue = new LinkedList<int[]>();
+        Queue<int[]> queue = new LinkedList<>();
         queue.add(new int[]{headID, 0});
 
         while (!queue.isEmpty()) {

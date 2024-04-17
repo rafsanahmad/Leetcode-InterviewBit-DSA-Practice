@@ -69,6 +69,14 @@ At most 5 * 104 calls will be made to set, snap, and get.*/
         return map[index].floorEntry(snap_id).getValue();
     }
 
+    //Alternative get
+    public int get2(int index, int snap_id) {
+        for (int i = snap_id; i >= 0; i--)
+            if (map[index].get(i) != null)
+                return map[index].get(i);
+        return 0;
+    }
+
     public static void main(String[] args) {
         SnapshotArray snapshotArr = new SnapshotArray(3); // set the length to be 3
         snapshotArr.set(0, 5);  // Set array[0] = 5
