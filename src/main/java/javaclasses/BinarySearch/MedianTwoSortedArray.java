@@ -63,62 +63,70 @@ public class MedianTwoSortedArray {
     //Optimum Approach
     //Steps of the Algorithm
     /*
-1) Calculate the medians m1 and m2 of the input arrays ar1[] and ar2[] respectively.
-2) If m1 and m2 both are equal then we are done, and return m1 (or m2)
-3) If m1 is greater than m2, then median is present in one of the below two
-    subarrays.
-a) From first element of ar1 to m1 (ar1[0...|_n/2_|])
-b) From m2 to last element of ar2 (ar2[|_n/2_|...n-1])
-4) If m2 is greater than m1, then median is present in one of the below two
-    subarrays.
-a) From m1 to last element of ar1 (ar1[|_n/2_|...n-1])
-b) From first element of ar2 to m2 (ar2[0...|_n/2_|])
-5) Repeat the above process until size of both the subarrays becomes 2.
-6) If size of the two arrays is 2 then use below formula to get the median.
-Median = (max(ar1[0], ar2[0]) + min(ar1[1], ar2[1]))/2
+Algorithm:
+1. First, we have to make sure that the arr1[] is the smaller array. If not by default, we will
+just swap the arrays. Our main goal is to consider the smaller array as arr1[].
+2. Calculate the length of the left half: left = (n1+n2+1) / 2.
+3. Place the 2 pointers i.e. low and high: Initially, we will place the pointers.
+The pointer low will point to 0 and the high will point to n1(i.e. The size of arr1[]).
+4. Calculate the ‘mid1’ i.e. x and ‘mid2’ i.e. left-x: Now, inside the loop, we will calculate the value of ‘mid1’ using the following formula:
+mid1 = (low+high) // 2 ( ‘//’ refers to integer division)
+mid2 = left-mid1
+5. Calculate l1, l2, r1, and r2: Generally,
+l1 = arr1[mid1-1]
+l2 = arr2[mid2-1]
+r1 = arr1[mid1]
+r2 = arr2[mid2]
+6. The possible values of ‘mid1’ and ‘mid2’ might be 0 and n1 and n2 respectively.
+So, to handle these cases, we need to store some default values for these four variables.
+The default value for l1 and l2 will be INT_MIN and for r1 and r2, it will be INT_MAX.
+7. Eliminate the halves based on the following conditions:
+If l1 <= r2 && l2 <= r1: We have found the answer.
+If (n1+n2) is odd: Return the median = max(l1, l2).
+Otherwise: Return median = (max(l1, l2)+min(r1, r2)) / 2.0
+
+8. If l1 > r2: This implies that we have considered more elements from arr1[] than necessary.
+So, we have to take less elements from arr1[] and more from arr2[].
+In such a scenario, we should try smaller values of x. To achieve this, we will eliminate the
+right half (high = mid1-1).
+9. If l2 > r1: This implies that we have considered more elements from arr2[] than necessary.
+So, we have to take less elements from arr2[] and more from arr1[]. In such a scenario,
+we should try bigger values of x. To achieve this, we will eliminate the left half (low = mid1+1).
+10. Finally, outside the loop, we will include a dummy return statement just to avoid warnings
+or errors.
+The steps from 4-6 will be inside a loop and the loop will continue until low crosses high.
 */
+
+    /*
+    Time Complexity: O(log(min(n1,n2))), where n1 and n2 are the sizes of two given arrays.
+    Reason: We are applying binary search on the range [0, min(n1, n2)].
+    Space Complexity: O(1) as no extra space is used.
+    */
     public double findMedianSortedArrays(int[] nums1, int[] nums2) {
-        int total = nums1.length + nums2.length;
-        if (total % 2 == 0) {
-            return (getKth(nums1, 0, nums1.length - 1, nums2, 0, nums2.length - 1, total / 2)
-                    + getKth(nums1, 0, nums1.length - 1, nums2, 0, nums2.length - 1, total / 2 - 1)) / 2.0;
-        } else {
-            return getKth(nums1, 0, nums1.length - 1, nums2, 0, nums2.length - 1, total / 2);
+        int n1 = nums1.length, n2 = nums2.length;
+        //if n1 is bigger swap the arrays:
+        if (n1 > n2) return findMedianSortedArrays(nums2, nums1);
+
+        int n = n1 + n2; //total length
+        int left = (n1 + n2 + 1) / 2; //length of left half
+        //apply binary search:
+        int low = 0, high = n1;
+        while (low <= high) {
+            int mid1 = (low + high) / 2;
+            int mid2 = left - mid1;
+            //calculate l1, l2, r1 and r2;
+            int l1 = (mid1 > 0) ? nums1[mid1 - 1] : Integer.MIN_VALUE;
+            int l2 = (mid2 > 0) ? nums2[mid2 - 1] : Integer.MIN_VALUE;
+            int r1 = (mid1 < n1) ? nums1[mid1] : Integer.MAX_VALUE;
+            int r2 = (mid2 < n2) ? nums2[mid2] : Integer.MAX_VALUE;
+
+            if (l1 <= r2 && l2 <= r1) {
+                if (n % 2 == 1) return Math.max(l1, l2);
+                else return ((double) (Math.max(l1, l2) + Math.min(r1, r2))) / 2.0;
+            } else if (l1 > r2) high = mid1 - 1;
+            else low = mid1 + 1;
         }
-    }
-
-    private int getKth(int[] nums1, int i1, int j1, int[] nums2, int i2, int j2, int k) {
-        if (j1 < i1) {
-            return nums2[i2 + k];
-        }
-        if (j2 < i2) {
-            return nums1[i1 + k];
-        }
-
-        if (k == 0) {
-            return Math.min(nums1[i1], nums2[i2]);
-        }
-
-        int len1 = j1 - i1 + 1;
-        int len2 = j2 - i2 + 1;
-
-        int m1 = k * len1 / (len1 + len2);
-        int m2 = k - m1 - 1;
-
-        m1 += i1;
-        m2 += i2;
-
-        if (nums1[m1] < nums2[m2]) {
-            k = k - (m1 - i1 + 1);
-            j2 = m2;
-            i1 = m1 + 1;
-        } else {
-            k = k - (m2 - i2 + 1);
-            j1 = m1;
-            i2 = m2 + 1;
-        }
-
-        return getKth(nums1, i1, j1, nums2, i2, j2, k);
+        return 0; //dummy statement
     }
 
     public static void main(String[] args) {
@@ -126,6 +134,10 @@ Median = (max(ar1[0], ar2[0]) + min(ar1[1], ar2[1]))/2
         int[] ar1 = {1, 2};
         int[] ar2 = {3, 4};
         System.out.println(array.findMedianSortedArrays(ar1, ar2));
+
+        int[] a = {1, 4, 7, 10, 12};
+        int[] b = {2, 3, 6, 15};
+        System.out.println(array.findMedianSortedArrays(a, b));
     }
 
 }
