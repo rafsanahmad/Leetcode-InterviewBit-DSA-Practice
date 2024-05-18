@@ -35,7 +35,7 @@ s consists of lowercase English letters.*/
 
     public String reorganizeString(String s) {
         int len = s.length();
-        if (len <= 1) return "";
+        if (len <= 1) return s;
         HashMap<Character, Integer> map = new HashMap<>();
 
         for (char ch : s.toCharArray()) {
