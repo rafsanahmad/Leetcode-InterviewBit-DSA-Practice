@@ -7,9 +7,9 @@
 
 package javaclasses.Tree;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Stack;
+import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.Queue;
 
 public class SerializeDeserializeBinaryTree {
     //Leetcode 297
@@ -31,52 +31,50 @@ Input: root = [1,2,3,null,null,4,5]
 Output: [1,2,3,null,null,4,5]
     */
 
-    //Approach: Using Preorder Traversal
     // Encodes a tree to a single string.
-    public String serialize(TreeNode root) {
-        if (root == null) {
-            return null;
-        }
-        Stack<TreeNode> s = new Stack<>();
-        s.push(root);
+    public String splitter = ",";
+    public String nullNode = "NN";
+    StringBuilder builder;
 
-        List<String> l = new ArrayList<>();
-        while (!s.isEmpty()) {
-            TreeNode t = s.pop();
-            // If current node is NULL, store marker
-            if (t == null) {
-                l.add("#");
-            } else {
-                // Else, store current node and recur for
-                // its children
-                l.add("" + t.val);
-                s.push(t.right);  //Key point to note - to reverse the order while serializing
-                s.push(t.left);
-            }
-        }
-        return String.join(",", l);
+    public String serialize(TreeNode root) {
+        builder = new StringBuilder();
+        return buildString(builder, root);
     }
 
-    int index = 0;
+    //Pre-order traversal
+    public String buildString(StringBuilder sb, TreeNode node) {
+        if (node == null) {
+            sb.append(nullNode).append(splitter);
+            return sb.toString();
+        }
+
+        sb.append(node.val).append(splitter);
+        buildString(sb, node.left);
+        buildString(sb, node.right);
+
+        return sb.toString();
+    }
 
     // Decodes your encoded data to tree.
     public TreeNode deserialize(String data) {
-        if (data == null)
-            return null;
-        String[] arr = data.split(",");
-        return helper(arr);
+        Queue<String> queue = new LinkedList<>();
+        queue.addAll(Arrays.asList(data.split(splitter)));
+        return buildTree(queue);
     }
 
-    public TreeNode helper(String[] arr) {
-        if (arr[index].equals("#"))
+    public TreeNode buildTree(Queue<String> queue) {
+        if (queue.isEmpty())
             return null;
-        // create node with this item and recur for children
-        TreeNode root = new TreeNode(Integer.parseInt(arr[index]));
-        index++;
-        root.left = helper(arr);
-        index++;
-        root.right = helper(arr);
-        return root;
+
+        String v = queue.poll();
+        if (v.equals(nullNode)) {
+            return null;
+        }
+
+        TreeNode node = new TreeNode(Integer.parseInt(v));
+        node.left = buildTree(queue);
+        node.right = buildTree(queue);
+        return node;
     }
 
     // A simple inorder traversal used for testing the constructed tree

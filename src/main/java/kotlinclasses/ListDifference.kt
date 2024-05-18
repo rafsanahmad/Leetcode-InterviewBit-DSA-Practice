@@ -48,8 +48,7 @@ class ListDifference {
         val sum = list1 + list2
         val userOccurrences = HashMap<User, Int>()
         for (user in sum) {
-            val numberOfOccurrences = userOccurrences[user]
-            userOccurrences[user] = if (numberOfOccurrences == null) 1 else numberOfOccurrences + 1
+            userOccurrences[user] = userOccurrences.getOrDefault(user, 0) + 1;
         }
         var res3 = sum.filter { user -> userOccurrences[user] == 1 }
         println(res3)
