@@ -45,3 +45,21 @@ fun bingo(board: Array<IntArray>, inputs: IntArray): String {
     //Otherwise return -1
     return result
 }
+
+fun printFinalTemperature(
+    initialMeasurement: Double,
+    initialUnit: String,
+    finalUnit: String,
+    conversionFormula: (Double) -> Double
+) {
+    val finalMeasurement = String.format("%.2f", conversionFormula(initialMeasurement))
+    println("Conversion from $initialUnit to $finalUnit is $finalMeasurement")
+}
+
+fun main(args: Array<String>) {
+    printFinalTemperature(
+        20.0,
+        "C",
+        "F"
+    ) { it * 0.8 }
+}
