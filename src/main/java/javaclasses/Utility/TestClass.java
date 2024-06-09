@@ -12,7 +12,6 @@ public class TestClass {
     public void testFunc() {
     }
 
-
     public static void main(String[] args) {
         TestClass solution = new TestClass();
         solution.testFunc();
