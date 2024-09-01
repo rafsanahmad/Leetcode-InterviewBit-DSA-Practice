@@ -14,6 +14,6 @@ public class TestClass {
 
     public static void main(String[] args) {
         TestClass solution = new TestClass();
-        solution.testFunc();
+        //solution.testFunc();
     }
 }
