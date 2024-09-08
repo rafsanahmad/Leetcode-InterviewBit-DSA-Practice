@@ -55,6 +55,10 @@ Intuition: The intuition behind the approach is the same as finding the smaller 
 sides but in an optimized way using the concept of the next greater element and the next smaller
 element.*/
 
+    /*
+    Time Complexity: O( N )
+Space Complexity: O(3N) where 3 is for the stack, left small array and a right small array
+    */
     int largestRectangleArea(int[] heights) {
         int n = heights.length;
         Stack<Integer> st = new Stack<>();
@@ -91,10 +95,34 @@ element.*/
         return maxA;
     }
 
+
+    /*
+    Time Complexity: O( N ) + O (N)
+    Space Complexity: O(N)
+    */
+    int largestRectangleAreaSpaceOptimized(int[] heights) {
+        Stack<Integer> st = new Stack<>();
+        int maxA = 0;
+        int n = heights.length;
+        for (int i = 0; i <= n; i++) {
+            int h = i == n ? 0 : heights[i];
+            while (!st.empty() && (heights[st.peek()] >= h)) {
+                int height = heights[st.peek()];
+                st.pop();
+                int width = st.empty() ? i : i - st.peek() - 1;
+                maxA = Math.max(maxA, width * height);
+            }
+            st.push(i);
+        }
+        return maxA;
+    }
+
+
     public static void main(String[] args) {
         LargestRectangleHistogram histogram = new LargestRectangleHistogram();
         int[] arr = {2, 1, 5, 6, 2, 3, 1};
         System.out.println(histogram.largestareaBruteForce(arr));
         System.out.println(histogram.largestRectangleArea(arr));
+        System.out.println(histogram.largestRectangleAreaSpaceOptimized(arr));
     }
 }

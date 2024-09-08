@@ -31,19 +31,22 @@ Input: nums = [1,2,3,4,3]
 Output: [2,3,4,-1,4]*/
 
     public int[] nextGreaterElementsCircular(int[] nums) {
-        int[] output = new int[nums.length];
-        Arrays.fill(output, -1);
-
-        Stack<Integer> stack = new Stack<>();
-
-        for (int i = 0; i < 2 * nums.length - 1; i++) {
-            int index = i % nums.length;
-            while (!stack.empty() && nums[stack.peek()] < nums[index]) {
-                output[stack.pop()] = nums[index];
+        int n = nums.length;
+        int[] res = new int[n];
+        Stack<Integer> st = new Stack<>();
+        for (int i = 2 * n - 1; i >= 0; i--) {
+            while (!st.isEmpty() && st.peek() <= nums[i % n]) {
+                st.pop();
             }
-            stack.push(index);
+
+            if (i < n) {
+                if (!st.isEmpty()) res[i] = st.peek();
+                else res[i] = -1;
+            }
+
+            st.push(nums[i % n]);
         }
-        return output;
+        return res;
     }
 
     public static void main(String[] args) {
