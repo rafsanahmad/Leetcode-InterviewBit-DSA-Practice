@@ -7,6 +7,9 @@
 
 package javaclasses.Array;
 
+import java.util.Arrays;
+import java.util.Comparator;
+
 //Leetcode = 179
 /*
 Given a list of non-negative integers nums, arrange them such that they form the largest number.
@@ -32,29 +35,33 @@ Output: "10"
 public class LargestNumber {
 
     public String largestNumber(int[] nums) {
-        StringBuilder result = new StringBuilder();
-
-        for (int i = 0; i < nums.length; i++) {
-            for (int j = i + 1; j < nums.length; j++) {
-                String str1 = "" + nums[i] + nums[j];
-                String str2 = "" + nums[j] + nums[i];
-                //Swap two number if ji > ij
-                if (str2.compareTo(str1) > 0) {
-                    int temp = nums[i];
-                    nums[i] = nums[j];
-                    nums[j] = temp;
-                }
-            }
+        if (nums == null || nums.length == 0) {
+            return "";
         }
 
-        for (int i = 0; i < nums.length; i++) {
-            result.append(nums[i]);
+        int len = nums.length;
+        String[] str = new String[len];
+        StringBuilder builder = new StringBuilder();
+
+        for (int i = 0; i < len; i++) {
+            str[i] = String.valueOf(nums[i]);
         }
-        String replaceZero = result.toString().replaceAll("0", "");
-        if (replaceZero.length() == 0) {
+
+        Comparator<String> comparator = (o1, o2) -> {
+            String s1 = o1 + o2;
+            String s2 = o2 + o1;
+            return s2.compareTo(s1);
+        };
+
+        Arrays.sort(str, comparator);
+        if (str[0].charAt(0) == '0')
             return "0";
+
+        for (int i = 0; i < len; i++) {
+            builder.append(str[i]);
         }
-        return result.toString();
+
+        return builder.toString();
     }
 
     public static void main(String[] args) {
