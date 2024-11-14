@@ -1,12 +1,13 @@
 /*
  * *
  *  * Detect Cycle In Undirected Graph.java
- *  * Created by Rafsan Ahmad on 9/11/22, 6:34 PM
- *  * Copyright (c) 2022 . All rights reserved.
+ *  * Created by Rafsan Ahmad on 11/14/24, 10:11 PM
+ *  * Copyright (c) 2024 . All rights reserved.
+ *  *
  *
  */
 
-package javaclasses.Graph;
+package javaclasses.Graph.DFS;
 
 import java.util.Arrays;
 import java.util.LinkedList;

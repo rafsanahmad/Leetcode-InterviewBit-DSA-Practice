@@ -1,12 +1,13 @@
 /*
  * *
- *  * Detect Cycle in a Directed Graph.java
- *  * Created by Rafsan Ahmad on 8/5/22, 11:44 AM
- *  * Copyright (c) 2022 . All rights reserved.
+ *  * Detect Cycle In Directed Graph.java
+ *  * Created by Rafsan Ahmad on 11/14/24, 10:10 PM
+ *  * Copyright (c) 2024 . All rights reserved.
+ *  *
  *
  */
 
-package javaclasses.Graph;
+package javaclasses.Graph.DFS;
 
 import java.util.LinkedList;
 import java.util.List;
