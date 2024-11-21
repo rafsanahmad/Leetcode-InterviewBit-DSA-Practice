@@ -84,6 +84,7 @@ click.length == 2
 board[clickr][clickc] is either 'M' or 'E'.
 */
 
+    // DFS run faster
     public char[][] updateBoard(char[][] board, int[] click) {
         int rowLen = board.length;
         int colLen = board[0].length;
