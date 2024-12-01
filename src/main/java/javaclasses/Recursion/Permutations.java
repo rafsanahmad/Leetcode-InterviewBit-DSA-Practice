@@ -10,7 +10,7 @@ package javaclasses.Recursion;
 import java.util.ArrayList;
 import java.util.List;
 
-//https://www.programcreek.com/2013/02/leetcode-permutations-java
+//https://leetcode.com/problems/permutations
 //Leetcode 46
 /*
 * Given an array nums of distinct integers, return all the possible permutations.
@@ -27,16 +27,52 @@ Output: [[0,1],[1,0]]
 Example 3:
 Input: nums = [1]
 Output: [[1]]*/
-//Using Recursion
 public class Permutations {
+    //res/permutation_tree.jpg
+    //res/permutation_tree_2.jpg
 
+    private void recurPermute(int[] nums, List<Integer> perms, List<List<Integer>> ans, boolean[] freq) {
+        if (perms.size() == nums.length) {
+            ans.add(new ArrayList<>(perms));
+            return;
+        }
+        for (int i = 0; i < nums.length; i++) {
+            if (!freq[i]) {
+                freq[i] = true;
+                perms.add(nums[i]);
+                recurPermute(nums, perms, ans, freq);
+                perms.remove(perms.size() - 1);
+                freq[i] = false;
+            }
+
+        }
+    }
+
+    //Using Frequency array
+    /*
+     * Time Complexity: O(N! X N)
+     * Space Complexity: O(N)
+     * */
+    public List<List<Integer>> permuteUsingFrequency(int[] nums) {
+        List<List<Integer>> ans = new ArrayList<>();
+        List<Integer> perms = new ArrayList<>();
+        boolean[] freq = new boolean[nums.length];
+        recurPermute(nums, perms, ans, freq);
+        return ans;
+    }
+
+    // Using memory efficient way
+    /*
+     * Time Complexity: O(N! X N)
+     * Space Complexity: O(1)
+     * */
     public List<List<Integer>> permute(int[] nums) {
         List<List<Integer>> result = new ArrayList<>();
-        helper(0, nums, result);
+        recurPermute(0, nums, result);
         return result;
     }
 
-    private void helper(int start, int[] nums, List<List<Integer>> result) {
+    private void recurPermute(int start, int[] nums, List<List<Integer>> result) {
         if (start == nums.length - 1) {
             List<Integer> list = new ArrayList<>();
             for (int num : nums) {
@@ -48,7 +84,7 @@ public class Permutations {
 
         for (int i = start; i < nums.length; i++) {
             swap(nums, i, start);
-            helper(start + 1, nums, result);
+            recurPermute(start + 1, nums, result);
             swap(nums, i, start);
         }
     }
@@ -63,13 +99,10 @@ public class Permutations {
         Permutations perm = new Permutations();
         int[] arr = {1, 2, 3};
         List<List<Integer>> result = perm.permute(arr);
-        for (int i = 0; i < result.size(); i++) {
-            System.out.print("[");
-            for (int j = 0; j < result.get(i).size(); j++) {
-                System.out.print(result.get(i).get(j) + " ");
-            }
-            System.out.print("]");
-        }
+        System.out.println(result);
+
+        List<List<Integer>> result2 = perm.permuteUsingFrequency(arr);
+        System.out.println(result2);
     }
 
 }
