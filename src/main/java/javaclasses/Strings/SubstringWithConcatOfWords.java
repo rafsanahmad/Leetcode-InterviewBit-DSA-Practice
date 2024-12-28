@@ -70,40 +70,38 @@ Constraints:
 s and words[i] consist of lowercase English letters.*/
 
     public List<Integer> findSubstring(String s, String[] words) {
-        if (s == null || words == null || s.length() == 0 || words.length == 0) {
-            return new ArrayList<>();
-        }
-        Map<String, Integer> countMap = new HashMap<>();
+        Map<String, Integer> dict = new HashMap<>();
         for (String word : words) {
-            countMap.put(word, countMap.getOrDefault(word, 0) + 1);
+            dict.put(word, dict.getOrDefault(word, 0) + 1);
         }
 
-        List<Integer> res = new ArrayList<>();
-        int sLen = s.length();
-        int num = words.length;
-        int wordLen = words[0].length();
-
-        for (int i = 0; i <= sLen - num * wordLen; i++) {
-            String sub = s.substring(i, i + num * wordLen);
-            if (isSubStringPossible(sub, countMap, wordLen)) {
-                res.add(i);
-            }
+        List<Integer> result = new ArrayList<>();
+        int m = words.length, len = words[0].length();
+        for (int i = 0; i < len; ++i) {
+            traverse(s, i, dict, m, len, result);
         }
-
-        return res;
+        return result;
     }
 
-    private boolean isSubStringPossible(String sub, Map<String, Integer> countMap, int wordLen) {
-        Map<String, Integer> subMap = new HashMap<>();
-        for (int i = 0; i < sub.length(); i += wordLen) {
-            String sWord = sub.substring(i, i + wordLen);
-            subMap.put(sWord, subMap.getOrDefault(sWord, 0) + 1);
-
-            if (!countMap.containsKey(sWord) || subMap.get(sWord) > countMap.get(sWord)) {
-                return false;
+    private void traverse(String s, int start, Map<String, Integer> dict, int m, int len, List<Integer> result) {
+        Map<String, Integer> seen = new HashMap<>();
+        int i = start, j = start;
+        while (j + len <= s.length()) {
+            String word = s.substring(j, j + len);
+            if (!dict.containsKey(word)) {
+                seen = new HashMap<>();
+                i = j + len;
+                j = i;
+                continue;
             }
+            seen.put(word, seen.getOrDefault(word, 0) + 1);
+            while (seen.get(word) > dict.get(word)) {
+                seen.put(s.substring(i, i + len), seen.get(s.substring(i, i + len)) - 1);
+                i += len;
+            }
+            j += len;
+            if (j - i == m * len) result.add(i);
         }
-        return true;
     }
 
     public static void main(String[] args) {
