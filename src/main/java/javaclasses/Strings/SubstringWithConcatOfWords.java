@@ -69,7 +69,49 @@ Constraints:
 1 <= words[i].length <= 30
 s and words[i] consist of lowercase English letters.*/
 
+
     public List<Integer> findSubstring(String s, String[] words) {
+        Map<String, Integer> freq = new HashMap<>();
+        Map<String, Integer> curr;
+        for (String word : words) {
+            freq.put(word, freq.getOrDefault(word, 0) + 1);
+        }
+
+        int len = s.length();
+        int n = words.length;
+        int wordSize = words[0].length();
+        int windowSize = wordSize * n;
+
+        List<Integer> ans = new ArrayList<>();
+        for (int startPos = 0; startPos < wordSize; startPos++) { // Try all starting positions
+            int start = startPos;
+            do {
+                curr = new HashMap<>(freq); // Make a copy of freq map to edit
+                String currWord;
+                boolean matched = true; // Presume that match happened
+                for (int i = 0; i < n; i++) { // Find each word
+                    int wordStart = start + i * wordSize;
+                    if (wordStart + wordSize > len) {
+                        matched = false;
+                        break;
+                    }
+                    currWord = s.substring(wordStart, wordStart + wordSize); // Extract current word
+                    if (!curr.containsKey(currWord) || curr.get(currWord) == 0) { // Match word
+                        matched = false; // Current word did not match
+                        break;
+                    }
+                    curr.put(currWord, curr.get(currWord) - 1); // Remove word after having found
+                }
+                if (matched) { // Found match
+                    ans.add(start);
+                }
+                start += wordSize; // Sliding Window
+            } while (start + windowSize - 1 < len); // Bound check
+        }
+        return ans;
+    }
+
+    public List<Integer> findSubstringOptimized(String s, String[] words) {
         Map<String, Integer> dict = new HashMap<>();
         for (String word : words) {
             dict.put(word, dict.getOrDefault(word, 0) + 1);
@@ -96,7 +138,8 @@ s and words[i] consist of lowercase English letters.*/
             }
             seen.put(word, seen.getOrDefault(word, 0) + 1);
             while (seen.get(word) > dict.get(word)) {
-                seen.put(s.substring(i, i + len), seen.get(s.substring(i, i + len)) - 1);
+                String substring = s.substring(i, i + len);
+                seen.put(substring, seen.get(substring) - 1);
                 i += len;
             }
             j += len;
@@ -109,6 +152,8 @@ s and words[i] consist of lowercase English letters.*/
         String[] w1 = {"foo", "bar"};
         System.out.println(words.findSubstring("barfoothefoobarman", w1));
         System.out.println(words.findSubstring("foobarfoobar", w1));
+        System.out.println(words.findSubstringOptimized("barfoothefoobarman", w1));
+        System.out.println(words.findSubstringOptimized("foobarfoobar", w1));
 
         String[] w2 = {"a", "a"};
         System.out.println(words.findSubstring("aaa", w2));
