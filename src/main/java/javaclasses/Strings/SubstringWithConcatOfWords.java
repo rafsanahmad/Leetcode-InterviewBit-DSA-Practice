@@ -127,23 +127,23 @@ s and words[i] consist of lowercase English letters.*/
 
     private void traverse(String s, int start, Map<String, Integer> dict, int m, int len, List<Integer> result) {
         Map<String, Integer> seen = new HashMap<>();
-        int i = start, j = start;
-        while (j + len <= s.length()) {
-            String word = s.substring(j, j + len);
+        int left = start, right = start;
+        while (right + len <= s.length()) {
+            String word = s.substring(right, right + len);
             if (!dict.containsKey(word)) {
                 seen = new HashMap<>();
-                i = j + len;
-                j = i;
+                right += len;
+                left = right;
                 continue;
             }
             seen.put(word, seen.getOrDefault(word, 0) + 1);
             while (seen.get(word) > dict.get(word)) {
-                String substring = s.substring(i, i + len);
+                String substring = s.substring(left, left + len);
                 seen.put(substring, seen.get(substring) - 1);
-                i += len;
+                left += len;
             }
-            j += len;
-            if (j - i == m * len) result.add(i);
+            right += len;
+            if (right - left == m * len) result.add(left);
         }
     }
 
