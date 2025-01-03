@@ -8,7 +8,43 @@
 
 package javaclasses.DynamicProgramming;
 
+
+import java.util.Arrays;
+
 public class EditDistance {
+    //https://leetcode.com/problems/edit-distance/description/
+    /*
+    Given two strings word1 and word2, return the minimum number of operations required to
+    convert word1 to word2.
+
+You have the following three operations permitted on a word:
+
+Insert a character
+Delete a character
+Replace a character
+
+Example 1:
+Input: word1 = "horse", word2 = "ros"
+Output: 3
+Explanation:
+horse -> rorse (replace 'h' with 'r')
+rorse -> rose (remove 'r')
+rose -> ros (remove 'e')
+
+Example 2:
+Input: word1 = "intention", word2 = "execution"
+Output: 5
+Explanation:
+intention -> inention (remove 't')
+inention -> enention (replace 'i' with 'e')
+enention -> exention (replace 'n' with 'x')
+exention -> exection (replace 'n' with 'c')
+exection -> execution (insert 'u')
+
+Constraints:
+0 <= word1.length, word2.length <= 500
+word1 and word2 consist of lowercase English letters.
+*/
     /*The Levenshtein distance (or Edit distance) is a way of quantifying how different two strings are from one
     another by counting the minimum number of operations required to transform one string into the other.
 
@@ -89,59 +125,80 @@ dist[i][j] = | dist[i – 1][j – 1]                   when X[i-1] == Y[j-1]
 
 */
 
-    // Utility function to find the minimum of three numbers
-    public static int minimum(int a, int b, int c) {
-        return Integer.min(a, Integer.min(b, c));
+    //Top down-Memoization
+    int minDistanceUtil(String word1, String word2, int i, int j, int[][] dp) {
+        // Base cases
+        if (i < 0)
+            return j + 1;
+        if (j < 0)
+            return i + 1;
+
+        // If the result is already computed, return it
+        if (dp[i][j] != -1)
+            return dp[i][j];
+
+        // If the characters at the current positions match, no edit is needed
+        if (word1.charAt(i) == word2.charAt(j))
+            return dp[i][j] = minDistanceUtil(word1, word2, i - 1, j - 1, dp);
+
+            // Minimum of three choices:
+            // 1. Replace the character in S1 with the character in S2.
+            // 2. Delete the character in S1.
+            // 3. Insert the character from S2 into S1.
+        else
+            return dp[i][j] = 1 +
+                    Math.min(minDistanceUtil(word1, word2, i - 1, j - 1, dp),
+                            Math.min(minDistanceUtil(word1, word2, i - 1, j, dp),
+                                    minDistanceUtil(word1, word2, i, j - 1, dp)));
     }
 
-    // Function to find Levenshtein distance between string `X` and `Y`.
-    public static int dist(String X, String Y) {
-        // `m` and `n` is the total number of characters in `X` and `Y`, respectively
-        int m = X.length();
-        int n = Y.length();
+    int minDistanceRecursion(String word1, String word2) {
+        int m = word1.length();
+        int n = word2.length();
 
-        // For all pairs of `i` and `j`, `T[i, j]` will hold the Levenshtein distance
-        // between the first `i` characters of `X` and the first `j` characters of `Y`.
-        // Note that `T` holds `(m+1)×(n+1)` values.
+        int[][] dp = new int[m][n];
+        for (int[] row : dp)
+            Arrays.fill(row, -1);
 
-        int[][] T = new int[m + 1][n + 1];
+        // Call the recursive helper function
+        return minDistanceUtil(word1, word2, m - 1, n - 1, dp);
+    }
 
-        // we can transform source prefixes into an empty string by
-        // dropping all characters
+    //Bottom up-Tabulation
+    /*Time Complexity: O(M*N)
+    Space Complexity: O(M*N)
+    */
+    int minDistance(String word1, String word2) {
+        int m = word1.length();
+        int n = word2.length();
 
-        for (int i = 1; i <= m; i++) {
-            T[i][0] = i;                // (case 1)
+        int[][] dp = new int[m + 1][n + 1];
+
+        for (int i = 0; i <= m; i++) {
+            dp[i][0] = i;
+        }
+        for (int j = 0; j <= n; j++) {
+            dp[0][j] = j;
         }
 
-        // we can reach target prefixes from empty source prefix
-        // by inserting every character
-
-        for (int j = 1; j <= n; j++) {
-            T[0][j] = j;                // (case 1)
-        }
-
-        int cost;
-
-        // fill the lookup table in a bottom-up manner
+        // Fill the dp array using a bottom-up approach
         for (int i = 1; i <= m; i++) {
             for (int j = 1; j <= n; j++) {
-                if (X.charAt(i - 1) == Y.charAt(j - 1)) {   // (case 2)
-                    cost = 0;                           // (case 2)
+                if (word1.charAt(i - 1) == word2.charAt(j - 1)) {
+                    dp[i][j] = dp[i - 1][j - 1];
                 } else {
-                    cost = 1;                           // (case 3c)
+                    dp[i][j] = 1 + Math.min(dp[i - 1][j - 1],
+                            Math.min(dp[i - 1][j], dp[i][j - 1]));
                 }
-
-                T[i][j] = minimum(T[i - 1][j] + 1,      // deletion (case 3b)
-                        T[i][j - 1] + 1,                // insertion (case 3a)
-                        T[i - 1][j - 1] + cost);        // replace (case 2 + 3c)
             }
         }
 
-        return T[m][n];
+        return dp[m][n];
     }
 
     public static void main(String[] args) {
-        String X = "kitten", Y = "sitting";
-        System.out.print("The Levenshtein distance is " + dist(X, Y));
+        EditDistance editDistance = new EditDistance();
+        System.out.println(editDistance.minDistanceRecursion("horse", "ros"));
+        System.out.println(editDistance.minDistance("horse", "ros"));
     }
 }
