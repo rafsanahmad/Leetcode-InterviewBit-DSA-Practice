@@ -9,6 +9,7 @@
 
 package kotlinclasses.Concepts
 
+import kotlinclasses.Concepts.Constructors.Child
 import kotlinclasses.Concepts.Constructors.Person
 
 class Constructors {
@@ -40,6 +41,22 @@ c. Must call the primary constructor (if present) using this(...).
             println("Person Created: $name is $age years old")
         }
     }
+
+    open class Parent(val name: String) {
+        constructor() : this("Default") {
+            println("Parent secondary constructor")
+        }
+
+        init {
+            println("Parent primary constructor: Name is $name")
+        }
+    }
+
+    class Child : Parent {
+        constructor() : super("John") {
+            println("Child constructor")
+        }
+    }
 }
 
 fun main() {
@@ -47,4 +64,10 @@ fun main() {
     val person2 = Person("Bob", 29)
     // Output:
     // Person Created: Bob is 29 years old
+
+    //Constructor order
+    val child = Child()
+    //Output:
+    //Parent primary constructor: Name is John
+    //Child constructor
 }

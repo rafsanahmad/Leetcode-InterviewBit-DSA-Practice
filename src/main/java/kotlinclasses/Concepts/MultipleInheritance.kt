@@ -30,9 +30,23 @@ class MultipleInheritance {
             super<A>.show() // Explicitly choosing A's implementation
         }
     }
+
+
+    open class Parent(value: Int = 3)
+    class Child1(value1: Int, value2: Int) : Parent(value1)
+    class Child2 : Parent()
+    class Child3() : Parent(2)
+    class Child4 : Parent {
+        constructor(value: Int) : super(value)
+    }
 }
 
 fun main() {
     val obj = C()
     obj.show() // Output: "From A"
+
+    val child1 = MultipleInheritance.Child1(2, 4)
+    val child2 = MultipleInheritance.Child2()
+    val child3 = MultipleInheritance.Child3()
+    val child4 = MultipleInheritance.Child4(5)
 }

@@ -141,7 +141,55 @@ class Shared {
 }
 
 fun printStudents(vararg students: String) {
-    for(student in students) println(student)
+    for (student in students) println(student)
+}
+
+class myClass {
+    private var myValue = 1
+    var myProp: Int
+        get() = this.myValue + 1
+        set(value) {
+            myValue = if (value > 2) value else 21
+        }
+}
+
+class Reflection {
+    fun hello() = println("Hi There!")
+}
+
+data class Employee(
+    val name: String,
+    var department: String
+) {
+    var age: Int = 0
+    var thisDepartment: String = department
+}
+
+fun stringOperation() {
+    val testString = "expanded"
+    println(testString.filter { it.toString().contains("and") })
+    println(testString.drop(3).dropLast(3)) //an
+    println(testString.chunked(3)[2]) //ed
+    println(testString.substring(3, 6)) //and
+    println(testString.subSequence(3, 6)) //and
+}
+
+class myShelf {
+    class myBook(val Shelf: Int = 0, val Position: Int = 0) {
+        fun findBook(): String {
+            return "Book is on shelf $Shelf, position $Position."
+        }
+    }
+}
+
+fun loopLabel() {
+    outerloop@ for (x in 1..3) {
+        innerloop@ for (y in 1..3) {
+            if (x * y % 4 == 0)
+                continue@outerloop
+            print((x * y).toString() + "")
+        }
+    }
 }
 
 fun main(args: Array<String>) {
@@ -289,10 +337,41 @@ fun main(args: Array<String>) {
     pool.shutdown()
 
     //Quiz 20: Sequence
-    val lessThan99 = generateSequence(1){ if (it < 99) it + 1 else null }.toList()
+    val lessThan99 = generateSequence(1) { if (it < 99) it + 1 else null }.toList()
     println(lessThan99)
 
     //Quiz 21: Vararg
     val students = arrayOf("Abel", "Bill", "Cindy", "Darla")
     printStudents(*students)
+
+    //Quiz 22: Reflection
+    val reflection = Reflection::class
+    println(reflection.qualifiedName) //kotlinclasses.OutputQuiz.Reflection
+    println(reflection.simpleName) //Reflection
+    println(reflection.constructors) //[fun <init>(): kotlinclasses.OutputQuiz.Reflection]
+
+    //Quiz 23: Data String ToString()
+    //The generated toString() method for a data class includes all properties declared in
+    // the primary constructor in the order they appear
+    val newHire = Employee("EmpA", "IT")
+    newHire.age = 24
+    newHire.thisDepartment = "Accounting"
+    println(newHire.toString()) //Employee(name=EmpA, department=IT)
+
+    //Quiz 24: String operation
+    stringOperation()
+
+    //Quiz 25: Nested class
+    val aBook = myShelf.myBook(1, 2)
+    println(aBook.findBook()) //Book is on shelf 1, position 2.
+
+    //Quiz 26: Loop Label
+    println(loopLabel()) //1232369
+
+    //Quiz 27: Kotlin Custom property get() set()
+    var test = myClass()
+    test.myProp = 1
+    println(test.myProp) //22
+    test.myProp += 1
+    println(test.myProp) //24
 }

@@ -72,6 +72,12 @@ Usage	General-purpose	Optimized for single-value types
     inline fun executeTask(crossinline task: () -> Unit) {
         Thread { task() }.start()
     }
+
+    inline fun <reified T : Number> append(arr: Array<T>, add: T): Array<T> {
+        val temp: MutableList<T> = arr.toMutableList()
+        temp.add(add)
+        return temp.toTypedArray()
+    }
 }
 
 fun main() {
@@ -93,4 +99,8 @@ fun main() {
     )
 
     inlineclassFunctions.executeTask { println("Running in a new thread!") }
+
+    var start = arrayOf(1, 2, 3)
+    start = inlineclassFunctions.append(start, 4)
+    println(start[3]) //4
 }

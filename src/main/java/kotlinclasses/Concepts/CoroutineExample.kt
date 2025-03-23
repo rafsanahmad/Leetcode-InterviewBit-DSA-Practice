@@ -93,9 +93,25 @@ class CoroutineExample {
         return message
     }
 
+    suspend fun function5() {
+        GlobalScope.launch {
+            delay(1000)
+            val sum1 = async {
+                8 % 2
+            }
+
+            val sum2 = async { 6 / 2 }
+            println("Calculating sum")
+            val total = sum1.await() + sum2.await()
+            println("Sum is $total")
+        }
+
+        delay(2000)
+        println("I am here")
+    }
 }
 
-fun main(args: Array<String>) {
+fun main(args: Array<String>) = runBlocking {
     // Sequential execution.
     var time = measureTimeMillis {
         val one = CoroutineExample().meaninglessCounter()
@@ -104,19 +120,24 @@ fun main(args: Array<String>) {
     }
     println("Sequential completed in $time ms")
 
-    val example = CoroutineExample()
-    example.coroutineTest()
-    //Launch
-    example.coroutineLaunch()
-    //Async
-    GlobalScope.launch { example.coroutineAsync() }
     // Concurrent execution.
-    /*var time2 = measureTimeMillis {
+    var time2 = measureTimeMillis {
         val one = async { CoroutineExample().meaninglessCounter() }
         val two = async { CoroutineExample().meaninglessCounter() }
         runBlocking {
             println("The answer is ${one.await() + two.await()}")
         }
     }
-    println("Concurrent completed in $time2 ms\n")*/
+    println("Concurrent completed in $time2 ms\n")
+
+    val example = CoroutineExample()
+    example.coroutineTest()
+    //Launch
+    example.coroutineLaunch()
+    //Async
+    val job = GlobalScope.launch {
+        example.coroutineAsync()
+        example.function5()
+    }
+    job.join() // Wait for the coroutine to finish
 }
