@@ -140,6 +140,9 @@ class Shared {
     }
 }
 
+fun printStudents(vararg students: String) {
+    for(student in students) println(student)
+}
 
 fun main(args: Array<String>) {
     //Quiz 1
@@ -285,4 +288,11 @@ fun main(args: Array<String>) {
     }
     pool.shutdown()
 
+    //Quiz 20: Sequence
+    val lessThan99 = generateSequence(1){ if (it < 99) it + 1 else null }.toList()
+    println(lessThan99)
+
+    //Quiz 21: Vararg
+    val students = arrayOf("Abel", "Bill", "Cindy", "Darla")
+    printStudents(*students)
 }
