@@ -8,6 +8,7 @@
 package javaclasses.ArrayList;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
@@ -43,12 +44,12 @@ public class GroupAnagrams {
 
         int len = strs.length;
         for (int i = 0; i < len; i++) {
-            char[] arr = new char[26];
+            int[] arr = new int[26];
             for (int j = 0; j < strs[i].length(); j++) {
                 arr[strs[i].charAt(j) - 'a']++;
             }
 
-            String val = new String(arr);
+            String val = Arrays.toString(arr);
 
             if (map.containsKey(val)) {
                 map.get(val).add(strs[i]);
@@ -67,12 +68,6 @@ public class GroupAnagrams {
     public static void main(String[] args) {
         GroupAnagrams ga = new GroupAnagrams();
         List<List<String>> result = ga.groupAnagrams(new String[]{"eat", "tea", "tan", "ate", "nat", "bat"});
-        for (int i = 0; i < result.size(); i++) {
-            System.out.print("[");
-            for (int j = 0; j < result.get(i).size(); j++) {
-                System.out.print(result.get(i).get(j) + " ");
-            }
-            System.out.print("]");
-        }
+        System.out.println(result);
     }
 }
