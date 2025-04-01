@@ -103,9 +103,13 @@ What's interesting to note here is the last line of the code :
 return max(root.value, leftPath, rightPath);
 Wondering why did we do that ?
 
-Well, we know that we did all the calculations possible if the tree only consists of the current node as root in any possible recursion cycle. And the result of that cycle would have been stored in the result variable.
-But, what if the current node is just a child of it's parent. Then it needs to return a value, such that the root had to be part of the answer.
-So if the root has to be part of the answer, it should return what's the maximum value it can return if it's part of it.
+Well, we know that we did all the calculations possible if the tree only consists of the current
+node as root in any possible recursion cycle. And the result of that cycle would have been stored
+in the result variable.
+But, what if the current node is just a child of it's parent. Then it needs to return a value,
+such that the root had to be part of the answer.
+So if the root has to be part of the answer, it should return what's the maximum value it can
+return if it's part of it.
 That would be either of the three cases here :
 
 The root iself : 20
