@@ -1,6 +1,6 @@
 /*
  * *
- *  * LRUCache.kt
+ *  * LRU Cache.kt
  *  * Created by Rafsan Ahmad on 3/15/25, 7:56PM
  *  * Copyright (c) 2025 . All rights reserved.
  *  *
@@ -17,31 +17,35 @@ class LRUCache {
 
     var head: Node? = null
     var tail: Node? = null
-    var map: HashMap<Int, Node> = HashMap()
+    var map = HashMap<Int, Node>()
 
     fun solution(n: Array<String>): Array<String> {
         val result = ArrayList<String>()
-        if (n.size == 0) {
+        if (n.isEmpty()) {
             return result.toTypedArray()
         }
-        for (i in 0..n.size) {
+        for (i in 0..<n.size) {
             val values = n[i].split(" ")
             val command = n[i].split(" ")[0]
             when (command) {
                 "add" -> {
                     put(values[1].toInt(), values[2].toInt())
                 }
+
                 "get" -> {
                     val value = getValue(values[1].toInt())
                     result.add(value.toString())
                 }
+
                 "remove" -> {
                     val value = removeValue(values[1].toInt())
                     result.add(value.toString())
                 }
+
                 "exit" -> {
                     return result.toTypedArray()
                 }
+
                 "evict" -> {
                     removeEldestEntry()
                 }
@@ -52,86 +56,70 @@ class LRUCache {
 
     fun put(key: Int, value: Int) {
         if (map.containsKey(key)) {
-            val t = map[key]
-            t?.value = value
-            //move to tail
-            if (t != null) {
-                removeNode(t)
-            }
-            if (t != null) {
-                insertNode(t)
+            val node = map[key]
+            node?.let {
+                it.value = value
+                //move to tail
+                removeNode(it)
+                insertNode(it)
             }
         } else {
-            //add to tail
-            val node = Node(key, value)
-            insertNode(node)
-            map[key] = node
+            //Create new node and add to tail
+            val newNode = Node(key, value)
+            insertNode(newNode)
+            map[key] = newNode
         }
     }
 
     fun getValue(key: Int): Int {
-        if (map[key] == null) {
-            return -1
+        map[key]?.let {
+            removeNode(it)
+            insertNode(it)
+            return it.value
         }
-        //mode to tail
-        val t = map[key]
-        if (t != null) {
-            removeNode(t)
-        }
-        if (t != null) {
-            insertNode(t)
-        }
-        if (t != null) {
-            return t.value
+        return -1
+    }
+
+    fun removeNode(node: Node) {
+        if (node.prev != null) {
+            node.prev?.next = node.next
         } else {
-            return -1
+            //Head is remove node
+            //update head
+            head = node.next
+        }
+        if (node.next != null) {
+            node.next?.prev = node.prev
+        } else {
+            //Tail is remove node
+            //Update tail
+            tail = node.prev
         }
     }
 
-    fun removeNode(n: Node) {
-        if (n.prev != null) {
-            n.prev?.next = n.next
-        } else {
-            head = n.next
-        }
-        if (n.next != null) {
-            n.next?.prev = n.prev
-        } else {
-            tail = n.prev
-        }
-
-    }
-
-    fun insertNode(n: Node) {
-        if (tail != null) {
-            tail?.next = n
-        }
-        n.prev = tail
-        n.next = null
-        tail = n
+    fun insertNode(node: Node) {
+        tail?.next = node
+        node.prev = tail
+        node.next = null
+        tail = node
         if (head == null) {
-            head = tail
+            head = node
         }
     }
 
     fun removeValue(key: Int): Int {
-        if (map[key] == null) {
-            return -1
+        map[key]?.let {
+            removeNode(it)
+            return it.value
         }
-        val node = map[key]
-        if (node != null) {
-            removeNode(node)
-            return node.value
-        } else {
-            return -1
-        }
+        return -1
     }
 
     fun removeEldestEntry() {
         //delete head
-        if (head != null) {
-            map.remove(head?.key)
-            removeNode(head!!)
+        head?.let {
+            map.remove(it.key)
+            removeNode(it)
         }
     }
 }
@@ -140,7 +128,7 @@ fun main(args: Array<String>) {
     var str = arrayOf("add 5 3", "add 1 2", "get 5", "evict", "get 1", "remove 5", "exit");
     val kt = LRUCache()
     val result = kt.solution(str)
-    for (i in 0..result.size - 1) {
-        System.out.println(result[i]);
+    for (i in 0..<result.size) {
+        println(result[i]);
     }
 }
