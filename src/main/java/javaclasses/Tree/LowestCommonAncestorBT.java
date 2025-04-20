@@ -7,6 +7,17 @@
 
 package javaclasses.Tree;
 
+class LCANode {
+    public int val;
+    public LCANode left;
+    public LCANode right;
+    public LCANode parent;
+
+    LCANode(int v) {
+        this.val = v;
+    }
+};
+
 public class LowestCommonAncestorBT {
     //Leetcode 236
     /*Given a binary tree, find the lowest common ancestor (LCA) of two given nodes in the tree.
@@ -47,6 +58,15 @@ Example 3:
 Input: root = [1,2], p = 1, q = 2
 Output: 1
 */
+    /*Intution
+
+There are three possible scenarios in this:
+
+Case 1: A node can have p in left and right in q (or vice versa)
+Case 2: A node can be p and have left in q
+Case 3: A node can be q and have right in p
+
+*/
     //Lowest Common Ancestor using post order traversal
     public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
         if (root == null || root == p || root == q) {
@@ -56,14 +76,42 @@ Output: 1
         TreeNode leftNode = lowestCommonAncestor(root.left, p, q);
         TreeNode rightNode = lowestCommonAncestor(root.right, p, q);
 
+        // if we got answers from both left and right. It means we have found either p or q in
+        // both parts of subtree.
+        // Since we are doing dfs approach, which means going in depth first, this node would be
+        // the LOWEST common ancestor
         if (leftNode != null && rightNode != null) {
             return root;
         }
+
+        // if we have found answer in right, then that would be LCA. Refer to Case 2 above
         if (leftNode == null) {
             return rightNode;
         } else {
+            //Similarly for left, Case 3
             return leftNode;
         }
+    }
+
+    //Lowest common ancestor between 2 nodes without root node given
+    public LCANode lowestCommonAncestor(LCANode firstNode, LCANode secondNode) {
+        // Initialize two pointers for traversing the ancestors of the given nodes.
+        LCANode pointerA = firstNode;
+        LCANode pointerB = secondNode;
+
+        // Traverse the ancestor chain of both nodes until they meet.
+        while (pointerA != pointerB) {
+            // If pointerA has reached the root (parent is null), start it at secondNode,
+            // otherwise, move it to its parent.
+            pointerA = pointerA.parent == null ? secondNode : pointerA.parent;
+
+            // If pointerB has reached the root (parent is null), start it at firstNode,
+            // otherwise, move it to its parent.
+            pointerB = pointerB.parent == null ? firstNode : pointerB.parent;
+        }
+
+        // When pointerA and pointerB meet, we have found the LCA.
+        return pointerA;
     }
 
     public static void main(String[] args) {
