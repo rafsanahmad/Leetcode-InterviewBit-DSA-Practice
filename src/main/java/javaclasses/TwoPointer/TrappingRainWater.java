@@ -57,9 +57,45 @@ public class TrappingRainWater {
         return result;
     }
 
+    //Using Pre-computed left/right max
+    //Input: [4,2,0,3,2,5]
+    //L=[4,4,4,4,4,5]
+    //R=[5,5,5,5,5,5]
+    public int trap2(int[] height) {
+        if (height.length == 0) return 0;
+
+        int result = 0;
+        int size = height.length;
+        int[] leftMax = new int[size];
+        int[] rightMax = new int[size];
+
+        int curMax = 0;
+        for (int i = 0; i < size; i++) {
+            curMax = Math.max(curMax, height[i]);
+            leftMax[i] = curMax;
+        }
+
+        curMax = 0;
+        for (int j = size - 1; j >= 0; j--) {
+            curMax = Math.max(curMax, height[j]);
+            rightMax[j] = curMax;
+        }
+
+        for (int i = 0; i < size; i++) {
+            int min = Math.min(leftMax[i], rightMax[i]);
+            if (min > height[i]) {
+                result += min - height[i];
+            }
+        }
+
+        return result;
+    }
+
+
     public static void main(String[] args) {
         TrappingRainWater water = new TrappingRainWater();
         int[] height = {4, 2, 0, 3, 2, 5};
         System.out.println(water.trap(height));
+        System.out.println(water.trap2(height));
     }
 }
