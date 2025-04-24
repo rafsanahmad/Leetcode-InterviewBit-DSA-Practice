@@ -1,13 +1,13 @@
 /*
  * *
- *  * GroupAnagrams.kt
+ *  * Group Anagrams.kt
  *  * Created by Rafsan Ahmad on 3/31/25, 2:26PM
  *  * Copyright (c) 2025 . All rights reserved.
  *  *
  *
  */
 
-package kotlinclasses.Problems
+package kotlinclasses.Strings
 
 class GroupAnagrams {
     //https://leetcode.com/problems/group-anagrams/
