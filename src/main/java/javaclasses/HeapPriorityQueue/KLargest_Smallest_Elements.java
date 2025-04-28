@@ -59,75 +59,51 @@ Explanation 2:
  The three largest elements of A are 11, 4 and 6
 */
 
-    public int[] K_Largest(int[] A, int B) {
-        // Creating Min Heap for given array with only k elements
-        // Create min heap with priority queue
-        PriorityQueue<Integer> minHeap = new PriorityQueue<>();
-        int[] result = new int[B];
+    //Time complexity: O(n log k)
+    public int[] K_Largest(int[] A, int k) {
+        // Min-heap with size k to keep track of the k largest elements
+        PriorityQueue<Integer> minHeap = new PriorityQueue<>(k);
 
-        for (int i = 0; i < B; i++) {
-            minHeap.add(A[i]);
-        }
+        // Iterate through the array
+        for (int num : A) {
+            // Add element to heap
+            minHeap.add(num);
 
-        // Loop For each element in array after the kth element
-        for (int i = B; i < A.length; i++) {
-
-            // If current element is smaller than minimum ((top element of  the minHeap) element, do nothing
-            // and continue to next element
-            if (minHeap.peek() > A[i])
-                continue;
-
-                // Otherwise Change minimum element (top element of the minHeap) to current element by polling out
-                // the top element of the minHeap
-            else {
+            // If heap size exceeds k, remove the smallest element (root of the heap)
+            if (minHeap.size() > k) {
                 minHeap.poll();
-                minHeap.add(A[i]);
             }
         }
 
-        // Now min heap contains k maximum elements, Iterate and print
-        Iterator iterator = minHeap.iterator();
-        int index = 0;
-
-        while (iterator.hasNext()) {
-            result[index++] = (int) iterator.next();
+        // Prepare result array to store the k largest elements
+        int[] result = new int[k];
+        for (int i = 0; i < k; i++) {
+            result[i] = minHeap.poll();  // Extract elements from the heap
         }
 
         return result;
     }
 
-    public int[] K_Smallest(int[] A, int B) {
-        // Creating Max Heap for given array with only k elements
-        // Create Max heap with priority queue
-        PriorityQueue<Integer> maxHeap = new PriorityQueue<>((a, b) -> b - a);
-        int[] result = new int[B];
+    //Time complexity: O(n log k)
+    public int[] K_Smallest(int[] A, int k) {
+        // Max Heap with size k to keep track of the k largest elements
+        PriorityQueue<Integer> maxHeap = new PriorityQueue<>(k, (a, b) -> b - a); // Max-heap
 
-        for (int i = 0; i < B; i++) {
-            maxHeap.add(A[i]);
-        }
+        // Iterate through the array
+        for (int num : A) {
+            // Add element to heap
+            maxHeap.add(num);
 
-        // Loop For each element in array after the kth element
-        for (int i = B; i < A.length; i++) {
-
-            // If current element is greater than maximum ((top element of  the maxHeap) element, do nothing
-            // and continue to next element
-            if (maxHeap.peek() < A[i])
-                continue;
-
-                // Otherwise Change maximum element (top element of the maxHeap) to current element by polling out
-                // the top element of the maxHeap
-            else {
+            // If heap size exceeds k, remove the smallest element (root of the heap)
+            if (maxHeap.size() > k) {
                 maxHeap.poll();
-                maxHeap.add(A[i]);
             }
         }
 
-        // Now max heap contains k maximum elements, Iterate and print
-        Iterator iterator = maxHeap.iterator();
-        int index = 0;
-
-        while (iterator.hasNext()) {
-            result[index++] = (int) iterator.next();
+        // Prepare result array to store the k largest elements
+        int[] result = new int[k];
+        for (int i = 0; i < k; i++) {
+            result[i] = maxHeap.poll();  // Extract elements from the heap
         }
 
         return result;
