@@ -1,13 +1,13 @@
 /*
  * *
- *  * MapVsFlatMap.kt
+ *  * Map Vs FlatMap.kt
  *  * Created by Rafsan Ahmad on 3/15/25, 7:51PM
  *  * Copyright (c) 2025 . All rights reserved.
  *  *
  *
  */
 
-package kotlinclasses.Hashing
+package kotlinclasses.HashTable
 
 import java.util.*
 import java.util.stream.Collectors

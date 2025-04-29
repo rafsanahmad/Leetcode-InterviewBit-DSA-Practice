@@ -7,7 +7,7 @@
  *
  */
 
-package javaclasses.Hashing;
+package javaclasses.HashTable;
 
 public class DesignHashMap {
     /*Design a HashMap without using any built-in hash table libraries.

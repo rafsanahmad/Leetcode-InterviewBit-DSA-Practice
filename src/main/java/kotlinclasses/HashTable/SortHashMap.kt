@@ -1,12 +1,12 @@
 /*
  * *
- *  * SortHashMap.kt
+ *  * Sort HashMap.kt
  *  * Created by Rafsan Ahmad on 10/9/22, 9:35 PM
  *  * Copyright (c) 2022 . All rights reserved.
  *
  */
 
-package kotlinclasses.Hashing
+package kotlinclasses.HashTable
 
 import java.util.*
 

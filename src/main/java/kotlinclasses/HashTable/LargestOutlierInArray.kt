@@ -7,7 +7,7 @@
  *
  */
 
-package kotlinclasses.Hashing
+package kotlinclasses.HashTable
 
 class LargestOutlierInArray {
     //https://leetcode.com/problems/identify-the-largest-outlier-in-an-array/description/

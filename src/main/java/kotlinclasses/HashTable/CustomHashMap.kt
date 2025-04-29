@@ -1,13 +1,13 @@
 /*
  * *
- *  * CustomHashMap.kt
+ *  * Custom HashMap.kt
  *  * Created by Rafsan Ahmad on 3/15/25, 7:48PM
  *  * Copyright (c) 2025 . All rights reserved.
  *  *
  *
  */
 
-package kotlinclasses.Hashing
+package kotlinclasses.HashTable
 
 import kotlin.math.abs
 

@@ -1,12 +1,12 @@
 /*
  * *
- *  * ContinuousSubarraySum.java
+ *  * Continuous Subarray Sum.java
  *  * Created by Rafsan Ahmad on 12/16/21, 1:47 PM
  *  * Copyright (c) 2021 . All rights reserved.
  *
  */
 
-package javaclasses.Hashing;
+package javaclasses.HashTable;
 
 import java.util.HashMap;
 import java.util.Map;

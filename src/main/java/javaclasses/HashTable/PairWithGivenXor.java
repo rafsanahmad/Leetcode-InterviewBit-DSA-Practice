@@ -5,7 +5,7 @@
  *
  */
 
-package javaclasses.Hashing;
+package javaclasses.HashTable;
 
 import java.util.HashMap;
 import java.util.Map;
