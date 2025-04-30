@@ -1,6 +1,6 @@
 /*
  * *
- *  * KotlinSequence.kt
+ *  * Kotlin Sequence.kt
  *  * Created by Rafsan Ahmad on 3/15/25, 7:49PM
  *  * Copyright (c) 2025 . All rights reserved.
  *  *
@@ -39,7 +39,7 @@ class KotlinSequence {
             }
             .map {
                 println("map: $it")
-                it.toUpperCase()
+                it.uppercase()
 
             }
             .take(2)
@@ -56,7 +56,7 @@ class KotlinSequence {
             }
             .map {
                 println("map: $it")
-                it.toUpperCase()
+                it.uppercase()
 
             }
             .take(2)

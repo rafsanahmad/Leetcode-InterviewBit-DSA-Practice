@@ -56,11 +56,37 @@ The largest index that can be reached is: i + A[i].*/
         return false;
     }
 
+    public boolean canJumpApproach2(int[] nums) {
+        //it shows at max what index can I reach.
+        //initially I can only reach index 0, hence reach = 0
+        int reach = 0;
+
+        for (int i = 0; i < nums.length; i++) {
+            //at every index we will check if we can least able to
+            //reach that particular index.
+
+            //reach >= idx -> great, carry on. Otherwise,
+            if (reach < i) return false;
+
+
+            //now as you can reach this index, it's time to update your reach
+            //as at every index, you're getting a new jump length.
+            reach = Math.max(reach, i + nums[i]);
+        }
+
+
+        //this means that you reached till the end of the array
+        return true;
+    }
+
     public static void main(String[] args) {
         JumpGame game = new JumpGame();
         int[] arr = {2, 3, 1, 1, 4};
         int[] arr2 = {3, 2, 1, 0, 4};
         System.out.println(game.canJump(arr));
         System.out.println(game.canJump(arr2));
+
+        System.out.println(game.canJumpApproach2(arr));
+        System.out.println(game.canJumpApproach2(arr2));
     }
 }

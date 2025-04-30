@@ -1,6 +1,6 @@
 /*
  * *
- *  * Lambda_Closure_Example.kt
+ *  * Lambda Closure Example.kt
  *  * Created by Rafsan Ahmad on 3/15/25, 7:50PM
  *  * Copyright (c) 2025 . All rights reserved.
  *  *
@@ -60,7 +60,7 @@ fun main() {
 
     //Mapping a List with a Lambda
     val names = listOf("Alice", "Bob", "Charlie")
-    val upperNames = names.map { it.toUpperCase() }
+    val upperNames = names.map { it.uppercase() }
     println(upperNames)
 
     //Sorting a List with a Lambda
