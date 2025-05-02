@@ -118,4 +118,20 @@ Executed
     job.join()  // Waits for the coroutine to complete
 
     ex.testFlow3(this) // Uses `runBlocking` scope
+
+    /*
+    Start 1
+    Start 2
+    Start 3
+    End 3*/
+
+    //collectLatest cancels the previous block if a new value arrives.
+    val flow = flowOf(1, 2, 3)
+    flow
+        .onEach { delay(90) }
+        .collectLatest { value ->
+            println("Start $value")
+            delay(100)
+            println("End $value")
+        }
 }
