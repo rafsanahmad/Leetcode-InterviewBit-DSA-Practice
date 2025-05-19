@@ -1,6 +1,6 @@
 /*
  * *
- *  * Kotlin Sequence.kt
+ *  * Kotlin Sequence Vs Collection.kt
  *  * Created by Rafsan Ahmad on 3/15/25, 7:49PM
  *  * Copyright (c) 2025 . All rights reserved.
  *  *
@@ -9,9 +9,21 @@
 
 package kotlinclasses.Collections
 
-class KotlinSequence {
+class KotlinSequenceVsCollection {
     /* Sequences are very similar to lists. The difference between a list and sequence is that the sequences are
     lazily evaluated.*/
+
+    /*When to Use What
+✅ Use Collection when:
+You work with small/medium datasets.
+You want straightforward, readable code.
+Performance is not a bottleneck.
+
+✅ Use Sequence when:
+You're chaining many operations (map, filter, etc.).
+You have large datasets or expensive operations.
+You want to avoid intermediate lists being created.
+*/
 
     //Create Sequence
     fun createSequence() {
@@ -66,9 +78,87 @@ class KotlinSequence {
 }
 
 fun main(args: Array<String>) {
-    val obj = KotlinSequence()
+    val obj = KotlinSequenceVsCollection()
     println("Without Sequence:")
+    /*Without Sequence:
+filter: a
+filter: b
+filter: ac
+filter: d
+filter: e
+filter: f
+filter: g
+filter: h
+filter: i
+filter: j
+filter: ak
+map: a
+map: ac
+map: ak
+Size: 2
+*/
     obj.withoutSequence()
     println("With Sequence:")
+    /*With Sequence:
+filter: a
+map: a
+filter: b
+filter: ac
+map: ac
+Size: 2
+*/
     obj.withSequence()
+
+    val list = listOf(1, 2, 3, 4, 5)
+
+    println("Using Collection:")
+    /*Using Collection:
+map: 1
+map: 2
+map: 3
+map: 4
+map: 5
+filter: 2
+filter: 4
+filter: 6
+filter: 8
+filter: 10
+Result: [6, 8, 10]
+*/
+    val collectionResult = list
+        .map {
+            println("map: $it")
+            it * 2
+        }
+        .filter {
+            println("filter: $it")
+            it > 5
+        }
+    println("Result: $collectionResult")
+
+    println("\nUsing Sequence:")
+    /*Using Sequence:
+map: 1
+filter: 2
+map: 2
+filter: 4
+map: 3
+filter: 6
+map: 4
+filter: 8
+map: 5
+filter: 10
+Result: [6, 8, 10]
+*/
+    val sequenceResult = list.asSequence()
+        .map {
+            println("map: $it")
+            it * 2
+        }
+        .filter {
+            println("filter: $it")
+            it > 5
+        }
+        .toList() // Terminal operation triggers the sequence
+    println("Result: $sequenceResult")
 }
