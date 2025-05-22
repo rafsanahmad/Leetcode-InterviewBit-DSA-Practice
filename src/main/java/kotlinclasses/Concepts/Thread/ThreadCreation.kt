@@ -1,19 +1,19 @@
 /*
  * *
  *  * ThreadCreation.kt
- *  * Created by Rafsan Ahmad on 3/15/25, 7:53PM
+ *  * Created by Rafsan Ahmad on 5/22/25, 2:15 PM
  *  * Copyright (c) 2025 . All rights reserved.
  *  *
  *
  */
 
-package kotlinclasses.Concepts
+package kotlinclasses.Concepts.Thread
 
 class ThreadCreation {
     // Extending the Thread class to implement threads.
     class SimpleThread: Thread() {
         public override fun run() {
-            println("${Thread.currentThread()} has run.")
+            println("${currentThread()} has run.")
         }
     }
     // Implementing the Runnable interface to implement threads.

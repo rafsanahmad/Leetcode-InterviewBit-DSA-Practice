@@ -1,15 +1,15 @@
 /*
  * *
  *  * DeadlockPreventation.kt
- *  * Created by Rafsan Ahmad on 3/22/25, 3:46PM
+ *  * Created by Rafsan Ahmad on 5/22/25, 2:15 PM
  *  * Copyright (c) 2025 . All rights reserved.
  *  *
  *
  */
 
-package kotlinclasses.Concepts
+package kotlinclasses.Concepts.Thread
 
-import kotlinclasses.Concepts.DeadlockPreventation.Resource
+import kotlinclasses.Concepts.Thread.DeadlockPreventation.Resource
 import java.util.concurrent.locks.ReentrantLock
 
 class DeadlockPreventation {

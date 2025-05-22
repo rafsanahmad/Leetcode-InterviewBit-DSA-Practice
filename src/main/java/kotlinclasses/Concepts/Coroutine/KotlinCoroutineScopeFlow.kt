@@ -7,7 +7,7 @@
  *
  */
 
-package kotlinclasses.Concepts
+package kotlinclasses.Concepts.Coroutine
 
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.GlobalScope
@@ -17,7 +17,7 @@ import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 
-class KotlinFlowCoroutineEx {
+class KotlinCoroutineScopeFlow {
 
     //runBlocking ensures testFlow() completes before main() exits.
     fun testFlow() = runBlocking {
@@ -111,7 +111,7 @@ Executed
 900
 Executed
  */
-    val ex = KotlinFlowCoroutineEx()
+    val ex = KotlinCoroutineScopeFlow()
     ex.testFlow()
 
     val job = ex.testFlow2()

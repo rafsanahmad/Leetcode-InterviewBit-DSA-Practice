@@ -7,7 +7,7 @@
  *
  */
 
-package kotlinclasses.Concepts
+package kotlinclasses.Concepts.Oop
 
 class VisibilityModifiers {
 }

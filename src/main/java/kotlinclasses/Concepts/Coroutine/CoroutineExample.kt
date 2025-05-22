@@ -7,7 +7,7 @@
  *
  */
 
-package kotlinclasses.Concepts
+package kotlinclasses.Concepts.Coroutine
 
 import kotlinx.coroutines.*
 import kotlin.system.measureTimeMillis

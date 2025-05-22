@@ -1,15 +1,15 @@
 /*
  * *
- *  * Multiple Inheritance.kt
- *  * Created by Rafsan Ahmad on 3/22/25, 10:37AM
+ *  * MultipleInheritance.kt
+ *  * Created by Rafsan Ahmad on 5/22/25, 2:15 PM
  *  * Copyright (c) 2025 . All rights reserved.
  *  *
  *
  */
 
-package kotlinclasses.Concepts
+package kotlinclasses.Concepts.Oop
 
-import kotlinclasses.Concepts.MultipleInheritance.C
+import kotlinclasses.Concepts.Oop.MultipleInheritance.C
 
 class MultipleInheritance {
     interface A {

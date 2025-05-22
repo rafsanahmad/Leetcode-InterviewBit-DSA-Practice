@@ -68,7 +68,6 @@ The largest index that can be reached is: i + A[i].*/
             //reach >= idx -> great, carry on. Otherwise,
             if (reach < i) return false;
 
-
             //now as you can reach this index, it's time to update your reach
             //as at every index, you're getting a new jump length.
             reach = Math.max(reach, i + nums[i]);
