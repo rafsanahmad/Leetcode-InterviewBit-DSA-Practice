@@ -15,16 +15,33 @@ import kotlinx.coroutines.runBlocking
 
 class KotlinFlowOperators {
     /*1. merge
+flow1:  A ----->      -----> C
+flow2:      1 -----> B ----->
+merge: A ---> 1 ---> B ---> C
+
 Emits values from multiple flows as they come.
 Order is not guaranteed.
 Think of it as interleaving emissions from both flows.
 
 2. zip
+flow1:  A ---> B ---> C
+flow2:  1 ---> 2 ---> 3
+zip:    A1 --> B2 --> C3
+
 Pairs elements from two flows in order.
 Waits for both flows to emit before combining.
 Stops when either flow completes.
 
 3. combine
+flow1:  A -----> C
+flow2:     1 -----> 2 -----> 3
+
+combine:
+        A1
+        C1
+        C2
+        C3
+
 Combines the latest value from each flow whenever either emits.
 Waits for all flows to emit at least once, then updates on any emission.
 */

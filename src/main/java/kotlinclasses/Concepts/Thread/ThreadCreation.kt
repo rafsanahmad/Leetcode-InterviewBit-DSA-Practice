@@ -11,13 +11,14 @@ package kotlinclasses.Concepts.Thread
 
 class ThreadCreation {
     // Extending the Thread class to implement threads.
-    class SimpleThread: Thread() {
+    class SimpleThread : Thread() {
         public override fun run() {
             println("${currentThread()} has run.")
         }
     }
+
     // Implementing the Runnable interface to implement threads.
-    class SimpleRunnable: Runnable {
+    class SimpleRunnable : Runnable {
         public override fun run() {
             println("${Thread.currentThread()} has run.")
         }
