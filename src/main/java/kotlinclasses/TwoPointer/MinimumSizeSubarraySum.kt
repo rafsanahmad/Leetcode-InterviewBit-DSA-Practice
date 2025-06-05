@@ -7,7 +7,7 @@
  *
  */
 
-package kotlinclasses.SlidingWindow
+package kotlinclasses.TwoPointer
 
 import kotlin.math.min
 
