@@ -1,18 +1,20 @@
 /*
- * * Two Sum.java
- *  * Created by Rafsan Ahmad on 10/25/21, 9:50 PM
- *  * Copyright (c) 2021 . All rights reserved.
+ * *
+ *  * TwoSum.java
+ *  * Created by Rafsan Ahmad on 6/7/25, 2:11AM
+ *  * Copyright (c) 2025 . All rights reserved.
+ *  *
  *
  */
 
-package javaclasses.NumberTheory.Math;
+package javaclasses.HashTable;
 
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
 public class TwoSum {
-    //Leetcode 1
+    //https://leetcode.com/problems/two-sum/
     /*Given an array of integers nums and an integer target, return indices of the two numbers such that
     they add up to target.
 

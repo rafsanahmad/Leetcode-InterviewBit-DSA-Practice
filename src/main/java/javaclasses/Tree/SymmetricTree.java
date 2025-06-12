@@ -12,8 +12,9 @@ import java.util.LinkedList;
 import java.util.Queue;
 
 public class SymmetricTree {
-    //Leetcode 101
-    /*Given the root of a binary tree, check whether it is a mirror of itself (i.e., symmetric around its center).
+    //https://leetcode.com/problems/symmetric-tree/
+    /*Given the root of a binary tree, check whether it is a mirror of itself (i.e.,
+    symmetric around its center).
 
 Example 1:
 
