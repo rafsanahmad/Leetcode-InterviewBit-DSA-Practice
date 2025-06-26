@@ -11,65 +11,95 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 public class IntegerToRoman {
-    //Leetcode 12
-    //https://www.interviewbit.com/problems/integer-to-roman/
-    /*Given an integer A, convert it to a roman numeral, and return a string corresponding to its
-    roman numeral version
+    //https://leetcode.com/problems/integer-to-roman/description/
+    /*
+    Seven different symbols represent Roman numerals with the following values:
 
-Note : This question has a lot of scope of clarification from the interviewer. Please take a moment to
-think of all the needed clarifications and see the expected response using “See Expected Output”
+Symbol	Value
+I	1
+V	5
+X	10
+L	50
+C	100
+D	500
+M	1000
+Roman numerals are formed by appending the conversions of decimal place values from highest to
+lowest. Converting a decimal place value into a Roman numeral has the following rules:
 
-For the purpose of this question, https://projecteuler.net/about=roman_numerals has very detailed
-explanations.
+If the value does not start with 4 or 9, select the symbol of the maximal value that can be
+subtracted from the input, append that symbol to the result, subtract its value, and convert the
+remainder to a Roman numeral.
+If the value starts with 4 or 9 use the subtractive form representing one symbol subtracted from
+the following symbol, for example, 4 is 1 (I) less than 5 (V): IV and 9 is 1 (I) less than
+10 (X): IX. Only the following subtractive forms are used: 4 (IV), 9 (IX), 40 (XL), 90 (XC),
+400 (CD) and 900 (CM).
+Only powers of 10 (I, X, C, M) can be appended consecutively at most 3 times to represent
+multiples of 10. You cannot append 5 (V), 50 (L), or 500 (D) multiple times. If you need to
+append a symbol 4 times use the subtractive form.
+Given an integer, convert it to a Roman numeral.
 
-Input Format
 
-The only argument given is integer A.
-Output Format
+Example 1:
+Input: num = 3749
+Output: "MMMDCCXLIX"
 
-Return a string denoting roman numeral version of A.
-Constraints
+Explanation:
+3000 = MMM as 1000 (M) + 1000 (M) + 1000 (M)
+ 700 = DCC as 500 (D) + 100 (C) + 100 (C)
+  40 = XL as 10 (X) less of 50 (L)
+   9 = IX as 1 (I) less of 10 (X)
+Note: 49 is not 1 (I) less of 50 (L) because the conversion is based on decimal places
 
-1 <= A <= 3999
-For Example
+Example 2:
+Input: num = 58
+Output: "LVIII"
+Explanation:
 
-Input 1:
-    A = 5
-Output 1:
-    "V"
+50 = L
+ 8 = VIII
 
-Input 2:
-    A = 14
-Output 2:
-    "XIV"
+Example 3:
+Input: num = 1994
+Output: "MCMXCIV"
+
+Explanation:
+1000 = M
+ 900 = CM
+  90 = XC
+   4 = IV
+
+
+Constraints:
+1 <= num <= 3999
 */
 
-    public String intToRoman(int A) {
+    public String intToRoman(int num) {
         //Create a mapping of roman numerals and it's integer value
-        LinkedHashMap<String, Integer> roman_numerals = new LinkedHashMap<String, Integer>();
-        roman_numerals.put("M", 1000);
-        roman_numerals.put("CM", 900);
-        roman_numerals.put("D", 500);
-        roman_numerals.put("CD", 400);
-        roman_numerals.put("C", 100);
-        roman_numerals.put("XC", 90);
-        roman_numerals.put("L", 50);
-        roman_numerals.put("XL", 40);
-        roman_numerals.put("X", 10);
-        roman_numerals.put("IX", 9);
-        roman_numerals.put("V", 5);
-        roman_numerals.put("IV", 4);
-        roman_numerals.put("I", 1);
-        String res = "";
-        for (Map.Entry<String, Integer> entry : roman_numerals.entrySet()) {
-            int matches = A / entry.getValue();
-            res += repeat(entry.getKey(), matches);
-            A = A % entry.getValue();
+        LinkedHashMap<String, Integer> map = new LinkedHashMap<String, Integer>();
+        map.put("M", 1000);
+        map.put("CM", 900);
+        map.put("D", 500);
+        map.put("CD", 400);
+        map.put("C", 100);
+        map.put("XC", 90);
+        map.put("L", 50);
+        map.put("XL", 40);
+        map.put("X", 10);
+        map.put("IX", 9);
+        map.put("V", 5);
+        map.put("IV", 4);
+        map.put("I", 1);
+        StringBuilder res = new StringBuilder();
+
+        for (Map.Entry<String, Integer> entry : map.entrySet()) {
+            int matches = num / entry.getValue();
+            res.append(romanLiteral(entry.getKey(), matches));
+            num = num % entry.getValue();
         }
-        return res;
+        return res.toString();
     }
 
-    public static String repeat(String s, int n) {
+    public static String romanLiteral(String s, int n) {
         if (s == null) {
             return null;
         }
@@ -83,5 +113,7 @@ Output 2:
     public static void main(String[] args) {
         IntegerToRoman roman = new IntegerToRoman();
         System.out.println(roman.intToRoman(120));
+        System.out.println(roman.intToRoman(3749));
+        System.out.println(roman.intToRoman(1994));
     }
 }
