@@ -1,6 +1,6 @@
 /*
  * *
- *  * Combination Phone Number.java
+ *  * Letter Combinations of a Phone Number.java
  *  * Created by Rafsan Ahmad on 12/6/21, 4:25 PM
  *  * Copyright (c) 2023 . All rights reserved.
  *
@@ -11,8 +11,8 @@ package javaclasses.Graph.DFS;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CombinationPhoneNumber {
-    //Leetcode 17
+public class LetterCombinationPhoneNumber {
+    //https://leetcode.com/problems/letter-combinations-of-a-phone-number/description/
     //res/keypad.png
     /*Given a string containing digits from 2-9 inclusive, return all possible letter combinations that the
     number could represent. Return the answer in any order.
@@ -32,10 +32,16 @@ Example 3:
 Input: digits = "2"
 Output: ["a","b","c"]
 */
+
+    /*Time Complexity:
+O(k^n), where:
+n = number of digits
+k = max letters per digit (usually ≤ 4)
+*/
     public List<String> letterCombinations(String digits) {
         List<String> result = new ArrayList<>();
 
-        if (digits != null && digits.length() > 0) {
+        if (digits != null && !digits.isEmpty()) {
             String[] map = {"", "", "abc", "def", "ghi", "jkl", "mno", "pqrs", "tuv", "wxyz"};
             dfs(digits, map, result, new StringBuilder(), 0);
         }
@@ -56,6 +62,9 @@ Output: ["a","b","c"]
             char ch = letters.charAt(i);
             sb.append(ch);
             //move onto next digit
+            /*Why index + 1 & not i+1
+            Because each recursive call moves to the next digit (not the next letter),
+            i is used within one digit’s letters only, not across digits.*/
             dfs(digits, map, result, sb, index + 1);
             //delete last added character
             sb.deleteCharAt(sb.length() - 1);
@@ -64,7 +73,7 @@ Output: ["a","b","c"]
     }
 
     public static void main(String[] args) {
-        CombinationPhoneNumber number = new CombinationPhoneNumber();
+        LetterCombinationPhoneNumber number = new LetterCombinationPhoneNumber();
         System.out.println(number.letterCombinations("23"));
     }
 
