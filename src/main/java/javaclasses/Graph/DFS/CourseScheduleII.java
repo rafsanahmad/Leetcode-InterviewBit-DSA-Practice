@@ -14,7 +14,7 @@ import java.util.HashMap;
 import java.util.List;
 
 public class CourseScheduleII {
-    //Leetcode 210
+    //https://leetcode.com/problems/course-schedule-ii/
     /*There are a total of numCourses courses you have to take, labeled from 0 to numCourses - 1.
     You are given an array prerequisites where prerequisites[i] = [ai, bi] indicates that you must take
     course bi first if you want to take course ai.
@@ -38,13 +38,22 @@ So one correct course order is [0,1,2,3]. Another correct ordering is [0,2,1,3].
 
 Example 3:
 Input: numCourses = 1, prerequisites = []
-Output: [0]*/
+Output: [0]
+
+
+Constraints:
+1 <= numCourses <= 2000
+0 <= prerequisites.length <= numCourses * (numCourses - 1)
+prerequisites[i].length == 2
+0 <= ai, bi < numCourses
+ai != bi
+All the pairs [ai, bi] are distinct.
+*/
 
     int seq = 0;
-    int[] result;
 
     public int[] findOrder(int numCourses, int[][] prerequisites) {
-        result = new int[numCourses];
+        int[] result = new int[numCourses];
         HashMap<Integer, List<Integer>> adj = new HashMap();
 
         for (int i = 0; i < numCourses; i++) {
@@ -60,14 +69,14 @@ Output: [0]*/
         seq = numCourses - 1;
 
         for (int i = 0; i < numCourses; i++) {
-            if (!dfs(adj, visited, i)) {
+            if (!dfs(adj, visited, result, i)) {
                 return new int[]{};
             }
         }
         return result;
     }
 
-    public boolean dfs(HashMap<Integer, List<Integer>> adj, int[] visited, int index) {
+    public boolean dfs(HashMap<Integer, List<Integer>> adj, int[] visited, int[] result, int index) {
         if (visited[index] == -1) {
             return false;
         }
@@ -82,7 +91,7 @@ Output: [0]*/
         if (adj.containsKey(index)) {
             //Loop through all neighbor
             for (int j : adj.get(index)) {
-                if (!dfs(adj, visited, j)) {
+                if (!dfs(adj, visited, result, j)) {
                     return false;
                 }
             }
@@ -92,10 +101,6 @@ Output: [0]*/
         visited[index] = 1;
         result[seq--] = index;
         return true;
-    }
-
-    public boolean contains(final Integer[] array, final int key) {
-        return Arrays.asList(array).contains(key);
     }
 
     public static void main(String[] args) {

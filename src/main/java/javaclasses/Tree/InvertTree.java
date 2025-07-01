@@ -70,6 +70,25 @@ Output: []*/
         return root;
     }
 
+    public void printLevelOrder(TreeNode root) {
+        Queue<TreeNode> queue = new LinkedList<TreeNode>();
+        queue.add(root);
+        while (!queue.isEmpty()) {
+            TreeNode tempNode = queue.poll();
+            System.out.print(tempNode.val + " ");
+
+            /*Enqueue left child */
+            if (tempNode.left != null) {
+                queue.add(tempNode.left);
+            }
+
+            /*Enqueue right child */
+            if (tempNode.right != null) {
+                queue.add(tempNode.right);
+            }
+        }
+    }
+
     public static void main(String[] args) {
         InvertTree tree = new InvertTree();
         TreeNode root = new TreeNode(4);
@@ -81,7 +100,6 @@ Output: []*/
         root.right.right = new TreeNode(9);
 
         TreeNode node = tree.invertTree_Recursive(root);
-        LevelOrderTraversal traversal = new LevelOrderTraversal();
-        traversal.printLevelOrder(node);
+        tree.printLevelOrder(node);
     }
 }

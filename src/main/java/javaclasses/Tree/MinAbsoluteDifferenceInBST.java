@@ -44,6 +44,11 @@ The number of nodes in the tree is in the range [2, 10^4].
     Integer prev = null;
 
     //Solution 1 - In-Order traverse, time complexity O(N), space complexity O(1).
+    /*For a BST, the in-order traversal gives the node values in sorted order.
+Thus, the minimum absolute difference must be between two consecutive values in this
+sorted list.
+*/
+
     public int getMinimumDifference(TreeNode root) {
         if (root == null) return result;
         getMinimumDifference(root.left);
@@ -55,8 +60,10 @@ The number of nodes in the tree is in the range [2, 10^4].
         return result;
     }
 
+
     TreeSet<Integer> set = new TreeSet<>();
     int min = Integer.MAX_VALUE;
+
 
     /*What if it is not a BST? (Follow up of the problem)
     The idea is to put values in a TreeSet and then every time we can use O(lgN) time to lookup for the nearest values.
