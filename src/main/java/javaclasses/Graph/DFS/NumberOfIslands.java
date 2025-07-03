@@ -9,7 +9,7 @@
 package javaclasses.Graph.DFS;
 
 public class NumberOfIslands {
-    //Leetcode 200
+    //https://leetcode.com/problems/number-of-islands/
     /*Given an m x n 2D binary grid grid which represents a map of '1's (land) and '0's (water),
     return the number of islands.
 
@@ -33,6 +33,13 @@ Input: grid = [
   ["0","0","0","1","1"]
 ]
 Output: 3
+
+Constraints:
+
+m == grid.length
+n == grid[i].length
+1 <= m, n <= 300
+grid[i][j] is '0' or '1'.
 */
     int row;
     int column;
@@ -76,9 +83,9 @@ Output: 3
         NumberOfIslands islands = new NumberOfIslands();
         char[][] array =
                 {{'1', '1', '0', '0', '0'},
-                {'1', '1', '0', '0', '0'},
-                {'0', '0', '1', '0', '0'},
-                {'0', '0', '0', '1', '1'}};
+                        {'1', '1', '0', '0', '0'},
+                        {'0', '0', '1', '0', '0'},
+                        {'0', '0', '0', '1', '1'}};
         System.out.println(islands.numIslands(array));
     }
 
