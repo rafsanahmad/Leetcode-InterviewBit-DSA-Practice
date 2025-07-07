@@ -1,18 +1,19 @@
 /*
  * *
- *  * Merge Interval.kt
- *  * Created by Rafsan Ahmad on 4/24/25, 2:26PM
+ *  * MergeInterval.kt
+ *  * Created by Rafsan Ahmad on 7/6/25, 5:05PM
  *  * Copyright (c) 2025 . All rights reserved.
  *  *
  *
  */
 
-package kotlinclasses.Collections
+package kotlinclasses.Intervals
 
 import java.util.*
 import kotlin.math.max
 
 class MergeInterval {
+    //https://leetcode.com/problems/merge-intervals/description/
     /*Given an array of intervals where intervals[i] = [starti, endi], merge all overlapping
     intervals, and return an array of the non-overlapping intervals that cover all the
     intervals in the input.
@@ -34,7 +35,6 @@ intervals[i].length == 2
 0 <= starti <= endi <= 10^4
 
 */
-    //Merge Overlapping inerval - (LeetCode - 56)
     fun merge(intervals: Array<IntArray>): Array<IntArray> {
         var list: MutableList<IntArray> = arrayListOf()
 

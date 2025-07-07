@@ -54,14 +54,6 @@ It is guaranteed that the list represents a number that does not have leading ze
 
         return dummy.next
     }
-
-    fun printList(node: ListNode?) {
-        var temp: ListNode? = node
-        while (temp != null) {
-            print("${temp.`val`} ")
-            temp = temp.next
-        }
-    }
 }
 
 fun main() {
@@ -74,5 +66,6 @@ fun main() {
     val node2 = ListNode(9)
     node2.next = ListNode(9)
 
-    obj.printList(obj.addTwoNumbers(node1, node2))
+    val result = obj.addTwoNumbers(node1, node2)
+    println(toList(result))
 }
