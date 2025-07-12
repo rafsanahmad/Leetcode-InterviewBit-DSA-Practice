@@ -7,7 +7,7 @@
  *
  */
 
-package kotlinclasses.Array
+package kotlinclasses.GreedyAlgorithm
 
 class JumpGameII {
     //https://leetcode.com/problems/jump-game-ii/

@@ -1,11 +1,13 @@
 /*
- * * Group Anagrams.java
- *  * Created by Rafsan Ahmad on 10/25/21, 9:49 PM
- *  * Copyright (c) 2021 . All rights reserved.
+ * *
+ *  * Group Anagrams.java
+ *  * Created by Rafsan Ahmad on 7/11/25, 2:11PM
+ *  * Copyright (c) 2025 . All rights reserved.
+ *  *
  *
  */
 
-package javaclasses.ArrayList;
+package javaclasses.Strings;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -32,6 +34,11 @@ public class GroupAnagrams {
 
     Input: strs = ["a"]
     Output: [["a"]]
+
+    Constraints:
+1 <= strs.length <= 10^4
+0 <= strs[i].length <= 100
+strs[i] consists of lowercase English letters.
     * */
 
     public List<List<String>> groupAnagrams(String[] strs) {

@@ -40,32 +40,30 @@ Output: [["a"]]
 strs[i] consists of lowercase English letters.*/
 
     fun groupAnagrams(strs: Array<String>): List<List<String>> {
-        val result: MutableList<List<String>> = arrayListOf()
-        val map = hashMapOf<String, MutableList<String>>()
+        val result: MutableList<List<String>> = mutableListOf()
+        val map: MutableMap<String, MutableList<String>> = mutableMapOf()
+        //val map = hashMapOf<String, MutableList<String>>()
+        if (strs.isEmpty()) return result
 
-        if (strs.isEmpty()) {
-            return result
-        }
-
-        val len = strs.size
-        for (i in 0..<len) {
-            val countArr = IntArray(26)
-            for (j in 0..<strs[i].length) {
-                countArr[strs[i][j] - 'a']++
+        for (i in strs.indices) {
+            val str = strs[i]
+            val countArr = IntArray(26) { 0 }
+            for (j in str.indices) {
+                countArr[str[j] - 'a']++
             }
-
-            val arrString = countArr.contentToString()
-
-            if (map.containsKey(arrString)) {
-                map[arrString]?.add(strs[i])
+            val newStr = countArr.contentToString()
+            if (map.containsKey(newStr)) {
+                map[newStr]?.add(str)
             } else {
-                val list: MutableList<String> = arrayListOf()
-                list.add(strs[i])
-                map[arrString] = list
+                map[newStr] = mutableListOf(str)
             }
         }
 
-        result.addAll(map.values)
+        for (entry in map.entries) {
+            result.add(entry.value)
+        }
+        //result.addAll(map.values)
+
         return result
     }
 }
