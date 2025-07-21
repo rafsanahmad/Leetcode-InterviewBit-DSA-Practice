@@ -36,20 +36,27 @@ Uses only O(n) space.
 Simple and elegant implementation.
 Ideal for competitive programming and interview problems.*/
 
-    private val tree = IntArray(size + 1) // 1-based indexing
+    private val tree = IntArray(size + 1) // size+1 for safe indexing
 
-    // Point update: add `delta` to index `i`
+    // Build Fenwick Tree from 0-based array
+    fun build(arr: IntArray) {
+        for (i in arr.indices) {
+            update(i, arr[i])
+        }
+    }
+
+    // Update index i by delta (0-based)
     fun update(i: Int, delta: Int) {
-        var index = i
+        var index = i + 1  // shift to 1-based inside tree
         while (index <= size) {
             tree[index] += delta
             index += index and -index
         }
     }
 
-    // Prefix sum query: sum from 1 to `i`
-    fun query(i: Int): Int {
-        var index = i
+    // Prefix sum from 0 to i (inclusive)
+    fun prefixSum(i: Int): Int {
+        var index = i + 1 // shift to 1-based
         var sum = 0
         while (index > 0) {
             sum += tree[index]
@@ -58,41 +65,37 @@ Ideal for competitive programming and interview problems.*/
         return sum
     }
 
-    // Range sum: sum from l to r (both inclusive)
+    // Range sum from l to r (both 0-based, inclusive)
     fun rangeSum(l: Int, r: Int): Int {
-        return query(r) - query(l - 1)
+        if (l > r) return 0
+        return prefixSum(r) - prefixSum(l - 1)
     }
 
-    // Find kth smallest number using prefix sums (used for frequency-based queries)
-    fun kthSmallest(k: Int): Int {
-        var idx = 0
-        var bitMask = Integer.highestOneBit(size)
+    // Set value at index i (0-based) to newValue, given original arr
+    fun set(i: Int, newValue: Int, originalArray: IntArray) {
+        val delta = newValue - originalArray[i]
+        update(i, delta)
+        originalArray[i] = newValue
+    }
 
-        var kTemp = k
-        while (bitMask != 0) {
-            val nextIdx = idx + bitMask
-            if (nextIdx <= size && tree[nextIdx] < kTemp) {
-                kTemp -= tree[nextIdx]
-                idx = nextIdx
-            }
-            bitMask = bitMask shr 1
-        }
-        return idx + 1 // index of k-th smallest
+    fun printTree() {
+        println(tree.joinToString(prefix = "Fenwick Tree: ", separator = ", "))
     }
 }
 
 fun main() {
-    val maxValue = 100
-    val bit = FenwickTree(maxValue)
+    val arr = intArrayOf(5, 3, 7, 9, 6)
+    val ft = FenwickTree(arr.size)
+    ft.build(arr)
 
-    // Insert numbers: 5, 1, 7, 3, 5
-    bit.update(5, 1)
-    bit.update(1, 1)
-    bit.update(7, 1)
-    bit.update(3, 1)
-    bit.update(5, 1) // 5 appears twice
+    println("Prefix sum up to index 2: ${ft.prefixSum(2)}")  // 5 + 3 + 7 = 15
+    println("Range sum (1 to 3): ${ft.rangeSum(1, 3)}")      // 3 + 7 + 9 = 19
 
-    println("Prefix sum (1 to 5): " + bit.query(5)) // Should be 4
-    println("Range sum (3 to 7): " + bit.rangeSum(3, 7)) // Should be 4
-    println("3rd smallest: " + bit.kthSmallest(3)) // Should be 5
+    ft.set(2, 10, arr) // Change arr[2] from 7 to 10
+
+    println("After update:")
+    println("Prefix sum up to index 2: ${ft.prefixSum(2)}")  // 5 + 3 + 10 = 18
+    println("Range sum (1 to 3): ${ft.rangeSum(1, 3)}")      // 3 + 10 + 9 = 22
+
+    ft.printTree()
 }

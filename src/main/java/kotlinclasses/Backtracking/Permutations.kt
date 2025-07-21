@@ -54,11 +54,11 @@ Number of permutations × cost of copying one permutation
         val result = mutableListOf<List<Int>>()
         val list = mutableListOf<Int>()
         val used = BooleanArray(nums.size)
-        permutaHelper(nums, used, list, result)
+        permuteHelper(nums, used, list, result)
         return result
     }
 
-    fun permutaHelper(
+    fun permuteHelper(
         nums: IntArray,
         used: BooleanArray,
         list: MutableList<Int>,
@@ -73,7 +73,7 @@ Number of permutations × cost of copying one permutation
             if (used[i]) continue
             used[i] = true
             list.add(nums[i])
-            permutaHelper(nums, used, list, result)
+            permuteHelper(nums, used, list, result)
             used[i] = false
             list.removeAt(list.size - 1)
         }

@@ -95,41 +95,19 @@ Follow up: Could you do it in one pass?*/
 
         return dummy.next
     }
-
-    // Helper function to create a linked list from a list of integers
-    fun createLinkedList(values: List<Int>): ListNode? {
-        if (values.isEmpty()) return null
-        val head = ListNode(values[0])
-        var current: ListNode? = head
-        for (i in 1 until values.size) {
-            current?.next = ListNode(values[i])
-            current = current?.next
-        }
-        return head
-    }
-
-    // Helper function to print linked list
-    fun printLinkedList(head: ListNode?) {
-        var current = head
-        while (current != null) {
-            print("${current.`val`} ")
-            current = current.next
-        }
-        println()
-    }
 }
 
 fun main() {
     val ll = ReverseLinkedList_II()
-    val head = ll.createLinkedList(listOf(1, 2, 3, 4, 5))
+    val head = buildList(listOf(1, 2, 3, 4, 5))
     val left = 2
     val right = 4
 
     println("Original list:")
-    ll.printLinkedList(head)
+    println(toList(head))
 
     val newHead = ll.reverseBetween(head, left, right)
 
     println("List after reversing from $left to $right:")
-    ll.printLinkedList(newHead)
+    println(toList(newHead))
 }
