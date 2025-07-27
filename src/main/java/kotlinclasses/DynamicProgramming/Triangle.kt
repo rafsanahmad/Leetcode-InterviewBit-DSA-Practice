@@ -46,28 +46,20 @@ the triangle?
     //Faster than Bottom up
     // Time Complexity: O(n²)
     // Space Complexity: O(n²) + O(n) = O(n²)
+    //dp[i][j] stores the minimum path sum from cell (i, j) to the bottom of the triangle.
     fun minimumTotal(triangle: List<List<Int>>): Int {
-        if (triangle.isEmpty()) return 0
         val n = triangle.size
-        val dp = Array(n) { IntArray(n) { Integer.MAX_VALUE } }
-        return minimumTotalRec(triangle, dp, 0, 0, triangle[0][0])
+        val dp = Array(n) { IntArray(n) { Int.MAX_VALUE } }
+        return minimumTotalRec(triangle, dp, 0, 0)
     }
 
-    fun minimumTotalRec(
-        triangle: List<List<Int>>,
-        dp: Array<IntArray>,
-        i: Int,
-        j: Int,
-        sum: Int
-    ): Int {
-        if (i >= triangle.size - 1) {
-            return triangle[i][j]
-        }
+    fun minimumTotalRec(triangle: List<List<Int>>, dp: Array<IntArray>, i: Int, j: Int): Int {
+        if (i == triangle.size - 1) return triangle[i][j]
+        if (dp[i][j] != Int.MAX_VALUE) return dp[i][j]
 
-        if (dp[i][j] != Integer.MAX_VALUE) return dp[i][j]
-        val op1 = sum + minimumTotalRec(triangle, dp, i + 1, j, triangle[i + 1][j])
-        val op2 = sum + minimumTotalRec(triangle, dp, i + 1, j + 1, triangle[i + 1][j + 1])
-        dp[i][j] = min(op1, op2)
+        val down = minimumTotalRec(triangle, dp, i + 1, j)
+        val diagonal = minimumTotalRec(triangle, dp, i + 1, j + 1)
+        dp[i][j] = triangle[i][j] + minOf(down, diagonal)
 
         return dp[i][j]
     }
