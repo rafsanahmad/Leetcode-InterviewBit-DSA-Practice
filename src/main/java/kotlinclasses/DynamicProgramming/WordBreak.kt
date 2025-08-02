@@ -130,5 +130,6 @@ dp[i] == null → Not yet computed.
 
 fun main() {
     val obj = WordBreak()
+    println(obj.wordBreak("applepenapple", listOf("apple", "pen")))
     println(obj.wordBreakBottomUp("applepenapple", listOf("apple", "pen")))
 }
