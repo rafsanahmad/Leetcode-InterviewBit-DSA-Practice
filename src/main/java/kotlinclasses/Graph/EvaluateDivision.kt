@@ -10,6 +10,7 @@
 package kotlinclasses.Graph
 
 class EvaluateDivision {
+    //https://leetcode.com/problems/evaluate-division/description/
     /*You are given an array of variable pairs equations and an array of real numbers values,
     where equations[i] = [Ai, Bi] and values[i] represent the equation Ai / Bi = values[i].
     Each Ai or Bi is a string that represents a single variable.
@@ -28,7 +29,6 @@ cannot be determined for them.
 
 
 Example 1:
-
 Input: equations = [["a","b"],["b","c"]], values = [2.0,3.0],
 queries = [["a","c"],["b","a"],["a","e"],["a","a"],["x","x"]]
 Output: [6.00000,0.50000,-1.00000,1.00000,-1.00000]
@@ -37,13 +37,13 @@ Given: a / b = 2.0, b / c = 3.0
 queries are: a / c = ?, b / a = ?, a / e = ?, a / a = ?, x / x = ?
 return: [6.0, 0.5, -1.0, 1.0, -1.0 ]
 note: x is undefined => -1.0
-Example 2:
 
+Example 2:
 Input: equations = [["a","b"],["b","c"],["bc","cd"]], values = [1.5,2.5,5.0],
 queries = [["a","c"],["c","b"],["bc","cd"],["cd","bc"]]
 Output: [3.75000,0.40000,5.00000,0.20000]
-Example 3:
 
+Example 3:
 Input: equations = [["a","b"]], values = [0.5],
 queries = [["a","b"],["b","a"],["a","c"],["x","y"]]
 Output: [0.50000,2.00000,-1.00000,-1.00000]
@@ -76,63 +76,50 @@ i.e. 2 * 3 = 6.*/
         values: DoubleArray,
         queries: List<List<String>>
     ): DoubleArray {
-        val graph = buildGraph(equations, values)
-        val result = DoubleArray(queries.size)
+        if (equations.isEmpty()) return doubleArrayOf()
 
+        val map: MutableMap<String, MutableMap<String, Double>> = mutableMapOf()
+        for (index in equations.indices) {
+            val u = equations[index][0]
+            val v = equations[index][1]
+            map.putIfAbsent(u, mutableMapOf())
+            map[u]?.put(v, values[index])
+            map.putIfAbsent(v, mutableMapOf())
+            map[v]?.put(u, 1 / values[index])
+        }
+
+        val result = DoubleArray(queries.size)
         for (i in queries.indices) {
-            result[i] = getPathWeightDFS(queries[i][0], queries[i][1], HashSet<String>(), graph)
+            val visited = mutableSetOf<String>()
+            result[i] = calEquationDFS(map, queries[i][0], queries[i][1], visited)
         }
 
         return result
     }
 
-    private fun getPathWeightDFS(
+    fun calEquationDFS(
+        map: MutableMap<String, MutableMap<String, Double>>,
         start: String,
         end: String,
-        visited: MutableSet<String>,
-        graph: MutableMap<String, MutableMap<String, Double>>
+        visited: MutableSet<String>
     ): Double {
-        /* if start is not found. */
-        if (!graph.containsKey(start)) return -1.0
+        if (!map.contains(start) || !map.contains(end)) return -1.0
 
-        /* if end found - return weight. */
-        graph[start]?.get(end)?.let {
-            return it
+        map[start]?.let { neighbour ->
+            neighbour[end]?.let { return it }
         }
-
         visited.add(start)
 
-        graph[start]?.let {
+        map[start]?.let {
             for (neighbour in it.entries) {
                 if (!visited.contains(neighbour.key)) {
-                    val weight = getPathWeightDFS(neighbour.key, end, visited, graph)
-                    if (weight != -1.0) return neighbour.value * weight
+                    val value = calEquationDFS(map, neighbour.key, end, visited)
+                    if (value != -1.0) return value * neighbour.value
                 }
             }
         }
 
         return -1.0
-    }
-
-    private fun buildGraph(
-        equations: List<List<String>>,
-        values: DoubleArray
-    ): MutableMap<String, MutableMap<String, Double>> {
-        val graph: MutableMap<String, MutableMap<String, Double>> =
-            HashMap<String, MutableMap<String, Double>>()
-        var u: String
-        var v: String
-
-        for (i in equations.indices) {
-            u = equations[i][0]
-            v = equations[i][1]
-            graph.putIfAbsent(u, HashMap<String, Double>())
-            graph[u]?.put(v, values[i])
-            graph.putIfAbsent(v, HashMap<String, Double>())
-            graph[v]?.put(u, 1 / values[i])
-        }
-
-        return graph
     }
 }
 

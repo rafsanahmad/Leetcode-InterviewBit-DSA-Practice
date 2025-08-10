@@ -11,7 +11,6 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
-import java.util.Stack;
 
 public class N_ary_TreeTraversal {
     //Leetcode 589, 590, 429
@@ -57,52 +56,35 @@ Output (Level-order) ; [[1],[2,3,4,5],[6,7,8,9,10],[11,12,13],[14]]
         }
     }
 
-    //Iterative
     public List<Integer> preorder(TreeNode root) {
-        if (root == null) {
-            return new ArrayList<>();
-        }
-        List<Integer> list = new ArrayList<>();
-        Stack<TreeNode> stack = new Stack<>();
-        stack.push(root);
-        while (!stack.isEmpty()) {
-            TreeNode popped = stack.pop();
-            list.add(popped.val);
-            List<TreeNode> children = popped.children;
-            for (int i = children.size() - 1; i >= 0; i--) {
-                stack.push(children.get(i));
-            }
-        }
-        return list;
+        List<Integer> result = new ArrayList<>();
+        preorderHelper(root, result);
+        return result;
     }
 
+    private void preorderHelper(TreeNode node, List<Integer> result) {
+        if (node == null) return;
+
+        result.add(node.val); // Visit the node
+        for (TreeNode child : node.children) {
+            preorderHelper(child, result); // Recurse on children
+        }
+    }
 
     public List<Integer> postorder(TreeNode root) {
-        List<Integer> values = new ArrayList<>();
-        if (root == null) {
-            return values;
+        List<Integer> result = new ArrayList<>();
+        postorderHelper(root, result);
+        return result;
+    }
+
+    private void postorderHelper(TreeNode node, List<Integer> result) {
+        if (node == null) return;
+
+        for (TreeNode child : node.children) {
+            postorderHelper(child, result); // Recurse on children
         }
 
-
-        Stack<TreeNode> stack1 = new Stack<>();
-        Stack<TreeNode> stack2 = new Stack<>();
-
-        stack1.push(root);
-
-        while (!stack1.empty()) {
-            TreeNode temp = stack1.pop();
-            stack2.push(temp);
-            List<TreeNode> childrens = temp.children;
-            for (TreeNode children : childrens) {
-                stack1.push(children);
-            }
-        }
-
-        while (!stack2.empty()) {
-            values.add(stack2.pop().val);
-        }
-
-        return values;
+        result.add(node.val); // Visit the node
     }
 
     public List<List<Integer>> levelOrder(TreeNode root) {

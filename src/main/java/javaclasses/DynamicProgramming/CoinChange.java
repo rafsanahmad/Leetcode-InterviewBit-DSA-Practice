@@ -1,6 +1,6 @@
 /*
  * *
- *  * CoinChange.java
+ *  * Coin Change.java
  *  * Created by Rafsan Ahmad on 4/9/23, 6:23 PM
  *  * Copyright (c) 2023 . All rights reserved.
  *
@@ -41,40 +41,36 @@ Constraints:
 
     public int coinChangeTopDown(int[] coins, int amount) {
         int[][] dp = new int[coins.length][amount + 1];
-        for (int[] arr : dp) {
-            Arrays.fill(arr, Integer.MAX_VALUE);
+        for (int[] row : dp) {
+            Arrays.fill(row, Integer.MAX_VALUE);
         }
-        return coinChangeRec(coins, amount, coins.length - 1, dp);
+        return coinChangeRec(coins, amount, 0, dp);
     }
 
-    public int coinChangeRec(int[] coins, int amount, int index, int[][] dp) {
-        if (amount == 0)
-            return 0;
-        if (amount < 0 || index < 0)
-            return -1;
+    private int coinChangeRec(int[] coins, int amount, int index, int[][] dp) {
+        if (amount == 0) return 0;
+        if (amount < 0 || index >= coins.length) return -1;
 
         if (dp[index][amount] != Integer.MAX_VALUE) {
             return dp[index][amount];
         }
 
         int result = Integer.MAX_VALUE;
-        //Take the current coin
+
+        // Take current coin (stay at same index, unlimited supply)
         int take = coinChangeRec(coins, amount - coins[index], index, dp);
         if (take != -1) {
             result = Math.min(result, take + 1);
         }
 
-        //Do not take current coin
-        int doNotTake = coinChangeRec(coins, amount, index - 1, dp);
-        if (doNotTake != -1) {
-            result = Math.min(result, doNotTake);
+        // Skip current coin (move to next index)
+        int skip = coinChangeRec(coins, amount, index + 1, dp);
+        if (skip != -1) {
+            result = Math.min(result, skip);
         }
 
-        if (result == Integer.MAX_VALUE) {
-            result = -1;
-        }
-
-        return dp[index][amount] = result;
+        dp[index][amount] = (result == Integer.MAX_VALUE) ? -1 : result;
+        return dp[index][amount];
     }
 
 

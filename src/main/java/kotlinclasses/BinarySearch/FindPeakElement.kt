@@ -84,9 +84,36 @@ Decreasing line
         // Dummy return statement
         return -1
     }
+
+
+    fun findPeakElementApproach2(nums: IntArray): Int {
+        if (nums.size == 1) return 0
+        var left = 0
+        var right = nums.size
+
+        while (left < right) {
+            val mid = left + (right - left) / 2
+            if (mid == 0 && nums[mid] > nums[mid + 1])
+                return mid
+            else if (mid == nums.size - 1 && nums[mid] > nums[mid - 1])
+                return mid
+            else if ((mid > 0 && nums[mid] > nums[mid - 1]) &&
+                (mid < nums.size - 1 && nums[mid] > nums[mid + 1])
+            ) {
+                return mid
+            } else if (mid < nums.size - 1 && nums[mid] < nums[mid + 1]) {
+                left = mid + 1
+            } else {
+                right = mid
+            }
+        }
+        return left
+    }
 }
 
 fun main() {
     val element = FindPeakElement()
-    println(element.findPeakElement(intArrayOf(1, 2, 1, 3, 5, 6, 4)))
+    val arr = intArrayOf(1, 2, 1, 3, 5, 6, 4)
+    println(element.findPeakElement(arr))
+    println(element.findPeakElementApproach2(arr))
 }

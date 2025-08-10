@@ -12,6 +12,7 @@ package kotlinclasses.Tree
 import java.util.LinkedList
 import java.util.Queue
 
+
 class BinaryTreeLevelOrderTraversal {
     //https://leetcode.com/problems/binary-tree-level-order-traversal/description/
     /*Given the root of a binary tree, return the level order traversal of its nodes' values.
@@ -66,6 +67,44 @@ The number of nodes in the tree is in the range [0, 2000].
         return result
     }
 
+    /*
+    Recursive Call Trace:
+    traverse(3, 0)                        → result = [[3]]
+        ├── traverse(9, 1)                → result = [[3], [9]]
+        │   ├── traverse(10, 2)           → result = [[3], [9], [10]]
+        │   │   ├── traverse(null, 3)     → result = [[3], [9], [10]]
+        │   │   └── traverse(null, 3)     → result = [[3], [9], [10]]
+        │   └── traverse(null, 2)         → result = [[3], [9], [10]]
+        └── traverse(20, 1)               → result = [[3], [9, 20], [10]]
+            ├── traverse(15, 2)           → result = [[3], [9, 20], [10, 15]]
+            │   ├── traverse(null, 3)     → result = [[3], [9, 20], [10, 15]]
+            │   └── traverse(null, 3)     → result = [[3], [9, 20], [10, 15]]
+            └── traverse(7, 2)            → result = [[3], [9, 20], [10, 15, 7]]
+                ├── traverse(null, 3)     → result = [[3], [9, 20], [10, 15, 7]]
+                └── traverse(null, 3)     → result = [[3], [9, 20], [10, 15, 7]]
+
+    * */
+    fun levelOrderRecursive(root: TreeNode?): MutableList<MutableList<Int>> {
+        val result: MutableList<MutableList<Int>> = ArrayList()
+        traverse(root, 0, result)
+        return result
+    }
+
+    private fun traverse(node: TreeNode?, level: Int, result: MutableList<MutableList<Int>>) {
+        if (node == null) return
+
+        // Ensure the result list has a list for the current level
+        if (result.size == level) {
+            result.add(ArrayList())
+        }
+
+        // Add the current node's value to its level list
+        result[level].add(node.`val`)
+
+        // Recurse on left and right children
+        traverse(node.left, level + 1, result)
+        traverse(node.right, level + 1, result)
+    }
 
     fun printLevelOrder(root: TreeNode?) {
         val queue: Queue<TreeNode> = LinkedList()
@@ -100,4 +139,6 @@ fun main() {
 
     println(obj.levelOrder(root))
     obj.printLevelOrder(root)
+    println()
+    println(obj.levelOrderRecursive(root))
 }
