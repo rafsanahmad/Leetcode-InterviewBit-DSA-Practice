@@ -57,6 +57,33 @@ If all integer numbers from the stream are in the range [0, 100], how would you 
 If 99% of all integer numbers from the stream are in the range [0, 100], how would you optimize your solution?*/
 
     //res/find_median_stream.png
+    /*Example: Insert [5, 2, 10, 3]
+
+We maintain:
+maxHeap = smaller half (largest at top).
+minHeap = larger half (smallest at top).
+Median = either one top, or average of tops.
+
+Insert 5
+maxHeap: [ ]
+minHeap: [5]
+Median = 5
+
+Insert 2
+maxHeap: [2]
+minHeap: [5]
+Median = (2 + 5) / 2 = 3.5
+
+Insert 10
+maxHeap: [2]
+minHeap: [5, 10]
+Median = 5
+
+Insert 3
+maxHeap: [2, 3]
+minHeap: [5, 10]
+Median = (3 + 5) / 2 = 4.0*/
+
     static class MedianFinder {
 
         PriorityQueue<Integer> min;

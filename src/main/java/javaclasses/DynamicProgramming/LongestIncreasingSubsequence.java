@@ -59,7 +59,7 @@ Output: 1*/
         ArrayList<Integer> list = new ArrayList<>();
 
         for (int num : nums) {
-            if (list.size() == 0 || num > list.get(list.size() - 1)) {
+            if (list.isEmpty() || num > list.get(list.size() - 1)) {
                 list.add(num);
             } else {
                 int i = 0;
