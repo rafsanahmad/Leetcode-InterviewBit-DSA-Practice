@@ -55,24 +55,21 @@ s1, s2, and s3 consist of lowercase English letters.*/
     }
 
     public boolean helper(String s1, String s2, String s3, HashMap<String, Boolean> map) {
-        if (s1.length() == 0 && s2.length() == 0 && s3.length() == 0) {
+        if (s1.isEmpty() && s2.isEmpty() && s3.isEmpty()) {
             return true;
         }
 
-        if (s3.length() == 0) {
+        if (s3.isEmpty()) {
             return false;
         }
 
-        StringBuilder builder = new StringBuilder();
-        builder.append(s1).append("|").append(s2).append("|").append(s3);
-
-        String key = builder.toString();
+        String key = s1 + "|" + s2 + "|" + s3;
 
         if (!map.containsKey(key)) {
-            boolean x = s1.length() != 0 && s1.charAt(0) == s3.charAt(0) &&
+            boolean x = !s1.isEmpty() && s1.charAt(0) == s3.charAt(0) &&
                     isInterleave(s1.substring(1), s2, s3.substring(1));
 
-            boolean y = s2.length() != 0 && s2.charAt(0) == s3.charAt(0) &&
+            boolean y = !s2.isEmpty() && s2.charAt(0) == s3.charAt(0) &&
                     isInterleave(s1, s2.substring(1), s3.substring(1));
 
             map.put(key, x || y);

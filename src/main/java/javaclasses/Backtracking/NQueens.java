@@ -1,7 +1,7 @@
 /*
  * *
  *  * N Queens.java
- *  * Created by Rafsan Ahmad on 12/4/24, 12:10 AM
+ *  * Created by Rafsan Ahmad on 12/4/24, 12:10AM
  *  * Copyright (c) 2024 . All rights reserved.
  *  *
  *
