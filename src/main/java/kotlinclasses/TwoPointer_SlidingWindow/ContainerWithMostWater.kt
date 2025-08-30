@@ -7,7 +7,7 @@
  *
  */
 
-package kotlinclasses.TwoPointer
+package kotlinclasses.TwoPointer_SlidingWindow
 
 class ContainerWithMostWater {
     //https://leetcode.com/problems/container-with-most-water/description/

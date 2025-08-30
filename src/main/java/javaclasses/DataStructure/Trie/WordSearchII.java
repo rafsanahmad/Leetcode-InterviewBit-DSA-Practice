@@ -1,12 +1,13 @@
 /*
  * *
  *  * Word Search II.java
- *  * Created by Rafsan Ahmad on 12/6/21, 4:28 PM
- *  * Copyright (c) 2023 . All rights reserved.
+ *  * Created by Rafsan Ahmad on 8/28/25, 2:19PM
+ *  * Copyright (c) 2025 . All rights reserved.
+ *  *
  *
  */
 
-package javaclasses.Graph.DFS;
+package javaclasses.DataStructure.Trie;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -108,7 +109,7 @@ Code Optimization
 20ms: Remove visited[m][n] completely by modifying board[i][j] = '#' directly.
 18ms: check validity, e.g., if(i > 0) dfs(...), before going to the next dfs.
 17ms: De-duplicate c - a with one variable i.
-15ms: Remove HashSet completely. dietpepsi's idea is awesome.
+15ms: Remove HashSet completely.
 */
     class TrieNode {
         TrieNode[] next = new TrieNode[26];

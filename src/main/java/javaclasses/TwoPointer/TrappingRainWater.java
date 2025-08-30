@@ -25,32 +25,49 @@ public class TrappingRainWater {
     Output: 9
  */
 
+    /*Quick Recap of the Intuition in the comments:
+Always process the smaller side → that side’s max is the limiting wall.
+If current bar is taller/equal → update boundary.
+If current bar is shorter → trap water (difference between boundary and bar height).
+*/
     public int trap(int[] height) {
+        // Edge case: empty input → no water trapped
         if (height == null || height.length == 0) {
             return 0;
         }
-        int len = height.length;
-        int result = 0;
-        int left = 0;
-        int right = len - 1;
-        int leftMax = 0;
-        int rightMax = 0;
 
+        int len = height.length;
+        int result = 0;     // total water trapped
+        int left = 0;       // left pointer
+        int right = len - 1;// right pointer
+        int leftMax = 0;    // highest wall seen so far from the left
+        int rightMax = 0;   // highest wall seen so far from the right
+
+        // Process until pointers meet
         while (left < right) {
+            // Decide which side to process:
+            // Always move the smaller wall pointer,
+            // because that side is the bottleneck for water.
             if (height[left] <= height[right]) {
+                // Left side is smaller (or equal) → leftMax decides water level here
                 if (height[left] >= leftMax) {
+                    // Found a new taller/equal wall on the left → update leftMax
                     leftMax = height[left];
                 } else {
-                    result = result + (leftMax - height[left]);
+                    // Current bar is shorter → it traps water up to leftMax
+                    result += leftMax - height[left];
                 }
-                left++;
-            } else if (height[right] < height[left]) {
+                left++; // Move inward from left
+            } else { // height[right] < height[left]
+                // Right side is smaller → rightMax decides water level here
                 if (height[right] >= rightMax) {
+                    // Found a new taller/equal wall on the right → update rightMax
                     rightMax = height[right];
                 } else {
-                    result = result + (rightMax - height[right]);
+                    // Current bar is shorter → it traps water up to rightMax
+                    result += rightMax - height[right];
                 }
-                right--;
+                right--; // Move inward from right
             }
         }
 

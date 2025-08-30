@@ -7,7 +7,7 @@
  *
  */
 
-package kotlinclasses.TwoPointer
+package kotlinclasses.TwoPointer_SlidingWindow
 
 class ValidPalindrome {
     //https://leetcode.com/problems/valid-palindrome/

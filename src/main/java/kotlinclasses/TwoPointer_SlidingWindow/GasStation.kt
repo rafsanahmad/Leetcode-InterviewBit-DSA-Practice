@@ -7,7 +7,7 @@
  *
  */
 
-package kotlinclasses.TwoPointer
+package kotlinclasses.TwoPointer_SlidingWindow
 
 class GasStation {
     //https://leetcode.com/problems/gas-station/description/

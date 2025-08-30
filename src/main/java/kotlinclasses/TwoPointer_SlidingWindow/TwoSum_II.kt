@@ -7,7 +7,7 @@
  *
  */
 
-package kotlinclasses.TwoPointer
+package kotlinclasses.TwoPointer_SlidingWindow
 
 class TwoSum_II {
     //https://leetcode.com/problems/two-sum-ii-input-array-is-sorted/description/
