@@ -1,13 +1,13 @@
 /*
  * *
  *  * Substring with Concatenation of All Words.java
- *  * Created by Rafsan Ahmad on 12/16/24, 2:28PM
- *  * Copyright (c) 2024 . All rights reserved.
+ *  * Created by Rafsan Ahmad on 9/1/25, 3:12PM
+ *  * Copyright (c) 2025 . All rights reserved.
  *  *
  *
  */
 
-package javaclasses.Strings;
+package javaclasses.TwoPointer;
 
 import java.util.ArrayList;
 import java.util.HashMap;
