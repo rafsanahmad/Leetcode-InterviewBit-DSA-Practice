@@ -14,7 +14,7 @@ import kotlin.math.abs
 private const val size = 1024
 
 private class Cache {
-    private val table = arrayOfNulls<Entry>(size)
+    private val table = Array<Entry?>(size) { null }
 
     class Entry(val key: String, var value: String) {
         var next: Entry? = null
@@ -29,19 +29,19 @@ private class Cache {
 
     fun add(k: String, v: String): String {
         val hash = abs(k.hashCode() % size)
-        var e: Entry? = table.get(hash)
+        var e: Entry? = table[hash]
 
         if (e != null) {
             if (e.key == k) {
                 e.value = v
             } else {
                 //collision
-                while (e!!.next != null) {
+                while (e?.next != null) {
                     e = e.next
                 }
 
                 val oldEntry = Entry(k, v)
-                e.next = oldEntry
+                e?.next = oldEntry
             }
             return "overwritten"
         } else {
@@ -53,8 +53,8 @@ private class Cache {
     }
 
     fun get(k: String): String {
-        val hash = Math.abs(k.hashCode() % size)
-        var e: Entry? = table.get(hash)
+        val hash = abs(k.hashCode() % size)
+        var e: Entry? = table[hash]
         while (e != null) {
             if (e.key == k) return e.value
             e = e.next

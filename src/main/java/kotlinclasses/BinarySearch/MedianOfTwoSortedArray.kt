@@ -80,7 +80,7 @@ nums2: [ 7  11 | 18  19  21  25 ]
 Values → maxLx=9, minRx=15, maxLy=11, minRy=18
 Check: 9<=18 ✔ and 11<=15 ✔ → ✅ correct partition
 
-🔹 Final Result
+Final Result
 Since total = 11 (odd), median = max(maxLx, maxLy) = max(9, 11) = 11.*/
     fun findMedianSortedArrays(nums1: IntArray, nums2: IntArray): Double {
         val len1 = nums1.size

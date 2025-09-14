@@ -89,6 +89,12 @@ Node.random is null or is pointing to some node in the linked list.*/
         var curr = node
 
         // Step 1: Interleave copied nodes
+        /* We create a copy node right after each original node:
+A -> A' -> B -> B' -> C -> C' -> null
+A' is copy of A
+B' is copy of B
+C' is copy of C
+At this point, only .next pointers are linked. Random pointers are still null.*/
         while (curr != null) {
             val copy = Node(curr.`val`)
             copy.next = curr.next
@@ -97,6 +103,19 @@ Node.random is null or is pointing to some node in the linked list.*/
         }
 
         // Step 2: Assign random pointers
+        /*Now, for each original node, we set:
+curr.next.random = curr.random?.next
+That means:
+A'.random = A.random?.next = C.next = C'
+B'.random = B.random?.next = A.next = A'
+C'.random = C.random?.next = B.next = B'
+
+So now:
+A -> A' -> B -> B' -> C -> C'
+     |          |          |
+     v          v          v
+     C'         A'         B'
+*/
         curr = node
         while (curr != null) {
             curr.next?.random = curr.random?.next
@@ -104,6 +123,22 @@ Node.random is null or is pointing to some node in the linked list.*/
         }
 
         // Step 3: Separate the lists
+        /*Finally, we detach the copy list from the interleaved list:
+Restore original list: A -> B -> C
+Extract copy list: A' -> B' -> C'
+Both lists now have the correct .next and .random relationships.
+
+Final Result:
+Original: A -> B -> C
+           |    |    |
+           v    v    v
+           C    A    B
+
+Copy:     A' -> B' -> C'
+           |     |     |
+           v     v     v
+           C'    A'    B'
+*/
         curr = node
         val dummy = Node(0)
         var copyCurr: Node? = dummy

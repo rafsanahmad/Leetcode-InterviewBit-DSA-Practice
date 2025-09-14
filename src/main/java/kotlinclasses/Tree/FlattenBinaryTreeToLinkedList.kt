@@ -9,6 +9,8 @@
 
 package kotlinclasses.Tree
 
+import java.util.LinkedList
+
 class FlattenBinaryTreeToLinkedList {
     //https://leetcode.com/problems/flatten-binary-tree-to-linked-list/description/
     //res/flaten_bt.jpg
@@ -19,6 +21,18 @@ The "linked list" should be in the same order as a pre-order traversal of the bi
 
 
 Example 1:
+        1                     1
+       / \                     \
+      2   5                     2
+     / \   \                     \
+    3   4   6    ----->           3
+                                   \
+                                    4
+                                     \
+                                      5
+                                       \
+                                        6
+
 Input: root = [1,2,5,3,4,null,6]
 Output: [1,null,2,null,3,null,4,null,5,null,6]
 
@@ -51,6 +65,55 @@ Follow up: Can you flatten the tree in-place (with O(1) extra space)?*/
         node.left = null
         prev = node
     }
+
+
+    var prev2: TreeNode? = null
+
+    //Using Preorder
+    fun flattenPreorder(root: TreeNode?) {
+        if (root == null) return
+        preorder(root)
+    }
+
+    fun preorder(node: TreeNode?) {
+        if (node == null) return
+
+        // If we had a previous node, link it to the current one
+        if (prev2 != null) {
+            prev2?.right = node
+            prev2?.left = null
+        }
+        prev2 = node
+
+        // save before recursion (otherwise links get messed up)
+        val left = node.left
+        val right = node.right
+
+        preorder(left)
+        preorder(right)
+    }
+
+
+    fun flattenIterative(root: TreeNode?) {
+        if (root == null) return
+        val stack = LinkedList<TreeNode>()
+        stack.push(root)
+
+        var prev: TreeNode? = null
+        while (stack.isNotEmpty()) {
+            val node = stack.pop()
+
+            if (prev != null) {
+                prev.right = node
+                prev.left = null
+            }
+            prev = node
+
+            // push right first so left is processed first
+            if (node.right != null) stack.push(node.right)
+            if (node.left != null) stack.push(node.left)
+        }
+    }
 }
 
 fun main() {
@@ -70,6 +133,7 @@ fun main() {
     root.right?.right = TreeNode(6)
 
     // Flatten the tree
+    val temp = root
     obj.flatten(root)
 
     // Print the flattened tree
@@ -77,5 +141,15 @@ fun main() {
     while (current != null) {
         print("${current.`val`} ")
         current = current.right
+    }
+
+    println()
+    obj.flattenPreorder(temp)
+
+    // Print the flattened tree
+    var current2: TreeNode? = temp
+    while (current2 != null) {
+        print("${current2.`val`} ")
+        current2 = current2.right
     }
 }

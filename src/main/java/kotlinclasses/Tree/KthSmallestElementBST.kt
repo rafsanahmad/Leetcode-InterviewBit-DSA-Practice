@@ -41,29 +41,29 @@ Follow Up:
  if your BST is frequently modified and you want to run kthSmallest(k) efficiently and
  repeatedly, you need to do more.
 
-✅ The Proper & Correct Optimized Way:
-✅ Use a Balanced BST with Augmented Metadata.
+The Proper & Correct Optimized Way:
+Use a Balanced BST with Augmented Metadata.
 This guarantees:
 
 insert, delete, and kthSmallest all in O(log n) time.
 Tree remains balanced, avoiding skew (which causes O(n)).
 
 🔧 Your Options (Balanced Trees that support rank queries):
-✅ 1. AVL Tree with Subtree Sizes
+1. AVL Tree with Subtree Sizes
 Maintain a self-balancing AVL Tree.
 Augment each node with:
 count: for duplicates
 size: total size of subtree including duplicates
 After every insert/delete, rebalance and update size.
 
-⏱️ Time complexity:
+Time complexity:
 insert, delete, kthSmallest → O(log n) always
 
-✅ 2. Treap or Red-Black Tree (with size)
+2. Treap or Red-Black Tree (with size)
 Same idea — pick any balanced BST and augment it.
 Treap is often easier to implement for custom behavior.
 
-✅ 3. Binary Indexed Tree (Fenwick Tree) or Segment Tree (if range of values is bounded)
+3. Binary Indexed Tree (Fenwick Tree) or Segment Tree (if range of values is bounded)
 If values are integers within a known range (e.g., 0–10⁶):
 Use a Segment Tree / Fenwick Tree to store frequencies
 insert(x) → freq[x]++
@@ -71,7 +71,7 @@ delete(x) → freq[x]--
 
 kthSmallest(k) → binary search the prefix sum tree
 
-⏱️ Time complexity:
+Time complexity:
 insert, delete → O(log n)
 kthSmallest(k) → O(log n)
 
