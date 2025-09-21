@@ -44,7 +44,7 @@ n == grid[i].length
 grid[i][j] is '0' or '1'.*/
 
     fun numIslands(grid: Array<CharArray>): Int {
-        var result: Int = 0
+        var result = 0
         var visited = Array(grid.size) { IntArray(grid[0].size) { -1 } }
 
         for (i in grid.indices) {

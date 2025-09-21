@@ -7,7 +7,9 @@
 
 package javaclasses.Strings;
 
-/*Given two strings, write a code to check whether two strings are anagram of each other or not.
+class ValidAnagram {
+    //https://leetcode.com/problems/valid-anagram/
+    /*Given two strings, write a code to check whether two strings are anagram of each other or not.
 In this tutorial, I am going to discuss multiple approaches and their java implementation to check if two
 strings are anagrams or not.
 
@@ -33,8 +35,6 @@ count of the second string. Finally, we check if the character count is zero. If
 two string is not an anagram.
 
 The time complexity of this approach is O(n).*/
-
-class ValidAnagram {
 
     public static boolean isAnagram(String str1, String str2) {
  

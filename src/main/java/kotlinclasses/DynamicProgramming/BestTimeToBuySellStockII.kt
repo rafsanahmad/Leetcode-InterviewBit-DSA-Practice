@@ -46,6 +46,15 @@ Constraints:
 1 <= prices.length <= 3 * 10^4
 0 <= prices[i] <= 10^4*/
 
+    /*
+    Time Complexity: O(N*2)
+Reason: There are N*2 states therefore at max ‘N*2’ new problems will be solved and we are
+running a for loop for ‘N’ times to calculate the total sum
+
+Space Complexity: O(N*2) + O(N)
+Reason: We are using a recursion stack space(O(N)) and a 2D array ( O(N*2)).
+    */
+
     fun maxProfit(prices: IntArray): Int {
         val len = prices.size
         if (len <= 1) return 0
