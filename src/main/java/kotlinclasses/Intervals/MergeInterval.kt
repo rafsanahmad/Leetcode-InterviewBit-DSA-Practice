@@ -36,7 +36,7 @@ intervals[i].length == 2
 
 */
     fun merge(intervals: Array<IntArray>): Array<IntArray> {
-        var list: MutableList<IntArray> = arrayListOf()
+        val list: MutableList<IntArray> = arrayListOf()
 
         Arrays.sort(intervals) { a, b -> a[0] - b[0] }
 
@@ -45,10 +45,10 @@ intervals[i].length == 2
 
             if (list.isEmpty()) {
                 list.add(curInterval)
-            } else if (curInterval[0] <= list.get(list.size - 1)[1]) {
+            } else if (curInterval[0] <= list[list.size - 1][1]) {
                 //conflict occurs update end
-                val end = max(curInterval[1], list.get(list.size - 1)[1])
-                list.get(list.size - 1)[1] = end
+                val end = max(curInterval[1], list[list.size - 1][1])
+                list[list.size - 1][1] = end
             } else {
                 list.add(curInterval)
             }
@@ -60,7 +60,7 @@ intervals[i].length == 2
 
 fun main(args: Array<String>) {
     val mergeInterval = MergeInterval()
-    var intervals = arrayOf(
+    val intervals = arrayOf(
         intArrayOf(1, 3),
         intArrayOf(8, 10),
         intArrayOf(2, 6),

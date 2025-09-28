@@ -40,6 +40,14 @@ Constraints:
 Space Complexity:
 = O((n! / (k! * (n - k)!)) * k)
     */
+
+    /*Why no duplicates like (1,2) and (2,1) appear:
+    It’s because of the index parameter in the recursive call.
+    The code avoids duplicates because:
+It only moves forward (i + 1) after each choice.
+That ensures every combination is sorted ascending.
+Since (2,1) is not in ascending order, it never gets generated.
+    */
     fun combine(n: Int, k: Int): List<List<Int>> {
         val result: MutableList<List<Int>> = mutableListOf()
         val list = mutableListOf<Int>()
@@ -55,6 +63,9 @@ Space Complexity:
         result: MutableList<List<Int>>
     ) {
         if (list.size == k) {
+            //need an independent snapshot of the current combination.
+            //If we just do result.add(list), we’ll end up with wrong results
+            // (all duplicates or all empty).
             result.add(ArrayList(list))
             return
         }

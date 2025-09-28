@@ -41,8 +41,8 @@ Output: false
     //Iterative
     public boolean isSymmetric(TreeNode root) {
         if (root == null) return true;
-        Queue<TreeNode> left = new LinkedList();
-        Queue<TreeNode> right = new LinkedList();
+        Queue<TreeNode> left = new LinkedList<>();
+        Queue<TreeNode> right = new LinkedList<>();
         left.add(root.left);
         right.add(root.right);
 

@@ -48,7 +48,7 @@ This guarantees:
 insert, delete, and kthSmallest all in O(log n) time.
 Tree remains balanced, avoiding skew (which causes O(n)).
 
-🔧 Your Options (Balanced Trees that support rank queries):
+Your Options (Balanced Trees that support rank queries):
 1. AVL Tree with Subtree Sizes
 Maintain a self-balancing AVL Tree.
 Augment each node with:
