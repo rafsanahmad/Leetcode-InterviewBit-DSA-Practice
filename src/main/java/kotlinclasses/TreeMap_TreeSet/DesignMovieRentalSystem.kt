@@ -155,6 +155,10 @@ Space: O(1)
                 val comparator = compareBy<MovieEntry> { it.price }
                     .thenBy { it.shop }
 
+                //For Descending
+                //val comparator = compareByDescending<MovieEntry> { it.price }
+                //  .thenByDescending { it.shop }   // shop also descending
+
                 availableMovies
                     .computeIfAbsent(movie) { TreeSet(comparator) }
                     .add(MovieEntry(price, shop))
