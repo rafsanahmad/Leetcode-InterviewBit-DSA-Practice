@@ -1,11 +1,13 @@
 /*
- * * Best Time To Buy Stock.java
- *  * Created by Rafsan Ahmad on 10/25/21, 9:49 PM
- *  * Copyright (c) 2021 . All rights reserved.
+ * *
+ *  * Best Time To Buy Stock.java
+ *  * Created by Rafsan Ahmad on 10/26/25, 4:13PM
+ *  * Copyright (c) 2025 . All rights reserved.
+ *  *
  *
  */
 
-package javaclasses.Utility;
+package javaclasses.Array;
 
 public class BestTimeToBuyStock {
     //Leetcode 121

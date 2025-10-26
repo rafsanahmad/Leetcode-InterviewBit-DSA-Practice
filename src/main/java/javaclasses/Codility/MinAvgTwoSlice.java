@@ -9,10 +9,11 @@
 package javaclasses.Codility;
 
 public class MinAvgTwoSlice {
-    /*A non-empty array A consisting of N integers is given. A pair of integers (P, Q), such that 0 ≤ P < Q < N,
+    /*A non-empty array A consisting of N integers is given. A pair of integers (P, Q), such that
+    0 ≤ P < Q < N,
     is called a slice of array A (notice that the slice contains at least two elements).
-    The average of a slice (P, Q) is the sum of A[P] + A[P + 1] + ... + A[Q] divided by the length of the slice.
-    To be precise, the average equals (A[P] + A[P + 1] + ... + A[Q]) / (Q − P + 1).
+    The average of a slice (P, Q) is the sum of A[P] + A[P + 1] + ... + A[Q] divided by the length
+    of the slice. To be precise, the average equals (A[P] + A[P + 1] + ... + A[Q]) / (Q − P + 1).
 
 For example, array A such that:
 
@@ -34,9 +35,9 @@ Write a function:
 
 class Solution { public int solution(int[] A); }
 
-that, given a non-empty array A consisting of N integers, returns the starting position of the slice with the minimal
-average. If there is more than one slice with a minimal average, you should return the smallest starting position of
-such a slice.
+that, given a non-empty array A consisting of N integers, returns the starting position of the
+slice with the minimal average. If there is more than one slice with a minimal average, you should
+return the smallest starting position of such a slice.
 
 For example, given array A such that:
 
@@ -56,9 +57,13 @@ each element of array A is an integer within the range [−10,000..10,000].*/
 
     /*Solution. time complexity is O(N)
     The key to solve this task is these two patterns:
-    (1) There must be some slices, with length of two or three, having the minimal average value among all the slices.
-    (2) And all the longer slices with minimal average are built up with these 2-element and/or 3-element small slices.
+    (1) There must be some slices, with length of two or three, having the minimal average value
+    among all the slices.
+    (2) And all the longer slices with minimal average are built up with these 2-element and/or
+    3-element small slices.
 */
+    // IDEA: A long slice can never produce a new smaller average that wasn’t already seen in one
+    // of its 2- or 3-length sub-slices.
     public int solution(int[] A) {
         double minAvg = Integer.MAX_VALUE;
         int index = 0;

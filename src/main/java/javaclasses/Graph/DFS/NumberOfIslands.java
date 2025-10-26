@@ -53,6 +53,11 @@ grid[i][j] is '0' or '1'.
         }
 
         //Go-through entire matrix and DFS into when we found '1'
+        /*Run DFS from this cell — which spreads out to mark all connected '1's as visited.
+Think of it like pouring paint on the land — all connected '1's become “colored.”
+After DFS finishes, we know we’ve completely explored that island.
+Then we increment result++.*/
+
         for (int i = 0; i < row; i++) {
             for (int j = 0; j < column; j++) {
                 if (grid[i][j] == '1') {

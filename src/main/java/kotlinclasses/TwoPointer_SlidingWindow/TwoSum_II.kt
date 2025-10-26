@@ -47,7 +47,7 @@ numbers is sorted in non-decreasing order.
 The tests are generated such that there is exactly one solution.*/
 
     fun twoSum(numbers: IntArray, target: Int): IntArray {
-        var resultArr: IntArray = IntArray(2)
+        var resultArr = IntArray(2)
         var left = 0
         var right = numbers.size - 1
 

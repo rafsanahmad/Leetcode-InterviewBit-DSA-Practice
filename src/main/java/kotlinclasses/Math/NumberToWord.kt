@@ -1,13 +1,13 @@
 /*
  * *
- *  * NumberToWord.kt
- *  * Created by Rafsan Ahmad on 3/15/25, 7:52PM
+ *  * Number To Word.kt
+ *  * Created by Rafsan Ahmad on 10/26/25, 4:19PM
  *  * Copyright (c) 2025 . All rights reserved.
  *  *
  *
  */
 
-package kotlinclasses.Utility
+package kotlinclasses.Math
 
 class NumberToWord {
 
@@ -102,6 +102,6 @@ class NumberToWord {
 }
 
 fun main(args: Array<String>) {
-    var obj = NumberToWord()
-    System.out.println("" + obj.convert(1234));
+    val obj = NumberToWord()
+    println("" + obj.convert(1234));
 }

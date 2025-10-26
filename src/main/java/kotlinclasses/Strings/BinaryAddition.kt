@@ -1,18 +1,60 @@
 /*
  * *
- *  * BinaryAddition.kt
- *  * Created by Rafsan Ahmad on 3/15/25, 7:46PM
+ *  * Binary Addition.kt
+ *  * Created by Rafsan Ahmad on 10/26/25, 4:24PM
  *  * Copyright (c) 2025 . All rights reserved.
  *  *
  *
  */
 
-package kotlinclasses.Utility
+package kotlinclasses.Strings
 
 class BinaryAddition {
+    /*You are given two binary strings s1 and s2, representing two non-negative binary numbers
+    (composed only of '0' and '1').
 
+Return a new binary string representing their sum, also in binary form.
+The result should not have any leading zeros, except if the result itself is "0".
+
+Examples
+Example 1
+Input:
+s1 = "11"
+s2 = "1"
+
+Output:
+"100"
+
+Explanation:
+   11
++   1
+-----
+  100
+
+Example 2
+Input:
+s1 = "1010"
+s2 = "1011"
+
+Output:
+"10101"
+
+Explanation:
+   1010
++  1011
+--------
+  10101
+
+Example 3
+Input:
+s1 = "0"
+s2 = "0"
+
+Output:
+"0"
+*/
     fun addBinaryString(s1: String, s2: String): String {
-        var result: StringBuilder = StringBuilder("")
+        val result: StringBuilder = StringBuilder("")
         var carry = 0
         var total = 0
         var len1 = s1.length - 1

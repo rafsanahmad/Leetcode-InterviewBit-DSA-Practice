@@ -1,15 +1,13 @@
 /*
  * *
  *  * CourseScheduleII.kt
- *  * Created by Rafsan Ahmad on 6/30/25, 4:33 PM
+ *  * Created by Rafsan Ahmad on 6/30/25, 4:33PM
  *  * Copyright (c) 2025 . All rights reserved.
  *  *
  *
  */
 
 package kotlinclasses.Graph
-
-import javaclasses.Graph.DFS.CourseScheduleII
 
 class CourseScheduleII {
     //https://leetcode.com/problems/course-schedule-ii/

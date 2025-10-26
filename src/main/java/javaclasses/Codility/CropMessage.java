@@ -12,7 +12,7 @@ public class CropMessage {
 
     //K Characters limit on a Forum Message
     public String cropMessage(String message, int K) {
-        StringBuilder builder = new StringBuilder("");
+        StringBuilder builder = new StringBuilder();
         int currentLength = 0;
         String[] splitted = message.split("\\s+");
         for (String str : splitted) {

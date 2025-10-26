@@ -38,7 +38,7 @@ The number of nodes in the list is in the range [0, 5 * 10^4].
 Follow up: Can you sort the linked list in O(n logn) time and O(1) memory (i.e. constant space)?*/
 
     //Time Complexity: O(n log n)
-    //Space Complexity: O(log n)
+    //Space Complexity: O(log n) (recursion stack)
     fun sortList(head: ListNode?): ListNode? {
         if (head == null || head.next == null) return head
 

@@ -43,8 +43,8 @@ Write a function:
 
 class Solution { public int[] solution(int N, int[] A); }
 
-that, given an integer N and a non-empty array A consisting of M integers, returns a sequence of integers
-representing the values of the counters.
+that, given an integer N and a non-empty array A consisting of M integers, returns a sequence of
+integers representing the values of the counters.
 
 Result array should be returned as an array of integers.
 
@@ -65,6 +65,7 @@ N and M are integers within the range [1..100,000];
 each element of array A is an integer within the range [1..N + 1].*/
 
     //Time Limit Exceeded
+    //Naive approach → whenever maxCounter appears, update all N counters → O(N × M)
     public int[] solution(int N, int[] A) {
         int len = A.length;
         int[] result = new int[N];
@@ -82,6 +83,10 @@ each element of array A is an integer within the range [1..N + 1].*/
         return result;
     }
 
+    /*Key Optimization Idea: “Lazy update” using lastMax
+Instead of updating all counters immediately when maxCounter happens,
+we remember the last global max in a variable — lastMax.*/
+    //Time Complexity: O(N + M)
     public int[] solutionOptimized(int N, int[] A) {
         int max = 0;
         int lastMax = 0;
@@ -97,6 +102,8 @@ each element of array A is an integer within the range [1..N + 1].*/
             }
         }
 
+        /*Counters that were not touched after the last maxCounter
+still have old, smaller values, even though logically they should be at least lastMax.*/
         for (int i = 0; i < counters.length; i++) {
             counters[i] = Math.max(counters[i], lastMax);
         }

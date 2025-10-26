@@ -43,7 +43,7 @@ N is an integer within the range [1..2,147,483,647].*/
             char ch = str.charAt(i);
             if (ch == '1' && stack.isEmpty()) {
                 stack.push(i);
-            } else if (ch == '1' && !stack.isEmpty()) {
+            } else if (ch == '1') {
                 int start = stack.pop();
                 int diff = (i - start) - 1;
                 binaryGap = Math.max(diff, binaryGap);

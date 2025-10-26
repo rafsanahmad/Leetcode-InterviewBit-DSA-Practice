@@ -33,6 +33,7 @@ private class Cache {
 
         if (e != null) {
             if (e.key == k) {
+                //overwriting
                 e.value = v
             } else {
                 //collision

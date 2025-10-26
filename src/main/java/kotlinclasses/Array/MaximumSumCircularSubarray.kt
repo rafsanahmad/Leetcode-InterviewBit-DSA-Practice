@@ -45,10 +45,10 @@ n == nums.length
 -3 * 10^4 <= nums[i] <= 3 * 10^4*/
 
     /*There are two scenarios to consider:
-✅ Case 1: Maximum Subarray does NOT wrap (normal)
+Case 1: Maximum Subarray does NOT wrap (normal)
 Just use Kadane’s algorithm to find the maximum subarray sum.
 
-✅ Case 2: Maximum Subarray wraps around(circular)
+Case 2: Maximum Subarray wraps around(circular)
 In this case, the maximum circular subarray sum is:
 
 total sum of array - minimum subarray sum

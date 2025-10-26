@@ -1,13 +1,13 @@
 /*
  * *
- *  * BSTInsertDuplicate.java
- *  * Created by Rafsan Ahmad on 3/23/24, 8:20 PM
- *  * Copyright (c) 2024 . All rights reserved.
+ *  * BST Insert Duplicate.java
+ *  * Created by Rafsan Ahmad on 10/26/25, 4:14PM
+ *  * Copyright (c) 2025 . All rights reserved.
  *  *
  *
  */
 
-package javaclasses.Utility;
+package javaclasses.Tree;
 
 public class BSTInsertDuplicate {
 

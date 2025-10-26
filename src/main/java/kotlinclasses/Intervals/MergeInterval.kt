@@ -35,6 +35,8 @@ intervals[i].length == 2
 0 <= starti <= endi <= 10^4
 
 */
+    // Time: O(n log n)
+    // Space: O(n)
     fun merge(intervals: Array<IntArray>): Array<IntArray> {
         val list: MutableList<IntArray> = arrayListOf()
 

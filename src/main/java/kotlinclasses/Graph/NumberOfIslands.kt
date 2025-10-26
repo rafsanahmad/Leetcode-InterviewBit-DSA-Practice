@@ -47,10 +47,20 @@ grid[i][j] is '0' or '1'.*/
         var result = 0
         var visited = Array(grid.size) { IntArray(grid[0].size) { -1 } }
 
+        /*Why run DFS from every position?
+        We loop through every cell because we don’t know where islands start.
+        Each cell could be:
+        water → ignore, or
+        part of a new island we haven’t explored yet.*/
         for (i in grid.indices) {
             for (j in grid[i].indices) {
                 // DFS on '1' to explore and count islands.
                 if (grid[i][j] == '1' && visited[i][j] == -1) {
+                    /*Run DFS from this cell — which spreads out to mark all connected '1's as visited.
+                    Think of it like pouring paint on the land — all connected '1's become “colored.”
+                    After DFS finishes, we know we’ve completely explored that island.
+                    Then we increment result++.*/
+
                     dfs(grid, visited, i, j)
                     result++
                 }

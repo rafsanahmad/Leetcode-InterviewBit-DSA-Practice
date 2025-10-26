@@ -78,6 +78,8 @@ Constraints:
             var num = nums[i]
             if (!hashSet.contains(num)) continue
             var count = 1
+            //We only want to start counting when num is the beginning of a sequence —
+            //that is, when there’s no number immediately before it in the set.
             if (!hashSet.contains(num - 1)) {
                 while (hashSet.contains(num + 1)) {
                     num++

@@ -75,7 +75,7 @@ fun main(args: Array<String>) {
     // Sort the list using Descending order of value & if value are equal sort by Key alphabetically
     //list.sortedWith(MapWithCustomComparator)
     list = list
-        .sortedWith<Map.Entry<String, Int>>(object : Comparator<Map.Entry<String, Int>> {
+        .sortedWith(object : Comparator<Map.Entry<String, Int>> {
             override fun compare(p0: Map.Entry<String, Int>, p1: Map.Entry<String, Int>): Int {
                 if (p0.value == p1.value) {
                     return p0.key.compareTo(p1.key)
