@@ -48,12 +48,12 @@ s consists of English letters, digits, symbols and spaces.*/
         while (i < strLen && j < strLen) {
             //If it's a unique character add in a set
 
-            if (!st.contains(s.get(j))) {
-                st.add(s.get(j))
+            if (!st.contains(s[j])) {
+                st.add(s[j])
                 j++
-                maxCount = max(maxCount.toDouble(), (j - i).toDouble()).toInt()
+                maxCount = max(maxCount, (j - i))
             } else {
-                st.remove(s.get(i))
+                st.remove(s[i])
                 i++
             }
         }

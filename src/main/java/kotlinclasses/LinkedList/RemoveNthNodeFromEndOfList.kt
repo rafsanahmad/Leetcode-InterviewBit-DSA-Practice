@@ -48,7 +48,7 @@ Follow up: Could you do this in one pass?*/
         }
 
         // Step 2: Calculate the position to remove from start (1-based)
-        val removeIndex = total - n
+        var removeIndex = total - n
 
         // Step 3: If we need to remove the head node
         if (removeIndex == 0) {
@@ -57,15 +57,15 @@ Follow up: Could you do this in one pass?*/
 
         // Step 4: Traverse to node just before the one we want to remove
         temp = head
-        var i = 0
-        while (i < removeIndex - 1) {
+        var prev: ListNode? = null
+        while (removeIndex > 0) {
+            prev = temp
             temp = temp?.next
-            i++
+            removeIndex--
         }
 
-        // Step 5: Skip the node to remove
-        temp?.next = temp?.next?.next
-
+        //Connect
+        prev?.next = temp?.next
         return head
     }
 
@@ -96,7 +96,7 @@ slow.next = slow.next.next removes the N-th node from the end.*/
         }
 
         // Skip the nth node from end
-        slow?.next = slow?.next?.next
+        slow?.next = slow.next?.next
 
         return dummy.next
     }
