@@ -44,6 +44,10 @@ intervals is sorted by starti in ascending order.
 newInterval.length == 2
 0 <= start <= end <= 10^5*/
 
+    /*Time Complexity: O(n)
+Each interval is traversed once across the three loops (non-overlapping parts).
+Space Complexity: O(n)
+You build a new list to hold merged intervals*/
     fun insert(intervals: Array<IntArray>, newInterval: IntArray): Array<IntArray> {
         if (intervals.isEmpty()) return arrayOf(newInterval)
         val list: MutableList<IntArray> = mutableListOf()
@@ -79,6 +83,46 @@ newInterval.length == 2
 
         return arr
     }
+
+
+    //Approach 2 - single pass
+    /*Time Complexity: O(n)
+      Space Complexity: O(n)*/
+    fun insertApproach2(intervals: Array<IntArray>, newInterval: IntArray): Array<IntArray> {
+        val result = mutableListOf<IntArray>()
+        var (newStart, newEnd) = newInterval
+        var inserted = false
+
+        for (interval in intervals) {
+            val (currStart, currEnd) = interval
+
+            when {
+                currEnd < newStart -> {
+                    // current interval is completely before newInterval
+                    result.add(interval)
+                }
+
+                currStart > newEnd -> {
+                    // current interval is completely after newInterval
+                    if (!inserted) {
+                        result.add(intArrayOf(newStart, newEnd))
+                        inserted = true
+                    }
+                    result.add(interval)
+                }
+
+                else -> {
+                    // overlap case: merge intervals
+                    newStart = minOf(currStart, newStart)
+                    newEnd = maxOf(currEnd, newEnd)
+                }
+            }
+        }
+
+        if (!inserted) result.add(intArrayOf(newStart, newEnd))
+
+        return result.toTypedArray()
+    }
 }
 
 fun main() {
@@ -88,6 +132,7 @@ fun main() {
         intArrayOf(6, 9)
     )
     println(obj.insert(arr1, intArrayOf(2, 5)).contentDeepToString())
+    println(obj.insertApproach2(arr1, intArrayOf(2, 5)).contentDeepToString())
 
     val arr2 = arrayOf(
         intArrayOf(1, 2),
@@ -97,4 +142,5 @@ fun main() {
         intArrayOf(12, 16)
     )
     println(obj.insert(arr2, intArrayOf(4, 8)).contentDeepToString())
+    println(obj.insertApproach2(arr2, intArrayOf(4, 8)).contentDeepToString())
 }
