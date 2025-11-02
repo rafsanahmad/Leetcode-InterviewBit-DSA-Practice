@@ -100,4 +100,7 @@ fun main() {
     println(obj.compareVersion("1.01", "1.001"))
     println(obj.compareVersionOptimized("1.2", "1.10"))
     println(obj.compareVersionOptimized("1.01", "1.001"))
+
+    val version1 = "1.0.0.2"
+    println(version1.split("."))
 }

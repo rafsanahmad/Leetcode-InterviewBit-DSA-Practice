@@ -146,8 +146,7 @@ ascending, and return.
 
         // Step 2: Define a min-heap (PriorityQueue)
         val pq = PriorityQueue<Pair<String, Int>> { a, b ->
-            if (a.second == b.second) b.first.compareTo(a.first) // reverse alphabetically for same count
-            else a.second - b.second // smaller count first
+            a.second - b.second // smaller count first
         }
 
         // Step 3: Keep only top n in heap
@@ -158,7 +157,8 @@ ascending, and return.
 
         // Step 4: Extract from heap, sort correctly
         val result = pq.toList()
-            .sortedWith(compareByDescending<Pair<String, Int>> { it.second }.thenBy { it.first })
+            .sortedWith(compareByDescending<Pair<String, Int>> { it.second }
+                .thenBy { it.first })
             .map { it.first }
 
         return result.toTypedArray()
@@ -170,6 +170,7 @@ fun main() {
     val logs = arrayOf(
         "10.10.0.2 200 https://www.google.com",
         "10.10.0.3 404 https://www.yahoo.com",
+        "10.10.0.6 200 https://www.google.com",
         "10.10.0.2 200 https://www.google.com",
         "10.10.0.5 200 https://www.yahoo.com",
         "10.10.0.7 200 https://www.bing.com",

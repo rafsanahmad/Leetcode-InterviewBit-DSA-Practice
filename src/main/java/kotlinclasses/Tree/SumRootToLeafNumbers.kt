@@ -55,7 +55,7 @@ The depth of the tree will not exceed 10.*/
 
         val sum = current * 10 + node.`val`
 
-        // ✅ Only return when it's a real leaf node (both children null)
+        // Only return when it's a real leaf node (both children null)
         if (node.left == null && node.right == null) {
             return sum
         }
