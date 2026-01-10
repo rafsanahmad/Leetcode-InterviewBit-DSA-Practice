@@ -10,5 +10,6 @@
     <orderEntry type="library" name="lib" level="project" />
     <orderEntry type="library" name="kotlinx-coroutines-core" level="project" />
     <orderEntry type="library" name="io.reactivex.rxjava2.rxjava" level="project" />
+    <orderEntry type="library" name="json-20240303" level="project" />
   </component>
 </module>
