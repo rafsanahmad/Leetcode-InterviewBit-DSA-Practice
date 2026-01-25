@@ -34,6 +34,10 @@ The input is generated such that answer[i] is guaranteed to fit in a 32-bit inte
 Follow up: Can you solve the problem in O(1) extra space complexity? (The output array does not
 count as extra space for space complexity analysis.)*/
 
+    //Input: [1,2,3,4]
+    //prefixProduct = [1, 1, 2, 6]
+    //suffixProduct = [24, 12, 4, 1]
+    //result = [24, 12, 8, 6]
     fun productExceptSelf(nums: IntArray): IntArray {
         if (nums.isEmpty()) return intArrayOf()
 
