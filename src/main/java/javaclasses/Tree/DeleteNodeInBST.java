@@ -10,6 +10,8 @@
 package javaclasses.Tree;
 
 public class DeleteNodeInBST {
+    //Leetcode: 450
+    //https://leetcode.com/problems/delete-node-in-a-bst/description/
     /*Given a root node reference of a BST and a key, delete the node with the given key in
     the BST. Return the root node reference (possibly updated) of the BST.
 
@@ -52,6 +54,12 @@ Each node has a unique value.
 root is a valid binary search tree.
 -10^5 <= key <= 10^5*/
 
+    /*Three cases of deletion
+When deleting a node in BST:
+Node has no children → just remove it.
+Node has one child → replace it with its child.
+Node has two children → replace it with inorder successor (or predecessor), then delete that
+successor from its original position.*/
 
     public TreeNode deleteNode(TreeNode root, int key) {
         if (root == null) {

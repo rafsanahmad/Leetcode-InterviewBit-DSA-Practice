@@ -33,6 +33,11 @@ Input: text1 = "abc", text2 = "def"
 Output: 0
 Explanation: There is no such common subsequence, so the result is 0.
  */
+    /*dp[i][j] = length of the Longest Common Subsequence between
+text1[0 ... i-1]  and  text2[0 ... j-1]
+So when you are computing dp[i][j], you’re deciding:
+what is the best LCS I can form using the first i chars of text1 and first j chars of text2?
+*/
     public int longestCommonSubsequence(String text1, String text2) {
         int max = 0;
         int len1 = text1.length();
@@ -41,9 +46,17 @@ Explanation: There is no such common subsequence, so the result is 0.
 
         for (int i = 1; i < dp.length; i++) {
             for (int j = 1; j < dp[i].length; j++) {
+                //If characters match, we can safely use them in the subsequence.
                 if (text1.charAt(i - 1) == text2.charAt(j - 1)) {
                     dp[i][j] = dp[i - 1][j - 1] + 1;
                 } else {
+                    /*Option 1: Ignore text1[i-1]
+                    Keep all of text2, but drop the current char from text1.
+                    That gives:dp[i - 1][j]
+
+                    Option 2: Ignore text2[j-1]
+                    Keep all of text1, but drop the current char from text2.
+                    That gives: dp[i][j - 1]*/
                     dp[i][j] = Math.max(dp[i][j - 1], dp[i - 1][j]);
                 }
                 max = Math.max(dp[i][j], max);
@@ -116,7 +129,7 @@ Else compare values of L[i-1][j] and L[i][j-1] and go in direction of greater va
         return new String(lcs);
     }
 
-    public static void main(String args[]) {
+    public static void main(String[] args) {
         LongestCommonSubsequence lcs = new LongestCommonSubsequence();
         String str1 = "ABCDGHLQR";
         String str2 = "AEDPHR";
