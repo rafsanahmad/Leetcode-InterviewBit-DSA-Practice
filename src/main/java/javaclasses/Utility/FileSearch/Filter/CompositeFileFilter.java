@@ -1,13 +1,13 @@
 /*
- * *
+ *
  *  * CompositeFileFilter.java
- *  * Created by Rafsan Ahmad on 1/10/26, 1:01PM
- *  * Copyright (c) 2026 . All rights reserved.
  *  *
+ *  * Created by Rafsan Ahmad on 02/19/26, 11:59 AM
+ *  * Copyright (c) 2026. All rights reserved.
  *
  */
 
-package javaclasses.Utility.FileSearch;
+package javaclasses.Utility.FileSearch.Filter;
 
 import java.io.File;
 import java.util.List;

@@ -12,6 +12,8 @@ package javaclasses.Utility.FileSearch;
 import java.io.File;
 import java.util.List;
 
+import javaclasses.Utility.FileSearch.Filter.FileFilter;
+
 public class FileSearcher {
 
     public static void search(File dir, FileFilter filter, List<File> result) {

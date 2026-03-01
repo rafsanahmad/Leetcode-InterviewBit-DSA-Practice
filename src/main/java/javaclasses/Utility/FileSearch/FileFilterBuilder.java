@@ -13,6 +13,14 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Consumer;
 
+import javaclasses.Utility.FileSearch.Filter.CompositeFileFilter;
+import javaclasses.Utility.FileSearch.Filter.DateRangeFilter;
+import javaclasses.Utility.FileSearch.Filter.FileFilter;
+import javaclasses.Utility.FileSearch.Filter.FileSizeFilter;
+import javaclasses.Utility.FileSearch.Filter.NameContainsFilter;
+import javaclasses.Utility.FileSearch.Filter.NotFileFilter;
+import javaclasses.Utility.FileSearch.Filter.OrFileFilter;
+
 public class FileFilterBuilder {
 
     private final List<FileFilter> andFilters = new ArrayList<>();
