@@ -34,11 +34,11 @@ Constraints:
 1 <= k <= n*/
 
     /*
-    Time Complexity:
-= O((n! / (k! * (n - k)!)) * k)
+Time Complexity: O((n! / (k! * (n - k)!)) * k)
+// *k because each of the C(n,k) combinations requires O(k) time to copy k elements into the result.
 
-Space Complexity:
-= O((n! / (k! * (n - k)!)) * k)
+Space Complexity: O((n! / (k! * (n - k)!)) * k)
+// *k because we store C(n,k) combinations and each combination holds k elements.
     */
 
     /*Why no duplicates like (1,2) and (2,1) appear:
