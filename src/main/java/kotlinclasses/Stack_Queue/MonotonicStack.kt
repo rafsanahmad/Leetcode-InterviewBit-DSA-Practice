@@ -124,7 +124,7 @@ Pop index from stack
 Set result for that index
 Push current index*/
 
-
+    //Monotonically DECREASING stack
     fun nextGreaterElement(nums: IntArray): IntArray {
         val n = nums.size
         val result = IntArray(n) { -1 }
@@ -171,6 +171,7 @@ Pop index
 Set result
 Push current index*/
 
+    //Monotonically INCREASING stack
     fun nextSmallerElement(nums: IntArray): IntArray {
         val n = nums.size
         val result = IntArray(n) { -1 }
